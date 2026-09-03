@@ -43,7 +43,7 @@ export function LocaleSwitcher() {
           <Languages className="size-5" aria-hidden />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-44">
         <DropdownMenuRadioGroup value={locale} onValueChange={onSelect}>
           {locales.map((code) => (
             <DropdownMenuRadioItem key={code} value={code} lang={code}>

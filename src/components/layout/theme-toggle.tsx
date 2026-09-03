@@ -35,7 +35,7 @@ export function ThemeToggle() {
           <Moon className="absolute size-5 scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" aria-hidden />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-44">
         <DropdownMenuRadioGroup value={theme ?? "system"} onValueChange={setTheme}>
           {options.map(({ value, icon: Icon }) => (
             <DropdownMenuRadioItem key={value} value={value}>

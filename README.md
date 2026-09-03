@@ -60,4 +60,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestone 1 (foundation) in progress. See PLAN.md section 8.
+Milestone 1 (foundation) done. Next: milestone 2 (data model + seed). See PLAN.md sections 8 and 11.

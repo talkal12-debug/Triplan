@@ -359,6 +359,9 @@ model Country {                  // snapshot מ-REST Countries
 16. **תמונות יעדים:** Wikimedia Commons עם ייחוס, או placeholder מעוצב בקוד — לא תמונות של POIs ספציפיים שלא אומתו.
 17. **גופן:** Rubik (תמיכה עברית + לטינית + קירילית מלאה; Heebo חסר קירילית).
 18. **Package manager:** npm (מותקן; pnpm לא).
+19. **גרסת Next:** 15.5 (האחרונה בסדרת 15), כפי שביקש המסמך. Next 16 קיים אבל לא נדרש; שדרוג אפשרי בהמשך.
+20. **אנימציות כניסה:** ב-CSS (tw-animate-css) ולא ב-Framer Motion, כדי שהתוכן ייראה גם לפני שה-JavaScript נטען. Framer Motion שמור למעברים בין שלבי ה-Wizard.
+21. **רכיבי shadcn (`src/components/ui/`)** פטורים מכלל ה-ESLint של RTL: הם קוד ספרייה, ו-Sheet מחשב צד פיזי מכיוון הטקסט בזמן ריצה.
 
 ---
 
@@ -375,7 +378,16 @@ model Country {                  // snapshot מ-REST Countries
 
 ---
 
-## 11. שאלות פתוחות (עד 5)
+## 11. יומן milestones
+
+| # | סטטוס | תאריך | branch | הערות |
+|---|---|---|---|---|
+| 1 | ✅ הושלם | 2026-09-03 | `milestone-1-foundation` | Deploy ל-Vercel נדחה (אין חשבון עדיין). נבדק ידנית בדפדפן: he/en, RTL/LTR, dark mode, מובייל, 404, manifest |
+| 2 | ⏳ הבא | | | |
+
+---
+
+## 12. שאלות פתוחות (עד 5)
 
 התשובות ייכתבו כאן אחרי קבלתן.
 
