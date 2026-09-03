@@ -32,6 +32,7 @@ Open http://localhost:3000 — you are redirected to `/he` (Hebrew, RTL). Englis
 | `npm test` | Vitest unit tests. |
 | `npm run i18n:check` | Fails if any `messages/*.json` is missing or has extra keys vs `he.json`. |
 | `npm run check` | lint + typecheck + i18n:check + test. |
+| `npm run test:e2e` | Playwright end-to-end tests (phone + desktop Chromium). Starts `next dev` if needed; first run: `npx playwright install chromium`. |
 | `npm run db:push` | Create / update the local SQLite schema (`prisma/dev.db`). |
 | `npm run db:seed` | Load `data/countries.json` and `data/pois/*.json` into the database (idempotent). |
 | `npm run db:reset` | Drop and recreate the local database, then seed. |
@@ -80,4 +81,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestones 1 (foundation) and 2 (data model + seed) done. Next: milestone 3 (wizard). See PLAN.md sections 8 and 11.
+Milestones 1-3 done (foundation, data, wizard). Next: milestone 4 (planning engine). See PLAN.md sections 8 and 11.

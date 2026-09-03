@@ -1,0 +1,19 @@
+import type { TripPreferences } from "@/lib/planner/types";
+import type { Locale } from "@/lib/i18n/locales";
+import type { CityLite, CountryLite } from "@/lib/data/countries-lite";
+import type { WizardError } from "@/lib/wizard/validate";
+
+/** Static data every step may need, computed on the server once per locale. */
+export type WizardContext = {
+  locale: Locale;
+  countries: CountryLite[];
+  cities: Record<string, CityLite[]>;
+};
+
+export type StepProps = {
+  prefs: TripPreferences;
+  set: <K extends keyof TripPreferences>(key: K, value: TripPreferences[K]) => void;
+  update: (patch: Partial<TripPreferences>) => void;
+  ctx: WizardContext;
+  errors: WizardError[];
+};

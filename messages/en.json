@@ -20,7 +20,8 @@
     "menuTitle": "Menu",
     "mainNav": "Main navigation",
     "mobileNav": "Bottom navigation",
-    "knowBefore": "Know before you go"
+    "knowBefore": "Know before you go",
+    "myTrips": "My trips"
   },
   "theme": {
     "toggle": "Toggle color theme",
@@ -73,7 +74,7 @@
   },
   "plan": {
     "title": "Plan a trip",
-    "description": "The Triplan questionnaire is built in development phase 3."
+    "description": "The Triplan questionnaire: 10 short steps."
   },
   "gallery": {
     "title": "Ready plans",
@@ -173,5 +174,289 @@
       "micronesia": "Micronesia",
       "central_asia": "Central Asia"
     }
+  },
+  "wizard": {
+    "title": "Plan a trip",
+    "stepOf": "Step {current} of {total}",
+    "next": "Continue",
+    "back": "Back",
+    "skip": "Skip (use default)",
+    "edit": "Edit",
+    "draftSaved": "Your draft is saved automatically on this device",
+    "guestNote": "No sign-up needed. The plan is stored in your browser.",
+    "startOver": "Start over",
+    "startOverConfirm": "Delete the draft and start over?",
+    "loading": "Loading your draft...",
+    "progress": "Questionnaire progress",
+    "steps": {
+      "destination": "Destination",
+      "dates": "Dates",
+      "party": "Travellers",
+      "visit": "First time?",
+      "pace": "Pace",
+      "transport": "Transport",
+      "interests": "Interests",
+      "budget": "Budget",
+      "hotel": "Stay",
+      "summary": "Summary"
+    },
+    "destination": {
+      "title": "Where to?",
+      "subtitle": "Pick up to 3 countries for a multi-destination trip, then areas within each.",
+      "search": "Search country",
+      "searchPlaceholder": "Search a country in English, Hebrew or its local name",
+      "noResults": "No country found",
+      "showingTop": "Showing the first {count} countries. Type to search.",
+      "selected": "Your destinations",
+      "remove": "Remove {name}",
+      "maxReached": "You can pick up to 3 countries",
+      "underConstruction": "Coming soon",
+      "underConstructionHint": "This version can plan trips to Portugal, Italy and Japan. Other countries are on the way.",
+      "cities": "Areas in {country} (optional)",
+      "citiesHint": "Leave empty and Triplan will choose based on trip length.",
+      "required": "Pick at least one country to continue",
+      "demoBadge": "Available",
+      "select": "Select {name}"
+    },
+    "dates": {
+      "title": "When?",
+      "subtitle": "Start date and number of days. You can change this later.",
+      "start": "Start date",
+      "days": "Number of days",
+      "daysValue": "{count, plural, one {1 day} other {# days}}",
+      "end": "End date: {date}",
+      "flights": "Flight times (optional)",
+      "flightsHint": "Helps us plan a half day on arrival and departure days.",
+      "arrival": "Landing time",
+      "departure": "Take-off time",
+      "season": "Season at destination: {season}",
+      "seasons": {
+        "winter": "winter",
+        "spring": "spring",
+        "summer": "summer",
+        "autumn": "autumn"
+      },
+      "weatherLater": "Weather forecast and local holidays appear in the plan itself (added in development phase 6).",
+      "pastDate": "This date has already passed",
+      "invalidDate": "Invalid date"
+    },
+    "party": {
+      "title": "Who is travelling?",
+      "subtitle": "Ages directly affect the pace and the choice of attractions.",
+      "adults": "Adults",
+      "children": "Children (2–17)",
+      "childAge": "Age of child {n}",
+      "infants": "Infants (under 2)",
+      "stroller": "Bringing a stroller",
+      "seniors": "Of which aged 65+",
+      "seniorsHint": "Counted within adults",
+      "increase": "Add {what}",
+      "decrease": "Remove {what}",
+      "seniorsTooMany": "Travellers aged 65+ cannot exceed the number of adults"
+    },
+    "visit": {
+      "title": "First time there?",
+      "subtitle": "Sets the balance between classics and less touristy places.",
+      "options": {
+        "1": {
+          "title": "First time",
+          "body": "We favour the classic must-see sights."
+        },
+        "2": {
+          "title": "Second time",
+          "body": "A mix of familiar and new."
+        },
+        "3": {
+          "title": "Third time or more",
+          "body": "Neighbourhoods, local spots, day trips further out."
+        }
+      },
+      "seenLabel": "What have you already seen? (optional)",
+      "seenPlaceholder": "e.g. Colosseum, Vatican, Trastevere",
+      "seenHint": "In the plan itself you can mark specific attractions as \"already seen\"."
+    },
+    "pace": {
+      "title": "How much walking?",
+      "subtitle": "The engine never builds a day that exceeds this.",
+      "options": {
+        "low": {
+          "title": "Little walking",
+          "body": "Up to 4 km a day, stops close together."
+        },
+        "medium": {
+          "title": "Moderate",
+          "body": "6–12 km a day."
+        },
+        "high": {
+          "title": "Lots of walking",
+          "body": "12–20 km a day, long days."
+        }
+      },
+      "accessibility": "Accessibility needs (optional)",
+      "accessibilityOptions": {
+        "wheelchair": "Wheelchair",
+        "stroller": "Baby stroller",
+        "stairs": "Difficulty with stairs",
+        "altitude": "Altitude sensitivity"
+      }
+    },
+    "transport": {
+      "title": "How do you get around?",
+      "subtitle": "Pick as many as you like and say how much you want to use each.",
+      "modes": {
+        "walk": "On foot",
+        "bike": "Bicycle",
+        "car": "Rental car",
+        "transit": "Public transport",
+        "tours": "Guided tours"
+      },
+      "weights": {
+        "0": "No",
+        "1": "A little",
+        "2": "Normal",
+        "3": "Prefer"
+      },
+      "weightLabel": "How much {mode}",
+      "mixAll": "Mix of everything",
+      "carTitle": "About the car",
+      "oppositeSideOk": "We are fine driving on the opposite side of the road",
+      "avoidMountainRoads": "Avoid mountain roads",
+      "avoidCityDriving": "Avoid driving in city centres",
+      "drivingSideNote": "In {country} they drive on the {side}",
+      "sideLeft": "left",
+      "sideRight": "right",
+      "atLeastOne": "Pick at least one way to get around"
+    },
+    "interests": {
+      "title": "What interests you?",
+      "subtitle": "Pick as many as you like, then order the top 3.",
+      "options": {
+        "nature": "Nature",
+        "city": "Cities",
+        "history": "History",
+        "food": "Food",
+        "wine": "Wine",
+        "museums": "Museums",
+        "beaches": "Beaches",
+        "adventure": "Adventure sports",
+        "nightlife": "Nightlife",
+        "shopping": "Shopping",
+        "photography": "Photography",
+        "religion": "Religion and heritage",
+        "kids": "With kids"
+      },
+      "ranked": "Top 3, in order of importance",
+      "rankedHint": "Drag to reorder, or use the arrows.",
+      "rest": "Other interests you picked",
+      "moveUp": "Move {name} up",
+      "moveDown": "Move {name} down",
+      "dragHandle": "Drag {name} to rank",
+      "rank": "Rank {n}",
+      "atLeastOne": "Pick at least one interest"
+    },
+    "budget": {
+      "title": "Budget",
+      "subtitle": "Affects the type of stay, restaurants and paid attractions.",
+      "levels": {
+        "budget": {
+          "title": "Budget",
+          "body": "Hostels and apartments, street food, lots of free attractions."
+        },
+        "mid": {
+          "title": "Mid-range",
+          "body": "3–4 star hotels, restaurants, tickets to the main sights."
+        },
+        "luxury": {
+          "title": "Indulgent",
+          "body": "5 stars, private tours, chef restaurants."
+        }
+      },
+      "dailyCap": "Daily cap (optional)",
+      "perPerson": "Per person per day, excluding flights",
+      "currency": "Currency",
+      "capPlaceholder": "e.g. 150"
+    },
+    "hotel": {
+      "title": "Where do you sleep?",
+      "subtitle": "We do not book for you, but the plan is built around the type of stay and its location.",
+      "type": "Type of stay",
+      "types": {
+        "hostel": "Hostel",
+        "3star": "3-star hotel",
+        "4star": "4-star hotel",
+        "5star": "5-star hotel",
+        "apartment": "Apartment",
+        "boutique": "Boutique",
+        "camping": "Camping"
+      },
+      "location": "Location preference",
+      "locations": {
+        "center": "City centre",
+        "station": "Near a train station",
+        "beach": "Near a beach",
+        "quiet": "Somewhere quiet"
+      },
+      "baseMode": "How many hotels along the trip?",
+      "baseModes": {
+        "single": {
+          "title": "One base",
+          "body": "Sleep in one place and make star-shaped day trips."
+        },
+        "multi": {
+          "title": "Moving route",
+          "body": "Change stays along the trip, close to each area."
+        },
+        "auto": {
+          "title": "Not sure",
+          "body": "Triplan recommends based on trip length and destinations."
+        }
+      },
+      "recommendation": "Our recommendation: {mode}",
+      "reasons": {
+        "short": "A short trip, not worth repacking.",
+        "one_city": "One city, one base is enough.",
+        "many_cities": "Several areas, better to sleep close to each.",
+        "many_countries": "Several countries, you have to move.",
+        "long": "A long trip, worth varying.",
+        "small_kids": "With small kids, the calm of one base wins."
+      }
+    },
+    "summary": {
+      "title": "All set?",
+      "subtitle": "Review your choices. Every step can be edited.",
+      "build": "Build my trip",
+      "building": "Saving...",
+      "people": "{count, plural, one {1 adult} other {# adults}}",
+      "childrenCount": "{count, plural, one {1 child} other {# children}}",
+      "infantsCount": "{count, plural, one {1 infant} other {# infants}}",
+      "seniorsCount": "{count, plural, one {1 of them aged 65+} other {# of them aged 65+}}",
+      "days": "{count, plural, one {1 day} other {# days}} from {date}",
+      "noCities": "Areas chosen by Triplan",
+      "none": "None",
+      "visit": {
+        "1": "First time",
+        "2": "Second time",
+        "3": "Third time or more"
+      },
+      "capValue": "Up to {amount} per person per day",
+      "noCap": "No daily cap",
+      "errors": "Some steps need fixing before building:",
+      "stroller": "with a stroller"
+    }
+  },
+  "trip": {
+    "title": "Your trip",
+    "notFound": "Trip not found",
+    "notFoundBody": "It may be saved in another browser. In guest mode trips are stored on this device only.",
+    "engineSoon": "The planning engine is built in development phase 4. Your preferences are saved on this device and the plan will appear here.",
+    "editPrefs": "Edit preferences",
+    "newTrip": "New trip",
+    "savedLocally": "Saved on this device (guest mode)",
+    "myTrips": "My trips",
+    "noTrips": "No trips yet. Shall we start?",
+    "created": "Created {date}",
+    "delete": "Delete trip",
+    "deleteConfirm": "Delete this trip?",
+    "open": "Open"
   }
 }
