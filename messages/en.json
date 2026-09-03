@@ -1,0 +1,97 @@
+{
+  "common": {
+    "appName": "Triplan",
+    "tagline": "A full trip plan in 3 minutes",
+    "skipToContent": "Skip to content",
+    "comingSoon": "Coming soon",
+    "comingSoonBody": "This part is built in the next development phase. Meanwhile, head back home.",
+    "backHome": "Back to home",
+    "demoBanner": "Demo mode: the app is running without external API keys. Some data is estimated.",
+    "affiliate": "Affiliate link",
+    "opensInNewTab": "Opens in a new tab"
+  },
+  "nav": {
+    "home": "Home",
+    "plan": "Plan a trip",
+    "gallery": "Ready plans",
+    "disclosure": "Disclosure",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuTitle": "Menu",
+    "mainNav": "Main navigation",
+    "mobileNav": "Bottom navigation"
+  },
+  "theme": {
+    "toggle": "Toggle color theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "switch": "Change language",
+    "current": "Current language: {name}"
+  },
+  "home": {
+    "eyebrow": "Smart trip planner",
+    "heroTitle": "From a dream to a day-by-day plan, in 3 minutes",
+    "heroSubtitle": "Answer a short questionnaire and Triplan builds your trip day by day and hour by hour, fitted to your pace, ages, transport and opening hours.",
+    "cta": "Build my trip",
+    "ctaSecondary": "Ready plans",
+    "featuresTitle": "Why Triplan",
+    "features": {
+      "fit": {
+        "title": "Fitted to who travels",
+        "body": "A family with a baby, a couple in their 70s, or sporty travelers on their third visit: every plan is built from scratch for the people going."
+      },
+      "honest": {
+        "title": "Transparent and honest",
+        "body": "Every placement has a reason: \"12 minutes walk from the hotel\", \"open on Saturday\". Whatever is unverified is marked."
+      },
+      "offline": {
+        "title": "Works in the field",
+        "body": "The plan, the map and the addresses work without internet, on your phone, like an app."
+      }
+    },
+    "howTitle": "How it works",
+    "steps": {
+      "1": {
+        "title": "Answer 10 questions",
+        "body": "Destination, dates, who travels, pace, transport, budget and hotel. Every question has a smart default."
+      },
+      "2": {
+        "title": "Get a plan",
+        "body": "Day by day, hour by hour, with walking distance, a rain plan and alternatives."
+      },
+      "3": {
+        "title": "Edit and go",
+        "body": "Drag, swap, lock. Export to PDF and calendar, and share with your travel partners."
+      }
+    },
+    "statusTitle": "Development status",
+    "statusBody": "Triplan is built in phases. Current phase: foundation. The questionnaire and the planning engine are on the way."
+  },
+  "plan": {
+    "title": "Plan a trip",
+    "description": "The Triplan questionnaire is built in development phase 3."
+  },
+  "gallery": {
+    "title": "Ready plans",
+    "description": "The gallery of plans to clone and adapt is built in development phase 8."
+  },
+  "disclosure": {
+    "title": "Disclosure",
+    "intro": "Triplan shows links to external booking sites: hotels, attraction tickets and flights.",
+    "affiliate": "Some of these links are affiliate links. If you book through them, Triplan may earn a small commission. Your price does not change.",
+    "marking": "Every such link is labeled \"Affiliate link\" in the interface and opens in a new tab.",
+    "data": "Attraction data that has not been verified is labeled \"unverified\". Check opening hours and prices before you go.",
+    "noKeys": "There are currently no active affiliate keys, and the links are plain search links."
+  },
+  "footer": {
+    "madeWith": "Built on open maps and free data",
+    "rights": "© {year} Triplan"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The address you asked for does not exist, or has not been built yet."
+  }
+}

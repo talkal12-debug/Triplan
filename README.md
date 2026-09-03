@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Triplan
 
-## Getting Started
+Trip planning PWA: answer a 3-minute questionnaire, get a day-by-day, hour-by-hour itinerary
+that respects your pace, ages, transport, hotel and opening hours. Hebrew-first, RTL, works offline.
 
-First, run the development server:
+See [PLAN.md](./PLAN.md) for architecture, data model, milestones and decisions (Hebrew).
+
+## Requirements
+
+- Node.js 20+ (developed on 24)
+- npm 10+
+
+## Setup
 
 ```bash
+npm install
+cp .env.example .env.local   # every variable is optional
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 — you are redirected to `/he` (Hebrew, RTL). English is at `/en`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server (Turbopack). Service worker is disabled in dev. |
+| `npm run build` | Production build (webpack) + generates `public/sw.js`. |
+| `npm start` | Serve the production build. |
+| `npm run lint` | ESLint, including the RTL rule that bans physical `ml-`/`mr-`/`left-`/`right-` utilities. |
+| `npm run typecheck` | `tsc --noEmit` (strict, no `any`). |
+| `npm test` | Vitest unit tests. |
+| `npm run i18n:check` | Fails if any `messages/*.json` is missing or has extra keys vs `he.json`. |
+| `npm run check` | lint + typecheck + i18n:check + test. |
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+All optional. Without any key the app runs in **demo mode** (banner shown).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Used for | Milestone |
+|---|---|---|
+| `DATABASE_URL` | Prisma. SQLite file in dev, PostgreSQL in production. | 2 |
+| `NEXT_PUBLIC_DEMO_MODE` | Force the demo banner `true`/`false`. | 1 |
+| `GOOGLE_PLACES_API_KEY` | Better POI data than OpenStreetMap. | 6 |
+| `ANTHROPIC_API_KEY` | Free-text itinerary editing chat. | 8 |
+| `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
+| `AUTH_*` | Google + email magic-link sign-in. | 8 |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Stack
 
-## Deploy on Vercel
+Next.js 15 (App Router), TypeScript strict, Tailwind CSS v4, shadcn/ui (Radix, RTL), Framer Motion,
+next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## i18n
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Messages live in `messages/{locale}.json`. `he.json` is the reference.
+- Only logical CSS properties are allowed (`ms-`, `me-`, `ps-`, `pe-`, `start-`, `end-`). ESLint enforces it.
+- Locales beyond `he` and `en` arrive in milestone 8 and are machine-translated by Claude; they are
+  marked as needing a native-speaker review.
+
+## Status
+
+Milestone 1 (foundation) in progress. See PLAN.md section 8.

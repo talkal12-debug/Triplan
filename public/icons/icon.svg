@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Triplan">
+  <rect width="512" height="512" rx="112" fill="#2a8fa3"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#fbf9f5" stroke-width="28"/>
+  <polygon points="256,120 296,256 256,392 216,256" fill="#f4a25a"/>
+  <polygon points="256,120 296,256 216,256" fill="#fbf9f5"/>
+  <circle cx="256" cy="256" r="22" fill="#2a8fa3"/>
+</svg>
