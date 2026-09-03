@@ -1,11 +1,14 @@
-import { Compass, Home, LayoutGrid } from "lucide-react";
+import { BookOpenCheck, Compass, Home, LayoutGrid } from "lucide-react";
 
-/** Primary navigation, shared by the header and the mobile bottom bar. */
+/** Primary navigation. The first three also form the mobile bottom bar. */
 export const navItems = [
   { href: "/", key: "home", icon: Home },
   { href: "/plan", key: "plan", icon: Compass },
   { href: "/gallery", key: "gallery", icon: LayoutGrid },
+  { href: "/know-before", key: "knowBefore", icon: BookOpenCheck },
 ] as const;
+
+export const mobileNavItems = navItems.slice(0, 3);
 
 export type NavKey = (typeof navItems)[number]["key"];
 

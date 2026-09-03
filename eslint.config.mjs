@@ -14,7 +14,7 @@ const compat = new FlatCompat({
  * ms-/me-/ps-/pe-/start-/end-/rounded-s/rounded-e/border-s/border-e/text-start/text-end.
  */
 const physicalClassPattern =
-  "(^|\\s|:)-?(ml|mr|pl|pr|left|right|rounded-[lr]|border-[lr]|scroll-m[lr]|scroll-p[lr]|text-(left|right)|float-(left|right)|clear-(left|right))(-|\\b)";
+  "(^|\\s|:)-?((ml|mr|pl|pr|left|right|rounded-[lr]|border-[lr]|scroll-m[lr]|scroll-p[lr])-|(text|float|clear)-(left|right)\\b)";
 
 const rtlRule = {
   files: ["src/**/*.{ts,tsx}"],

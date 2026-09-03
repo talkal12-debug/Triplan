@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import { navItems, isActivePath } from "./nav-items";
+import { mobileNavItems, isActivePath } from "./nav-items";
 
 /** Fixed bottom navigation for phones. Hidden from md: up. */
 export function MobileNav() {
@@ -16,7 +16,7 @@ export function MobileNav() {
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
     >
       <ul className="grid grid-cols-3">
-        {navItems.map(({ href, key, icon: Icon }) => {
+        {mobileNavItems.map(({ href, key, icon: Icon }) => {
           const active = isActivePath(pathname, href);
           return (
             <li key={key}>

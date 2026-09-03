@@ -1,0 +1,50 @@
+[
+  {
+    "code": "PT",
+    "plugTypes": ["C", "F"],
+    "voltage": "230 V",
+    "frequency": "50 Hz",
+    "emergency": { "general": "112", "police": "112", "ambulance": "112", "fire": "112" },
+    "tapWaterSafe": true,
+    "tippingNote": {
+      "he": "טיפ לא חובה. במסעדות נהוג לעגל או להשאיר 5–10% על שירות טוב.",
+      "en": "Tipping is optional. In restaurants people round up or leave 5–10% for good service."
+    },
+    "sources": [
+      "https://www.iec.ch/world-plugs",
+      "https://european-union.europa.eu/live-work-study/emergency-number-112_en"
+    ]
+  },
+  {
+    "code": "IT",
+    "plugTypes": ["C", "F", "L"],
+    "voltage": "230 V",
+    "frequency": "50 Hz",
+    "emergency": { "general": "112", "police": "113", "ambulance": "118", "fire": "115" },
+    "tapWaterSafe": true,
+    "tippingNote": {
+      "he": "טיפ לא חובה. רבות מהמסעדות מוסיפות \"coperto\" (דמי כיסוי) לחשבון.",
+      "en": "Tipping is optional. Many restaurants add a \"coperto\" (cover charge) to the bill."
+    },
+    "sources": [
+      "https://www.iec.ch/world-plugs",
+      "https://european-union.europa.eu/live-work-study/emergency-number-112_en"
+    ]
+  },
+  {
+    "code": "JP",
+    "plugTypes": ["A", "B"],
+    "voltage": "100 V",
+    "frequency": "50 Hz (east, incl. Tokyo) / 60 Hz (west)",
+    "emergency": { "general": "110", "police": "110", "ambulance": "119", "fire": "119" },
+    "tapWaterSafe": true,
+    "tippingNote": {
+      "he": "לא נהוג להשאיר טיפ ביפן. זה עלול אפילו להתפרש כלא מנומס.",
+      "en": "Tipping is not customary in Japan and can even be seen as impolite."
+    },
+    "sources": [
+      "https://www.iec.ch/world-plugs",
+      "https://www.japan.travel/en/plan/emergencies/"
+    ]
+  }
+]

@@ -1,0 +1,196 @@
+// Triplan data model. See PLAN.md section 4.
+//
+// Conventions:
+// - No Prisma enums: enum-like fields are String and validated with Zod
+//   (src/lib/data/schemas.ts) so SQLite (dev) and PostgreSQL (prod) behave the same.
+// - Structured data is stored as JSON-encoded String (SQLite has no Json type).
+//   Every such field is marked `/// JSON:<TypeName>` and parsed through Zod.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String?  @unique
+  name        String?
+  image       String?
+  locale      String   @default("he")
+  units       String   @default("metric") // metric | imperial
+  currency    String   @default("ILS")
+  createdAt   DateTime @default(now())
+
+  profile     TravelerProfile?
+  trips       Trip[]
+  visited     VisitedPlace[]
+  memberships TripMember[]
+}
+
+/// Preferences that persist between trips.
+model TravelerProfile {
+  id       String @id @default(cuid())
+  userId   String @unique
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  defaults String /// JSON:PartialTripPreferences
+}
+
+model Trip {
+  id           String   @id @default(cuid())
+  ownerId      String? // null = guest trip (lives in localStorage until sign-up)
+  owner        User?    @relation(fields: [ownerId], references: [id])
+  title        String
+  status       String   @default("draft") // draft | planned | active | done
+  preferences  String /// JSON:TripPreferences
+  startDate    DateTime
+  endDate      DateTime
+  countries    String /// JSON:string[] ISO 3166-1 alpha-2, max 3
+  baseMode     String   @default("auto") // single | multi | auto
+  shareToken   String?  @unique
+  shareCanEdit Boolean  @default(false)
+  packingList  String? /// JSON:PackingList
+  checklist    String? /// JSON:Checklist
+  budget       String? /// JSON:BudgetEstimate
+  journal      String? /// JSON:Journal
+  isTemplate   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  days           Day[]
+  accommodations Accommodation[]
+  members        TripMember[]
+
+  @@index([ownerId])
+}
+
+model Day {
+  id                  String   @id @default(cuid())
+  tripId              String
+  trip                Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  index               Int // 0-based
+  date                DateTime
+  clusterId           String?
+  baseAccommodationId String?
+  stats               String /// JSON:DayStats { walkKm, elevationM, activeMinutes, transitMinutes, intensity }
+  weather             String? /// JSON:DayWeather
+  rainPlan            String? /// JSON:RainPlan
+  warnings            String   @default("[]") /// JSON:Warning[]
+
+  activities Activity[]
+
+  @@unique([tripId, index])
+}
+
+model Activity {
+  id              String  @id @default(cuid())
+  dayId           String
+  day             Day     @relation(fields: [dayId], references: [id], onDelete: Cascade)
+  placeId         String?
+  place           Place?  @relation(fields: [placeId], references: [id])
+  kind            String // visit | meal | transit | rest | hotel_checkin | hotel_checkout | free
+  order           Int
+  startMin        Int // minutes from midnight
+  endMin          Int
+  locked          Boolean @default(false)
+  reason          String?
+  transitFromPrev String? /// JSON:Transit { mode, minutes, meters, estimated }
+  bookingUrl      String?
+  notes           String?
+  votes           String? /// JSON:Record<userId, "up" | "down">
+
+  @@index([dayId, order])
+}
+
+/// Point of interest. Seeded from data/pois/*.json, later also fetched from OSM / Google.
+model Place {
+  id                     String  @id // stable slug, e.g. "pt-lisbon-torre-de-belem"
+  externalId             String? @unique // "osm:way:123" | "google:ChIJ..."
+  countryCode            String
+  city                   String? // slug: lisbon | porto | rome | tokyo
+  nameLocal              String
+  names                  String /// JSON:Record<locale, string>
+  category               String
+  tags                   String /// JSON:string[]
+  lat                    Float
+  lng                    Float
+  elevationM             Float?
+  openingHours           String? // OSM opening_hours syntax
+  closedDates            String? /// JSON:string[] ISO dates
+  visitMinutes           Int
+  iconicity              Float // 0..1
+  minAge                 Int?
+  wheelchair             String? // yes | limited | no | unknown
+  strollerOk             Boolean?
+  priceLevel             Int? // 0..4
+  website                String?
+  ticketUrl              String?
+  requiresAdvanceBooking Boolean @default(false)
+  dataQuality            String  @default("unverified") // verified | partial | unverified
+  source                 String // seed | osm | google | user
+  wikidata               String?
+  updatedAt              DateTime @updatedAt
+
+  activities Activity[]
+  visited    VisitedPlace[]
+
+  @@index([countryCode, city])
+}
+
+model Accommodation {
+  id           String   @id @default(cuid())
+  tripId       String
+  trip         Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  name         String?
+  type         String // hostel | 3star | 4star | 5star | apartment | boutique | camping
+  lat          Float?
+  lng          Float?
+  checkIn      DateTime
+  checkOut     DateTime
+  locationPref String? // center | station | beach | quiet
+  bookingUrl   String?
+}
+
+model TripMember {
+  id     String @id @default(cuid())
+  tripId String
+  userId String
+  role   String // owner | editor | viewer
+  trip   Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tripId, userId])
+}
+
+model VisitedPlace {
+  id      String    @id @default(cuid())
+  userId  String
+  placeId String
+  when    DateTime?
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place   Place     @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, placeId])
+}
+
+/// Snapshot of REST Countries + Wikidata Hebrew labels (data/countries.json).
+model Country {
+  code        String @id // ISO 3166-1 alpha-2
+  code3       String
+  names       String /// JSON:Record<locale, string> plus "local"
+  flag        String // emoji
+  currencies  String /// JSON:{ code, name, symbol }[]
+  languages   String /// JSON:string[]
+  drivingSide String // left | right
+  callingCode String
+  timezones   String /// JSON:string[]
+  capital     String?
+  lat         Float
+  lng         Float
+  region      String
+  subregion   String?
+  demo        Boolean @default(false) // one of the fully-seeded demo destinations
+}
