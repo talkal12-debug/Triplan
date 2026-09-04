@@ -20,7 +20,8 @@
     "data:countries": "tsx scripts/fetch-countries.ts",
     "data:pois": "tsx scripts/build-pois.ts",
     "postinstall": "prisma generate && node scripts/copy-map-worker.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "verify:offline": "node scripts/verify-offline.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

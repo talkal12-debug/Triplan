@@ -8,6 +8,8 @@ export type WizardContext = {
   locale: Locale;
   countries: CountryLite[];
   cities: Record<string, CityLite[]>;
+  /** Plug types by country code, where known (packing list). */
+  plugTypesByCountry?: Record<string, string[]>;
 };
 
 export type StepProps = {

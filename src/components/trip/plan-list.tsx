@@ -16,7 +16,7 @@ type Props = {
   plan: GuestPlan;
   selectedId: string | null;
   onSelect: (id: string | null) => void;
-  actions: ActivityActions & {
+  actions?: ActivityActions & {
     onReorder: (dayIndex: number, placeIds: string[]) => void;
     onMoveTo: (fromDay: number, activityId: string, toDay: number, position: number) => void;
   };
@@ -41,7 +41,7 @@ export function PlanList({ plan, selectedId, onSelect, actions }: Props) {
 
   function onDragEnd(e: DragEndEvent) {
     const { active, over } = e;
-    if (!over) return;
+    if (!over || !actions) return;
     const activeId = String(active.id);
     const overId = String(over.id);
     const fromDay = dayOf.get(activeId);
@@ -64,7 +64,7 @@ export function PlanList({ plan, selectedId, onSelect, actions }: Props) {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-muted-foreground">{t("list.hint")}</p>
+      {actions && <p className="text-sm text-muted-foreground">{t("list.hint")}</p>}
       <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={onDragEnd}>
         {plan.itinerary.days.map((day, di) => (
           <DayContainer key={day.index} id={`day-${day.index}`} empty={visitsByDay[di].length === 0}>

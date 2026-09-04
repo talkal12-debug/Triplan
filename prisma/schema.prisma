@@ -52,6 +52,8 @@ model Trip {
   baseMode     String   @default("auto") // single | multi | auto
   shareToken   String?  @unique
   shareCanEdit Boolean  @default(false)
+  /// JSON:GuestPlan snapshot (itinerary + places + extras) for shared / synced trips
+  plan         String?
   packingList  String? /// JSON:PackingList
   checklist    String? /// JSON:Checklist
   budget       String? /// JSON:BudgetEstimate

@@ -31,9 +31,13 @@ const views: { id: View; icon: typeof List }[] = [
 type Props = {
   trip: GuestTrip & { plan: GuestPlan };
   onTripChange: (trip: GuestTrip) => void;
+  /** Shared view without edit permission: no actions, no drag. */
+  readOnly?: boolean;
+  /** Where the "my day" button points; omitted in shared views. */
+  nowHref?: string;
 };
 
-export function PlanWorkspace({ trip, onTripChange }: Props) {
+export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }: Props) {
   const t = useTranslations("plan");
   const plan = trip.plan;
   const { name, city, warningText } = usePlanText(plan);
@@ -72,7 +76,7 @@ export function PlanWorkspace({ trip, onTripChange }: Props) {
 
   const activityDay = (activityId: string) => plan.itinerary.days.find((d) => d.activities.some((a) => a.id === activityId))?.index ?? dayIndex;
 
-  const actions = {
+  const allActions = {
     onSwap: async (activityId: string) => {
       const d = activityDay(activityId);
       setSwap({ dayIndex: d, activityId, alternatives: null });
@@ -87,6 +91,7 @@ export function PlanWorkspace({ trip, onTripChange }: Props) {
     onRebalance: (d: number, direction: "lighter" | "heavier") => void run({ type: "rebalance", dayIndex: d, direction }),
     onRebuild: (d: number) => void run({ type: "rebuild", dayIndex: d }),
   };
+  const actions = readOnly ? undefined : allActions;
 
   function undoLast() {
     if (!undo) return;
@@ -196,12 +201,14 @@ export function PlanWorkspace({ trip, onTripChange }: Props) {
       {view === "calendar" && <PlanCalendar plan={plan} dayIndex={dayIndex} onSelect={(i) => { setDayIndex(i); setView("timeline"); }} />}
       {view === "list" && <PlanList plan={plan} selectedId={selectedId} onSelect={setSelectedId} actions={actions} />}
 
-      <Button asChild className="fixed bottom-20 end-4 z-30 h-12 rounded-full px-5 shadow-lg md:hidden">
-        <Link href={`/trip/${trip.id}/now`}>
-          <Navigation aria-hidden />
-          {t("now.myDay")}
-        </Link>
-      </Button>
+      {nowHref && (
+        <Button asChild className="fixed bottom-20 end-4 z-30 h-12 rounded-full px-5 shadow-lg md:hidden">
+          <Link href={nowHref}>
+            <Navigation aria-hidden />
+            {t("now.myDay")}
+          </Link>
+        </Button>
+      )}
 
       <SwapSheet
         open={swap !== null}

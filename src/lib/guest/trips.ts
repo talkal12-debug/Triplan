@@ -1,10 +1,11 @@
 "use client";
 
 import { z } from "zod";
-import { tripPreferencesSchema, type TripPreferences } from "@/lib/planner/types";
-import { citySeedSchema, placeSeedSchema } from "@/lib/data/schemas";
-import { itinerarySchema } from "@/lib/planner/itinerary";
-import { affiliateLinkSchema } from "@/lib/providers/affiliate";
+import type { TripPreferences } from "@/lib/planner/types";
+import { guestTripSchema, type GuestTrip } from "./schema";
+
+export { guestPlanSchema, guestTripSchema, planExtrasSchema } from "./schema";
+export type { GuestPlan, GuestTrip, PlanExtras } from "./schema";
 
 /**
  * Guest trips live in localStorage until the traveller signs up (milestone 8).
@@ -12,50 +13,6 @@ import { affiliateLinkSchema } from "@/lib/providers/affiliate";
  * places it references (so it renders offline and survives data updates).
  */
 export const GUEST_TRIPS_KEY = "triplan:guest-trips";
-
-export const planExtrasSchema = z.object({
-  weather: z.record(
-    z.string(),
-    z.object({
-      date: z.string(),
-      precipProbability: z.number(),
-      precipMm: z.number().nullable(),
-      tempMax: z.number().nullable(),
-      tempMin: z.number().nullable(),
-      code: z.number().nullable(),
-      kind: z.enum(["forecast", "normals"]),
-    }),
-  ),
-  weatherSource: z.string().nullable(),
-  holidays: z.array(z.object({ date: z.string(), name: z.string(), localName: z.string(), countryCode: z.string() })),
-  rates: z.object({ base: z.string(), date: z.string(), rates: z.record(z.string(), z.number()), source: z.string() }).nullable(),
-  links: z.object({
-    hotels: z.array(z.object({ stayId: z.string(), links: z.array(affiliateLinkSchema) })),
-    tickets: z.record(z.string(), z.array(affiliateLinkSchema)),
-    flights: z.array(affiliateLinkSchema),
-  }),
-  providers: z.record(z.string(), z.string()),
-  notes: z.array(z.string()),
-});
-export type PlanExtras = z.infer<typeof planExtrasSchema>;
-
-export const guestPlanSchema = z.object({
-  itinerary: itinerarySchema,
-  places: z.record(z.string(), placeSeedSchema),
-  cities: z.array(citySeedSchema),
-  unused: z.array(z.string()),
-  extras: planExtrasSchema.optional(),
-});
-export type GuestPlan = z.infer<typeof guestPlanSchema>;
-
-export const guestTripSchema = z.object({
-  id: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  preferences: tripPreferencesSchema,
-  plan: guestPlanSchema.optional(),
-});
-export type GuestTrip = z.infer<typeof guestTripSchema>;
 
 function read(): GuestTrip[] {
   try {
@@ -92,7 +49,7 @@ export function createGuestTrip(preferences: TripPreferences): GuestTrip {
   return trip;
 }
 
-export function updateGuestTrip(id: string, patch: Partial<Pick<GuestTrip, "preferences" | "plan">>): GuestTrip | undefined {
+export function updateGuestTrip(id: string, patch: Partial<Pick<GuestTrip, "preferences" | "plan" | "packing" | "checklist" | "share" | "offline">>): GuestTrip | undefined {
   const trips = read();
   const idx = trips.findIndex((t) => t.id === id);
   if (idx < 0) return undefined;

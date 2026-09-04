@@ -12,12 +12,14 @@ import { useWizardStore } from "@/lib/wizard/store";
 import { PreferencesSummary } from "@/components/wizard/preferences-summary";
 import type { WizardContext } from "@/components/wizard/step-props";
 import { PlanWorkspace } from "./plan-workspace";
+import { TripTools } from "./trip-tools";
 
 type Props = { id: string; ctx: WizardContext };
 
 export function GuestTripView({ id, ctx }: Props) {
   const t = useTranslations("trip");
   const tp = useTranslations("plan");
+  const tt = useTranslations("tools");
   const format = useFormatter();
   const router = useRouter();
   const [trip, setTrip] = useState<GuestTrip | null | undefined>(undefined);
@@ -128,7 +130,7 @@ export function GuestTripView({ id, ctx }: Props) {
 
       {trip.plan ? (
         <section className="mt-8" aria-label={t("planLabel")}>
-          <PlanWorkspace trip={trip as GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }} onTripChange={setTrip} />
+          <PlanWorkspace trip={trip as GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }} onTripChange={setTrip} nowHref={`/trip/${trip.id}/now`} />
         </section>
       ) : (
         <div className="mt-6 flex items-start gap-3 rounded-2xl border border-dashed bg-sunset/10 p-4 text-sm">
@@ -136,6 +138,10 @@ export function GuestTripView({ id, ctx }: Props) {
           <p>{t("engineSoon")}</p>
         </div>
       )}
+
+      <section className="mt-10" aria-label={tt("title")}>
+        <TripTools trip={trip} ctx={ctx} onTripChange={setTrip} />
+      </section>
 
       <section className="mt-10">
         <button

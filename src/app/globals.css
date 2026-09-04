@@ -139,6 +139,33 @@
   );
 }
 
+/* Printable plan (/trip/[id]/print): paper, black text, one day per page. */
+@media print {
+  header,
+  footer,
+  nav,
+  [role="status"],
+  .print\:hidden {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .print-root {
+    max-width: none;
+    padding: 0;
+  }
+  .print-day {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

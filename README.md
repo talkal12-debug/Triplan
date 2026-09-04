@@ -60,6 +60,13 @@ returns a validated `Itinerary`. Pipeline: budgets -> filter + score -> DBSCAN c
 trips, or moving route) -> clusters to days -> weather + variety passes -> timed schedule (opening hours, lunch, rests,
 walking cap) -> validate + repair. Editing ops live in `edit.ts`. Try it: `npx tsx scripts/smoke-plan.ts PT 6`.
 
+## Offline (PWA)
+
+`next build` generates `public/sw.js` (Serwist). Pages are network-first with a cached fallback and `/offline`;
+OpenFreeMap tiles, sprites and glyphs are cache-first. "Download for offline" on a trip pre-caches the map around
+every day's stops (zoom 12-14). The service worker is disabled in `next dev`; test offline behaviour against
+`npm run build && npm start`.
+
 ## Providers
 
 `src/lib/providers/` has one interface per category with a real, key-less implementation and an offline mock;
@@ -103,4 +110,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestones 1-6 done (foundation, data, wizard, engine, plan views, real providers). Next: milestone 7 (export, sharing, PWA offline, budget, packing list, checklist). See PLAN.md sections 8 and 11.
+Milestones 1-7 done (foundation, data, wizard, engine, plan views, providers, export/share/offline/tools). Next: milestone 8 (12 languages, auth, collaboration, profile, journal, gallery, AI chat, Lighthouse). See PLAN.md sections 8 and 11.

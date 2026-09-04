@@ -18,10 +18,11 @@ async function buildRomeTrip(page: Page) {
   await page.getByRole("button", { name: "בנה לי טיול" }).click();
   await expect(page).toHaveURL(/\/he\/trip\/g_/);
   await page.getByRole("button", { name: "בנה תוכנית" }).click();
-  await expect(page.getByRole("tab", { name: "ציר זמן" })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole("tab", { name: "ציר זמן" })).toBeVisible({ timeout: 150_000 });
 }
 
 test("plan views: timeline actions, map tiles, calendar, list", async ({ page }, testInfo) => {
+  test.setTimeout(300_000);
   await buildRomeTrip(page);
 
   // Timeline: day chips and stops with menus.

@@ -30,6 +30,11 @@ export function getCountryExtras(code: string): CountryExtras | undefined {
   return extrasByCode.get(code.toUpperCase());
 }
 
+/** Plug types for every country we have extras for (packing list). */
+export function plugTypesByCountry(): Record<string, string[]> {
+  return Object.fromEntries(extras.map((e) => [e.code, e.plugTypes]));
+}
+
 /** Name in the UI language, falling back to English. */
 export function countryName(country: Country, locale: Locale): string {
   return country.names[locale] ?? country.names.en;

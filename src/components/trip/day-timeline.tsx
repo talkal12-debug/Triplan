@@ -19,7 +19,7 @@ type Props = {
   dayIndex: number;
   selectedId: string | null;
   onSelect: (id: string | null) => void;
-  actions: ActivityActions & {
+  actions?: ActivityActions & {
     onReorder: (dayIndex: number, placeIds: string[]) => void;
     onRebalance: (dayIndex: number, direction: "lighter" | "heavier") => void;
     onRebuild: (dayIndex: number) => void;
@@ -49,7 +49,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
     if (!over || active.id === over.id) return;
     const from = visitIds.indexOf(String(active.id));
     const to = visitIds.indexOf(String(over.id));
-    if (from < 0 || to < 0) return;
+    if (from < 0 || to < 0 || !actions) return;
     const next = [...visitIds];
     next.splice(from, 1);
     next.splice(to, 0, String(active.id));
@@ -82,6 +82,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
         </div>
       </header>
 
+      {actions && (
       <div className="flex flex-wrap gap-2">
         <Button type="button" size="sm" variant="outline" disabled={busy || visits.length === 0} onClick={() => actions.onRebalance(day.index, "lighter")}>
           <Minus aria-hidden />
@@ -96,6 +97,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
           {t("actions.rebuild")}
         </Button>
       </div>
+      )}
 
       {dayWarnings.length > 0 && (
         <ul className="space-y-1 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
@@ -119,7 +121,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
             <ol className="space-y-3">
               {day.activities.map((a) => {
                 if (a.kind === "visit") visitCounter += 1;
-                return a.kind === "visit" ? (
+                return a.kind === "visit" && actions ? (
                   <SortableActivity
                     key={a.id}
                     plan={plan}
@@ -132,7 +134,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
                     reasonText={reasonText}
                   />
                 ) : (
-                  <ActivityCard key={a.id} plan={plan} dayIndex={day.index} activity={a} index={visitCounter} selected={false} onSelect={onSelect} reasonText={reasonText} />
+                  <ActivityCard key={a.id} plan={plan} dayIndex={day.index} activity={a} index={visitCounter} selected={a.kind === "visit" && selectedId === a.id} onSelect={onSelect} reasonText={reasonText} />
                 );
               })}
             </ol>
