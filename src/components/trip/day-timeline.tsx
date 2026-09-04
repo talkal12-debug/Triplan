@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import type { Activity } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import { localDateOf } from "@/lib/guest/plan-helpers";
+import { useDistance } from "@/lib/units/use-distance";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
 import { WeatherBadge } from "./weather-badge";
@@ -30,6 +31,7 @@ type Props = {
 export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, busy }: Props) {
   const t = useTranslations("plan");
   const format = useFormatter();
+  const distance = useDistance();
   const { reasonText, warningText, name, city } = usePlanText(plan);
   const day = plan.itinerary.days[dayIndex];
   const sensors = useSensors(
@@ -77,7 +79,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <WeatherBadge weather={plan.extras?.weather[day.date]} />
           <Badge variant={day.stats.intensity === "heavy" ? "default" : "secondary"}>{t(`intensity.${day.stats.intensity}`)}</Badge>
-          <span className="text-muted-foreground">{t("walk", { km: day.stats.walkKm })}</span>
+          <span className="text-muted-foreground">{t("walk", { distance: distance(day.stats.walkKm) })}</span>
           <span className="text-muted-foreground">{t("placesCount", { count: visits.length })}</span>
         </div>
       </header>

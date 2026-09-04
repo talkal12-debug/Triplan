@@ -19,6 +19,7 @@ import { PlanList } from "./plan-list";
 import { SwapSheet } from "./swap-sheet";
 import { usePlanText } from "./use-plan-text";
 import { AffiliateLinks } from "./affiliate-links";
+import { useDistance } from "@/lib/units/use-distance";
 
 type View = "timeline" | "map" | "calendar" | "list";
 const views: { id: View; icon: typeof List }[] = [
@@ -41,6 +42,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
   const t = useTranslations("plan");
   const plan = trip.plan;
   const { name, city, warningText } = usePlanText(plan);
+  const distance = useDistance();
   const [view, setView] = useState<View>("timeline");
   const [dayIndex, setDayIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -106,7 +108,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
     <div className="space-y-4">
       <div className="rounded-2xl border bg-card p-4 text-sm">
         <p className="font-medium">
-          {t("tripStats", { km: plan.itinerary.stats.totalWalkKm, places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}
+          {t("tripStats", { distance: distance(plan.itinerary.stats.totalWalkKm), places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}
         </p>
         <p className="mt-1 text-muted-foreground">{t("generatedNote")}</p>
         <div className="mt-2 space-y-2">

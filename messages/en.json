@@ -34,6 +34,13 @@
     "switch": "Change language",
     "current": "Current language: {name}"
   },
+  "units": {
+    "label": "Distance units",
+    "metric": "Kilometres",
+    "imperial": "Miles",
+    "km": "{value} km",
+    "mi": "{value} mi"
+  },
   "home": {
     "eyebrow": "Smart trip planner",
     "heroTitle": "From a dream to a day-by-day plan, in 3 minutes",
@@ -92,7 +99,7 @@
       "moderate": "Moderate",
       "heavy": "Heavy"
     },
-    "walk": "{km} km walking",
+    "walk": "{distance} walking",
     "placesCount": "{count, plural, one {1 attraction} other {# attractions}}",
     "themes": {
       "museums": "Museums",
@@ -161,7 +168,7 @@
       "few_places_left": "Ran out of attractions for this destination: {days} free days"
     },
     "rainPlan": "Rain plan",
-    "tripStats": "Total {km} km walking, {places} attractions, {verified}% with verified opening hours",
+    "tripStats": "Total {distance} walking, {places} attractions, {verified}% with verified opening hours",
     "dataQuality": {
       "verified": "Verified",
       "partial": "Partial",
@@ -808,7 +815,7 @@
   "print": {
     "title": "Printable plan",
     "print": "Print",
-    "subtitle": "{days} days · {places} attractions · {km} km walking",
+    "subtitle": "{days} days · {places} attractions · {distance} walking",
     "generated": "Made with Triplan",
     "tip": "In the print dialog choose \"Save as PDF\".",
     "back": "Back to the plan"

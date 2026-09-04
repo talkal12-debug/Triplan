@@ -9,6 +9,7 @@ import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import { hhmm, localDateOf, placeLabel } from "@/lib/guest/plan-helpers";
 import type { Locale } from "@/lib/i18n/locales";
 import type { WizardContext } from "@/components/wizard/step-props";
+import { useDistance } from "@/lib/units/use-distance";
 import { usePlanText } from "./use-plan-text";
 
 type Props = { id: string; ctx: WizardContext };
@@ -38,6 +39,7 @@ function PrintContent({ trip, ctx }: { trip: GuestTrip & { plan: NonNullable<Gue
   const tp = useTranslations("plan");
   const format = useFormatter();
   const locale = useLocale() as Locale;
+  const distance = useDistance();
   const plan = trip.plan;
   const { reasonText, city } = usePlanText(plan);
   const title = trip.preferences.destinations.map((d) => ctx.countries.find((c) => c.code === d.countryCode)?.name ?? d.countryCode).join(" · ");
@@ -62,7 +64,7 @@ function PrintContent({ trip, ctx }: { trip: GuestTrip & { plan: NonNullable<Gue
       <header className="border-b pb-4">
         <h1 className="text-3xl font-bold">{title}</h1>
         <p className="mt-1 text-muted-foreground">
-          {t("subtitle", { days: plan.itinerary.days.length, places: plan.itinerary.stats.places, km: plan.itinerary.stats.totalWalkKm })}
+          {t("subtitle", { days: plan.itinerary.days.length, places: plan.itinerary.stats.places, distance: distance(plan.itinerary.stats.totalWalkKm) })}
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
           {plan.itinerary.stays.map((s) => tp("stayLabel", { city: city(s.citySlug), from: s.fromDay + 1, to: s.toDay + 1 })).join(" · ")}
@@ -74,7 +76,7 @@ function PrintContent({ trip, ctx }: { trip: GuestTrip & { plan: NonNullable<Gue
           <h2 className="text-xl font-semibold">
             {tp("dayTitle", { n: day.index + 1 })} · {format.dateTime(localDateOf(day.date), { weekday: "long", day: "numeric", month: "long" })}
             <span className="ms-2 text-base font-normal text-muted-foreground">
-              {city(day.citySlug)} · {tp("walk", { km: day.stats.walkKm })}
+              {city(day.citySlug)} · {tp("walk", { distance: distance(day.stats.walkKm) })}
             </span>
           </h2>
           <table className="mt-2 w-full text-sm">

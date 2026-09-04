@@ -8,18 +8,24 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { isLocale, localeNames, locales, type Locale } from "@/lib/i18n/locales";
+import { isUnitSystem, unitSystems } from "@/lib/units/store";
+import { useUnits } from "@/lib/units/use-distance";
 
 export function LocaleSwitcher() {
   const t = useTranslations("locale");
+  const tu = useTranslations("units");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
+  const { units, setUnits } = useUnits();
 
   function onSelect(next: string) {
     if (!isLocale(next) || next === locale) return;
@@ -43,11 +49,21 @@ export function LocaleSwitcher() {
           <Languages className="size-5" aria-hidden />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-44">
+      <DropdownMenuContent align="end" className="max-h-[80dvh] min-w-48 overflow-y-auto">
+        <DropdownMenuLabel>{t("switch")}</DropdownMenuLabel>
         <DropdownMenuRadioGroup value={locale} onValueChange={onSelect}>
           {locales.map((code) => (
             <DropdownMenuRadioItem key={code} value={code} lang={code}>
               {localeNames[code]}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>{tu("label")}</DropdownMenuLabel>
+        <DropdownMenuRadioGroup value={units} onValueChange={(v) => isUnitSystem(v) && setUnits(v)}>
+          {unitSystems.map((system) => (
+            <DropdownMenuRadioItem key={system} value={system}>
+              {tu(system)}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>

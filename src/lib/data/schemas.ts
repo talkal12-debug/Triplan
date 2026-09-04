@@ -162,7 +162,8 @@ export const countryExtrasSchema = z.object({
   frequency: z.string(),
   emergency: z.object({ general: z.string(), police: z.string(), ambulance: z.string(), fire: z.string() }),
   tapWaterSafe: z.boolean().nullable(),
-  tippingNote: z.object({ he: z.string(), en: z.string() }).nullable(),
+  // he + en are hand-written; other UI languages fall back to English.
+  tippingNote: z.object({ he: z.string(), en: z.string() }).catchall(z.string()).nullable(),
   sources: z.array(z.string().url()),
 });
 export type CountryExtras = z.infer<typeof countryExtrasSchema>;

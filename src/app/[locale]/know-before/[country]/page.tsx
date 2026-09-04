@@ -153,7 +153,7 @@ export default async function CountryPage({ params }: Props) {
             </Fact>
             {extras.tippingNote && (
               <Fact icon={HandCoins} label={t("tipping")}>
-                {extras.tippingNote[uiLocale]}
+                {extras.tippingNote[uiLocale] ?? extras.tippingNote.en}
               </Fact>
             )}
           </dl>

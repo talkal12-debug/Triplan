@@ -34,6 +34,13 @@
     "switch": "החלף שפה",
     "current": "שפה נוכחית: {name}"
   },
+  "units": {
+    "label": "יחידות מרחק",
+    "metric": "קילומטרים",
+    "imperial": "מיילים",
+    "km": "{value} ק\"מ",
+    "mi": "{value} מייל"
+  },
   "home": {
     "eyebrow": "מתכנן טיולים חכם",
     "heroTitle": "מהחלום לתוכנית יומית, ב-3 דקות",
@@ -92,7 +99,7 @@
       "moderate": "בינוני",
       "heavy": "מאומץ"
     },
-    "walk": "{km} ק\"מ הליכה",
+    "walk": "{distance} הליכה",
     "placesCount": "{count, plural, one {אטרקציה אחת} other {# אטרקציות}}",
     "themes": {
       "museums": "מוזיאונים",
@@ -161,7 +168,7 @@
       "few_places_left": "נגמרו האטרקציות ליעד הזה: {days} ימים חופשיים"
     },
     "rainPlan": "תוכנית גשם",
-    "tripStats": "סה\"כ {km} ק\"מ הליכה, {places} אטרקציות, {verified}% מהן עם שעות פתיחה מאומתות",
+    "tripStats": "סה\"כ {distance} הליכה, {places} אטרקציות, {verified}% מהן עם שעות פתיחה מאומתות",
     "dataQuality": {
       "verified": "מאומת",
       "partial": "חלקי",
@@ -808,7 +815,7 @@
   "print": {
     "title": "התוכנית להדפסה",
     "print": "הדפס",
-    "subtitle": "{days} ימים · {places} אטרקציות · {km} ק\"מ הליכה",
+    "subtitle": "{days} ימים · {places} אטרקציות · {distance} הליכה",
     "generated": "נוצר ב-Triplan",
     "tip": "בחלון ההדפסה בחרו \"שמור כ-PDF\".",
     "back": "חזרה לתוכנית"

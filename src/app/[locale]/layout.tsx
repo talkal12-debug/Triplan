@@ -12,9 +12,10 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 import { DemoBanner } from "@/components/layout/demo-banner";
 import "../globals.css";
 
-// Rubik covers Hebrew, Latin and Cyrillic with one consistent design.
+// Rubik covers Hebrew, Latin, Arabic and Cyrillic with one consistent design.
+// CJK and Devanagari (zh-CN, ja, hi) fall through to the system fonts listed in globals.css.
 const rubik = Rubik({
-  subsets: ["latin", "hebrew"],
+  subsets: ["latin", "latin-ext", "hebrew", "arabic", "cyrillic"],
   variable: "--font-rubik",
   display: "swap",
 });
