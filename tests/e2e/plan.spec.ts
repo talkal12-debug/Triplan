@@ -83,5 +83,6 @@ test("plan views: timeline actions, map tiles, calendar, list", async ({ page },
   await expect(page.getByRole("heading", { name: "היום שלי" })).toBeVisible();
   await expect(page.getByText(/הטיול לא מתקיים היום/)).toBeVisible();
   await page.getByRole("button", { name: /^יום 1/ }).click();
-  await expect(page.getByRole("link", { name: "נווט לשם" }).first()).toBeVisible();
+  // Depending on the time of day this is "now / next" with a navigate button, or "done for today".
+  await expect(page.getByRole("link", { name: "נווט לשם" }).first().or(page.getByText(/סיימתם להיום/))).toBeVisible();
 });

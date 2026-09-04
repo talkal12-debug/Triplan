@@ -49,7 +49,8 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
         <ul className="space-y-1">
           {prefs.destinations.map((d) => {
             const c = countryByCode.get(d.countryCode);
-            const cities = (ctx.cities[d.countryCode] ?? []).filter((city) => d.cities.includes(city.slug));
+            const custom = (d.customCities ?? []).map((city) => ({ slug: city.slug, name: city.names[ctx.locale] ?? city.names.en }));
+            const cities = [...(ctx.cities[d.countryCode] ?? []), ...custom].filter((city) => d.cities.includes(city.slug));
             return (
               <li key={d.countryCode} className="flex items-center gap-2">
                 <CountryFlag code={d.countryCode} size={20} />

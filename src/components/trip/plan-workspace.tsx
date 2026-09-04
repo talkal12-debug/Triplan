@@ -18,6 +18,7 @@ import { PlanCalendar } from "./plan-calendar";
 import { PlanList } from "./plan-list";
 import { SwapSheet } from "./swap-sheet";
 import { usePlanText } from "./use-plan-text";
+import { AffiliateLinks } from "./affiliate-links";
 
 type View = "timeline" | "map" | "calendar" | "list";
 const views: { id: View; icon: typeof List }[] = [
@@ -103,14 +104,43 @@ export function PlanWorkspace({ trip, onTripChange }: Props) {
           {t("tripStats", { km: plan.itinerary.stats.totalWalkKm, places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}
         </p>
         <p className="mt-1 text-muted-foreground">{t("generatedNote")}</p>
-        <p className="mt-2 flex flex-wrap items-center gap-2">
+        <div className="mt-2 space-y-2">
           <Badge variant="secondary">{t(`baseMode.${plan.itinerary.baseMode}`)}</Badge>
-          {plan.itinerary.stays.map((s) => (
-            <span key={s.id} className="text-muted-foreground">
-              {t("stayLabel", { city: city(s.citySlug), from: s.fromDay + 1, to: s.toDay + 1 })}
-            </span>
-          ))}
-        </p>
+          {plan.itinerary.stays.map((s) => {
+            const hotel = plan.extras?.links.hotels.find((h) => h.stayId === s.id);
+            return (
+              <div key={s.id} className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="text-muted-foreground">{t("stayLabel", { city: city(s.citySlug), from: s.fromDay + 1, to: s.toDay + 1 })}</span>
+                {hotel && <AffiliateLinks links={hotel.links} size="xs" />}
+              </div>
+            );
+          })}
+          {plan.extras && plan.extras.links.flights.length > 0 && <AffiliateLinks links={plan.extras.links.flights} label={t("links.flights")} size="xs" />}
+          {plan.extras?.rates && (() => {
+            const quote = Object.keys(plan.extras.rates.rates)[0];
+            const value = quote ? plan.extras.rates.rates[quote] : undefined;
+            return quote && value ? (
+              <p className="text-xs text-muted-foreground">
+                {t("rates", { base: plan.extras.rates.base, value: value.toFixed(2), quote })} {plan.extras.rates.source === "demo" && t("ratesDemo")}
+              </p>
+            ) : null;
+          })()}
+          {plan.extras && plan.extras.holidays.length > 0 && (
+            <p className="text-xs text-muted-foreground">
+              <span className="font-medium">{t("holidaysTitle")}: </span>
+              {plan.extras.holidays.map((h) => `${h.date.slice(8, 10)}/${h.date.slice(5, 7)} ${h.localName}`).join(" · ")}
+            </p>
+          )}
+          {plan.extras && (
+            <p className="text-xs text-muted-foreground">
+              {t("sources", {
+                routing: plan.extras.providers.routing === "osrm" ? t("routingReal") : t("routingEstimate"),
+                weather: plan.extras.weatherSource ?? "—",
+                holidays: plan.extras.providers.holidays ?? "—",
+              })}
+            </p>
+          )}
+        </div>
         {tripWarnings.length > 0 && (
           <ul className="mt-3 space-y-1">
             {tripWarnings.map((w, i) => (

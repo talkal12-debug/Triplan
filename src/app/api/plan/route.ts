@@ -1,16 +1,18 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getSeedCities, getSeedPlaces } from "@/lib/data/pois";
-import { isDemoCountry } from "@/lib/data/countries";
 import { PlannerError, generateItinerary, tripPreferencesSchema } from "@/lib/planner";
+import { enrichPlan, loadPlanContext, loadSignals } from "@/lib/server/plan-context";
+import { isLocale } from "@/lib/i18n/locales";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
-const requestSchema = z.object({ preferences: tripPreferencesSchema });
+const requestSchema = z.object({ preferences: tripPreferencesSchema, locale: z.string().optional() });
 
 /**
- * POST /api/plan  { preferences } -> { itinerary, places, diagnostics }
- * Stateless: the guest keeps the result in the browser. Milestone 6 adds weather + holidays here.
+ * POST /api/plan  { preferences, locale? } -> { itinerary, places, cities, extras, diagnostics }
+ * Stateless: the guest keeps the result in the browser.
+ * Pipeline: places (seed / OSM) -> weather + holidays -> engine -> real routing -> currency + links.
  */
 export async function POST(req: Request) {
   const parsed = requestSchema.safeParse(await req.json().catch(() => null));
@@ -18,25 +20,37 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "invalid_preferences", issues: parsed.error.issues }, { status: 400 });
   }
   const prefs = parsed.data.preferences;
-  const codes = prefs.destinations.map((d) => d.countryCode.toUpperCase());
-  const unsupported = codes.filter((c) => !isDemoCountry(c));
-  if (unsupported.length) {
-    return NextResponse.json({ error: "unsupported_destination", countries: unsupported }, { status: 422 });
+  const locale = parsed.data.locale && isLocale(parsed.data.locale) ? parsed.data.locale : "he";
+
+  const ctx = await loadPlanContext(prefs);
+  if (ctx.cities.length === 0) {
+    return NextResponse.json({ error: "no_cities", notes: ctx.notes }, { status: 422 });
+  }
+  if (ctx.places.length === 0) {
+    return NextResponse.json({ error: "no_places", notes: ctx.notes }, { status: 422 });
   }
 
-  const places = codes.flatMap((c) => getSeedPlaces(c));
-  const cities = codes.flatMap((c) => getSeedCities(c));
+  const signals = await loadSignals(prefs, ctx.cities, ctx.notes);
+  const weatherForEngine = Object.fromEntries(Object.entries(signals.weather).map(([d, w]) => [d, { precipProbability: w.precipProbability, tempMax: w.tempMax }]));
 
   try {
-    const { itinerary, diagnostics } = generateItinerary({ prefs, places, cities });
-    const usedIds = new Set(itinerary.days.flatMap((d) => [...d.activities.map((a) => a.placeId), ...d.rainPlan]));
+    const { itinerary, diagnostics } = generateItinerary({
+      prefs,
+      places: ctx.places,
+      cities: ctx.cities,
+      weather: weatherForEngine,
+      holidays: signals.holidays.map((h) => ({ date: h.date, name: h.localName })),
+    });
+    const enriched = await enrichPlan(prefs, itinerary, ctx, signals, locale);
+    const usedIds = new Set(enriched.itinerary.days.flatMap((d) => [...d.activities.map((a) => a.placeId), ...d.rainPlan]));
     const unusedTop = diagnostics.unused.slice(0, 40);
-    const keep = places.filter((p) => usedIds.has(p.id) || unusedTop.includes(p.id));
+    const keep = ctx.places.filter((p) => usedIds.has(p.id) || unusedTop.includes(p.id));
     return NextResponse.json({
-      itinerary,
+      itinerary: enriched.itinerary,
       places: Object.fromEntries(keep.map((p) => [p.id, p])),
-      cities,
-      diagnostics: { unused: unusedTop, excluded: diagnostics.excluded, budget: diagnostics.budget },
+      cities: ctx.cities,
+      extras: enriched.extras,
+      diagnostics: { unused: unusedTop, excluded: diagnostics.excluded, budget: diagnostics.budget, notes: enriched.extras.notes },
     });
   } catch (err) {
     if (err instanceof PlannerError) {

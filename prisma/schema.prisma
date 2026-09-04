@@ -131,6 +131,8 @@ model Place {
   requiresAdvanceBooking Boolean @default(false)
   dataQuality            String  @default("unverified") // verified | partial | unverified
   source                 String // seed | osm | google | user
+  /// Bumped when the OSM import logic changes, so stale cache rows are refetched.
+  sourceVersion          Int     @default(1)
   wikidata               String?
   updatedAt              DateTime @updatedAt
 

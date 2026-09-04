@@ -11,10 +11,22 @@ import { placeTags } from "@/lib/data/schemas";
 export const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD");
 export const hhmm = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "HH:MM");
 
+/** A city/area picked from OpenStreetMap for countries without a curated seed. */
+export const customCitySchema = z.object({
+  slug: z.string().min(1),
+  names: z.object({ en: z.string().min(1), he: z.string().optional(), local: z.string().optional() }).catchall(z.string()),
+  center: z.object({ lat: z.number(), lng: z.number() }),
+  /** [south, west, north, east] */
+  bbox: z.tuple([z.number(), z.number(), z.number(), z.number()]),
+});
+export type CustomCity = z.infer<typeof customCitySchema>;
+
 export const destinationSchema = z.object({
   countryCode: z.string().length(2),
-  /** City/area slugs from the seed (e.g. "lisbon", "porto"). Empty = let the planner choose. */
+  /** City/area slugs from the seed (e.g. "lisbon", "porto") or of customCities. Empty = let the planner choose. */
   cities: z.array(z.string()).max(6).default([]),
+  /** Full records for OSM-sourced cities (the seed knows its own). Absent for demo countries. */
+  customCities: z.array(customCitySchema).max(6).optional(),
 });
 export type Destination = z.infer<typeof destinationSchema>;
 

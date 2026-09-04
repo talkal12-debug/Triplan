@@ -14,9 +14,10 @@ test("guest can complete the wizard and land on a saved trip", async ({ page }) 
   await expect(next).toBeDisabled();
   await page.getByRole("checkbox", { name: "בחר את פורטוגל" }).click();
   await page.getByRole("checkbox", { name: /ליסבון/ }).click();
-  // Non-demo countries are visible but locked.
+  // Countries without a curated seed are selectable too (OpenStreetMap), just labelled.
   await page.getByPlaceholder(/חפש מדינה/).fill("גרמניה");
-  await expect(page.getByRole("checkbox", { name: "בחר את גרמניה" })).toBeDisabled();
+  await expect(page.getByRole("checkbox", { name: "בחר את גרמניה" })).toBeEnabled();
+  await expect(page.getByRole("checkbox", { name: "בחר את גרמניה" })).toContainText("OpenStreetMap");
   await expect(next).toBeEnabled();
   await next.click();
 

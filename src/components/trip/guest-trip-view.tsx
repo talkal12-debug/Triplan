@@ -43,7 +43,7 @@ export function GuestTripView({ id, ctx }: Props) {
       const res = await fetch("/api/plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ preferences: trip.preferences }),
+        body: JSON.stringify({ preferences: trip.preferences, locale: ctx.locale }),
       });
       const json: unknown = await res.json();
       if (!res.ok) {
@@ -51,8 +51,8 @@ export function GuestTripView({ id, ctx }: Props) {
         setError(tp("failed", { message: msg }));
         return;
       }
-      const data = json as { itinerary: unknown; places: unknown; cities: unknown; diagnostics: { unused: string[] } };
-      const plan = guestPlanSchema.parse({ itinerary: data.itinerary, places: data.places, cities: data.cities, unused: data.diagnostics.unused });
+      const data = json as { itinerary: unknown; places: unknown; cities: unknown; extras?: unknown; diagnostics: { unused: string[] } };
+      const plan = guestPlanSchema.parse({ itinerary: data.itinerary, places: data.places, cities: data.cities, unused: data.diagnostics.unused, extras: data.extras });
       const updated = updateGuestTrip(trip.id, { plan });
       if (updated) setTrip(updated);
     } catch (err) {

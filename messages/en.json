@@ -6,7 +6,7 @@
     "comingSoon": "Coming soon",
     "comingSoonBody": "This part is built in the next development phase. Meanwhile, head back home.",
     "backHome": "Back to home",
-    "demoBanner": "Demo mode: the app is running without external API keys. Some data is estimated.",
+    "demoBanner": "Demo mode: routing, weather and holidays come from free, key-less sources. Estimated data is labelled.",
     "affiliate": "Affiliate link",
     "opensInNewTab": "Opens in a new tab"
   },
@@ -78,7 +78,7 @@
     "building": "Building your plan...",
     "failed": "We could not build a plan. {message}",
     "failedUnsupported": "This destination is not supported yet.",
-    "generatedNote": "Built from attractions verified against OpenStreetMap. Travel times are estimates until real routing is connected.",
+    "generatedNote": "Attractions at the demo destinations were hand-checked against OpenStreetMap. Public-transport times are estimates.",
     "dayTitle": "Day {n}",
     "kinds": {
       "arrival": "Arrival day",
@@ -248,7 +248,38 @@
       "transit": "Transit",
       "car": "Drive",
       "bike": "Bike"
-    }
+    },
+    "weather": {
+      "forecast": "Forecast",
+      "normals": "Same date last year",
+      "rain": "Rain {probability}%",
+      "temp": "{min}–{max}°",
+      "sourceLabel": "Weather: {source}"
+    },
+    "holidaysTitle": "Local holidays during the trip",
+    "links": {
+      "hotels": "Find a place to stay in {city}",
+      "tickets": "Tickets",
+      "flights": "Flights",
+      "affiliate": "Affiliate link",
+      "opens": "Opens an external site",
+      "booking": "Booking.com",
+      "hotelscom": "Hotels.com",
+      "agoda": "Agoda",
+      "hostelworld": "Hostelworld",
+      "getyourguide": "GetYourGuide",
+      "viator": "Viator",
+      "tiqets": "Tiqets",
+      "klook": "Klook",
+      "kiwi": "Kiwi",
+      "skyscanner": "Skyscanner"
+    },
+    "rates": "Destination currency: 1 {base} ≈ {value} {quote}",
+    "ratesDemo": "(approximate rate)",
+    "sources": "Sources: routing {routing}, weather {weather}, holidays {holidays}",
+    "routingReal": "Real walking and driving times (OSRM)",
+    "routingEstimate": "Estimated times",
+    "unverifiedPlace": "Source: OpenStreetMap, not hand-checked"
   },
   "gallery": {
     "title": "Ready plans",
@@ -385,12 +416,21 @@
       "remove": "Remove {name}",
       "maxReached": "You can pick up to 3 countries",
       "underConstruction": "Coming soon",
-      "underConstructionHint": "This version can plan trips to Portugal, Italy and Japan. Other countries are on the way.",
+      "underConstructionHint": "Portugal, Italy and Japan come with hand-checked attractions. Elsewhere, attractions are pulled from OpenStreetMap and marked \"unverified\".",
       "cities": "Areas in {country} (optional)",
       "citiesHint": "Leave empty and Triplan will choose based on trip length.",
       "required": "Pick at least one country to continue",
       "demoBadge": "Available",
-      "select": "Select {name}"
+      "select": "Select {name}",
+      "osmBadge": "OpenStreetMap",
+      "osmHint": "Portugal, Italy and Japan come with hand-checked attractions. Elsewhere, attractions are pulled from OpenStreetMap and marked \"unverified\".",
+      "osmCities": "Cities or areas in {country}",
+      "osmCitiesHint": "Search and pick at least one city. Attractions are pulled from OpenStreetMap per city.",
+      "citySearch": "City search",
+      "citySearchPlaceholder": "Type a city name, e.g. Paris",
+      "citySearching": "Searching...",
+      "citySearchError": "Search failed. Try again.",
+      "cityRequired": "Pick at least one city in this country"
     },
     "dates": {
       "title": "When?",
@@ -410,7 +450,7 @@
         "summer": "summer",
         "autumn": "autumn"
       },
-      "weatherLater": "Weather forecast and local holidays appear in the plan itself (added in development phase 6).",
+      "weatherLater": "Weather forecast and local holidays appear in the plan itself.",
       "pastDate": "This date has already passed",
       "invalidDate": "Invalid date"
     },

@@ -10,6 +10,15 @@ const envSchema = z.object({
   ANTHROPIC_API_KEY: z.string().optional(),
   AFFILIATE_BOOKING_AID: z.string().optional(),
   AFFILIATE_GETYOURGUIDE_PARTNER_ID: z.string().optional(),
+  AFFILIATE_VIATOR_PID: z.string().optional(),
+  AFFILIATE_TIQETS_PARTNER: z.string().optional(),
+  AFFILIATE_KLOOK_AID: z.string().optional(),
+  AFFILIATE_KIWI_AFFILID: z.string().optional(),
+  OSRM_BASE_URL: z.string().optional(),
+  NOMINATIM_URL: z.string().optional(),
+  OVERPASS_URL: z.string().optional(),
+  /** Force every mock provider (no network at all). */
+  TRIPLAN_OFFLINE: z.enum(["true", "false"]).optional(),
   NEXT_PUBLIC_DEMO_MODE: z.enum(["true", "false"]).optional(),
 });
 

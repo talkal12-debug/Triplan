@@ -19,6 +19,7 @@ import type { GuestPlan } from "@/lib/guest/trips";
 import type { Locale } from "@/lib/i18n/locales";
 import { hhmm, localDateOf, placeLabel } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
+import { AffiliateLinks } from "./affiliate-links";
 
 const transitIcons = { walk: Footprints, transit: Bus, car: Car, bike: Bike } as const;
 
@@ -113,7 +114,11 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
                   {reasonText(r)}
                 </li>
               ))}
+              {place?.source === "osm" && <li className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">{t("unverifiedPlace")}</li>}
             </ul>
+          )}
+          {isVisit && !compact && a.placeId && plan.extras?.links.tickets[a.placeId] && (
+            <AffiliateLinks links={plan.extras.links.tickets[a.placeId]} label={t("links.tickets")} size="xs" className="mt-1.5" />
           )}
         </div>
         {isVisit && actions && (

@@ -1,9 +1,13 @@
 import { defaultTripPreferences, type TripPreferences } from "@/lib/planner/types";
 import type { WizardStep } from "./steps";
 
+/** Countries with a curated seed; mirrors src/lib/data/countries.ts (server-only). */
+export const demoCountryCodes = ["PT", "IT", "JP"] as const;
+
 /** Message keys under `wizard.*` describing why a step cannot be completed. */
 export type WizardError =
   | "destination.required"
+  | "destination.cityRequired"
   | "dates.pastDate"
   | "dates.invalidDate"
   | "party.seniorsTooMany"
@@ -12,8 +16,12 @@ export type WizardError =
 
 export function stepErrors(step: WizardStep, prefs: TripPreferences, today = new Date()): WizardError[] {
   switch (step) {
-    case "destination":
-      return prefs.destinations.length === 0 ? ["destination.required"] : [];
+    case "destination": {
+      if (prefs.destinations.length === 0) return ["destination.required"];
+      // Countries without a curated seed need at least one picked city (we cannot guess).
+      const missingCity = prefs.destinations.some((d) => !demoCountryCodes.includes(d.countryCode.toUpperCase() as (typeof demoCountryCodes)[number]) && d.cities.length === 0);
+      return missingCity ? ["destination.cityRequired"] : [];
+    }
     case "dates": {
       const start = new Date(`${prefs.dates.start}T00:00:00`);
       if (Number.isNaN(start.getTime())) return ["dates.invalidDate"];

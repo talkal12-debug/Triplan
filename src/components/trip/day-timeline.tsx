@@ -12,6 +12,7 @@ import type { GuestPlan } from "@/lib/guest/trips";
 import { localDateOf } from "@/lib/guest/plan-helpers";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
+import { WeatherBadge } from "./weather-badge";
 
 type Props = {
   plan: GuestPlan;
@@ -74,6 +75,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs">
+          <WeatherBadge weather={plan.extras?.weather[day.date]} />
           <Badge variant={day.stats.intensity === "heavy" ? "default" : "secondary"}>{t(`intensity.${day.stats.intensity}`)}</Badge>
           <span className="text-muted-foreground">{t("walk", { km: day.stats.walkKm })}</span>
           <span className="text-muted-foreground">{t("placesCount", { count: visits.length })}</span>

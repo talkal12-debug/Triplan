@@ -6,7 +6,7 @@
     "comingSoon": "בקרוב",
     "comingSoonBody": "החלק הזה נבנה בשלב הבא של הפיתוח. בינתיים אפשר לחזור לדף הבית.",
     "backHome": "חזרה לדף הבית",
-    "demoBanner": "מצב דמו: האפליקציה רצה בלי מפתחות API חיצוניים. חלק מהנתונים משוערים.",
+    "demoBanner": "מצב דמו: ניתוב, מזג אוויר וחגים ממקורות חופשיים ובלי מפתחות. נתונים משוערים מסומנים.",
     "affiliate": "קישור שותפים",
     "opensInNewTab": "נפתח בחלון חדש"
   },
@@ -78,7 +78,7 @@
     "building": "בונה תוכנית...",
     "failed": "לא הצלחנו לבנות תוכנית. {message}",
     "failedUnsupported": "היעד הזה עדיין לא נתמך.",
-    "generatedNote": "התוכנית נבנתה מאטרקציות שאומתו מול OpenStreetMap. זמני הנסיעה משוערים עד שנחבר ניתוב אמיתי.",
+    "generatedNote": "אטרקציות ביעדי הדמו נבדקו ידנית מול OpenStreetMap. זמני נסיעה בתחבורה ציבורית משוערים.",
     "dayTitle": "יום {n}",
     "kinds": {
       "arrival": "יום הגעה",
@@ -248,7 +248,38 @@
       "transit": "תח\"צ",
       "car": "נסיעה",
       "bike": "אופניים"
-    }
+    },
+    "weather": {
+      "forecast": "תחזית",
+      "normals": "שנה שעברה באותו תאריך",
+      "rain": "גשם {probability}%",
+      "temp": "{min}–{max}°",
+      "sourceLabel": "מזג אוויר: {source}"
+    },
+    "holidaysTitle": "חגים מקומיים במהלך הטיול",
+    "links": {
+      "hotels": "חיפוש לינה ב{city}",
+      "tickets": "כרטיסים",
+      "flights": "טיסות",
+      "affiliate": "קישור שותפים",
+      "opens": "נפתח באתר חיצוני",
+      "booking": "Booking.com",
+      "hotelscom": "Hotels.com",
+      "agoda": "Agoda",
+      "hostelworld": "Hostelworld",
+      "getyourguide": "GetYourGuide",
+      "viator": "Viator",
+      "tiqets": "Tiqets",
+      "klook": "Klook",
+      "kiwi": "Kiwi",
+      "skyscanner": "Skyscanner"
+    },
+    "rates": "מטבע ביעד: 1 {base} ≈ {value} {quote}",
+    "ratesDemo": "(שער משוער)",
+    "sources": "מקורות: ניתוב {routing}, מזג אוויר {weather}, חגים {holidays}",
+    "routingReal": "זמני הליכה ונסיעה אמיתיים (OSRM)",
+    "routingEstimate": "זמנים משוערים",
+    "unverifiedPlace": "מקור: OpenStreetMap, לא נבדק ידנית"
   },
   "gallery": {
     "title": "תוכניות מוכנות",
@@ -385,12 +416,21 @@
       "remove": "הסר את {name}",
       "maxReached": "אפשר לבחור עד 3 מדינות",
       "underConstruction": "בבנייה",
-      "underConstructionHint": "בגרסה הזאת אפשר לתכנן טיול לפורטוגל, לאיטליה וליפן. שאר המדינות בדרך.",
+      "underConstructionHint": "פורטוגל, איטליה ויפן מגיעות עם אטרקציות שנבדקו ידנית. בשאר המדינות האטרקציות נמשכות מ-OpenStreetMap ומסומנות \"לא אומת\".",
       "cities": "אזורים ב{country} (לא חובה)",
       "citiesHint": "בלי בחירה, Triplan יבחר בשבילכם לפי אורך הטיול.",
       "required": "בחרו לפחות מדינה אחת כדי להמשיך",
       "demoBadge": "זמין",
-      "select": "בחר את {name}"
+      "select": "בחר את {name}",
+      "osmBadge": "OpenStreetMap",
+      "osmHint": "פורטוגל, איטליה ויפן מגיעות עם אטרקציות שנבדקו ידנית. בשאר המדינות האטרקציות נמשכות מ-OpenStreetMap ומסומנות \"לא אומת\".",
+      "osmCities": "ערים או אזורים ב{country}",
+      "osmCitiesHint": "חפשו ובחרו לפחות עיר אחת. האטרקציות נמשכות מ-OpenStreetMap לפי העיר.",
+      "citySearch": "חיפוש עיר",
+      "citySearchPlaceholder": "הקלידו שם עיר, למשל פריז",
+      "citySearching": "מחפש...",
+      "citySearchError": "החיפוש נכשל. נסו שוב.",
+      "cityRequired": "בחרו לפחות עיר אחת במדינה הזאת"
     },
     "dates": {
       "title": "מתי?",
@@ -410,7 +450,7 @@
         "summer": "קיץ",
         "autumn": "סתיו"
       },
-      "weatherLater": "תחזית מזג אוויר וחגים מקומיים יופיעו בתוכנית עצמה (מתווסף בשלב 6 של הפיתוח).",
+      "weatherLater": "תחזית מזג אוויר וחגים מקומיים יופיעו בתוכנית עצמה.",
       "pastDate": "התאריך כבר עבר",
       "invalidDate": "תאריך לא תקין"
     },

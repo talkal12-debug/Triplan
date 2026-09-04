@@ -7,6 +7,7 @@ import type { GuestPlan } from "@/lib/guest/trips";
 import type { Locale } from "@/lib/i18n/locales";
 import { cityLabel, localDateOf } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
+import { WeatherBadge } from "./weather-badge";
 
 type Props = {
   plan: GuestPlan;
@@ -56,7 +57,10 @@ export function DayRail({ plan, dayIndex, onSelect }: Props) {
           >
             <span className="flex w-full items-center justify-between gap-2 text-xs text-muted-foreground">
               {t("dayShort", { n: day.index + 1 })}
-              <span className={cn("size-2 rounded-full", intensityDot[day.stats.intensity])} aria-label={t(`intensity.${day.stats.intensity}`)} />
+              <span className="flex items-center gap-1">
+                <WeatherBadge weather={plan.extras?.weather[day.date]} compact />
+                <span className={cn("size-2 rounded-full", intensityDot[day.stats.intensity])} aria-label={t(`intensity.${day.stats.intensity}`)} />
+              </span>
             </span>
             <span className="font-semibold">{format.dateTime(localDateOf(day.date), { weekday: "short", day: "numeric", month: "short" })}</span>
             <span className="truncate text-xs text-muted-foreground">{cityLabel(plan, day.citySlug, locale)}</span>

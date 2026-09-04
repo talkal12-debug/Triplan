@@ -60,6 +60,21 @@ returns a validated `Itinerary`. Pipeline: budgets -> filter + score -> DBSCAN c
 trips, or moving route) -> clusters to days -> weather + variety passes -> timed schedule (opening hours, lunch, rests,
 walking cap) -> validate + repair. Editing ops live in `edit.ts`. Try it: `npx tsx scripts/smoke-plan.ts PT 6`.
 
+## Providers
+
+`src/lib/providers/` has one interface per category with a real, key-less implementation and an offline mock;
+`registry.ts` picks by environment (`TRIPLAN_OFFLINE=true` forces the mocks). A failing provider never breaks a plan:
+the caller falls back and the plan says which data is estimated.
+
+| Category | Real | Mock |
+|---|---|---|
+| Routing (walk / bike / car) | OSRM table API on the FOSSGIS demo servers | straight line × 1.3 |
+| Weather | Open-Meteo forecast (16 days) or archive (same dates last year, labelled) | none |
+| Public holidays | Nager.Date | fixed dates for the demo countries |
+| Currency | Frankfurter (ECB) | rough fixed rates |
+| Cities + attractions outside the demo countries | Nominatim + Overpass, cached in the DB for 30 days | curated seed |
+| Hotel / ticket / flight links | URL builders in `affiliate.ts`, affiliate ids from env | same URLs without ids |
+
 ## Data
 
 All data ships with the repo, so the app runs fully offline and without keys.
@@ -88,4 +103,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestones 1-5 done (foundation, data, wizard, planning engine, plan views + editing). Next: milestone 6 (real providers: OSRM routing, Open-Meteo, Nager.Date, booking deep links). See PLAN.md sections 8 and 11.
+Milestones 1-6 done (foundation, data, wizard, engine, plan views, real providers). Next: milestone 7 (export, sharing, PWA offline, budget, packing list, checklist). See PLAN.md sections 8 and 11.

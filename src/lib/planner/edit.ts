@@ -3,7 +3,7 @@ import { haversineKm } from "./geo";
 import type { Itinerary, ItineraryDay, PlannerCity, PlannerPlace } from "./itinerary";
 import { opensOnDate } from "./opening";
 import { scorePlace, exclusionReason, type ScoredPlace } from "./scoring";
-import { scheduleDay } from "./schedule";
+import { scheduleDay, type ScheduleContext } from "./schedule";
 import type { DayPlan } from "./assign";
 import type { TripPreferences } from "./types";
 
@@ -17,6 +17,7 @@ export type EditContext = {
   places: PlannerPlace[];
   cities: PlannerCity[];
   budget?: DayBudget;
+  travel?: ScheduleContext["travel"];
 };
 
 function budgetOf(ctx: EditContext): DayBudget {
@@ -73,7 +74,7 @@ function rescheduleDay(
     indoorShare: candidates.length ? candidates.filter((c) => c.place.indoor).length / candidates.length : 0,
     plannedWalkKm: 0,
   };
-  const result = scheduleDay(plan, { prefs: ctx.prefs, budget, base: center, pool: [], fixedOrder: true, locked });
+  const result = scheduleDay(plan, { prefs: ctx.prefs, budget, base: center, pool: [], fixedOrder: true, locked, travel: ctx.travel });
   // Keep lock flags.
   result.day.activities = result.day.activities.map((a) => ({ ...a, locked: a.placeId ? locked.has(a.placeId) : false }));
   if (result.leftovers.length) {

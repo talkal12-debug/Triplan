@@ -18,7 +18,23 @@ export type ScheduleContext = {
   fixedOrder?: boolean;
   /** Place ids that must stay in the plan (and keep their order). */
   locked?: Set<string>;
+  /** Real routing (milestone 6). Returns null when a pair/mode is unknown -> estimate. */
+  travel?: (a: LatLng, b: LatLng, mode: Transit["mode"]) => Transit | null;
 };
+
+/** Best transit between two points: real numbers when the lookup has them, else the estimate. */
+export function travelBetween(a: LatLng, b: LatLng, prefs: TripPreferences, lookup?: ScheduleContext["travel"]): Transit {
+  const est = estimateTravel(a, b, prefs);
+  if (!lookup) return est;
+  const real = lookup(a, b, est.mode);
+  if (real) return real;
+  // The estimate picked a mode we cannot route (transit): try walking if it is short.
+  if (est.mode === "transit") {
+    const walk = lookup(a, b, "walk");
+    if (walk && walk.meters <= 1800 && prefs.transport.walk > 0) return walk;
+  }
+  return est;
+}
 
 const weekdayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
@@ -145,7 +161,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
 
   const placeVisit = (cand: ScoredPlace, allowDefer: boolean): boolean => {
     const place = cand.place;
-    const transit = estimateTravel(here, place, prefs);
+    const transit = travelBetween(here, place, prefs, ctx.travel);
     const arrive = t + transit.minutes;
     const walkAfter = walkKm + walkedKm(transit);
     const locked = ctx.locked?.has(place.id) ?? false;
