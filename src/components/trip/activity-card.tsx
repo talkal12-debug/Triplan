@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormatter, useLocale, useTranslations } from "next-intl";
-import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown } from "lucide-react";
+import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, History, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -28,6 +28,8 @@ export type ActivityActions = {
   onLock: (activityId: string) => void;
   onRemove: (activityId: string) => void;
   onMove: (activityId: string, toDay: number) => void;
+  /** "Already visited": remove from this plan and remember it for future trips. */
+  onVisited?: (activityId: string) => void;
 };
 
 type Props = {
@@ -155,6 +157,12 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
                 </DropdownMenuSub>
               )}
               <DropdownMenuSeparator />
+              {actions.onVisited && (
+                <DropdownMenuItem onSelect={() => actions.onVisited?.(a.id)}>
+                  <History aria-hidden />
+                  {t("actions.visited")}
+                </DropdownMenuItem>
+              )}
               <DropdownMenuItem variant="destructive" onSelect={() => actions.onRemove(a.id)}>
                 <Trash2 aria-hidden />
                 {t("actions.remove")}

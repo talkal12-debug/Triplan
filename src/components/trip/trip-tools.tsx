@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Calculator, ClipboardCheck, Luggage, Share2 } from "lucide-react";
+import { BookOpen, Calculator, ClipboardCheck, Luggage, Share2 } from "lucide-react";
+import { JournalPanel } from "./tools/journal-panel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { GuestTrip } from "@/lib/guest/trips";
 import type { WizardContext } from "@/components/wizard/step-props";
@@ -22,6 +23,7 @@ export function TripTools({ trip, ctx, onTripChange }: Props) {
     { id: "packing", icon: Luggage },
     { id: "budget", icon: Calculator },
     { id: "share", icon: Share2 },
+    { id: "journal", icon: BookOpen },
   ] as const;
   return (
     <div>
@@ -46,6 +48,9 @@ export function TripTools({ trip, ctx, onTripChange }: Props) {
         </TabsContent>
         <TabsContent value="share" className="mt-3">
           <SharePanel trip={trip} ctx={ctx} onTripChange={onTripChange} />
+        </TabsContent>
+        <TabsContent value="journal" className="mt-3">
+          <JournalPanel trip={trip} onTripChange={onTripChange} />
         </TabsContent>
       </Tabs>
     </div>

@@ -20,6 +20,12 @@ import { SwapSheet } from "./swap-sheet";
 import { usePlanText } from "./use-plan-text";
 import { AffiliateLinks } from "./affiliate-links";
 import { useDistance } from "@/lib/units/use-distance";
+import { useSession } from "next-auth/react";
+import { useLocale } from "next-intl";
+import { updateGuestTrip } from "@/lib/guest/trips";
+import { placeLabel } from "@/lib/guest/plan-helpers";
+import { markVisited } from "@/lib/profile/client";
+import type { Locale } from "@/lib/i18n/locales";
 
 type View = "timeline" | "map" | "calendar" | "list";
 const views: { id: View; icon: typeof List }[] = [
@@ -43,6 +49,8 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
   const plan = trip.plan;
   const { name, city, warningText } = usePlanText(plan);
   const distance = useDistance();
+  const { data: session } = useSession();
+  const locale = useLocale() as Locale;
   const [view, setView] = useState<View>("timeline");
   const [dayIndex, setDayIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -87,6 +95,18 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
     },
     onLock: (activityId: string) => void run({ type: "lock", dayIndex: activityDay(activityId), activityId }),
     onRemove: (activityId: string) => void run({ type: "remove", dayIndex: activityDay(activityId), activityId }),
+    onVisited: async (activityId: string) => {
+      const d = activityDay(activityId);
+      const activity = plan.itinerary.days[d]?.activities.find((a) => a.id === activityId);
+      const place = activity?.placeId ? plan.places[activity.placeId] : undefined;
+      if (!place) return;
+      await run({ type: "remove", dayIndex: d, activityId });
+      // Remember it for this trip's preferences (rebuilds skip it) and in the profile (future trips skip it).
+      const alreadySeen = Array.from(new Set([...trip.preferences.alreadySeen, place.id]));
+      const updated = updateGuestTrip(trip.id, { preferences: { ...trip.preferences, alreadySeen } });
+      if (updated) onTripChange(updated);
+      void markVisited(place, placeLabel(place, locale, place.id), Boolean(session?.user));
+    },
     onMove: (activityId: string, toDay: number) => void run({ type: "move", fromDay: activityDay(activityId), activityId, toDay }),
     onMoveTo: (fromDay: number, activityId: string, toDay: number, position: number) => void run({ type: "move", fromDay, activityId, toDay, position }),
     onReorder: (d: number, placeIds: string[]) => void run({ type: "reorder", dayIndex: d, placeIds }),

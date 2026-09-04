@@ -20,6 +20,15 @@ const envSchema = z.object({
   /** Force every mock provider (no network at all). */
   TRIPLAN_OFFLINE: z.enum(["true", "false"]).optional(),
   NEXT_PUBLIC_DEMO_MODE: z.enum(["true", "false"]).optional(),
+  /** Auth.js (milestone 8b). All optional: without them sign-in works in demo mode (link shown on screen). */
+  AUTH_SECRET: z.string().optional(),
+  AUTH_GOOGLE_ID: z.string().optional(),
+  AUTH_GOOGLE_SECRET: z.string().optional(),
+  AUTH_RESEND_KEY: z.string().optional(),
+  AUTH_EMAIL_FROM: z.string().optional(),
+  /** Allow the on-screen magic link in production too (never on a public deployment). */
+  AUTH_DEMO_LOGIN: z.enum(["true", "false"]).optional(),
+  NODE_ENV: z.enum(["development", "test", "production"]).optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;

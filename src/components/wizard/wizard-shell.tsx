@@ -11,6 +11,7 @@ import { useWizardStore } from "@/lib/wizard/store";
 import { nextStep, prevStep, stepIndex, wizardSteps, type WizardStep } from "@/lib/wizard/steps";
 import { allErrors, applyStepDefault, stepErrors } from "@/lib/wizard/validate";
 import { createGuestTrip } from "@/lib/guest/trips";
+import { readProfileCache } from "@/lib/profile/client";
 import { localeDir } from "@/lib/i18n/locales";
 import { cn } from "@/lib/utils";
 import type { StepProps, WizardContext } from "./step-props";
@@ -56,8 +57,17 @@ export function WizardShell({ step, ctx }: Props) {
   }, [step]);
 
   // localStorage is only available on the client: hydrate the draft after mount.
+  // A fresh draft starts from the traveller profile (defaults + places already visited).
   useEffect(() => {
-    void useWizardStore.persist.rehydrate();
+    void Promise.resolve(useWizardStore.persist.rehydrate()).then(() => {
+      const s = useWizardStore.getState();
+      if (s.done.length > 0 || s.reached !== "destination") return;
+      const cache = readProfileCache();
+      const visited = cache.visited.map((v) => v.placeId);
+      const defaults = cache.profile?.defaults ?? {};
+      if (Object.keys(defaults).length === 0 && visited.length === 0) return;
+      s.update({ ...defaults, alreadySeen: Array.from(new Set([...s.prefs.alreadySeen, ...visited])) });
+    });
   }, []);
 
   const index = stepIndex(step);

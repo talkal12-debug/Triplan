@@ -1,8 +1,10 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
+import { SessionProvider } from "next-auth/react";
 import { Direction } from "radix-ui";
 import type { TextDirection } from "@/lib/i18n/locales";
+import { TripSync } from "@/components/auth/trip-sync";
 
 type Props = { dir: TextDirection; children: React.ReactNode };
 
@@ -14,7 +16,11 @@ export function Providers({ dir, children }: Props) {
       enableSystem
       disableTransitionOnChange
     >
-      <Direction.Provider dir={dir}>{children}</Direction.Provider>
+      {/* No initial session: pages stay static and the session is fetched after mount. */}
+      <SessionProvider refetchOnWindowFocus={false}>
+        <TripSync />
+        <Direction.Provider dir={dir}>{children}</Direction.Provider>
+      </SessionProvider>
     </ThemeProvider>
   );
 }

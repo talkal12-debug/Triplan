@@ -41,6 +41,56 @@
     "km": "{value} 公里",
     "mi": "{value} 英里"
   },
+  "auth": {
+    "title": "登录",
+    "subtitle": "无需密码：我们会给您发送一封含登录链接的邮件。账户会把旅行保存到云端、在设备间同步，并支持多人共同规划。",
+    "email": "电子邮箱",
+    "emailPlaceholder": "you@example.com",
+    "sendLink": "发送登录链接",
+    "sending": "发送中...",
+    "sent": "链接已发出",
+    "sentBody": "请查看 {email} 的收件箱并点击链接。链接 24 小时内有效。",
+    "demoNote": "演示模式：未配置邮件服务，因此链接直接显示在这里而不是发送。正式环境中它会通过邮件送达。",
+    "demoOpen": "打开登录链接",
+    "or": "或",
+    "google": "使用 Google 继续",
+    "error": "登录失败，请重试。",
+    "guestHint": "不需要账户：您可以以访客身份继续，旅行仅保存在此设备上。登录后它们会自动转入账户。",
+    "signIn": "登录",
+    "signOut": "退出登录",
+    "account": "我的账户",
+    "profile": "我的资料",
+    "myTrips": "我的旅行",
+    "synced": "已同步到账户"
+  },
+  "profile": {
+    "title": "我的资料",
+    "subtitle": "每次旅行都相同的偏好，让问卷自动填好。",
+    "guestBadge": "保存在此设备上",
+    "guestNote": "资料保存在此设备上。登录后会保存到云端并在设备间同步。",
+    "name": "姓名",
+    "defaults": "我的问卷默认值",
+    "defaultsHint": "每次新旅行都从这些答案开始。您可以在任何问卷中更改。",
+    "save": "保存资料",
+    "saving": "正在保存...",
+    "saved": "已保存",
+    "saveError": "保存失败，请重试。",
+    "visited": "已经去过",
+    "visitedHint": "您在计划中标记为“已经去过”的景点。以后的旅行中不会安排它们。",
+    "visitedEmpty": "还没有。在计划中，每个景点的菜单里都有“已经去过”。",
+    "visitedRemove": "从列表中移除 {name}"
+  },
+  "journal": {
+    "subtitle": "为每一天写几句话并打分。随旅行保存；如果已登录，会同步到账户。",
+    "noPlan": "生成计划后即可打开日记。",
+    "rating": "当天评分",
+    "stars": "{n} 星",
+    "average": "{days} 天平均 {value}/5",
+    "dayPlaceholder": "发生了什么？有什么惊喜？您会改变什么？",
+    "summary": "旅行总结",
+    "summaryPlaceholder": "给自己或朋友的下次建议。",
+    "privacy": "日记是私密的，不会包含在分享链接中。"
+  },
   "home": {
     "eyebrow": "智能旅行规划器",
     "heroTitle": "从梦想到逐日计划，只需 3 分钟",
@@ -204,7 +254,8 @@
       "heavier": "这一天太轻松",
       "rebuild": "重新生成未锁定部分",
       "undo": "撤销上次更改",
-      "working": "正在更新..."
+      "working": "正在更新...",
+      "visited": "已经去过"
     },
     "swap": {
       "title": "替换 {name}",
@@ -291,7 +342,35 @@
   },
   "gallery": {
     "title": "现成计划",
-    "description": "可克隆和调整的计划库将在开发阶段 8 构建。"
+    "intro": "由 Triplan 引擎为演示目的地生成的计划。复制到您的旅行，修改日期和偏好，然后重新生成。",
+    "empty": "画廊中还没有计划。",
+    "clone": "复制到我的旅行",
+    "cloning": "正在复制...",
+    "cloneError": "复制失败，请重试。",
+    "countries": "国家",
+    "days": "天数",
+    "party": "出行人",
+    "places": "景点",
+    "placesCount": "{count, plural, other {# 个景点}}",
+    "note": "这些计划是提前生成的，其中的天气和节假日已过时。复制后请点击“重新生成”，以获取您日期的天气预报和节假日。",
+    "templates": {
+      "lisbon-family-5": {
+        "title": "带孩子游里斯本和辛特拉",
+        "body": "5 天，两个学龄儿童，节奏适中，公共交通，市中心公寓。"
+      },
+      "rome-first-time-4": {
+        "title": "初访罗马",
+        "body": "两人 4 天紧凑行程：经典景点、博物馆、美食和摄影。"
+      },
+      "tokyo-week-7": {
+        "title": "东京与镰仓一周",
+        "body": "两人 7 天：城市、美食、购物、历史与自然，车站旁酒店。"
+      },
+      "porto-lisbon-relaxed-6": {
+        "title": "悠闲波尔图与里斯本",
+        "body": "65 岁以上夫妇 6 天：少量步行，美酒美食，导游团，精品酒店。"
+      }
+    }
   },
   "disclosure": {
     "title": "披露声明",
@@ -689,7 +768,8 @@
       "budget": "预算",
       "packing": "行李",
       "checklist": "清单",
-      "share": "导出与分享"
+      "share": "导出与分享",
+      "journal": "日记"
     },
     "budget": {
       "title": "预算估算",

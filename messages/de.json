@@ -41,6 +41,56 @@
     "km": "{value} km",
     "mi": "{value} mi"
   },
+  "auth": {
+    "title": "Anmelden",
+    "subtitle": "Ohne Passwort: Wir schicken Ihnen einen Link per E-Mail. Das Konto speichert Ihre Reisen in der Cloud, synchronisiert sie zwischen Geräten und ermöglicht gemeinsames Planen.",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "you@example.com",
+    "sendLink": "Anmeldelink schicken",
+    "sending": "Wird gesendet...",
+    "sent": "Der Link ist unterwegs",
+    "sentBody": "Prüfen Sie das Postfach von {email} und klicken Sie auf den Link. Er ist 24 Stunden gültig.",
+    "demoNote": "Demomodus: Es ist kein E-Mail-Dienst konfiguriert, daher wird der Link hier angezeigt statt gesendet. In der echten Einrichtung kommt er per E-Mail.",
+    "demoOpen": "Anmeldelink öffnen",
+    "or": "oder",
+    "google": "Mit Google fortfahren",
+    "error": "Anmeldung fehlgeschlagen. Bitte erneut versuchen.",
+    "guestHint": "Kein Konto nötig: Sie können als Gast weitermachen, Reisen bleiben dann nur auf diesem Gerät. Nach der Anmeldung wandern sie automatisch ins Konto.",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "account": "Mein Konto",
+    "profile": "Mein Profil",
+    "myTrips": "Meine Reisen",
+    "synced": "Mit dem Konto synchronisiert"
+  },
+  "profile": {
+    "title": "Mein Profil",
+    "subtitle": "Die Vorgaben, die sich bei jeder Reise wiederholen, damit sich der Fragebogen von selbst ausfüllt.",
+    "guestBadge": "Auf diesem Gerät gespeichert",
+    "guestNote": "Das Profil liegt auf diesem Gerät. Nach der Anmeldung wird es in der Cloud gespeichert und zwischen Geräten synchronisiert.",
+    "name": "Name",
+    "defaults": "Meine Standardantworten",
+    "defaultsHint": "Jede neue Reise beginnt mit diesen Antworten. Sie können sie in jedem Fragebogen ändern.",
+    "save": "Profil speichern",
+    "saving": "Wird gespeichert...",
+    "saved": "Gespeichert",
+    "saveError": "Speichern fehlgeschlagen. Bitte erneut versuchen.",
+    "visited": "Schon besucht",
+    "visitedHint": "Sehenswürdigkeiten, die Sie in einem Plan als „schon besucht“ markiert haben. Sie bleiben bei künftigen Reisen außen vor.",
+    "visitedEmpty": "Noch nichts. Im Plan hat jede Sehenswürdigkeit im Menü „Schon besucht“.",
+    "visitedRemove": "{name} aus der Liste entfernen"
+  },
+  "journal": {
+    "subtitle": "Ein paar Worte zu jedem Tag und eine Bewertung. Wird mit der Reise gespeichert und mit dem Konto synchronisiert, wenn Sie angemeldet sind.",
+    "noPlan": "Das Tagebuch öffnet sich, sobald ein Plan gebaut ist.",
+    "rating": "Bewertung des Tages",
+    "stars": "{n} Sterne",
+    "average": "Durchschnitt {value} von 5 über {days} Tage",
+    "dayPlaceholder": "Was war los? Was hat überrascht? Was würden Sie ändern?",
+    "summary": "Reisefazit",
+    "summaryPlaceholder": "Tipps fürs nächste Mal, für Sie oder für Freunde.",
+    "privacy": "Das Tagebuch ist privat. Es ist nicht in Freigabelinks enthalten."
+  },
   "home": {
     "eyebrow": "Intelligenter Reiseplaner",
     "heroTitle": "Vom Traum zum Tagesplan, in 3 Minuten",
@@ -204,7 +254,8 @@
       "heavier": "Dieser Tag ist zu leicht",
       "rebuild": "Nicht Fixiertes neu erstellen",
       "undo": "Letzte Änderung rückgängig",
-      "working": "Wird aktualisiert..."
+      "working": "Wird aktualisiert...",
+      "visited": "Schon besucht"
     },
     "swap": {
       "title": "{name} ersetzen",
@@ -291,7 +342,35 @@
   },
   "gallery": {
     "title": "Fertige Pläne",
-    "description": "Die Galerie mit Plänen zum Kopieren und Anpassen wird in Entwicklungsphase 8 gebaut."
+    "intro": "Pläne, die das Triplan-Modul für die Demoziele gebaut hat. In die eigenen Reisen kopieren, Daten und Vorgaben ändern, neu erstellen.",
+    "empty": "Noch keine Pläne in der Galerie.",
+    "clone": "In meine Reisen kopieren",
+    "cloning": "Wird kopiert...",
+    "cloneError": "Kopieren fehlgeschlagen. Bitte erneut versuchen.",
+    "countries": "Länder",
+    "days": "Tage",
+    "party": "Reisende",
+    "places": "Sehenswürdigkeiten",
+    "placesCount": "{count, plural, one {1 Sehenswürdigkeit} other {# Sehenswürdigkeiten}}",
+    "note": "Diese Pläne wurden vorab gebaut, Wetter und Feiertage darin sind veraltet. Nach dem Kopieren „Neu erstellen“ drücken, um Vorhersage und Feiertage für Ihre Daten zu erhalten.",
+    "templates": {
+      "lisbon-family-5": {
+        "title": "Lissabon und Sintra mit Kindern",
+        "body": "5 Tage, zwei Schulkinder, mittleres Tempo, öffentliche Verkehrsmittel, Apartment im Zentrum."
+      },
+      "rome-first-time-4": {
+        "title": "Rom zum ersten Mal",
+        "body": "4 intensive Tage für ein Paar: die Klassiker, Museen, Essen und Fotografie."
+      },
+      "tokyo-week-7": {
+        "title": "Eine Woche in Tokio und Kamakura",
+        "body": "7 Tage für ein Paar: Stadt, Essen, Einkaufen, Geschichte und Natur, Hotel am Bahnhof."
+      },
+      "porto-lisbon-relaxed-6": {
+        "title": "Porto und Lissabon in Ruhe",
+        "body": "6 Tage für ein Paar über 65: wenig laufen, Wein und Essen, geführte Touren, Boutique-Hotels."
+      }
+    }
   },
   "disclosure": {
     "title": "Offenlegung",
@@ -689,7 +768,8 @@
       "budget": "Budget",
       "packing": "Packliste",
       "checklist": "Checkliste",
-      "share": "Export & Teilen"
+      "share": "Export & Teilen",
+      "journal": "Tagebuch"
     },
     "budget": {
       "title": "Geschätztes Budget",

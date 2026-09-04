@@ -43,12 +43,20 @@ export const guestPlanSchema = z.object({
 });
 export type GuestPlan = z.infer<typeof guestPlanSchema>;
 
+/** Trip journal: free text and a 1-5 rating per day, plus a closing note. Written during / after the trip. */
+export const journalSchema = z.object({
+  days: z.record(z.string(), z.object({ text: z.string().max(5000), rating: z.number().int().min(1).max(5).nullable() })),
+  summary: z.string().max(5000),
+});
+export type Journal = z.infer<typeof journalSchema>;
+
 export const guestTripSchema = z.object({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
   preferences: tripPreferencesSchema,
   plan: guestPlanSchema.optional(),
+  journal: journalSchema.optional(),
   /** Ticked packing items */
   packing: z.record(z.string(), z.boolean()).optional(),
   /** Ticked checklist items */

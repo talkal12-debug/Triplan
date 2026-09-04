@@ -7,7 +7,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getGuestTrip, guestPlanSchema, updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
+import { getGuestTrip, guestPlanSchema, onGuestTripsChange, updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import { useWizardStore } from "@/lib/wizard/store";
 import { PreferencesSummary } from "@/components/wizard/preferences-summary";
 import type { WizardContext } from "@/components/wizard/step-props";
@@ -29,6 +29,9 @@ export function GuestTripView({ id, ctx }: Props) {
 
   useEffect(() => {
     setTrip(getGuestTrip(id) ?? null);
+    return onGuestTripsChange((_all, changed) => {
+      if (changed?.remote && changed.id === id) setTrip(getGuestTrip(id) ?? null);
+    });
   }, [id]);
 
   function editPreferences() {

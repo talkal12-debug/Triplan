@@ -7,7 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { CountryFlag } from "@/components/country-flag";
 import { Skeleton } from "@/components/ui/skeleton";
-import { deleteGuestTrip, listGuestTrips, type GuestTrip } from "@/lib/guest/trips";
+import { deleteGuestTrip, listGuestTrips, onGuestTripsChange, type GuestTrip } from "@/lib/guest/trips";
 import type { CountryLite } from "@/lib/data/countries-lite";
 
 type Props = { countries: CountryLite[] };
@@ -21,6 +21,10 @@ export function GuestTripList({ countries }: Props) {
 
   useEffect(() => {
     setTrips(listGuestTrips());
+    // Trips merged in from the account (sign-in, another device) show up without a reload.
+    return onGuestTripsChange((_all, changed) => {
+      if (changed?.remote) setTrips(listGuestTrips());
+    });
   }, []);
 
   function remove(id: string) {

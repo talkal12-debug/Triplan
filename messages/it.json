@@ -41,6 +41,56 @@
     "km": "{value} km",
     "mi": "{value} mi"
   },
+  "auth": {
+    "title": "Accedi",
+    "subtitle": "Senza password: ti inviamo un link via email. L'account conserva i viaggi nel cloud, li sincronizza tra dispositivi e permette di pianificare insieme.",
+    "email": "Indirizzo email",
+    "emailPlaceholder": "you@example.com",
+    "sendLink": "Inviami un link di accesso",
+    "sending": "Invio...",
+    "sent": "Il link è in arrivo",
+    "sentBody": "Controlla la casella di {email} e clicca sul link. È valido per 24 ore.",
+    "demoNote": "Modalità demo: nessun servizio email configurato, quindi il link viene mostrato qui invece di essere inviato. Nella versione reale arriva via email.",
+    "demoOpen": "Apri il link di accesso",
+    "or": "oppure",
+    "google": "Continua con Google",
+    "error": "Accesso non riuscito. Riprova.",
+    "guestHint": "Nessun account necessario: puoi continuare come ospite e i viaggi restano solo su questo dispositivo. Dopo l'accesso passano automaticamente all'account.",
+    "signIn": "Accedi",
+    "signOut": "Esci",
+    "account": "Il mio account",
+    "profile": "Il mio profilo",
+    "myTrips": "I miei viaggi",
+    "synced": "Sincronizzato con l'account"
+  },
+  "profile": {
+    "title": "Il mio profilo",
+    "subtitle": "Le preferenze che si ripetono a ogni viaggio, così il questionario si compila da solo.",
+    "guestBadge": "Salvato su questo dispositivo",
+    "guestNote": "Il profilo è salvato su questo dispositivo. Accedendo viene salvato nel cloud e sincronizzato tra dispositivi.",
+    "name": "Nome",
+    "defaults": "Le mie risposte predefinite",
+    "defaultsHint": "Ogni nuovo viaggio parte da queste risposte. Puoi cambiarle in qualsiasi questionario.",
+    "save": "Salva profilo",
+    "saving": "Salvataggio...",
+    "saved": "Salvato",
+    "saveError": "Salvataggio non riuscito. Riprova.",
+    "visited": "Già visitato",
+    "visitedHint": "Attrazioni che hai segnato \"già visitato\" in un piano. Restano fuori dai prossimi viaggi.",
+    "visitedEmpty": "Ancora niente. In un piano, il menu di ogni attrazione ha \"Già visitato\".",
+    "visitedRemove": "Rimuovi {name} dall'elenco"
+  },
+  "journal": {
+    "subtitle": "Qualche parola su ogni giorno e un voto. Salvato con il viaggio e sincronizzato con l'account se hai effettuato l'accesso.",
+    "noPlan": "Il diario si apre quando c'è un piano.",
+    "rating": "Voto della giornata",
+    "stars": "{n} stelle",
+    "average": "Media {value} su 5 in {days} giorni",
+    "dayPlaceholder": "Cos'è successo? Cosa ti ha sorpreso? Cosa cambieresti?",
+    "summary": "Riepilogo del viaggio",
+    "summaryPlaceholder": "Consigli per la prossima volta, per te o per gli amici.",
+    "privacy": "Il diario è privato. Non è incluso nei link di condivisione."
+  },
   "home": {
     "eyebrow": "Pianificatore di viaggi intelligente",
     "heroTitle": "Da un sogno a un piano giorno per giorno, in 3 minuti",
@@ -204,7 +254,8 @@
       "heavier": "Questa giornata è troppo leggera",
       "rebuild": "Ricrea ciò che non è bloccato",
       "undo": "Annulla ultima modifica",
-      "working": "Aggiornamento..."
+      "working": "Aggiornamento...",
+      "visited": "Già visitato"
     },
     "swap": {
       "title": "Sostituisci {name}",
@@ -291,7 +342,35 @@
   },
   "gallery": {
     "title": "Piani pronti",
-    "description": "La galleria di piani da clonare e adattare sarà costruita nella fase di sviluppo 8."
+    "intro": "Piani costruiti dal motore di Triplan per le destinazioni demo. Copiane uno nei tuoi viaggi, cambia date e preferenze e ricrealo.",
+    "empty": "Nessun piano in galleria per ora.",
+    "clone": "Copia nei miei viaggi",
+    "cloning": "Copia in corso...",
+    "cloneError": "Copia non riuscita. Riprova.",
+    "countries": "Paesi",
+    "days": "Giorni",
+    "party": "Viaggiatori",
+    "places": "Attrazioni",
+    "placesCount": "{count, plural, one {1 attrazione} other {# attrazioni}}",
+    "note": "Questi piani sono stati costruiti in anticipo: meteo e festività non sono aggiornati. Dopo la copia premi \"Ricrea\" per avere previsioni e festività per le tue date.",
+    "templates": {
+      "lisbon-family-5": {
+        "title": "Lisbona e Sintra con bambini",
+        "body": "5 giorni, due bambini in età scolare, ritmo moderato, mezzi pubblici, appartamento in centro."
+      },
+      "rome-first-time-4": {
+        "title": "Roma per la prima volta",
+        "body": "4 giorni intensi per una coppia: i classici, musei, cibo e fotografia."
+      },
+      "tokyo-week-7": {
+        "title": "Una settimana a Tokyo e Kamakura",
+        "body": "7 giorni per una coppia: città, cibo, shopping, storia e natura, hotel vicino a una stazione."
+      },
+      "porto-lisbon-relaxed-6": {
+        "title": "Porto e Lisbona senza fretta",
+        "body": "6 giorni per una coppia over 65: poco cammino, vino e cibo, tour guidati, hotel boutique."
+      }
+    }
   },
   "disclosure": {
     "title": "Trasparenza",
@@ -689,7 +768,8 @@
       "budget": "Budget",
       "packing": "Valigia",
       "checklist": "Checklist",
-      "share": "Esporta e condividi"
+      "share": "Esporta e condividi",
+      "journal": "Diario"
     },
     "budget": {
       "title": "Budget stimato",

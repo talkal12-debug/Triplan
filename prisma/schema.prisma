@@ -16,19 +16,58 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(cuid())
-  email       String?  @unique
-  name        String?
-  image       String?
-  locale      String   @default("he")
-  units       String   @default("metric") // metric | imperial
-  currency    String   @default("ILS")
-  createdAt   DateTime @default(now())
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  emailVerified DateTime?
+  name          String?
+  image         String?
+  locale        String    @default("he")
+  units         String    @default("metric") // metric | imperial
+  currency      String    @default("ILS")
+  createdAt     DateTime  @default(now())
 
   profile     TravelerProfile?
   trips       Trip[]
   visited     VisitedPlace[]
   memberships TripMember[]
+  accounts    Account[]
+  sessions    Session[]
+}
+
+// --- Auth.js (milestone 8b). Shapes required by @auth/prisma-adapter. ---
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 /// Preferences that persist between trips.

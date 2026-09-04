@@ -41,6 +41,56 @@
     "km": "{value} km",
     "mi": "{value} mi"
   },
+  "auth": {
+    "title": "Sign in",
+    "subtitle": "No password: we email you a link. An account keeps your trips in the cloud, syncs them between devices and lets you plan together.",
+    "email": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "sendLink": "Email me a sign-in link",
+    "sending": "Sending...",
+    "sent": "Link on its way",
+    "sentBody": "Check the inbox of {email} and click the link. It is valid for 24 hours.",
+    "demoNote": "Demo mode: no email service is configured, so the link is shown here instead of being sent. In the real setup it arrives by email.",
+    "demoOpen": "Open the sign-in link",
+    "or": "or",
+    "google": "Continue with Google",
+    "error": "Sign-in failed. Please try again.",
+    "guestHint": "No account needed: you can carry on as a guest, and trips are kept on this device only. After signing in they move to the account automatically.",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "account": "My account",
+    "profile": "My profile",
+    "myTrips": "My trips",
+    "synced": "Synced to account"
+  },
+  "profile": {
+    "title": "My profile",
+    "subtitle": "The preferences that repeat on every trip, so the questionnaire fills itself in.",
+    "guestBadge": "Kept on this device",
+    "guestNote": "The profile is kept on this device. Signing in stores it in the cloud and syncs it between devices.",
+    "name": "Name",
+    "defaults": "My questionnaire defaults",
+    "defaultsHint": "Every new trip starts from these answers. You can change them in any questionnaire.",
+    "save": "Save profile",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "saveError": "Saving failed. Please try again.",
+    "visited": "Already visited",
+    "visitedHint": "Attractions you marked \"already visited\" in a plan. They are left out of future trips.",
+    "visitedEmpty": "Nothing yet. In a plan, every attraction's menu has \"Already visited\".",
+    "visitedRemove": "Remove {name} from the list"
+  },
+  "journal": {
+    "subtitle": "A few words about each day and a rating. Saved with the trip, and synced to your account if you signed in.",
+    "noPlan": "The journal opens once a plan is built.",
+    "rating": "Rating for the day",
+    "stars": "{n} stars",
+    "average": "Average {value} out of 5 over {days} days",
+    "dayPlaceholder": "What happened? What surprised you? What would you change?",
+    "summary": "Trip summary",
+    "summaryPlaceholder": "Tips for next time, for you or for friends.",
+    "privacy": "The journal is private. It is not included in share links."
+  },
   "home": {
     "eyebrow": "Smart trip planner",
     "heroTitle": "From a dream to a day-by-day plan, in 3 minutes",
@@ -204,7 +254,8 @@
       "heavier": "This day is too light",
       "rebuild": "Rebuild what is not locked",
       "undo": "Undo last change",
-      "working": "Updating..."
+      "working": "Updating...",
+      "visited": "Already visited"
     },
     "swap": {
       "title": "Replace {name}",
@@ -291,7 +342,35 @@
   },
   "gallery": {
     "title": "Ready plans",
-    "description": "The gallery of plans to clone and adapt is built in development phase 8."
+    "intro": "Plans built with the Triplan engine for the demo destinations. Copy one to your trips, change dates and preferences, and rebuild.",
+    "empty": "No plans in the gallery yet.",
+    "clone": "Copy to my trips",
+    "cloning": "Copying...",
+    "cloneError": "Copying failed. Please try again.",
+    "countries": "Countries",
+    "days": "Days",
+    "party": "Travellers",
+    "places": "Attractions",
+    "placesCount": "{count, plural, one {1 attraction} other {# attractions}}",
+    "note": "These plans were built in advance, so their weather and holidays are out of date. After copying, press \"Rebuild\" to get a forecast and holidays for your dates.",
+    "templates": {
+      "lisbon-family-5": {
+        "title": "Lisbon and Sintra with kids",
+        "body": "5 days, two school-age children, moderate pace, public transport, an apartment in the centre."
+      },
+      "rome-first-time-4": {
+        "title": "Rome for the first time",
+        "body": "4 intense days for a couple: the classics, museums, food and photography."
+      },
+      "tokyo-week-7": {
+        "title": "A week in Tokyo and Kamakura",
+        "body": "7 days for a couple: city, food, shopping, history and nature, hotel by a station."
+      },
+      "porto-lisbon-relaxed-6": {
+        "title": "Porto and Lisbon, unhurried",
+        "body": "6 days for a couple aged 65+: little walking, wine and food, guided tours, boutique hotels."
+      }
+    }
   },
   "disclosure": {
     "title": "Disclosure",
@@ -689,7 +768,8 @@
       "budget": "Budget",
       "packing": "Packing",
       "checklist": "Checklist",
-      "share": "Export & share"
+      "share": "Export & share",
+      "journal": "Journal"
     },
     "budget": {
       "title": "Estimated budget",

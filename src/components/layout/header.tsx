@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { navItems, isActivePath } from "./nav-items";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeToggle } from "./theme-toggle";
+import { UserMenu } from "@/components/auth/user-menu";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -56,6 +57,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1">
+          <UserMenu />
           <LocaleSwitcher />
           <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
