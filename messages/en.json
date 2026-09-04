@@ -174,7 +174,81 @@
     },
     "website": "Website",
     "dayWarnings": "Heads up",
-    "emptyDay": "Free day. We ran out of attractions that suit you at this destination."
+    "emptyDay": "Free day. We ran out of attractions that suit you at this destination.",
+    "views": {
+      "timeline": "Timeline",
+      "map": "Map",
+      "calendar": "Calendar",
+      "list": "List"
+    },
+    "viewsLabel": "View",
+    "daysLabel": "Trip days",
+    "dayShort": "Day {n}",
+    "actions": {
+      "menu": "Actions for {name}",
+      "swap": "Swap activity",
+      "lock": "Lock in place",
+      "unlock": "Unlock",
+      "moveTo": "Move to day",
+      "moveToDay": "Day {n}, {date}",
+      "remove": "Remove from plan",
+      "lighter": "This day is too busy",
+      "heavier": "This day is too light",
+      "rebuild": "Rebuild what is not locked",
+      "undo": "Undo last change",
+      "working": "Updating..."
+    },
+    "swap": {
+      "title": "Replace {name}",
+      "subtitle": "Alternatives in the same area, same time budget, open that day.",
+      "none": "No free alternatives found in this area.",
+      "pick": "Pick",
+      "minutes": "{minutes} min"
+    },
+    "map": {
+      "hotel": "Hotel",
+      "loading": "Loading map...",
+      "legend": "The day's route. Straight lines, estimated.",
+      "showing": "Showing day {n}",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "fit": "Fit to route"
+    },
+    "calendar": {
+      "title": "Trip calendar",
+      "legend": "Tap a day to open it in the timeline"
+    },
+    "list": {
+      "hint": "Drag activities within a day or between days. Times are recalculated.",
+      "empty": "No activities on this day. Drag some here."
+    },
+    "now": {
+      "title": "My day",
+      "myDay": "My day",
+      "noTripToday": "The trip is not happening today. Pick a day to view:",
+      "current": "Now",
+      "next": "Up next",
+      "later": "Later",
+      "done": "You are done for today. Good night!",
+      "notStarted": "The day has not started yet. First activity:",
+      "navigate": "Navigate there",
+      "openInMaps": "Open in maps",
+      "backToPlan": "Full plan",
+      "startsIn": "Starts in {minutes} min",
+      "endsAt": "Until {time}",
+      "free": "Free time until {time}",
+      "nothingLeft": "Nothing else planned today"
+    },
+    "locked": "Locked",
+    "dragHandle": "Drag {name}",
+    "editError": "The edit failed: {message}",
+    "selected": "Selected",
+    "transitShort": {
+      "walk": "Walk",
+      "transit": "Transit",
+      "car": "Drive",
+      "bike": "Bike"
+    }
   },
   "gallery": {
     "title": "Ready plans",

@@ -88,4 +88,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestones 1-4 done (foundation, data, wizard, planning engine). Next: milestone 5 (plan views: timeline, map, calendar, editing). See PLAN.md sections 8 and 11.
+Milestones 1-5 done (foundation, data, wizard, planning engine, plan views + editing). Next: milestone 6 (real providers: OSRM routing, Open-Meteo, Nager.Date, booking deep links). See PLAN.md sections 8 and 11.

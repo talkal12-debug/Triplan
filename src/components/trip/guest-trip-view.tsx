@@ -11,7 +11,7 @@ import { getGuestTrip, guestPlanSchema, updateGuestTrip, type GuestTrip } from "
 import { useWizardStore } from "@/lib/wizard/store";
 import { PreferencesSummary } from "@/components/wizard/preferences-summary";
 import type { WizardContext } from "@/components/wizard/step-props";
-import { PlanView } from "./plan-view";
+import { PlanWorkspace } from "./plan-workspace";
 
 type Props = { id: string; ctx: WizardContext };
 
@@ -128,7 +128,7 @@ export function GuestTripView({ id, ctx }: Props) {
 
       {trip.plan ? (
         <section className="mt-8" aria-label={t("planLabel")}>
-          <PlanView plan={trip.plan} />
+          <PlanWorkspace trip={trip as GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }} onTripChange={setTrip} />
         </section>
       ) : (
         <div className="mt-6 flex items-start gap-3 rounded-2xl border border-dashed bg-sunset/10 p-4 text-sm">

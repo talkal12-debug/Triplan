@@ -171,6 +171,24 @@ export function rebalanceDay(it: Itinerary, dayIndex: number, direction: "lighte
   return replaceDay(it, rescheduleDay(it, day, [...ids, best.place.id], ctx, { capacityScale: 1.25 }));
 }
 
+/** Drop a visit from a day and re-time the rest. */
+export function removeActivity(it: Itinerary, dayIndex: number, activityId: string, ctx: EditContext): Itinerary {
+  const day = it.days[dayIndex];
+  const activity = day?.activities.find((a) => a.id === activityId);
+  if (!day || !activity?.placeId) return it;
+  return replaceDay(it, rescheduleDay(it, day, visitIds(day).filter((id) => id !== activity.placeId), ctx));
+}
+
+/** Re-time a day in an explicit order of place ids (after a drag-and-drop). Unknown ids are ignored. */
+export function reorderDay(it: Itinerary, dayIndex: number, placeIds: string[], ctx: EditContext): Itinerary {
+  const day = it.days[dayIndex];
+  if (!day) return it;
+  const current = new Set(visitIds(day));
+  const ids = placeIds.filter((id) => current.has(id));
+  for (const id of visitIds(day)) if (!ids.includes(id)) ids.push(id);
+  return replaceDay(it, rescheduleDay(it, day, ids, ctx));
+}
+
 export function toggleLock(it: Itinerary, dayIndex: number, activityId: string): Itinerary {
   const day = it.days[dayIndex];
   if (!day) return it;
