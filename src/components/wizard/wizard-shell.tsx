@@ -133,7 +133,8 @@ export function WizardShell({ step, ctx }: Props) {
                     {bar}
                   </Link>
                 ) : (
-                  <span className="block py-2" aria-label={t(`steps.${s}`)}>
+                  <span className="block py-2">
+                    <span className="sr-only">{t(`steps.${s}`)}</span>
                     {bar}
                   </span>
                 )}

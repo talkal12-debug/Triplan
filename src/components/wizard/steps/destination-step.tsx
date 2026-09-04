@@ -157,7 +157,6 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
                   type="button"
                   role="checkbox"
                   aria-checked={selected}
-                  aria-label={t("select", { name: c.name })}
                   disabled={disabled}
                   onClick={() => toggleCountry(c.code)}
                   className={cn(
@@ -168,6 +167,7 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
                 >
                   <CountryFlag code={c.code} size={24} />
                   <span className="min-w-0 flex-1">
+                    {/* No aria-label: the visible name, local name and badge are the accessible name. */}
                     <span className="block truncate font-medium">{c.name}</span>
                     {c.local && (
                       <span className="block truncate text-xs text-muted-foreground" dir="auto">

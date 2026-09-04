@@ -8,7 +8,7 @@ import sharp from "sharp";
 async function buildRomeTrip(page: Page) {
   await page.goto("/he/plan/destination");
   const next = page.getByRole("button", { name: "המשך" });
-  await page.getByRole("checkbox", { name: "בחר את איטליה" }).click();
+  await page.getByRole("checkbox", { name: /^איטליה / }).click();
   await next.click();
   for (const step of ["dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"]) {
     await expect(page).toHaveURL(new RegExp(`/plan/${step}$`));

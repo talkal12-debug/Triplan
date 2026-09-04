@@ -8,7 +8,7 @@ import { expect, test, type Page } from "@playwright/test";
 async function buildLisbonTrip(page: Page) {
   await page.goto("/he/plan/destination");
   const next = page.getByRole("button", { name: "המשך" });
-  await page.getByRole("checkbox", { name: "בחר את פורטוגל" }).click();
+  await page.getByRole("checkbox", { name: /^פורטוגל / }).click();
   await page.getByRole("checkbox", { name: /ליסבון/ }).click();
   await next.click();
   for (const step of ["dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"]) {

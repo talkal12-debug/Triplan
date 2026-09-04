@@ -88,8 +88,7 @@ export default async function HomePage({ params }: Props) {
         </h2>
         <ol className="mt-8 grid gap-6 sm:grid-cols-3">
           {steps.map((step, i) => (
-            <FadeIn key={step} delay={i * 0.08}>
-              <li className="flex gap-4">
+            <FadeIn key={step} delay={i * 0.08} as="li" className="flex gap-4">
                 <span
                   aria-hidden
                   className="grid size-10 shrink-0 place-items-center rounded-full bg-sunset font-semibold text-sunset-foreground"
@@ -102,7 +101,6 @@ export default async function HomePage({ params }: Props) {
                     {t(`steps.${step}.body`)}
                   </p>
                 </div>
-              </li>
             </FadeIn>
           ))}
         </ol>

@@ -17,7 +17,7 @@ test("non-demo country needs a city from the OSM search", async ({ page }) => {
   await page.goto("/he/plan/destination");
   const next = page.getByRole("button", { name: "המשך" });
   await page.getByPlaceholder(/חפש מדינה/).fill("צרפת");
-  await page.getByRole("checkbox", { name: "בחר את צרפת" }).click();
+  await page.getByRole("checkbox", { name: /^צרפת / }).click();
 
   // Selected, but no city yet: blocked with an explanation.
   await expect(next).toBeDisabled();

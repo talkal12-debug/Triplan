@@ -33,6 +33,7 @@ Open http://localhost:3000 — you are redirected to `/he` (Hebrew, RTL). Englis
 | `npm run i18n:check` | Fails if any `messages/*.json` is missing or has extra keys vs `he.json`. |
 | `npm run check` | lint + typecheck + i18n:check + test. |
 | `npm run test:e2e` | Playwright end-to-end tests (phone + desktop Chromium). Starts `next dev` if needed; first run: `npx playwright install chromium`. |
+| `npm run lighthouse` | Lighthouse (mobile) scores for a few pages against a production build (`npm run build` first). Uses Playwright's Chromium. |
 | `npm run db:push` | Create / update the local SQLite schema (`prisma/dev.db`). |
 | `npm run db:seed` | Load `data/countries.json` and `data/pois/*.json` into the database (idempotent). |
 | `npm run db:reset` | Drop and recreate the local database, then seed. |
@@ -105,9 +106,16 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 - Messages live in `messages/{locale}.json`. `he.json` is the reference.
 - Only logical CSS properties are allowed (`ms-`, `me-`, `ps-`, `pe-`, `start-`, `end-`). ESLint enforces it.
-- Locales beyond `he` and `en` arrive in milestone 8 and are machine-translated by Claude; they are
-  marked as needing a native-speaker review.
+- 12 locales: `he` (default, RTL), `en`, `ar` (RTL), `ru`, `es`, `fr`, `de`, `it`, `pt`, `zh-CN`, `ja`, `hi`.
+  The list lives in `src/lib/i18n/locales.ts`; routing is `/{locale}/...` with `Accept-Language` detection.
+- `he` and `en` are hand-written. The other ten were translated by Claude from `en.json` and **need a
+  native-speaker review** before launching to that audience.
+- Fonts: Rubik (latin, hebrew, arabic, cyrillic). CJK and Devanagari fall back to system fonts named in `globals.css`.
+- Distance units (km / miles) are a separate toggle in the language menu, stored in `localStorage` (`triplan:units`).
+  Conversion happens only at display time (`src/lib/units/`); the engine and exports stay metric.
+- `tests/e2e/locales.spec.ts` opens the home page and the wizard in every locale, checks `<html lang dir>`,
+  RTL layout and that next-intl logs no missing-message errors.
 
 ## Status
 
-Milestones 1-7 done (foundation, data, wizard, engine, plan views, providers, export/share/offline/tools). Next: milestone 8 (12 languages, auth, collaboration, profile, journal, gallery, AI chat, Lighthouse). See PLAN.md sections 8 and 11.
+Milestones 1-7 and 8a done (foundation, data, wizard, engine, plan views, providers, export/share/offline/tools, 12 languages + units toggle). Next: milestone 8b (auth, collaboration, profile, journal, gallery, AI chat, Lighthouse 90+). See PLAN.md sections 8 and 11.

@@ -12,12 +12,12 @@ test("guest can complete the wizard and land on a saved trip", async ({ page }) 
   // Step 1: destination is required, then pick Portugal + Lisbon.
   const next = page.getByRole("button", { name: "המשך" });
   await expect(next).toBeDisabled();
-  await page.getByRole("checkbox", { name: "בחר את פורטוגל" }).click();
+  await page.getByRole("checkbox", { name: /^פורטוגל / }).click();
   await page.getByRole("checkbox", { name: /ליסבון/ }).click();
   // Countries without a curated seed are selectable too (OpenStreetMap), just labelled.
   await page.getByPlaceholder(/חפש מדינה/).fill("גרמניה");
-  await expect(page.getByRole("checkbox", { name: "בחר את גרמניה" })).toBeEnabled();
-  await expect(page.getByRole("checkbox", { name: "בחר את גרמניה" })).toContainText("OpenStreetMap");
+  await expect(page.getByRole("checkbox", { name: /^גרמניה / })).toBeEnabled();
+  await expect(page.getByRole("checkbox", { name: /^גרמניה / })).toContainText("OpenStreetMap");
   await expect(next).toBeEnabled();
   await next.click();
 
@@ -73,7 +73,7 @@ test("guest can complete the wizard and land on a saved trip", async ({ page }) 
 
 test("draft is restored after reload", async ({ page }) => {
   await page.goto("/he/plan/destination");
-  await page.getByRole("checkbox", { name: "בחר את יפן" }).click();
+  await page.getByRole("checkbox", { name: /^יפן / }).click();
   await page.reload();
-  await expect(page.getByRole("checkbox", { name: "בחר את יפן" })).toHaveAttribute("aria-checked", "true");
+  await expect(page.getByRole("checkbox", { name: /^יפן / })).toHaveAttribute("aria-checked", "true");
 });
