@@ -1,0 +1,835 @@
+{
+  "common": {
+    "appName": "Triplan",
+    "tagline": "3分で完成する旅行プラン",
+    "skipToContent": "本文へスキップ",
+    "comingSoon": "近日公開",
+    "comingSoonBody": "この部分は次の開発フェーズで作られます。それまではホームへお戻りください。",
+    "backHome": "ホームへ戻る",
+    "demoBanner": "デモモード：経路・天気・祝日はAPIキー不要の無料ソースから取得しています。推定データには印が付きます。",
+    "affiliate": "アフィリエイトリンク",
+    "opensInNewTab": "新しいタブで開きます",
+    "offline": "インターネットに接続されていません。保存済みのプランは「マイ旅行」で見られます。"
+  },
+  "nav": {
+    "home": "ホーム",
+    "plan": "旅行を計画",
+    "gallery": "完成プラン",
+    "disclosure": "開示事項",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "menuTitle": "メニュー",
+    "mainNav": "メインナビゲーション",
+    "mobileNav": "下部ナビゲーション",
+    "knowBefore": "出発前に知っておくこと",
+    "myTrips": "マイ旅行"
+  },
+  "theme": {
+    "toggle": "カラーテーマを切り替え",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  },
+  "locale": {
+    "switch": "言語を変更",
+    "current": "現在の言語：{name}"
+  },
+  "units": {
+    "label": "距離の単位",
+    "metric": "キロメートル",
+    "imperial": "マイル",
+    "km": "{value} km",
+    "mi": "{value}マイル"
+  },
+  "home": {
+    "eyebrow": "スマート旅行プランナー",
+    "heroTitle": "夢から日ごとのプランへ、わずか3分",
+    "heroSubtitle": "短いアンケートに答えるだけで、Triplanがペース・年齢・交通手段・営業時間に合わせて、日ごと・時間ごとの旅程を組み立てます。",
+    "cta": "旅行を作成",
+    "ctaSecondary": "完成プラン",
+    "featuresTitle": "Triplanを選ぶ理由",
+    "features": {
+      "fit": {
+        "title": "旅する人に合わせて",
+        "body": "赤ちゃん連れの家族、70代のご夫婦、3回目の訪問となるアクティブな旅行者。どのプランも、実際に旅する人のためにゼロから作られます。"
+      },
+      "honest": {
+        "title": "透明で正直",
+        "body": "すべての配置に理由があります。「ホテルから徒歩12分」「土曜日営業」。未確認の情報には印が付きます。"
+      },
+      "offline": {
+        "title": "現地で使える",
+        "body": "プラン・地図・住所はインターネットなしでもスマホでアプリのように動きます。"
+      }
+    },
+    "howTitle": "使い方",
+    "steps": {
+      "1": {
+        "title": "10の質問に答える",
+        "body": "目的地、日程、同行者、ペース、交通手段、予算、ホテル。どの質問にも賢い初期値があります。"
+      },
+      "2": {
+        "title": "プランを受け取る",
+        "body": "日ごと・時間ごとに、徒歩距離、雨天プラン、代替案付き。"
+      },
+      "3": {
+        "title": "編集して出発",
+        "body": "ドラッグ、入れ替え、固定。PDFやカレンダーに書き出し、同行者と共有。"
+      }
+    },
+    "statusTitle": "開発状況",
+    "statusBody": "Triplanは段階的に開発しています。現在のフェーズ：基盤。アンケートと計画エンジンは準備中です。"
+  },
+  "plan": {
+    "build": "プランを作成",
+    "rebuild": "作り直す",
+    "building": "プランを作成中...",
+    "failed": "プランを作成できませんでした。{message}",
+    "failedUnsupported": "この目的地はまだ対応していません。",
+    "generatedNote": "デモ目的地の観光スポットはOpenStreetMapと手作業で照合済みです。公共交通機関の所要時間は推定です。",
+    "dayTitle": "{n}日目",
+    "kinds": {
+      "arrival": "到着日",
+      "departure": "出発日",
+      "full": "終日",
+      "arrival_departure": "到着と出発"
+    },
+    "intensity": {
+      "light": "ゆったり",
+      "moderate": "ほどよい",
+      "heavy": "盛りだくさん"
+    },
+    "walk": "徒歩 {distance}",
+    "placesCount": "{count, plural, other {# か所}}",
+    "themes": {
+      "museums": "博物館",
+      "nature": "自然",
+      "beaches": "ビーチ",
+      "history": "歴史",
+      "food": "グルメ",
+      "city": "街歩き",
+      "shopping": "ショッピング",
+      "kids": "子ども",
+      "nightlife": "ナイトライフ"
+    },
+    "activity": {
+      "meal": "昼食",
+      "rest": "休憩",
+      "hotel_checkin": "ホテルチェックイン",
+      "hotel_checkout": "チェックアウトと次のホテルへの移動",
+      "free": "自由時間"
+    },
+    "transit": {
+      "walk": "徒歩 {minutes}分",
+      "transit": "公共交通 {minutes}分",
+      "car": "車 {minutes}分",
+      "bike": "自転車 {minutes}分"
+    },
+    "estimated": "推定",
+    "reasons": {
+      "near_base": "ホテルから{minutes}分",
+      "near_previous": "前の場所から{minutes}分",
+      "interest_match": "「{interest}」に合致",
+      "iconic_first_visit": "初訪問の定番",
+      "hidden_gem_returning": "地元の穴場",
+      "kid_friendly": "子ども向け",
+      "open_on_day": "{weekday}営業",
+      "indoor_rain": "屋内、雨の日向き",
+      "lunch_time": "昼食の時間",
+      "rest_break": "ひと休み",
+      "advance_booking": "要事前予約",
+      "unverified_hours": "営業時間未確認",
+      "half_day_arrival": "半日、到着",
+      "half_day_departure": "半日、出発",
+      "day_trip": "日帰り旅行",
+      "hotel_transfer": "ホテル移動"
+    },
+    "weekdays": {
+      "sunday": "日曜日",
+      "monday": "月曜日",
+      "tuesday": "火曜日",
+      "wednesday": "水曜日",
+      "thursday": "木曜日",
+      "friday": "金曜日",
+      "saturday": "土曜日"
+    },
+    "warnings": {
+      "closed_on_date": "この日は休業",
+      "unverified_data": "未確認。出発前にご確認ください",
+      "day_too_full": "予定が多い日",
+      "day_too_light": "余裕のある日、まだ入ります",
+      "base_too_far": "{city}は拠点から日帰りには遠すぎます（往復{minutes}分）",
+      "city_dropped": "{city}はプランに入りませんでした",
+      "no_places": "この目的地には観光スポットがありません",
+      "holiday": "現地の祝日（{name}）。多くの施設が休業",
+      "rain_expected": "雨の予報（{probability}%）",
+      "advance_booking_needed": "要事前予約",
+      "walk_budget_tight": "徒歩の上限にほぼ達しています",
+      "few_places_left": "この目的地の観光スポットを使い切りました：空き{days}日"
+    },
+    "rainPlan": "雨天プラン",
+    "tripStats": "合計 徒歩{distance}、{places}か所、営業時間確認済み{verified}%",
+    "dataQuality": {
+      "verified": "確認済み",
+      "partial": "一部確認",
+      "unverified": "未確認"
+    },
+    "stays": "宿泊",
+    "stayLabel": "{city}：{from}〜{to}日目",
+    "baseMode": {
+      "single": "拠点を1つ",
+      "multi": "移動しながら"
+    },
+    "website": "ウェブサイト",
+    "dayWarnings": "ご注意",
+    "emptyDay": "自由日。この目的地であなたに合う観光スポットを使い切りました。",
+    "views": {
+      "timeline": "タイムライン",
+      "map": "地図",
+      "calendar": "カレンダー",
+      "list": "リスト"
+    },
+    "viewsLabel": "表示",
+    "daysLabel": "旅行日",
+    "dayShort": "{n}日目",
+    "actions": {
+      "menu": "{name}の操作",
+      "swap": "アクティビティを入れ替え",
+      "lock": "固定する",
+      "unlock": "固定解除",
+      "moveTo": "別の日へ移動",
+      "moveToDay": "{n}日目、{date}",
+      "remove": "プランから削除",
+      "lighter": "この日は予定が多すぎる",
+      "heavier": "この日は予定が少なすぎる",
+      "rebuild": "固定していない部分を作り直す",
+      "undo": "最後の変更を元に戻す",
+      "working": "更新中..."
+    },
+    "swap": {
+      "title": "{name}を置き換え",
+      "subtitle": "同じエリア、同じ所要時間、その日に営業している代替案。",
+      "none": "このエリアに空いている代替案は見つかりませんでした。",
+      "pick": "選ぶ",
+      "minutes": "{minutes}分"
+    },
+    "map": {
+      "hotel": "ホテル",
+      "loading": "地図を読み込み中...",
+      "legend": "その日のルート。直線、推定。",
+      "showing": "{n}日目を表示中",
+      "zoomIn": "拡大",
+      "zoomOut": "縮小",
+      "fit": "ルートに合わせる"
+    },
+    "calendar": {
+      "title": "旅行カレンダー",
+      "legend": "日をタップするとタイムラインで開きます"
+    },
+    "list": {
+      "hint": "アクティビティを同じ日の中や別の日へドラッグできます。時間は再計算されます。",
+      "empty": "この日にアクティビティはありません。ここにドラッグしてください。"
+    },
+    "now": {
+      "title": "今日の予定",
+      "myDay": "今日の予定",
+      "noTripToday": "今日は旅行中ではありません。表示する日を選んでください：",
+      "current": "今",
+      "next": "次",
+      "later": "その後",
+      "done": "今日の予定は終わりです。おやすみなさい！",
+      "notStarted": "今日はまだ始まっていません。最初のアクティビティ：",
+      "navigate": "ここへナビ",
+      "openInMaps": "地図アプリで開く",
+      "backToPlan": "プラン全体",
+      "startsIn": "{minutes}分後に開始",
+      "endsAt": "{time}まで",
+      "free": "{time}まで自由時間",
+      "nothingLeft": "今日はこれ以上の予定はありません"
+    },
+    "locked": "固定済み",
+    "dragHandle": "{name}をドラッグ",
+    "editError": "編集に失敗しました：{message}",
+    "selected": "選択中",
+    "transitShort": {
+      "walk": "徒歩",
+      "transit": "交通",
+      "car": "車",
+      "bike": "自転車"
+    },
+    "weather": {
+      "forecast": "予報",
+      "normals": "昨年の同じ日",
+      "rain": "降水 {probability}%",
+      "temp": "{min}〜{max}°",
+      "sourceLabel": "天気：{source}"
+    },
+    "holidaysTitle": "旅行中の現地の祝日",
+    "links": {
+      "hotels": "{city}の宿を探す",
+      "tickets": "チケット",
+      "flights": "航空券",
+      "affiliate": "アフィリエイトリンク",
+      "opens": "外部サイトを開きます",
+      "booking": "Booking.com",
+      "hotelscom": "Hotels.com",
+      "agoda": "Agoda",
+      "hostelworld": "Hostelworld",
+      "getyourguide": "GetYourGuide",
+      "viator": "Viator",
+      "tiqets": "Tiqets",
+      "klook": "Klook",
+      "kiwi": "Kiwi",
+      "skyscanner": "Skyscanner"
+    },
+    "rates": "現地通貨：1 {base} ≈ {value} {quote}",
+    "ratesDemo": "（概算レート）",
+    "sources": "出典：経路 {routing}、天気 {weather}、祝日 {holidays}",
+    "routingReal": "実際の徒歩・車の所要時間（OSRM）",
+    "routingEstimate": "推定所要時間",
+    "unverifiedPlace": "出典：OpenStreetMap、手作業では未確認"
+  },
+  "gallery": {
+    "title": "完成プラン",
+    "description": "複製して手直しできるプランのギャラリーは開発フェーズ8で作られます。"
+  },
+  "disclosure": {
+    "title": "開示事項",
+    "intro": "Triplanは外部予約サイト（ホテル、観光チケット、航空券）へのリンクを表示します。",
+    "affiliate": "一部のリンクはアフィリエイトリンクです。そこから予約するとTriplanが少額の手数料を受け取ることがあります。お客様の価格は変わりません。",
+    "marking": "該当するリンクはすべて画面上で「アフィリエイトリンク」と表示され、新しいタブで開きます。",
+    "data": "確認していない観光スポットの情報には「未確認」と表示されます。営業時間と料金は出発前にご確認ください。",
+    "noKeys": "現在アフィリエイトキーは有効化されておらず、リンクは通常の検索リンクです。"
+  },
+  "footer": {
+    "madeWith": "オープンな地図と自由なデータで作られています",
+    "rights": "© {year} Triplan"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "body": "指定されたアドレスは存在しないか、まだ作られていません。"
+  },
+  "knowBefore": {
+    "title": "出発前に知っておくこと",
+    "subtitle": "世界のすべての国の基本情報と、デモ目的地の詳しい実用情報。",
+    "searchLabel": "国を検索",
+    "searchPlaceholder": "英語、ヘブライ語、または現地名で国を検索",
+    "noResults": "国が見つかりません",
+    "demoBadge": "完全対応の目的地",
+    "demoTitle": "内容が充実した目的地",
+    "allTitle": "すべての国",
+    "resultsCount": "{count}か国",
+    "facts": "基本情報",
+    "currency": "通貨",
+    "languages": "言語",
+    "drivingSide": "通行方向",
+    "left": "左側",
+    "right": "右側",
+    "callingCode": "国番号",
+    "timezones": "タイムゾーン",
+    "capital": "首都",
+    "region": "地域",
+    "unknown": "不明",
+    "practical": "実用情報",
+    "plug": "電源",
+    "plugValue": "プラグタイプ {types}、{voltage}、{frequency}",
+    "emergency": "緊急電話番号",
+    "emergencyGeneral": "共通",
+    "police": "警察",
+    "ambulance": "救急",
+    "fire": "消防",
+    "tapWater": "水道水",
+    "tapWaterYes": "飲用可",
+    "tapWaterNo": "非推奨",
+    "tapWaterUnknown": "不明",
+    "tipping": "チップ",
+    "extrasOnlyDemo": "詳しい実用情報（電源、緊急番号、チップ）は現在デモ目的地のポルトガル、イタリア、日本のみ提供しています。",
+    "official": "公式情報を確認",
+    "officialNote": "誤りを避けるため、Triplanはビザ・予防接種・安全に関する独自の助言を書きません。以下が公式リンクです。",
+    "linkMfa": "イスラエル外務省：渡航情報",
+    "linkWho": "世界保健機関：旅行者の健康",
+    "linkCdc": "CDC：目的地別ワクチン",
+    "linkIata": "IATA：ビザ・パスポート要件",
+    "sources": "データ出典",
+    "sourcesText": "国データ：mledoze/countries（ODbL）およびWikidata。実用情報：IEC World Plugsおよび各国の公的機関。",
+    "backToList": "すべての国",
+    "notFoundTitle": "国が見つかりません",
+    "notFoundBody": "アドレスの国コードを認識できません。",
+    "regions": {
+      "europe": "ヨーロッパ",
+      "asia": "アジア",
+      "americas": "アメリカ大陸",
+      "africa": "アフリカ",
+      "antarctic": "南極",
+      "oceania": "オセアニア",
+      "southern_europe": "南ヨーロッパ",
+      "western_asia": "西アジア",
+      "southern_asia": "南アジア",
+      "caribbean": "カリブ海",
+      "southeast_europe": "南東ヨーロッパ",
+      "middle_africa": "中部アフリカ",
+      "south_america": "南アメリカ",
+      "polynesia": "ポリネシア",
+      "central_europe": "中央ヨーロッパ",
+      "australia_and_new_zealand": "オーストラリアとニュージーランド",
+      "northern_europe": "北ヨーロッパ",
+      "western_europe": "西ヨーロッパ",
+      "western_africa": "西アフリカ",
+      "eastern_africa": "東アフリカ",
+      "north_america": "北アメリカ",
+      "south_eastern_asia": "東南アジア",
+      "southern_africa": "南部アフリカ",
+      "eastern_europe": "東ヨーロッパ",
+      "central_america": "中央アメリカ",
+      "eastern_asia": "東アジア",
+      "northern_africa": "北アフリカ",
+      "melanesia": "メラネシア",
+      "micronesia": "ミクロネシア",
+      "central_asia": "中央アジア"
+    }
+  },
+  "wizard": {
+    "title": "旅行を計画",
+    "stepOf": "ステップ {current} / {total}",
+    "next": "次へ",
+    "back": "戻る",
+    "skip": "スキップ（初期値を使う）",
+    "edit": "編集",
+    "draftSaved": "下書きはこの端末に自動保存されます",
+    "guestNote": "登録は不要です。プランはブラウザに保存されます。",
+    "startOver": "最初からやり直す",
+    "startOverConfirm": "下書きを削除して最初からやり直しますか？",
+    "loading": "下書きを読み込み中...",
+    "progress": "アンケートの進み具合",
+    "steps": {
+      "destination": "目的地",
+      "dates": "日程",
+      "party": "同行者",
+      "visit": "初めて？",
+      "pace": "ペース",
+      "transport": "交通手段",
+      "interests": "興味",
+      "budget": "予算",
+      "hotel": "宿泊",
+      "summary": "まとめ"
+    },
+    "destination": {
+      "title": "どこへ？",
+      "subtitle": "周遊旅行なら最大3か国を選び、次に各国内のエリアを選びます。",
+      "search": "国を検索",
+      "searchPlaceholder": "英語、ヘブライ語、または現地名で国を検索",
+      "noResults": "国が見つかりません",
+      "showingTop": "最初の{count}か国を表示中。入力して検索してください。",
+      "selected": "あなたの目的地",
+      "remove": "{name}を削除",
+      "maxReached": "選べるのは最大3か国です",
+      "underConstruction": "近日公開",
+      "underConstructionHint": "ポルトガル、イタリア、日本は手作業で確認した観光スポットがあります。その他の国ではOpenStreetMapから取得し「未確認」と表示されます。",
+      "cities": "{country}のエリア（任意）",
+      "citiesHint": "空のままにすると、旅行日数に応じてTriplanが選びます。",
+      "required": "続けるには少なくとも1か国を選んでください",
+      "demoBadge": "対応済み",
+      "select": "{name}を選択",
+      "osmBadge": "OpenStreetMap",
+      "osmHint": "ポルトガル、イタリア、日本は手作業で確認した観光スポットがあります。その他の国ではOpenStreetMapから取得し「未確認」と表示されます。",
+      "osmCities": "{country}の都市またはエリア",
+      "osmCitiesHint": "検索して少なくとも1都市を選んでください。観光スポットは都市ごとにOpenStreetMapから取得します。",
+      "citySearch": "都市を検索",
+      "citySearchPlaceholder": "都市名を入力、例：Paris",
+      "citySearching": "検索中...",
+      "citySearchError": "検索に失敗しました。もう一度お試しください。",
+      "cityRequired": "この国で少なくとも1都市を選んでください"
+    },
+    "dates": {
+      "title": "いつ？",
+      "subtitle": "出発日と日数。あとで変更できます。",
+      "start": "出発日",
+      "days": "日数",
+      "daysValue": "{count, plural, other {#日間}}",
+      "end": "終了日：{date}",
+      "flights": "フライト時刻（任意）",
+      "flightsHint": "到着日と出発日に半日の予定を組むのに役立ちます。",
+      "arrival": "着陸時刻",
+      "departure": "離陸時刻",
+      "season": "現地の季節：{season}",
+      "seasons": {
+        "winter": "冬",
+        "spring": "春",
+        "summer": "夏",
+        "autumn": "秋"
+      },
+      "weatherLater": "天気予報と現地の祝日はプラン内に表示されます。",
+      "pastDate": "この日付はすでに過ぎています",
+      "invalidDate": "無効な日付"
+    },
+    "party": {
+      "title": "誰が旅行しますか？",
+      "subtitle": "年齢はペースと観光スポットの選定に直接影響します。",
+      "adults": "大人",
+      "children": "子ども（2〜17歳）",
+      "childAge": "子ども{n}の年齢",
+      "infants": "乳児（2歳未満）",
+      "stroller": "ベビーカーを持参",
+      "seniors": "うち65歳以上",
+      "seniorsHint": "大人に含めて数えます",
+      "increase": "{what}を増やす",
+      "decrease": "{what}を減らす",
+      "seniorsTooMany": "65歳以上の人数は大人の人数を超えられません"
+    },
+    "visit": {
+      "title": "初めての訪問ですか？",
+      "subtitle": "定番と観光客の少ない場所のバランスを決めます。",
+      "options": {
+        "1": {
+          "title": "初めて",
+          "body": "定番の必見スポットを優先します。"
+        },
+        "2": {
+          "title": "2回目",
+          "body": "おなじみと新しい場所のミックス。"
+        },
+        "3": {
+          "title": "3回目以上",
+          "body": "街のエリア、地元の場所、少し遠くへの日帰り旅行。"
+        }
+      },
+      "seenLabel": "すでに見たものは？（任意）",
+      "seenPlaceholder": "例：コロッセオ、バチカン、トラステヴェレ",
+      "seenHint": "プラン内で個々の観光スポットを「見た」と印を付けられます。"
+    },
+    "pace": {
+      "title": "どのくらい歩きますか？",
+      "subtitle": "エンジンはこの上限を超える日を絶対に作りません。",
+      "options": {
+        "low": {
+          "title": "少なめ",
+          "body": "1日4 kmまで、立ち寄り先は近くにまとめます。"
+        },
+        "medium": {
+          "title": "ほどほど",
+          "body": "1日6〜12 km。"
+        },
+        "high": {
+          "title": "たくさん歩く",
+          "body": "1日12〜20 km、長い一日。"
+        }
+      },
+      "accessibility": "バリアフリーの必要性（任意）",
+      "accessibilityOptions": {
+        "wheelchair": "車椅子",
+        "stroller": "ベビーカー",
+        "stairs": "階段が苦手",
+        "altitude": "高所に敏感"
+      }
+    },
+    "transport": {
+      "title": "移動手段は？",
+      "subtitle": "いくつでも選び、それぞれをどの程度使いたいか教えてください。",
+      "modes": {
+        "walk": "徒歩",
+        "bike": "自転車",
+        "car": "レンタカー",
+        "transit": "公共交通機関",
+        "tours": "ガイドツアー"
+      },
+      "weights": {
+        "0": "使わない",
+        "1": "少し",
+        "2": "普通",
+        "3": "優先"
+      },
+      "weightLabel": "{mode}をどの程度",
+      "mixAll": "すべてをミックス",
+      "carTitle": "車について",
+      "oppositeSideOk": "反対側の車線での運転も問題ありません",
+      "avoidMountainRoads": "山道を避ける",
+      "avoidCityDriving": "市街地中心部での運転を避ける",
+      "drivingSideNote": "{country}では{side}側通行です",
+      "sideLeft": "左",
+      "sideRight": "右",
+      "atLeastOne": "少なくとも1つの移動手段を選んでください"
+    },
+    "interests": {
+      "title": "何に興味がありますか？",
+      "subtitle": "いくつでも選び、上位3つを並べ替えてください。",
+      "options": {
+        "nature": "自然",
+        "city": "都市",
+        "history": "歴史",
+        "food": "グルメ",
+        "wine": "ワイン",
+        "museums": "博物館",
+        "beaches": "ビーチ",
+        "adventure": "アドベンチャースポーツ",
+        "nightlife": "ナイトライフ",
+        "shopping": "ショッピング",
+        "photography": "写真",
+        "religion": "宗教と文化遺産",
+        "kids": "子ども連れ"
+      },
+      "ranked": "上位3つ、重要な順に",
+      "rankedHint": "ドラッグで並べ替えるか、矢印を使ってください。",
+      "rest": "その他に選んだ興味",
+      "moveUp": "{name}を上へ",
+      "moveDown": "{name}を下へ",
+      "dragHandle": "{name}をドラッグして順位付け",
+      "rank": "{n}位",
+      "atLeastOne": "少なくとも1つの興味を選んでください"
+    },
+    "budget": {
+      "title": "予算",
+      "subtitle": "宿泊の種類、レストラン、有料の観光スポットに影響します。",
+      "levels": {
+        "budget": {
+          "title": "節約",
+          "body": "ホステルやアパート、屋台グルメ、無料の観光スポット中心。"
+        },
+        "mid": {
+          "title": "中程度",
+          "body": "3〜4つ星ホテル、レストラン、主要スポットのチケット。"
+        },
+        "luxury": {
+          "title": "贅沢",
+          "body": "5つ星、プライベートツアー、シェフのレストラン。"
+        }
+      },
+      "dailyCap": "1日の上限（任意）",
+      "perPerson": "1人1日あたり、航空券を除く",
+      "currency": "通貨",
+      "capPlaceholder": "例：150"
+    },
+    "hotel": {
+      "title": "どこに泊まりますか？",
+      "subtitle": "予約は代行しませんが、プランは宿泊の種類と場所を中心に組み立てられます。",
+      "type": "宿泊の種類",
+      "types": {
+        "hostel": "ホステル",
+        "3star": "3つ星ホテル",
+        "4star": "4つ星ホテル",
+        "5star": "5つ星ホテル",
+        "apartment": "アパート",
+        "boutique": "ブティックホテル",
+        "camping": "キャンプ"
+      },
+      "location": "希望の場所",
+      "locations": {
+        "center": "市内中心部",
+        "station": "駅の近く",
+        "beach": "ビーチの近く",
+        "quiet": "静かな場所"
+      },
+      "baseMode": "旅行中のホテルはいくつ？",
+      "baseModes": {
+        "single": {
+          "title": "拠点を1つ",
+          "body": "1か所に泊まり、放射状に日帰り旅行をします。"
+        },
+        "multi": {
+          "title": "移動しながら",
+          "body": "各エリアの近くで宿を変えながら旅します。"
+        },
+        "auto": {
+          "title": "わからない",
+          "body": "旅行日数と目的地に応じてTriplanがおすすめします。"
+        }
+      },
+      "recommendation": "おすすめ：{mode}",
+      "reasons": {
+        "short": "短い旅行なので荷造りし直す価値はありません。",
+        "one_city": "1都市なので拠点は1つで十分です。",
+        "many_cities": "複数のエリアがあるので、それぞれの近くに泊まるのが良いです。",
+        "many_countries": "複数の国なので移動が必要です。",
+        "long": "長い旅行なので変化をつける価値があります。",
+        "small_kids": "小さな子ども連れなら拠点1つの落ち着きが勝ります。"
+      }
+    },
+    "summary": {
+      "title": "準備はいいですか？",
+      "subtitle": "選択内容を確認してください。どのステップも編集できます。",
+      "build": "旅行を作成",
+      "building": "保存中...",
+      "people": "{count, plural, other {大人#人}}",
+      "childrenCount": "{count, plural, other {子ども#人}}",
+      "infantsCount": "{count, plural, other {乳児#人}}",
+      "seniorsCount": "{count, plural, other {うち65歳以上#人}}",
+      "days": "{date}から{count, plural, other {#日間}}",
+      "noCities": "エリアはTriplanが選択",
+      "none": "なし",
+      "visit": {
+        "1": "初めて",
+        "2": "2回目",
+        "3": "3回目以上"
+      },
+      "capValue": "1人1日あたり最大{amount}",
+      "noCap": "1日の上限なし",
+      "errors": "作成前に修正が必要なステップがあります：",
+      "stroller": "ベビーカーあり"
+    }
+  },
+  "trip": {
+    "title": "あなたの旅行",
+    "notFound": "旅行が見つかりません",
+    "notFoundBody": "別のブラウザに保存されている可能性があります。ゲストモードでは旅行はこの端末にのみ保存されます。",
+    "engineSoon": "この旅行にはまだプランがありません。「プランを作成」を押すと、あなたの希望からプランを組み立てます。",
+    "editPrefs": "希望を編集",
+    "newTrip": "新しい旅行",
+    "savedLocally": "この端末に保存済み（ゲストモード）",
+    "myTrips": "マイ旅行",
+    "noTrips": "まだ旅行はありません。始めましょうか？",
+    "created": "作成日 {date}",
+    "delete": "旅行を削除",
+    "deleteConfirm": "この旅行を削除しますか？",
+    "open": "開く",
+    "planLabel": "プラン",
+    "prefsLabel": "希望"
+  },
+  "tools": {
+    "title": "旅行ツール",
+    "tabs": {
+      "budget": "予算",
+      "packing": "持ち物",
+      "checklist": "チェックリスト",
+      "share": "書き出しと共有"
+    },
+    "budget": {
+      "title": "予算の目安",
+      "disclaimer": "宿泊の種類、予算レベル、プラン内の観光スポットのチケット、その国の物価水準から算出した大まかな目安です。航空券は含みません。実際の金額は季節や予約状況によります。",
+      "perPersonPerDay": "1人1日あたり",
+      "perPersonTotal": "1人あたり、旅行全体",
+      "groupTotal": "グループ全体（{people}人、{nights}泊）",
+      "lines": {
+        "lodging": "宿泊",
+        "tickets": "チケットと観光スポット",
+        "transport": "交通",
+        "food": "食事"
+      },
+      "perDay": "1日あたり",
+      "total": "合計",
+      "capOk": "設定した1日の上限内",
+      "capOver": "設定した1日の上限を超過（×{ratio}）",
+      "inEur": "ユーロで表示、為替レートを取得できません"
+    },
+    "packing": {
+      "title": "持ち物リスト",
+      "subtitle": "天気、同行者、移動手段から作成。詰めたものにチェックを入れてください。",
+      "progress": "{total}個中{done}個を準備済み",
+      "groups": {
+        "documents": "書類とお金",
+        "clothing": "衣類",
+        "gear": "用品",
+        "kids": "子どもと赤ちゃん",
+        "health": "健康",
+        "tech": "電子機器"
+      },
+      "items": {
+        "passport": "パスポート（帰国後6か月以上有効）",
+        "insurance": "旅行保険（証券をスマホに）",
+        "bookings": "予約確認書：航空券、ホテル、チケット",
+        "cards_cash": "海外対応カードと少額の現地通貨",
+        "driving_licence": "運転免許証（必要なら国際免許証も）",
+        "sunscreen": "日焼け止め",
+        "hat": "帽子",
+        "light_clothes": "軽い服",
+        "water_bottle": "繰り返し使える水筒",
+        "warm_layers": "暖かい重ね着",
+        "gloves_scarf": "手袋とマフラー",
+        "rain_jacket": "レインジャケット",
+        "umbrella": "折りたたみ傘",
+        "check_weather": "1週間前に天気予報を確認して服装を調整",
+        "hiking_shoes": "良いハイキングシューズ（履き慣らしたもの！）",
+        "walking_shoes": "歩きやすい靴",
+        "daypack": "小さなデイパック",
+        "swimwear": "水着とタオル",
+        "sports_clothes": "スポーツウェア",
+        "modest_clothes": "宗教施設向けの控えめな服装（肩と膝を覆う）",
+        "camera_gear": "カメラ、バッテリー、メモリーカード",
+        "diapers": "おむつとおしりふき（最初の数日分）",
+        "baby_food": "ベビーフードと哺乳瓶",
+        "carrier": "抱っこひも",
+        "stroller_travel": "折りたたみベビーカー（階段や交通機関向けの軽量タイプ）",
+        "kids_snacks": "子どものおやつ",
+        "kids_entertainment": "移動中の子どもの遊び道具",
+        "medications": "常用薬＋英語の処方箋",
+        "first_aid": "小さな救急セット",
+        "altitude_meds": "高山病の薬（医師に相談）",
+        "phone_charger": "スマホの充電器",
+        "power_bank": "モバイルバッテリー",
+        "plug_adapter": "{note}タイプのコンセント用変換プラグ",
+        "esim": "eSIMまたはデータプラン",
+        "offline_maps": "プランと地図をオフライン用にダウンロード（「書き出しと共有」タブ）"
+      }
+    },
+    "checklist": {
+      "title": "旅行前",
+      "subtitle": "期限付きのタスクと、プランが注意を促す項目。",
+      "due": "{date}まで",
+      "overdue": "期限切れ",
+      "progress": "{total}件中{done}件完了",
+      "items": {
+        "passport_validity": "パスポートが少なくとも{until}まで有効か確認",
+        "insurance": "旅行保険に加入",
+        "flights": "航空券を予約",
+        "lodging": "宿泊を予約",
+        "car_rental": "レンタカーを予約",
+        "kids_documents": "子どもの書類：パスポート、片方の親と旅行する場合は同意書",
+        "book_place": "事前予約：{place}（{date}）",
+        "holiday": "{day}日目は現地の祝日（{name}）：営業時間を確認、多くの施設が休業",
+        "verify_places": "未確認の観光スポット{count}か所を確認（時間、料金）",
+        "warning_base_too_far": "{city}はプランから外れました：{base}から日帰りには遠すぎます",
+        "warning_city_dropped": "{city}はプランに入りませんでした",
+        "currency": "現地通貨を用意するか、カードが海外で使えるか確認",
+        "esim": "eSIMを設定するかデータプランを確認",
+        "offline": "プランと地図をオフライン用にダウンロード"
+      }
+    },
+    "share": {
+      "title": "書き出しと共有",
+      "export": "書き出し",
+      "print": "印刷 / PDF",
+      "ics": "カレンダー（ICS）",
+      "gpx": "GPX",
+      "kml": "KML",
+      "exportHint": "ICSはGoogleカレンダー、Outlook、Appleカレンダーで開けます。GPXとKMLはGoogle Earth、Maps.me、OsmAndなどで開けます。",
+      "shareTitle": "リンクを共有",
+      "shareHint": "公開閲覧リンクを作成します。リンクを知っている人は誰でもプランを見られます。",
+      "shareEdit": "リンクを知っている人の編集を許可",
+      "create": "リンクを作成",
+      "creating": "作成中...",
+      "copy": "コピー",
+      "copied": "コピーしました！",
+      "open": "開く",
+      "linkReady": "リンクの準備ができました",
+      "shareError": "リンクを作成できませんでした：{message}",
+      "updateShared": "リンクを現在のバージョンに更新",
+      "updated": "更新済み",
+      "offlineTitle": "オフライン",
+      "offlineHint": "プランとエリアの地図をこの端末に保存し、インターネットなしで使えるようにします。",
+      "offlineDownload": "オフライン用にダウンロード",
+      "offlineDownloading": "地図タイルをダウンロード中... {done}/{total}",
+      "offlineReady": "プランと地図をこの端末に保存しました（{tiles}タイル）",
+      "offlineUnsupported": "このブラウザはオフライン保存に対応していません（またはアプリが開発モードで動作中）",
+      "offlineError": "ダウンロードに失敗しました：{message}",
+      "installHint": "ヒント：ブラウザのメニューからTriplanをホーム画面に追加すると、電波がなくてもワンタップでプランを開けます。"
+    }
+  },
+  "print": {
+    "title": "印刷用プラン",
+    "print": "印刷",
+    "subtitle": "{days}日間 · {places}か所 · 徒歩{distance}",
+    "generated": "Triplanで作成",
+    "tip": "印刷ダイアログで「PDFとして保存」を選んでください。",
+    "back": "プランに戻る"
+  },
+  "shared": {
+    "title": "共有プラン",
+    "readOnly": "閲覧のみ。共有した人がリンクを更新できます。",
+    "editable": "編集可能。変更はこのリンクに保存されます。",
+    "notFound": "このリンクは見つからないか、削除されています。",
+    "save": "変更を保存",
+    "saved": "保存済み",
+    "saving": "保存中...",
+    "copyToMine": "マイ旅行にコピー",
+    "copied": "マイ旅行にコピーしました",
+    "by": "{destinations}への旅行"
+  }
+}

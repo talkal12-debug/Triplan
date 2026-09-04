@@ -1,0 +1,835 @@
+{
+  "common": {
+    "appName": "Triplan",
+    "tagline": "3 分钟生成完整旅行计划",
+    "skipToContent": "跳到内容",
+    "comingSoon": "即将推出",
+    "comingSoonBody": "这部分将在下一个开发阶段构建。请先返回首页。",
+    "backHome": "返回首页",
+    "demoBanner": "演示模式：路线、天气和节假日来自无需 API 密钥的免费数据源。估算数据已标注。",
+    "affiliate": "联盟链接",
+    "opensInNewTab": "在新标签页中打开",
+    "offline": "没有网络连接。已保存的计划可在“我的旅行”中查看。"
+  },
+  "nav": {
+    "home": "首页",
+    "plan": "规划旅行",
+    "gallery": "现成计划",
+    "disclosure": "披露声明",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "menuTitle": "菜单",
+    "mainNav": "主导航",
+    "mobileNav": "底部导航",
+    "knowBefore": "出发前须知",
+    "myTrips": "我的旅行"
+  },
+  "theme": {
+    "toggle": "切换配色主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统"
+  },
+  "locale": {
+    "switch": "更改语言",
+    "current": "当前语言：{name}"
+  },
+  "units": {
+    "label": "距离单位",
+    "metric": "公里",
+    "imperial": "英里",
+    "km": "{value} 公里",
+    "mi": "{value} 英里"
+  },
+  "home": {
+    "eyebrow": "智能旅行规划器",
+    "heroTitle": "从梦想到逐日计划，只需 3 分钟",
+    "heroSubtitle": "回答一份简短问卷，Triplan 会按天按小时为您构建旅程，贴合您的节奏、年龄、交通方式和景点开放时间。",
+    "cta": "生成我的旅行",
+    "ctaSecondary": "现成计划",
+    "featuresTitle": "为什么选择 Triplan",
+    "features": {
+      "fit": {
+        "title": "为出行者量身定制",
+        "body": "带婴儿的家庭、七十多岁的夫妇，或第三次到访的运动型旅行者：每份计划都为真正出行的人从零构建。"
+      },
+      "honest": {
+        "title": "透明而诚实",
+        "body": "每个安排都有理由：“距酒店步行 12 分钟”、“周六开放”。未经核实的内容都会标注。"
+      },
+      "offline": {
+        "title": "实地可用",
+        "body": "计划、地图和地址无需网络即可在手机上使用，就像一个应用。"
+      }
+    },
+    "howTitle": "使用方法",
+    "steps": {
+      "1": {
+        "title": "回答 10 个问题",
+        "body": "目的地、日期、出行人、节奏、交通、预算和酒店。每个问题都有智能默认值。"
+      },
+      "2": {
+        "title": "获取计划",
+        "body": "按天按小时安排，包含步行距离、雨天方案和备选项。"
+      },
+      "3": {
+        "title": "编辑并出发",
+        "body": "拖动、替换、锁定。导出为 PDF 和日历，并与同行者分享。"
+      }
+    },
+    "statusTitle": "开发状态",
+    "statusBody": "Triplan 分阶段构建。当前阶段：基础。问卷和规划引擎即将上线。"
+  },
+  "plan": {
+    "build": "生成计划",
+    "rebuild": "重新生成",
+    "building": "正在生成您的计划...",
+    "failed": "无法生成计划。{message}",
+    "failedUnsupported": "暂不支持此目的地。",
+    "generatedNote": "演示目的地的景点已人工对照 OpenStreetMap 核实。公共交通时间为估算值。",
+    "dayTitle": "第 {n} 天",
+    "kinds": {
+      "arrival": "抵达日",
+      "departure": "离开日",
+      "full": "全天",
+      "arrival_departure": "抵达与离开"
+    },
+    "intensity": {
+      "light": "轻松",
+      "moderate": "适中",
+      "heavy": "紧凑"
+    },
+    "walk": "步行 {distance}",
+    "placesCount": "{count, plural, other {# 个景点}}",
+    "themes": {
+      "museums": "博物馆",
+      "nature": "自然",
+      "beaches": "海滩",
+      "history": "历史",
+      "food": "美食",
+      "city": "城市",
+      "shopping": "购物",
+      "kids": "儿童",
+      "nightlife": "夜生活"
+    },
+    "activity": {
+      "meal": "午餐",
+      "rest": "休息",
+      "hotel_checkin": "酒店入住",
+      "hotel_checkout": "退房并前往下一家酒店",
+      "free": "自由活动"
+    },
+    "transit": {
+      "walk": "步行 {minutes} 分钟",
+      "transit": "公共交通 {minutes} 分钟",
+      "car": "驾车 {minutes} 分钟",
+      "bike": "骑行 {minutes} 分钟"
+    },
+    "estimated": "估算",
+    "reasons": {
+      "near_base": "距酒店 {minutes} 分钟",
+      "near_previous": "距上一站 {minutes} 分钟",
+      "interest_match": "符合{interest}",
+      "iconic_first_visit": "初访必看经典",
+      "hidden_gem_returning": "本地小众之选",
+      "kid_friendly": "适合儿童",
+      "open_on_day": "{weekday}开放",
+      "indoor_rain": "室内，雨天适宜",
+      "lunch_time": "午餐时间",
+      "rest_break": "稍作休息",
+      "advance_booking": "需提前预订",
+      "unverified_hours": "开放时间未核实",
+      "half_day_arrival": "半天，抵达",
+      "half_day_departure": "半天，离开",
+      "day_trip": "一日游",
+      "hotel_transfer": "更换酒店"
+    },
+    "weekdays": {
+      "sunday": "周日",
+      "monday": "周一",
+      "tuesday": "周二",
+      "wednesday": "周三",
+      "thursday": "周四",
+      "friday": "周五",
+      "saturday": "周六"
+    },
+    "warnings": {
+      "closed_on_date": "该日期关闭",
+      "unverified_data": "未核实，出发前请确认",
+      "day_too_full": "行程紧凑",
+      "day_too_light": "行程轻松，还有余量",
+      "base_too_far": "{city} 距住宿地太远，不适合一日游（往返 {minutes} 分钟）",
+      "city_dropped": "{city} 未能纳入计划",
+      "no_places": "此目的地没有景点",
+      "holiday": "当地节假日（{name}），许多地方关闭",
+      "rain_expected": "预计有雨（{probability}%）",
+      "advance_booking_needed": "需提前预订",
+      "walk_budget_tight": "步行额度即将用完",
+      "few_places_left": "此目的地的景点已用完：{days} 个空闲日"
+    },
+    "rainPlan": "雨天方案",
+    "tripStats": "共步行 {distance}，{places} 个景点，{verified}% 的开放时间已核实",
+    "dataQuality": {
+      "verified": "已核实",
+      "partial": "部分核实",
+      "unverified": "未核实"
+    },
+    "stays": "住宿",
+    "stayLabel": "{city}：第 {from}–{to} 天",
+    "baseMode": {
+      "single": "单一据点",
+      "multi": "移动路线"
+    },
+    "website": "网站",
+    "dayWarnings": "注意",
+    "emptyDay": "空闲日。此目的地适合您的景点已经用完。",
+    "views": {
+      "timeline": "时间线",
+      "map": "地图",
+      "calendar": "日历",
+      "list": "列表"
+    },
+    "viewsLabel": "视图",
+    "daysLabel": "旅行天数",
+    "dayShort": "第 {n} 天",
+    "actions": {
+      "menu": "{name} 的操作",
+      "swap": "替换活动",
+      "lock": "锁定位置",
+      "unlock": "解锁",
+      "moveTo": "移到某天",
+      "moveToDay": "第 {n} 天，{date}",
+      "remove": "从计划中移除",
+      "lighter": "这一天太紧凑",
+      "heavier": "这一天太轻松",
+      "rebuild": "重新生成未锁定部分",
+      "undo": "撤销上次更改",
+      "working": "正在更新..."
+    },
+    "swap": {
+      "title": "替换 {name}",
+      "subtitle": "同一区域、相同时长、当天开放的备选项。",
+      "none": "此区域未找到可用备选项。",
+      "pick": "选择",
+      "minutes": "{minutes} 分钟"
+    },
+    "map": {
+      "hotel": "酒店",
+      "loading": "正在加载地图...",
+      "legend": "当天路线。直线，估算。",
+      "showing": "显示第 {n} 天",
+      "zoomIn": "放大",
+      "zoomOut": "缩小",
+      "fit": "适配路线"
+    },
+    "calendar": {
+      "title": "旅行日历",
+      "legend": "点击某天在时间线中打开"
+    },
+    "list": {
+      "hint": "在同一天内或跨天拖动活动。时间会重新计算。",
+      "empty": "这一天没有活动。把活动拖到这里。"
+    },
+    "now": {
+      "title": "我的一天",
+      "myDay": "我的一天",
+      "noTripToday": "今天不在旅行中。选择要查看的日期：",
+      "current": "现在",
+      "next": "接下来",
+      "later": "稍后",
+      "done": "今天的行程已结束。晚安！",
+      "notStarted": "今天还没开始。第一项活动：",
+      "navigate": "导航前往",
+      "openInMaps": "在地图中打开",
+      "backToPlan": "完整计划",
+      "startsIn": "{minutes} 分钟后开始",
+      "endsAt": "直到 {time}",
+      "free": "自由活动，直到 {time}",
+      "nothingLeft": "今天没有其他安排"
+    },
+    "locked": "已锁定",
+    "dragHandle": "拖动 {name}",
+    "editError": "编辑失败：{message}",
+    "selected": "已选择",
+    "transitShort": {
+      "walk": "步行",
+      "transit": "公交",
+      "car": "驾车",
+      "bike": "骑行"
+    },
+    "weather": {
+      "forecast": "天气预报",
+      "normals": "去年同日",
+      "rain": "降雨 {probability}%",
+      "temp": "{min}–{max}°",
+      "sourceLabel": "天气：{source}"
+    },
+    "holidaysTitle": "旅行期间的当地节假日",
+    "links": {
+      "hotels": "查找 {city} 的住宿",
+      "tickets": "门票",
+      "flights": "机票",
+      "affiliate": "联盟链接",
+      "opens": "打开外部网站",
+      "booking": "Booking.com",
+      "hotelscom": "Hotels.com",
+      "agoda": "Agoda",
+      "hostelworld": "Hostelworld",
+      "getyourguide": "GetYourGuide",
+      "viator": "Viator",
+      "tiqets": "Tiqets",
+      "klook": "Klook",
+      "kiwi": "Kiwi",
+      "skyscanner": "Skyscanner"
+    },
+    "rates": "目的地货币：1 {base} ≈ {value} {quote}",
+    "ratesDemo": "（近似汇率）",
+    "sources": "数据来源：路线 {routing}，天气 {weather}，节假日 {holidays}",
+    "routingReal": "真实步行和驾车时间（OSRM）",
+    "routingEstimate": "估算时间",
+    "unverifiedPlace": "来源：OpenStreetMap，未经人工核实"
+  },
+  "gallery": {
+    "title": "现成计划",
+    "description": "可克隆和调整的计划库将在开发阶段 8 构建。"
+  },
+  "disclosure": {
+    "title": "披露声明",
+    "intro": "Triplan 会显示外部预订网站的链接：酒店、景点门票和机票。",
+    "affiliate": "其中部分是联盟链接。如果您通过这些链接预订，Triplan 可能获得少量佣金。您的价格不会改变。",
+    "marking": "每个此类链接在界面中都标注为“联盟链接”，并在新标签页中打开。",
+    "data": "未经核实的景点数据标注为“未核实”。出发前请确认开放时间和价格。",
+    "noKeys": "目前没有启用任何联盟密钥，链接均为普通搜索链接。"
+  },
+  "footer": {
+    "madeWith": "基于开放地图和免费数据构建",
+    "rights": "© {year} Triplan"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "body": "您请求的地址不存在，或尚未构建。"
+  },
+  "knowBefore": {
+    "title": "出发前须知",
+    "subtitle": "全球每个国家的基本信息，以及演示目的地的扩展实用信息。",
+    "searchLabel": "搜索国家",
+    "searchPlaceholder": "用英文、希伯来文或当地名称搜索国家",
+    "noResults": "未找到国家",
+    "demoBadge": "完整目的地",
+    "demoTitle": "内容完整的目的地",
+    "allTitle": "所有国家",
+    "resultsCount": "{count} 个国家",
+    "facts": "基本信息",
+    "currency": "货币",
+    "languages": "语言",
+    "drivingSide": "行驶方向",
+    "left": "靠左",
+    "right": "靠右",
+    "callingCode": "国际区号",
+    "timezones": "时区",
+    "capital": "首都",
+    "region": "地区",
+    "unknown": "未知",
+    "practical": "实用信息",
+    "plug": "电力",
+    "plugValue": "插座类型 {types}，{voltage}，{frequency}",
+    "emergency": "紧急电话",
+    "emergencyGeneral": "综合",
+    "police": "警察",
+    "ambulance": "救护车",
+    "fire": "消防",
+    "tapWater": "自来水",
+    "tapWaterYes": "可直接饮用",
+    "tapWaterNo": "不建议饮用",
+    "tapWaterUnknown": "未知",
+    "tipping": "小费",
+    "extrasOnlyDemo": "扩展实用信息（电力、紧急电话、小费）目前仅适用于演示目的地：葡萄牙、意大利和日本。",
+    "official": "查看官方来源",
+    "officialNote": "为避免错误，Triplan 不自行编写签证、疫苗或安全建议。以下是官方链接。",
+    "linkMfa": "以色列外交部：旅行信息",
+    "linkWho": "世界卫生组织：旅行健康",
+    "linkCdc": "CDC：按目的地查看疫苗",
+    "linkIata": "IATA：签证和护照要求",
+    "sources": "数据来源",
+    "sourcesText": "国家数据：mledoze/countries（ODbL）和 Wikidata。实用信息：IEC World Plugs 和各国官方机构。",
+    "backToList": "所有国家",
+    "notFoundTitle": "未找到国家",
+    "notFoundBody": "地址中的国家代码无法识别。",
+    "regions": {
+      "europe": "欧洲",
+      "asia": "亚洲",
+      "americas": "美洲",
+      "africa": "非洲",
+      "antarctic": "南极洲",
+      "oceania": "大洋洲",
+      "southern_europe": "南欧",
+      "western_asia": "西亚",
+      "southern_asia": "南亚",
+      "caribbean": "加勒比",
+      "southeast_europe": "东南欧",
+      "middle_africa": "中非",
+      "south_america": "南美洲",
+      "polynesia": "波利尼西亚",
+      "central_europe": "中欧",
+      "australia_and_new_zealand": "澳大利亚和新西兰",
+      "northern_europe": "北欧",
+      "western_europe": "西欧",
+      "western_africa": "西非",
+      "eastern_africa": "东非",
+      "north_america": "北美洲",
+      "south_eastern_asia": "东南亚",
+      "southern_africa": "南部非洲",
+      "eastern_europe": "东欧",
+      "central_america": "中美洲",
+      "eastern_asia": "东亚",
+      "northern_africa": "北非",
+      "melanesia": "美拉尼西亚",
+      "micronesia": "密克罗尼西亚",
+      "central_asia": "中亚"
+    }
+  },
+  "wizard": {
+    "title": "规划旅行",
+    "stepOf": "第 {current} 步，共 {total} 步",
+    "next": "继续",
+    "back": "返回",
+    "skip": "跳过（使用默认值）",
+    "edit": "编辑",
+    "draftSaved": "草稿会自动保存在此设备上",
+    "guestNote": "无需注册。计划保存在您的浏览器中。",
+    "startOver": "重新开始",
+    "startOverConfirm": "删除草稿并重新开始？",
+    "loading": "正在加载您的草稿...",
+    "progress": "问卷进度",
+    "steps": {
+      "destination": "目的地",
+      "dates": "日期",
+      "party": "出行人",
+      "visit": "首次到访？",
+      "pace": "节奏",
+      "transport": "交通",
+      "interests": "兴趣",
+      "budget": "预算",
+      "hotel": "住宿",
+      "summary": "摘要"
+    },
+    "destination": {
+      "title": "去哪里？",
+      "subtitle": "多目的地旅行最多选择 3 个国家，然后在每个国家内选择区域。",
+      "search": "搜索国家",
+      "searchPlaceholder": "用英文、希伯来文或当地名称搜索国家",
+      "noResults": "未找到国家",
+      "showingTop": "显示前 {count} 个国家。输入以搜索。",
+      "selected": "您的目的地",
+      "remove": "移除 {name}",
+      "maxReached": "最多可选择 3 个国家",
+      "underConstruction": "即将推出",
+      "underConstructionHint": "葡萄牙、意大利和日本的景点已人工核实。其他地区的景点来自 OpenStreetMap，并标注为“未核实”。",
+      "cities": "{country} 的区域（可选）",
+      "citiesHint": "留空则由 Triplan 根据旅行时长选择。",
+      "required": "请至少选择一个国家以继续",
+      "demoBadge": "可用",
+      "select": "选择 {name}",
+      "osmBadge": "OpenStreetMap",
+      "osmHint": "葡萄牙、意大利和日本的景点已人工核实。其他地区的景点来自 OpenStreetMap，并标注为“未核实”。",
+      "osmCities": "{country} 的城市或区域",
+      "osmCitiesHint": "搜索并至少选择一个城市。景点按城市从 OpenStreetMap 获取。",
+      "citySearch": "城市搜索",
+      "citySearchPlaceholder": "输入城市名称，例如 Paris",
+      "citySearching": "正在搜索...",
+      "citySearchError": "搜索失败，请重试。",
+      "cityRequired": "请在该国家至少选择一个城市"
+    },
+    "dates": {
+      "title": "什么时候？",
+      "subtitle": "开始日期和天数。之后可以更改。",
+      "start": "开始日期",
+      "days": "天数",
+      "daysValue": "{count, plural, other {# 天}}",
+      "end": "结束日期：{date}",
+      "flights": "航班时间（可选）",
+      "flightsHint": "帮助我们在抵达日和离开日安排半天行程。",
+      "arrival": "降落时间",
+      "departure": "起飞时间",
+      "season": "目的地季节：{season}",
+      "seasons": {
+        "winter": "冬季",
+        "spring": "春季",
+        "summer": "夏季",
+        "autumn": "秋季"
+      },
+      "weatherLater": "天气预报和当地节假日会显示在计划中。",
+      "pastDate": "该日期已过",
+      "invalidDate": "日期无效"
+    },
+    "party": {
+      "title": "谁出行？",
+      "subtitle": "年龄直接影响节奏和景点选择。",
+      "adults": "成人",
+      "children": "儿童（2–17 岁）",
+      "childAge": "第 {n} 位儿童的年龄",
+      "infants": "婴儿（2 岁以下）",
+      "stroller": "携带婴儿车",
+      "seniors": "其中 65 岁以上",
+      "seniorsHint": "计入成人",
+      "increase": "添加{what}",
+      "decrease": "减少{what}",
+      "seniorsTooMany": "65 岁以上的出行者不能超过成人数量"
+    },
+    "visit": {
+      "title": "第一次去那里？",
+      "subtitle": "决定经典景点与小众地点的比例。",
+      "options": {
+        "1": {
+          "title": "第一次",
+          "body": "我们优先安排经典必看景点。"
+        },
+        "2": {
+          "title": "第二次",
+          "body": "熟悉与新鲜的结合。"
+        },
+        "3": {
+          "title": "第三次或更多",
+          "body": "街区、本地场所、更远的一日游。"
+        }
+      },
+      "seenLabel": "您已经看过什么？（可选）",
+      "seenPlaceholder": "例如：斗兽场、梵蒂冈、特拉斯提弗列",
+      "seenHint": "在计划中您可以将具体景点标记为“已看过”。"
+    },
+    "pace": {
+      "title": "步行多少？",
+      "subtitle": "引擎绝不会安排超过此限度的一天。",
+      "options": {
+        "low": {
+          "title": "少量步行",
+          "body": "每天最多 4 公里，站点彼此靠近。"
+        },
+        "medium": {
+          "title": "适中",
+          "body": "每天 6–12 公里。"
+        },
+        "high": {
+          "title": "大量步行",
+          "body": "每天 12–20 公里，行程较长。"
+        }
+      },
+      "accessibility": "无障碍需求（可选）",
+      "accessibilityOptions": {
+        "wheelchair": "轮椅",
+        "stroller": "婴儿车",
+        "stairs": "上下楼梯困难",
+        "altitude": "对高海拔敏感"
+      }
+    },
+    "transport": {
+      "title": "如何出行？",
+      "subtitle": "选择任意数量，并说明每种方式的使用程度。",
+      "modes": {
+        "walk": "步行",
+        "bike": "自行车",
+        "car": "租车",
+        "transit": "公共交通",
+        "tours": "导游团"
+      },
+      "weights": {
+        "0": "不用",
+        "1": "少量",
+        "2": "正常",
+        "3": "优先"
+      },
+      "weightLabel": "{mode}的使用程度",
+      "mixAll": "各种方式混合",
+      "carTitle": "关于租车",
+      "oppositeSideOk": "我们可以接受在道路另一侧行驶",
+      "avoidMountainRoads": "避开山路",
+      "avoidCityDriving": "避免在市中心驾车",
+      "drivingSideNote": "在{country}靠{side}行驶",
+      "sideLeft": "左",
+      "sideRight": "右",
+      "atLeastOne": "请至少选择一种出行方式"
+    },
+    "interests": {
+      "title": "您对什么感兴趣？",
+      "subtitle": "选择任意数量，然后排列前 3 项。",
+      "options": {
+        "nature": "自然",
+        "city": "城市",
+        "history": "历史",
+        "food": "美食",
+        "wine": "葡萄酒",
+        "museums": "博物馆",
+        "beaches": "海滩",
+        "adventure": "冒险运动",
+        "nightlife": "夜生活",
+        "shopping": "购物",
+        "photography": "摄影",
+        "religion": "宗教与遗产",
+        "kids": "亲子"
+      },
+      "ranked": "前 3 项，按重要性排序",
+      "rankedHint": "拖动排序，或使用箭头。",
+      "rest": "您选择的其他兴趣",
+      "moveUp": "上移 {name}",
+      "moveDown": "下移 {name}",
+      "dragHandle": "拖动 {name} 排序",
+      "rank": "第 {n} 位",
+      "atLeastOne": "请至少选择一项兴趣"
+    },
+    "budget": {
+      "title": "预算",
+      "subtitle": "影响住宿类型、餐厅和付费景点。",
+      "levels": {
+        "budget": {
+          "title": "经济",
+          "body": "青年旅舍和公寓、街头小吃、大量免费景点。"
+        },
+        "mid": {
+          "title": "中档",
+          "body": "3–4 星酒店、餐厅、主要景点门票。"
+        },
+        "luxury": {
+          "title": "奢华",
+          "body": "5 星酒店、私人导览、主厨餐厅。"
+        }
+      },
+      "dailyCap": "每日上限（可选）",
+      "perPerson": "每人每天，不含机票",
+      "currency": "货币",
+      "capPlaceholder": "例如 150"
+    },
+    "hotel": {
+      "title": "住在哪里？",
+      "subtitle": "我们不代您预订，但计划会围绕住宿类型及其位置构建。",
+      "type": "住宿类型",
+      "types": {
+        "hostel": "青年旅舍",
+        "3star": "3 星酒店",
+        "4star": "4 星酒店",
+        "5star": "5 星酒店",
+        "apartment": "公寓",
+        "boutique": "精品酒店",
+        "camping": "露营"
+      },
+      "location": "位置偏好",
+      "locations": {
+        "center": "市中心",
+        "station": "靠近火车站",
+        "beach": "靠近海滩",
+        "quiet": "安静的地方"
+      },
+      "baseMode": "旅途中住几家酒店？",
+      "baseModes": {
+        "single": {
+          "title": "单一据点",
+          "body": "住在一个地方，放射状进行一日游。"
+        },
+        "multi": {
+          "title": "移动路线",
+          "body": "沿途更换住宿，靠近每个区域。"
+        },
+        "auto": {
+          "title": "不确定",
+          "body": "Triplan 根据旅行时长和目的地推荐。"
+        }
+      },
+      "recommendation": "我们的建议：{mode}",
+      "reasons": {
+        "short": "旅行较短，不值得反复打包。",
+        "one_city": "一座城市，一个据点就够了。",
+        "many_cities": "多个区域，最好在每个区域附近住宿。",
+        "many_countries": "多个国家，必须移动。",
+        "long": "旅行较长，值得换换地方。",
+        "small_kids": "带小孩时，单一据点的安稳更好。"
+      }
+    },
+    "summary": {
+      "title": "准备好了吗？",
+      "subtitle": "检查您的选择。每一步都可以编辑。",
+      "build": "生成我的旅行",
+      "building": "正在保存...",
+      "people": "{count, plural, other {# 位成人}}",
+      "childrenCount": "{count, plural, other {# 位儿童}}",
+      "infantsCount": "{count, plural, other {# 位婴儿}}",
+      "seniorsCount": "{count, plural, other {其中 # 位 65 岁以上}}",
+      "days": "从 {date} 起 {count, plural, other {# 天}}",
+      "noCities": "由 Triplan 选择区域",
+      "none": "无",
+      "visit": {
+        "1": "第一次",
+        "2": "第二次",
+        "3": "第三次或更多"
+      },
+      "capValue": "每人每天最多 {amount}",
+      "noCap": "无每日上限",
+      "errors": "生成前需要修正部分步骤：",
+      "stroller": "携带婴儿车"
+    }
+  },
+  "trip": {
+    "title": "您的旅行",
+    "notFound": "未找到旅行",
+    "notFoundBody": "它可能保存在另一个浏览器中。访客模式下，旅行仅保存在此设备上。",
+    "engineSoon": "此旅行还没有计划。点击“生成计划”，我们会根据您的偏好构建。",
+    "editPrefs": "编辑偏好",
+    "newTrip": "新建旅行",
+    "savedLocally": "已保存在此设备上（访客模式）",
+    "myTrips": "我的旅行",
+    "noTrips": "还没有旅行。开始吧？",
+    "created": "创建于 {date}",
+    "delete": "删除旅行",
+    "deleteConfirm": "删除此旅行？",
+    "open": "打开",
+    "planLabel": "计划",
+    "prefsLabel": "偏好"
+  },
+  "tools": {
+    "title": "旅行工具",
+    "tabs": {
+      "budget": "预算",
+      "packing": "行李",
+      "checklist": "清单",
+      "share": "导出与分享"
+    },
+    "budget": {
+      "title": "预算估算",
+      "disclaimer": "基于住宿类型、预算档次、计划中景点门票以及该国物价水平的粗略估算。不含机票。实际数字取决于季节和预订情况。",
+      "perPersonPerDay": "每人每天",
+      "perPersonTotal": "每人，全程",
+      "groupTotal": "全团（{people} 人，{nights} 晚）",
+      "lines": {
+        "lodging": "住宿",
+        "tickets": "门票和景点",
+        "transport": "交通",
+        "food": "餐饮"
+      },
+      "perDay": "每天",
+      "total": "合计",
+      "capOk": "在您设定的每日上限内",
+      "capOver": "超出您设定的每日上限（×{ratio}）",
+      "inEur": "以欧元显示，无可用汇率"
+    },
+    "packing": {
+      "title": "行李清单",
+      "subtitle": "根据天气、出行人和出行方式生成。勾选已打包的物品。",
+      "progress": "已打包 {done}/{total}",
+      "groups": {
+        "documents": "证件和钱",
+        "clothing": "衣物",
+        "gear": "装备",
+        "kids": "儿童和婴儿",
+        "health": "健康",
+        "tech": "电子设备"
+      },
+      "items": {
+        "passport": "护照（回程后至少 6 个月有效）",
+        "insurance": "旅行保险（保单存在手机上）",
+        "bookings": "预订确认：机票、酒店、门票",
+        "cards_cash": "国际银行卡和一些当地现金",
+        "driving_licence": "驾照（如需要，加国际驾照）",
+        "sunscreen": "防晒霜",
+        "hat": "帽子",
+        "light_clothes": "轻薄衣物",
+        "water_bottle": "可重复使用的水瓶",
+        "warm_layers": "保暖衣物",
+        "gloves_scarf": "手套和围巾",
+        "rain_jacket": "雨衣",
+        "umbrella": "小雨伞",
+        "check_weather": "出发前一周查看天气预报并调整衣物",
+        "hiking_shoes": "好的徒步鞋（已磨合！）",
+        "walking_shoes": "舒适的步行鞋",
+        "daypack": "小型日用背包",
+        "swimwear": "泳衣和毛巾",
+        "sports_clothes": "运动服",
+        "modest_clothes": "参观宗教场所的得体衣物（遮住肩膀和膝盖）",
+        "camera_gear": "相机、电池和存储卡",
+        "diapers": "尿布和湿巾（前几天用）",
+        "baby_food": "婴儿食品和奶瓶",
+        "carrier": "婴儿背带",
+        "stroller_travel": "折叠婴儿车（轻便，方便楼梯和交通）",
+        "kids_snacks": "儿童零食",
+        "kids_entertainment": "路上给孩子的娱乐用品",
+        "medications": "常用药物 + 英文处方",
+        "first_aid": "小型急救包",
+        "altitude_meds": "高原反应药物（咨询医生）",
+        "phone_charger": "手机充电器",
+        "power_bank": "充电宝",
+        "plug_adapter": "{note} 型插座的转换插头",
+        "esim": "eSIM 或流量套餐",
+        "offline_maps": "下载计划和地图以供离线使用（“导出与分享”标签）"
+      }
+    },
+    "checklist": {
+      "title": "出发前",
+      "subtitle": "带截止日期的任务，以及计划中标记需注意的事项。",
+      "due": "截止 {date}",
+      "overdue": "已逾期",
+      "progress": "已完成 {done}/{total}",
+      "items": {
+        "passport_validity": "确保护照至少在 {until} 前有效",
+        "insurance": "购买旅行保险",
+        "flights": "预订机票",
+        "lodging": "预订住宿",
+        "car_rental": "预订租车",
+        "kids_documents": "儿童证件：护照，以及不与父母一方同行时的家长同意书",
+        "book_place": "提前预订：{place}（{date}）",
+        "holiday": "第 {day} 天为当地节假日（{name}）：确认开放时间，许多地方关闭",
+        "verify_places": "核实 {count} 个未核实的景点（时间、价格）",
+        "warning_base_too_far": "{city} 已从计划中移除：距 {base} 太远，不适合一日游",
+        "warning_city_dropped": "{city} 未能纳入计划",
+        "currency": "换一些当地货币，或确认银行卡可在国外使用",
+        "esim": "安装 eSIM 或检查流量套餐",
+        "offline": "下载计划和地图以供离线使用"
+      }
+    },
+    "share": {
+      "title": "导出与分享",
+      "export": "导出",
+      "print": "打印 / PDF",
+      "ics": "日历（ICS）",
+      "gpx": "GPX",
+      "kml": "KML",
+      "exportHint": "ICS 可在 Google 日历、Outlook 和 Apple 日历中打开。GPX 和 KML 可在 Google Earth、Maps.me、OsmAnd 等应用中打开。",
+      "shareTitle": "分享链接",
+      "shareHint": "创建公开查看链接。任何拥有链接的人都能看到计划。",
+      "shareEdit": "允许拥有链接的任何人编辑",
+      "create": "创建链接",
+      "creating": "正在创建...",
+      "copy": "复制",
+      "copied": "已复制！",
+      "open": "打开",
+      "linkReady": "您的链接已就绪",
+      "shareError": "无法创建链接：{message}",
+      "updateShared": "将链接更新到当前版本",
+      "updated": "已更新",
+      "offlineTitle": "离线",
+      "offlineHint": "将计划和区域地图保存在此设备上，以便无网络时使用。",
+      "offlineDownload": "下载以供离线使用",
+      "offlineDownloading": "正在下载地图瓦片... {done}/{total}",
+      "offlineReady": "计划和地图已保存在此设备上（{tiles} 个瓦片）",
+      "offlineUnsupported": "此浏览器不支持离线保存（或应用正在开发模式下运行）",
+      "offlineError": "下载失败：{message}",
+      "installHint": "提示：通过浏览器菜单将 Triplan 安装到主屏幕，即使没有网络也能一键打开计划。"
+    }
+  },
+  "print": {
+    "title": "可打印计划",
+    "print": "打印",
+    "subtitle": "{days} 天 · {places} 个景点 · 步行 {distance}",
+    "generated": "由 Triplan 生成",
+    "tip": "在打印对话框中选择“另存为 PDF”。",
+    "back": "返回计划"
+  },
+  "shared": {
+    "title": "共享计划",
+    "readOnly": "仅可查看。分享者可以更新链接。",
+    "editable": "可编辑。更改会保存到此链接。",
+    "notFound": "未找到此链接，或已被移除。",
+    "save": "保存更改",
+    "saved": "已保存",
+    "saving": "正在保存...",
+    "copyToMine": "复制到我的旅行",
+    "copied": "已复制到您的旅行",
+    "by": "{destinations}之旅"
+  }
+}

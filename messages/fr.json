@@ -1,0 +1,835 @@
+{
+  "common": {
+    "appName": "Triplan",
+    "tagline": "Un plan de voyage complet en 3 minutes",
+    "skipToContent": "Aller au contenu",
+    "comingSoon": "Bientôt",
+    "comingSoonBody": "Cette partie sera construite lors de la prochaine phase de développement. En attendant, retournez à l'accueil.",
+    "backHome": "Retour à l'accueil",
+    "demoBanner": "Mode démo : itinéraires, météo et jours fériés proviennent de sources gratuites sans clé. Les données estimées sont signalées.",
+    "affiliate": "Lien affilié",
+    "opensInNewTab": "S'ouvre dans un nouvel onglet",
+    "offline": "Pas de connexion internet. Les plans enregistrés sont dans « Mes voyages »."
+  },
+  "nav": {
+    "home": "Accueil",
+    "plan": "Planifier un voyage",
+    "gallery": "Plans prêts",
+    "disclosure": "Transparence",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "menuTitle": "Menu",
+    "mainNav": "Navigation principale",
+    "mobileNav": "Navigation du bas",
+    "knowBefore": "À savoir avant de partir",
+    "myTrips": "Mes voyages"
+  },
+  "theme": {
+    "toggle": "Changer le thème de couleur",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Selon le système"
+  },
+  "locale": {
+    "switch": "Changer de langue",
+    "current": "Langue actuelle : {name}"
+  },
+  "units": {
+    "label": "Unités de distance",
+    "metric": "Kilomètres",
+    "imperial": "Miles",
+    "km": "{value} km",
+    "mi": "{value} mi"
+  },
+  "home": {
+    "eyebrow": "Planificateur de voyage intelligent",
+    "heroTitle": "D'un rêve à un plan jour par jour, en 3 minutes",
+    "heroSubtitle": "Répondez à un court questionnaire et Triplan construit votre voyage jour par jour et heure par heure, adapté à votre rythme, aux âges, aux transports et aux horaires d'ouverture.",
+    "cta": "Créer mon voyage",
+    "ctaSecondary": "Plans prêts",
+    "featuresTitle": "Pourquoi Triplan",
+    "features": {
+      "fit": {
+        "title": "Adapté à ceux qui voyagent",
+        "body": "Une famille avec un bébé, un couple de 70 ans ou des voyageurs sportifs à leur troisième visite : chaque plan est construit de zéro pour les personnes qui partent."
+      },
+      "honest": {
+        "title": "Transparent et honnête",
+        "body": "Chaque étape a une raison : « 12 minutes à pied de l'hôtel », « ouvert le samedi ». Tout ce qui n'est pas vérifié est signalé."
+      },
+      "offline": {
+        "title": "Fonctionne sur le terrain",
+        "body": "Le plan, la carte et les adresses fonctionnent sans internet, sur votre téléphone, comme une application."
+      }
+    },
+    "howTitle": "Comment ça marche",
+    "steps": {
+      "1": {
+        "title": "Répondez à 10 questions",
+        "body": "Destination, dates, voyageurs, rythme, transports, budget et hôtel. Chaque question a une valeur par défaut intelligente."
+      },
+      "2": {
+        "title": "Recevez un plan",
+        "body": "Jour par jour, heure par heure, avec la distance à pied, un plan pluie et des alternatives."
+      },
+      "3": {
+        "title": "Modifiez et partez",
+        "body": "Glissez, remplacez, verrouillez. Exportez en PDF et vers l'agenda, partagez avec vos compagnons de voyage."
+      }
+    },
+    "statusTitle": "État du développement",
+    "statusBody": "Triplan est construit par phases. Phase actuelle : fondations. Le questionnaire et le moteur de planification arrivent."
+  },
+  "plan": {
+    "build": "Construire le plan",
+    "rebuild": "Reconstruire",
+    "building": "Construction de votre plan...",
+    "failed": "Impossible de construire un plan. {message}",
+    "failedUnsupported": "Cette destination n'est pas encore prise en charge.",
+    "generatedNote": "Les attractions des destinations démo ont été vérifiées à la main avec OpenStreetMap. Les temps en transports en commun sont estimés.",
+    "dayTitle": "Jour {n}",
+    "kinds": {
+      "arrival": "Jour d'arrivée",
+      "departure": "Jour de départ",
+      "full": "Journée complète",
+      "arrival_departure": "Arrivée et départ"
+    },
+    "intensity": {
+      "light": "Léger",
+      "moderate": "Modéré",
+      "heavy": "Soutenu"
+    },
+    "walk": "{distance} à pied",
+    "placesCount": "{count, plural, one {1 attraction} other {# attractions}}",
+    "themes": {
+      "museums": "Musées",
+      "nature": "Nature",
+      "beaches": "Plages",
+      "history": "Histoire",
+      "food": "Gastronomie",
+      "city": "Ville",
+      "shopping": "Shopping",
+      "kids": "Enfants",
+      "nightlife": "Vie nocturne"
+    },
+    "activity": {
+      "meal": "Déjeuner",
+      "rest": "Pause",
+      "hotel_checkin": "Arrivée à l'hôtel",
+      "hotel_checkout": "Départ et transfert vers l'hôtel suivant",
+      "free": "Temps libre"
+    },
+    "transit": {
+      "walk": "À pied {minutes} min",
+      "transit": "Transports en commun {minutes} min",
+      "car": "En voiture {minutes} min",
+      "bike": "À vélo {minutes} min"
+    },
+    "estimated": "estimé",
+    "reasons": {
+      "near_base": "À {minutes} min de l'hôtel",
+      "near_previous": "À {minutes} min de l'étape précédente",
+      "interest_match": "Correspond à {interest}",
+      "iconic_first_visit": "Un classique pour une première visite",
+      "hidden_gem_returning": "Pépite locale",
+      "kid_friendly": "Adapté aux enfants",
+      "open_on_day": "Ouvert le {weekday}",
+      "indoor_rain": "En intérieur, idéal sous la pluie",
+      "lunch_time": "Heure du déjeuner",
+      "rest_break": "Petite pause",
+      "advance_booking": "Réservation à l'avance nécessaire",
+      "unverified_hours": "Horaires non vérifiés",
+      "half_day_arrival": "Demi-journée, arrivée",
+      "half_day_departure": "Demi-journée, départ",
+      "day_trip": "Excursion d'une journée",
+      "hotel_transfer": "Changement d'hôtel"
+    },
+    "weekdays": {
+      "sunday": "dimanche",
+      "monday": "lundi",
+      "tuesday": "mardi",
+      "wednesday": "mercredi",
+      "thursday": "jeudi",
+      "friday": "vendredi",
+      "saturday": "samedi"
+    },
+    "warnings": {
+      "closed_on_date": "Fermé à cette date",
+      "unverified_data": "Non vérifié. Vérifiez avant de partir",
+      "day_too_full": "Journée chargée",
+      "day_too_light": "Journée légère, il reste de la place",
+      "base_too_far": "{city} est trop loin pour une excursion depuis la base ({minutes} min aller-retour)",
+      "city_dropped": "{city} n'a pas été retenue dans le plan",
+      "no_places": "Aucune attraction pour cette destination",
+      "holiday": "Jour férié local ({name}). Beaucoup de lieux fermés",
+      "rain_expected": "Pluie prévue ({probability} %)",
+      "advance_booking_needed": "Réservation à l'avance nécessaire",
+      "walk_budget_tight": "Budget de marche presque épuisé",
+      "few_places_left": "Plus d'attractions pour cette destination : {days} jours libres"
+    },
+    "rainPlan": "Plan pluie",
+    "tripStats": "Total {distance} à pied, {places} attractions, {verified} % avec horaires vérifiés",
+    "dataQuality": {
+      "verified": "Vérifié",
+      "partial": "Partiel",
+      "unverified": "Non vérifié"
+    },
+    "stays": "Hébergements",
+    "stayLabel": "{city} : jours {from}–{to}",
+    "baseMode": {
+      "single": "Une seule base",
+      "multi": "Itinérant"
+    },
+    "website": "Site web",
+    "dayWarnings": "Attention",
+    "emptyDay": "Journée libre. Nous n'avons plus d'attractions qui vous correspondent à cette destination.",
+    "views": {
+      "timeline": "Chronologie",
+      "map": "Carte",
+      "calendar": "Calendrier",
+      "list": "Liste"
+    },
+    "viewsLabel": "Vue",
+    "daysLabel": "Jours du voyage",
+    "dayShort": "Jour {n}",
+    "actions": {
+      "menu": "Actions pour {name}",
+      "swap": "Remplacer l'activité",
+      "lock": "Verrouiller",
+      "unlock": "Déverrouiller",
+      "moveTo": "Déplacer vers le jour",
+      "moveToDay": "Jour {n}, {date}",
+      "remove": "Retirer du plan",
+      "lighter": "Cette journée est trop chargée",
+      "heavier": "Cette journée est trop légère",
+      "rebuild": "Reconstruire ce qui n'est pas verrouillé",
+      "undo": "Annuler la dernière modification",
+      "working": "Mise à jour..."
+    },
+    "swap": {
+      "title": "Remplacer {name}",
+      "subtitle": "Alternatives dans le même secteur, même budget temps, ouvertes ce jour-là.",
+      "none": "Aucune alternative disponible dans ce secteur.",
+      "pick": "Choisir",
+      "minutes": "{minutes} min"
+    },
+    "map": {
+      "hotel": "Hôtel",
+      "loading": "Chargement de la carte...",
+      "legend": "L'itinéraire du jour. Lignes droites, estimées.",
+      "showing": "Affichage du jour {n}",
+      "zoomIn": "Zoom avant",
+      "zoomOut": "Zoom arrière",
+      "fit": "Ajuster à l'itinéraire"
+    },
+    "calendar": {
+      "title": "Calendrier du voyage",
+      "legend": "Touchez un jour pour l'ouvrir dans la chronologie"
+    },
+    "list": {
+      "hint": "Glissez les activités dans une journée ou entre les journées. Les horaires sont recalculés.",
+      "empty": "Aucune activité ce jour-là. Glissez-en ici."
+    },
+    "now": {
+      "title": "Ma journée",
+      "myDay": "Ma journée",
+      "noTripToday": "Le voyage n'a pas lieu aujourd'hui. Choisissez un jour à afficher :",
+      "current": "Maintenant",
+      "next": "Ensuite",
+      "later": "Plus tard",
+      "done": "C'est fini pour aujourd'hui. Bonne nuit !",
+      "notStarted": "La journée n'a pas encore commencé. Première activité :",
+      "navigate": "Y aller",
+      "openInMaps": "Ouvrir dans les cartes",
+      "backToPlan": "Plan complet",
+      "startsIn": "Commence dans {minutes} min",
+      "endsAt": "Jusqu'à {time}",
+      "free": "Temps libre jusqu'à {time}",
+      "nothingLeft": "Rien d'autre de prévu aujourd'hui"
+    },
+    "locked": "Verrouillé",
+    "dragHandle": "Glisser {name}",
+    "editError": "La modification a échoué : {message}",
+    "selected": "Sélectionné",
+    "transitShort": {
+      "walk": "À pied",
+      "transit": "Transports",
+      "car": "Voiture",
+      "bike": "Vélo"
+    },
+    "weather": {
+      "forecast": "Prévisions",
+      "normals": "Même date l'an dernier",
+      "rain": "Pluie {probability} %",
+      "temp": "{min}–{max}°",
+      "sourceLabel": "Météo : {source}"
+    },
+    "holidaysTitle": "Jours fériés locaux pendant le voyage",
+    "links": {
+      "hotels": "Trouver un hébergement à {city}",
+      "tickets": "Billets",
+      "flights": "Vols",
+      "affiliate": "Lien affilié",
+      "opens": "Ouvre un site externe",
+      "booking": "Booking.com",
+      "hotelscom": "Hotels.com",
+      "agoda": "Agoda",
+      "hostelworld": "Hostelworld",
+      "getyourguide": "GetYourGuide",
+      "viator": "Viator",
+      "tiqets": "Tiqets",
+      "klook": "Klook",
+      "kiwi": "Kiwi",
+      "skyscanner": "Skyscanner"
+    },
+    "rates": "Monnaie de la destination : 1 {base} ≈ {value} {quote}",
+    "ratesDemo": "(taux approximatif)",
+    "sources": "Sources : itinéraires {routing}, météo {weather}, jours fériés {holidays}",
+    "routingReal": "Temps réels à pied et en voiture (OSRM)",
+    "routingEstimate": "Temps estimés",
+    "unverifiedPlace": "Source : OpenStreetMap, non vérifié à la main"
+  },
+  "gallery": {
+    "title": "Plans prêts",
+    "description": "La galerie de plans à copier et adapter sera construite lors de la phase 8 du développement."
+  },
+  "disclosure": {
+    "title": "Transparence",
+    "intro": "Triplan affiche des liens vers des sites de réservation externes : hôtels, billets d'attractions et vols.",
+    "affiliate": "Certains de ces liens sont des liens affiliés. Si vous réservez via ces liens, Triplan peut toucher une petite commission. Votre prix ne change pas.",
+    "marking": "Chaque lien de ce type est signalé « Lien affilié » dans l'interface et s'ouvre dans un nouvel onglet.",
+    "data": "Les données d'attractions non vérifiées sont signalées « non vérifié ». Vérifiez horaires et prix avant de partir.",
+    "noKeys": "Il n'y a actuellement aucune clé d'affiliation active ; les liens sont de simples liens de recherche."
+  },
+  "footer": {
+    "madeWith": "Construit sur des cartes ouvertes et des données libres",
+    "rights": "© {year} Triplan"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "L'adresse demandée n'existe pas ou n'a pas encore été construite."
+  },
+  "knowBefore": {
+    "title": "À savoir avant de partir",
+    "subtitle": "Les faits de base pour chaque pays du monde, et des informations pratiques détaillées pour les destinations démo.",
+    "searchLabel": "Rechercher un pays",
+    "searchPlaceholder": "Recherchez un pays en français, en anglais ou par son nom local",
+    "noResults": "Aucun pays trouvé",
+    "demoBadge": "Destination complète",
+    "demoTitle": "Destinations avec contenu complet",
+    "allTitle": "Tous les pays",
+    "resultsCount": "{count} pays",
+    "facts": "Faits de base",
+    "currency": "Monnaie",
+    "languages": "Langues",
+    "drivingSide": "Sens de circulation",
+    "left": "Gauche",
+    "right": "Droite",
+    "callingCode": "Indicatif téléphonique",
+    "timezones": "Fuseau horaire",
+    "capital": "Capitale",
+    "region": "Région",
+    "unknown": "Inconnu",
+    "practical": "Informations pratiques",
+    "plug": "Électricité",
+    "plugValue": "Prise de type {types}, {voltage}, {frequency}",
+    "emergency": "Numéros d'urgence",
+    "emergencyGeneral": "Général",
+    "police": "Police",
+    "ambulance": "Ambulance",
+    "fire": "Pompiers",
+    "tapWater": "Eau du robinet",
+    "tapWaterYes": "Potable",
+    "tapWaterNo": "Déconseillée",
+    "tapWaterUnknown": "Inconnu",
+    "tipping": "Pourboires",
+    "extrasOnlyDemo": "Les informations pratiques détaillées (électricité, urgences, pourboires) ne sont disponibles pour l'instant que pour les destinations démo : Portugal, Italie et Japon.",
+    "official": "Consultez les sources officielles",
+    "officialNote": "Triplan ne rédige pas ses propres conseils sur les visas, les vaccins ou la sécurité, pour éviter les erreurs. Voici les liens officiels.",
+    "linkMfa": "Ministère israélien des Affaires étrangères : infos voyageurs",
+    "linkWho": "Organisation mondiale de la santé : santé en voyage",
+    "linkCdc": "CDC : vaccins par destination",
+    "linkIata": "IATA : conditions de visa et de passeport",
+    "sources": "Sources des données",
+    "sourcesText": "Données pays : mledoze/countries (ODbL) et Wikidata. Infos pratiques : IEC World Plugs et les autorités officielles de chaque pays.",
+    "backToList": "Tous les pays",
+    "notFoundTitle": "Pays introuvable",
+    "notFoundBody": "Le code pays de l'adresse n'est pas reconnu.",
+    "regions": {
+      "europe": "Europe",
+      "asia": "Asie",
+      "americas": "Amériques",
+      "africa": "Afrique",
+      "antarctic": "Antarctique",
+      "oceania": "Océanie",
+      "southern_europe": "Europe du Sud",
+      "western_asia": "Asie de l'Ouest",
+      "southern_asia": "Asie du Sud",
+      "caribbean": "Caraïbes",
+      "southeast_europe": "Europe du Sud-Est",
+      "middle_africa": "Afrique centrale",
+      "south_america": "Amérique du Sud",
+      "polynesia": "Polynésie",
+      "central_europe": "Europe centrale",
+      "australia_and_new_zealand": "Australie et Nouvelle-Zélande",
+      "northern_europe": "Europe du Nord",
+      "western_europe": "Europe de l'Ouest",
+      "western_africa": "Afrique de l'Ouest",
+      "eastern_africa": "Afrique de l'Est",
+      "north_america": "Amérique du Nord",
+      "south_eastern_asia": "Asie du Sud-Est",
+      "southern_africa": "Afrique australe",
+      "eastern_europe": "Europe de l'Est",
+      "central_america": "Amérique centrale",
+      "eastern_asia": "Asie de l'Est",
+      "northern_africa": "Afrique du Nord",
+      "melanesia": "Mélanésie",
+      "micronesia": "Micronésie",
+      "central_asia": "Asie centrale"
+    }
+  },
+  "wizard": {
+    "title": "Planifier un voyage",
+    "stepOf": "Étape {current} sur {total}",
+    "next": "Continuer",
+    "back": "Retour",
+    "skip": "Passer (valeur par défaut)",
+    "edit": "Modifier",
+    "draftSaved": "Votre brouillon est enregistré automatiquement sur cet appareil",
+    "guestNote": "Aucune inscription nécessaire. Le plan est stocké dans votre navigateur.",
+    "startOver": "Recommencer",
+    "startOverConfirm": "Supprimer le brouillon et recommencer ?",
+    "loading": "Chargement de votre brouillon...",
+    "progress": "Progression du questionnaire",
+    "steps": {
+      "destination": "Destination",
+      "dates": "Dates",
+      "party": "Voyageurs",
+      "visit": "Première fois ?",
+      "pace": "Rythme",
+      "transport": "Transports",
+      "interests": "Centres d'intérêt",
+      "budget": "Budget",
+      "hotel": "Hébergement",
+      "summary": "Résumé"
+    },
+    "destination": {
+      "title": "Où allez-vous ?",
+      "subtitle": "Choisissez jusqu'à 3 pays pour un voyage multi-destinations, puis des zones dans chacun.",
+      "search": "Rechercher un pays",
+      "searchPlaceholder": "Recherchez un pays en français, en anglais ou par son nom local",
+      "noResults": "Aucun pays trouvé",
+      "showingTop": "Affichage des {count} premiers pays. Tapez pour rechercher.",
+      "selected": "Vos destinations",
+      "remove": "Retirer {name}",
+      "maxReached": "Vous pouvez choisir jusqu'à 3 pays",
+      "underConstruction": "Bientôt",
+      "underConstructionHint": "Le Portugal, l'Italie et le Japon ont des attractions vérifiées à la main. Ailleurs, les attractions viennent d'OpenStreetMap et sont signalées « non vérifié ».",
+      "cities": "Zones en {country} (facultatif)",
+      "citiesHint": "Laissez vide et Triplan choisira selon la durée du voyage.",
+      "required": "Choisissez au moins un pays pour continuer",
+      "demoBadge": "Disponible",
+      "select": "Sélectionner {name}",
+      "osmBadge": "OpenStreetMap",
+      "osmHint": "Le Portugal, l'Italie et le Japon ont des attractions vérifiées à la main. Ailleurs, les attractions viennent d'OpenStreetMap et sont signalées « non vérifié ».",
+      "osmCities": "Villes ou zones en {country}",
+      "osmCitiesHint": "Recherchez et choisissez au moins une ville. Les attractions sont extraites d'OpenStreetMap par ville.",
+      "citySearch": "Recherche de ville",
+      "citySearchPlaceholder": "Tapez un nom de ville, par ex. Paris",
+      "citySearching": "Recherche...",
+      "citySearchError": "La recherche a échoué. Réessayez.",
+      "cityRequired": "Choisissez au moins une ville dans ce pays"
+    },
+    "dates": {
+      "title": "Quand ?",
+      "subtitle": "Date de début et nombre de jours. Modifiable plus tard.",
+      "start": "Date de début",
+      "days": "Nombre de jours",
+      "daysValue": "{count, plural, one {1 jour} other {# jours}}",
+      "end": "Date de fin : {date}",
+      "flights": "Horaires de vol (facultatif)",
+      "flightsHint": "Nous aide à prévoir une demi-journée à l'arrivée et au départ.",
+      "arrival": "Heure d'atterrissage",
+      "departure": "Heure de décollage",
+      "season": "Saison à destination : {season}",
+      "seasons": {
+        "winter": "hiver",
+        "spring": "printemps",
+        "summer": "été",
+        "autumn": "automne"
+      },
+      "weatherLater": "Les prévisions météo et les jours fériés locaux apparaissent dans le plan lui-même.",
+      "pastDate": "Cette date est déjà passée",
+      "invalidDate": "Date invalide"
+    },
+    "party": {
+      "title": "Qui voyage ?",
+      "subtitle": "Les âges influencent directement le rythme et le choix des attractions.",
+      "adults": "Adultes",
+      "children": "Enfants (2–17)",
+      "childAge": "Âge de l'enfant {n}",
+      "infants": "Bébés (moins de 2 ans)",
+      "stroller": "Avec une poussette",
+      "seniors": "Dont 65 ans et plus",
+      "seniorsHint": "Comptés parmi les adultes",
+      "increase": "Ajouter : {what}",
+      "decrease": "Retirer : {what}",
+      "seniorsTooMany": "Les voyageurs de 65 ans et plus ne peuvent pas dépasser le nombre d'adultes"
+    },
+    "visit": {
+      "title": "Première fois là-bas ?",
+      "subtitle": "Règle l'équilibre entre classiques et lieux moins touristiques.",
+      "options": {
+        "1": {
+          "title": "Première fois",
+          "body": "Nous privilégions les incontournables classiques."
+        },
+        "2": {
+          "title": "Deuxième fois",
+          "body": "Un mélange de connu et de nouveau."
+        },
+        "3": {
+          "title": "Troisième fois ou plus",
+          "body": "Quartiers, adresses locales, excursions plus lointaines."
+        }
+      },
+      "seenLabel": "Qu'avez-vous déjà vu ? (facultatif)",
+      "seenPlaceholder": "par ex. Colisée, Vatican, Trastevere",
+      "seenHint": "Dans le plan, vous pourrez marquer des attractions précises comme « déjà vues »."
+    },
+    "pace": {
+      "title": "Combien de marche ?",
+      "subtitle": "Le moteur ne construit jamais une journée qui dépasse cela.",
+      "options": {
+        "low": {
+          "title": "Peu de marche",
+          "body": "Jusqu'à 4 km par jour, étapes rapprochées."
+        },
+        "medium": {
+          "title": "Modéré",
+          "body": "6–12 km par jour."
+        },
+        "high": {
+          "title": "Beaucoup de marche",
+          "body": "12–20 km par jour, longues journées."
+        }
+      },
+      "accessibility": "Besoins d'accessibilité (facultatif)",
+      "accessibilityOptions": {
+        "wheelchair": "Fauteuil roulant",
+        "stroller": "Poussette",
+        "stairs": "Difficulté avec les escaliers",
+        "altitude": "Sensibilité à l'altitude"
+      }
+    },
+    "transport": {
+      "title": "Comment vous déplacez-vous ?",
+      "subtitle": "Choisissez autant de modes que vous voulez et indiquez combien vous voulez utiliser chacun.",
+      "modes": {
+        "walk": "À pied",
+        "bike": "Vélo",
+        "car": "Voiture de location",
+        "transit": "Transports en commun",
+        "tours": "Visites guidées"
+      },
+      "weights": {
+        "0": "Non",
+        "1": "Un peu",
+        "2": "Normal",
+        "3": "De préférence"
+      },
+      "weightLabel": "Combien de {mode}",
+      "mixAll": "Un peu de tout",
+      "carTitle": "À propos de la voiture",
+      "oppositeSideOk": "Conduire du côté opposé de la route ne nous pose pas de problème",
+      "avoidMountainRoads": "Éviter les routes de montagne",
+      "avoidCityDriving": "Éviter de conduire en centre-ville",
+      "drivingSideNote": "En {country}, on roule à {side}",
+      "sideLeft": "gauche",
+      "sideRight": "droite",
+      "atLeastOne": "Choisissez au moins un moyen de vous déplacer"
+    },
+    "interests": {
+      "title": "Qu'est-ce qui vous intéresse ?",
+      "subtitle": "Choisissez autant que vous voulez, puis classez les 3 principaux.",
+      "options": {
+        "nature": "Nature",
+        "city": "Villes",
+        "history": "Histoire",
+        "food": "Gastronomie",
+        "wine": "Vin",
+        "museums": "Musées",
+        "beaches": "Plages",
+        "adventure": "Sports d'aventure",
+        "nightlife": "Vie nocturne",
+        "shopping": "Shopping",
+        "photography": "Photographie",
+        "religion": "Religion et patrimoine",
+        "kids": "Avec des enfants"
+      },
+      "ranked": "Top 3, par ordre d'importance",
+      "rankedHint": "Glissez pour réordonner, ou utilisez les flèches.",
+      "rest": "Autres centres d'intérêt choisis",
+      "moveUp": "Monter {name}",
+      "moveDown": "Descendre {name}",
+      "dragHandle": "Glisser {name} pour classer",
+      "rank": "Rang {n}",
+      "atLeastOne": "Choisissez au moins un centre d'intérêt"
+    },
+    "budget": {
+      "title": "Budget",
+      "subtitle": "Influence le type d'hébergement, les restaurants et les attractions payantes.",
+      "levels": {
+        "budget": {
+          "title": "Économique",
+          "body": "Auberges et appartements, street food, beaucoup d'attractions gratuites."
+        },
+        "mid": {
+          "title": "Intermédiaire",
+          "body": "Hôtels 3–4 étoiles, restaurants, billets pour les sites principaux."
+        },
+        "luxury": {
+          "title": "Haut de gamme",
+          "body": "5 étoiles, visites privées, restaurants de chef."
+        }
+      },
+      "dailyCap": "Plafond journalier (facultatif)",
+      "perPerson": "Par personne et par jour, hors vols",
+      "currency": "Monnaie",
+      "capPlaceholder": "par ex. 150"
+    },
+    "hotel": {
+      "title": "Où dormez-vous ?",
+      "subtitle": "Nous ne réservons pas pour vous, mais le plan est construit autour du type d'hébergement et de son emplacement.",
+      "type": "Type d'hébergement",
+      "types": {
+        "hostel": "Auberge de jeunesse",
+        "3star": "Hôtel 3 étoiles",
+        "4star": "Hôtel 4 étoiles",
+        "5star": "Hôtel 5 étoiles",
+        "apartment": "Appartement",
+        "boutique": "Boutique-hôtel",
+        "camping": "Camping"
+      },
+      "location": "Emplacement préféré",
+      "locations": {
+        "center": "Centre-ville",
+        "station": "Près d'une gare",
+        "beach": "Près d'une plage",
+        "quiet": "Dans un endroit calme"
+      },
+      "baseMode": "Combien d'hôtels pendant le voyage ?",
+      "baseModes": {
+        "single": {
+          "title": "Une seule base",
+          "body": "Dormir au même endroit et rayonner en excursions d'une journée."
+        },
+        "multi": {
+          "title": "Itinérant",
+          "body": "Changer d'hébergement au fil du voyage, près de chaque zone."
+        },
+        "auto": {
+          "title": "Pas sûr",
+          "body": "Triplan recommande selon la durée du voyage et les destinations."
+        }
+      },
+      "recommendation": "Notre recommandation : {mode}",
+      "reasons": {
+        "short": "Voyage court, pas la peine de refaire les valises.",
+        "one_city": "Une seule ville, une base suffit.",
+        "many_cities": "Plusieurs zones, mieux vaut dormir près de chacune.",
+        "many_countries": "Plusieurs pays, il faut se déplacer.",
+        "long": "Long voyage, autant varier.",
+        "small_kids": "Avec de jeunes enfants, le calme d'une base unique l'emporte."
+      }
+    },
+    "summary": {
+      "title": "Tout est prêt ?",
+      "subtitle": "Relisez vos choix. Chaque étape peut être modifiée.",
+      "build": "Créer mon voyage",
+      "building": "Enregistrement...",
+      "people": "{count, plural, one {1 adulte} other {# adultes}}",
+      "childrenCount": "{count, plural, one {1 enfant} other {# enfants}}",
+      "infantsCount": "{count, plural, one {1 bébé} other {# bébés}}",
+      "seniorsCount": "{count, plural, one {dont 1 de 65 ans et plus} other {dont # de 65 ans et plus}}",
+      "days": "{count, plural, one {1 jour} other {# jours}} à partir du {date}",
+      "noCities": "Zones choisies par Triplan",
+      "none": "Aucun",
+      "visit": {
+        "1": "Première fois",
+        "2": "Deuxième fois",
+        "3": "Troisième fois ou plus"
+      },
+      "capValue": "Jusqu'à {amount} par personne et par jour",
+      "noCap": "Pas de plafond journalier",
+      "errors": "Certaines étapes doivent être corrigées avant de construire le plan :",
+      "stroller": "avec une poussette"
+    }
+  },
+  "trip": {
+    "title": "Votre voyage",
+    "notFound": "Voyage introuvable",
+    "notFoundBody": "Il est peut-être enregistré dans un autre navigateur. En mode invité, les voyages sont stockés uniquement sur cet appareil.",
+    "engineSoon": "Pas encore de plan pour ce voyage. Appuyez sur « Construire le plan » et nous le construirons à partir de vos préférences.",
+    "editPrefs": "Modifier les préférences",
+    "newTrip": "Nouveau voyage",
+    "savedLocally": "Enregistré sur cet appareil (mode invité)",
+    "myTrips": "Mes voyages",
+    "noTrips": "Pas encore de voyage. On commence ?",
+    "created": "Créé le {date}",
+    "delete": "Supprimer le voyage",
+    "deleteConfirm": "Supprimer ce voyage ?",
+    "open": "Ouvrir",
+    "planLabel": "Le plan",
+    "prefsLabel": "Préférences"
+  },
+  "tools": {
+    "title": "Outils du voyage",
+    "tabs": {
+      "budget": "Budget",
+      "packing": "Bagages",
+      "checklist": "Check-list",
+      "share": "Export et partage"
+    },
+    "budget": {
+      "title": "Budget estimé",
+      "disclaimer": "Estimation approximative d'après le type d'hébergement, le niveau de budget, les billets des attractions du plan et le niveau des prix du pays. Vols non compris. Les chiffres réels dépendent de la saison et des réservations.",
+      "perPersonPerDay": "par personne et par jour",
+      "perPersonTotal": "par personne, tout le voyage",
+      "groupTotal": "tout le groupe ({people} personnes, {nights} nuits)",
+      "lines": {
+        "lodging": "Hébergement",
+        "tickets": "Billets et attractions",
+        "transport": "Transports",
+        "food": "Repas"
+      },
+      "perDay": "par jour",
+      "total": "total",
+      "capOk": "dans le plafond journalier que vous avez fixé",
+      "capOver": "au-dessus du plafond journalier fixé (×{ratio})",
+      "inEur": "Affiché en euros, pas de taux de change disponible"
+    },
+    "packing": {
+      "title": "Liste de bagages",
+      "subtitle": "Établie d'après la météo, les voyageurs et vos déplacements. Cochez ce qui est prêt.",
+      "progress": "{done} sur {total} préparés",
+      "groups": {
+        "documents": "Documents et argent",
+        "clothing": "Vêtements",
+        "gear": "Équipement",
+        "kids": "Enfants et bébés",
+        "health": "Santé",
+        "tech": "Technologie"
+      },
+      "items": {
+        "passport": "Passeports (valables au moins 6 mois après le retour)",
+        "insurance": "Assurance voyage (contrat sur votre téléphone)",
+        "bookings": "Confirmations de réservation : vols, hôtels, billets",
+        "cards_cash": "Carte internationale et un peu d'espèces locales",
+        "driving_licence": "Permis de conduire (et permis international si nécessaire)",
+        "sunscreen": "Crème solaire",
+        "hat": "Chapeau",
+        "light_clothes": "Vêtements légers",
+        "water_bottle": "Gourde réutilisable",
+        "warm_layers": "Couches chaudes",
+        "gloves_scarf": "Gants et écharpe",
+        "rain_jacket": "Veste de pluie",
+        "umbrella": "Petit parapluie",
+        "check_weather": "Vérifier la météo une semaine avant et adapter les vêtements",
+        "hiking_shoes": "Bonnes chaussures de randonnée (déjà faites !)",
+        "walking_shoes": "Chaussures confortables pour marcher",
+        "daypack": "Petit sac à dos de journée",
+        "swimwear": "Maillot de bain et serviette",
+        "sports_clothes": "Vêtements de sport",
+        "modest_clothes": "Tenue décente pour les lieux religieux (épaules et genoux couverts)",
+        "camera_gear": "Appareil photo, batteries et cartes mémoire",
+        "diapers": "Couches et lingettes (pour les premiers jours)",
+        "baby_food": "Nourriture et biberons pour bébé",
+        "carrier": "Porte-bébé",
+        "stroller_travel": "Poussette pliable (légère pour les escaliers et les transports)",
+        "kids_snacks": "En-cas pour les enfants",
+        "kids_entertainment": "De quoi occuper les enfants en route",
+        "medications": "Traitements habituels + ordonnances en anglais",
+        "first_aid": "Petite trousse de premiers secours",
+        "altitude_meds": "Médicament contre le mal des montagnes (demandez à un médecin)",
+        "phone_charger": "Chargeur de téléphone",
+        "power_bank": "Batterie externe",
+        "plug_adapter": "Adaptateur pour prises de type {note}",
+        "esim": "eSIM ou forfait données",
+        "offline_maps": "Télécharger le plan et la carte pour un usage hors ligne (onglet Export et partage)"
+      }
+    },
+    "checklist": {
+      "title": "Avant le voyage",
+      "subtitle": "Tâches avec échéances, plus ce que le plan signale.",
+      "due": "avant le {date}",
+      "overdue": "en retard",
+      "progress": "{done} sur {total} faits",
+      "items": {
+        "passport_validity": "Vérifier que les passeports sont valables au moins jusqu'au {until}",
+        "insurance": "Souscrire une assurance voyage",
+        "flights": "Réserver les vols",
+        "lodging": "Réserver l'hébergement",
+        "car_rental": "Réserver la voiture de location",
+        "kids_documents": "Documents des enfants : passeports, et autorisation parentale s'ils voyagent sans l'un des parents",
+        "book_place": "Réserver à l'avance : {place} (le {date})",
+        "holiday": "Jour férié local le jour {day} ({name}) : vérifiez les horaires, beaucoup de lieux sont fermés",
+        "verify_places": "Vérifier {count} attractions non vérifiées (horaires, prix)",
+        "warning_base_too_far": "{city} a quitté le plan : trop loin pour une excursion depuis {base}",
+        "warning_city_dropped": "{city} n'a pas été retenue dans le plan",
+        "currency": "Se procurer un peu de monnaie locale ou vérifier que la carte fonctionne à l'étranger",
+        "esim": "Installer une eSIM ou vérifier le forfait données",
+        "offline": "Télécharger le plan et la carte pour un usage hors ligne"
+      }
+    },
+    "share": {
+      "title": "Export et partage",
+      "export": "Exporter",
+      "print": "Imprimer / PDF",
+      "ics": "Agenda (ICS)",
+      "gpx": "GPX",
+      "kml": "KML",
+      "exportHint": "ICS s'ouvre dans Google Agenda, Outlook et Apple Calendar. GPX et KML s'ouvrent dans Google Earth, Maps.me, OsmAnd et similaires.",
+      "shareTitle": "Lien de partage",
+      "shareHint": "Crée un lien public en lecture seule. Toute personne ayant le lien voit le plan.",
+      "shareEdit": "Autoriser la modification à toute personne ayant le lien",
+      "create": "Créer le lien",
+      "creating": "Création...",
+      "copy": "Copier",
+      "copied": "Copié !",
+      "open": "Ouvrir",
+      "linkReady": "Votre lien est prêt",
+      "shareError": "Impossible de créer le lien : {message}",
+      "updateShared": "Mettre le lien à jour avec la version actuelle",
+      "updated": "Mis à jour",
+      "offlineTitle": "Hors ligne",
+      "offlineHint": "Enregistre le plan et la carte des zones sur cet appareil pour un usage sans internet.",
+      "offlineDownload": "Télécharger pour le hors ligne",
+      "offlineDownloading": "Téléchargement des tuiles de carte... {done}/{total}",
+      "offlineReady": "Plan et carte enregistrés sur cet appareil ({tiles} tuiles)",
+      "offlineUnsupported": "Ce navigateur ne permet pas l'enregistrement hors ligne (ou l'application tourne en mode développement)",
+      "offlineError": "Le téléchargement a échoué : {message}",
+      "installHint": "Astuce : installez Triplan sur l'écran d'accueil depuis le menu du navigateur pour ouvrir le plan d'un seul geste, même sans réseau."
+    }
+  },
+  "print": {
+    "title": "Plan à imprimer",
+    "print": "Imprimer",
+    "subtitle": "{days} jours · {places} attractions · {distance} à pied",
+    "generated": "Créé avec Triplan",
+    "tip": "Dans la fenêtre d'impression, choisissez « Enregistrer au format PDF ».",
+    "back": "Retour au plan"
+  },
+  "shared": {
+    "title": "Plan partagé",
+    "readOnly": "Lecture seule. La personne qui l'a partagé peut mettre le lien à jour.",
+    "editable": "Modifiable. Les modifications sont enregistrées dans ce lien.",
+    "notFound": "Ce lien est introuvable ou a été supprimé.",
+    "save": "Enregistrer les modifications",
+    "saved": "Enregistré",
+    "saving": "Enregistrement...",
+    "copyToMine": "Copier dans mes voyages",
+    "copied": "Copié dans vos voyages",
+    "by": "Voyage vers {destinations}"
+  }
+}
