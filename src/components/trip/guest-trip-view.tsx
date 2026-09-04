@@ -2,23 +2,28 @@
 
 import { useEffect, useState } from "react";
 import { useFormatter, useTranslations } from "next-intl";
-import { Construction, MapPinOff, Pencil, Plus } from "lucide-react";
+import { AlertTriangle, ChevronDown, MapPinOff, Pencil, Plus, Sparkles } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
+import { getGuestTrip, guestPlanSchema, updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import { useWizardStore } from "@/lib/wizard/store";
 import { PreferencesSummary } from "@/components/wizard/preferences-summary";
 import type { WizardContext } from "@/components/wizard/step-props";
+import { PlanView } from "./plan-view";
 
 type Props = { id: string; ctx: WizardContext };
 
 export function GuestTripView({ id, ctx }: Props) {
   const t = useTranslations("trip");
+  const tp = useTranslations("plan");
   const format = useFormatter();
   const router = useRouter();
   const [trip, setTrip] = useState<GuestTrip | null | undefined>(undefined);
+  const [building, setBuilding] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showPrefs, setShowPrefs] = useState(false);
 
   useEffect(() => {
     setTrip(getGuestTrip(id) ?? null);
@@ -26,9 +31,35 @@ export function GuestTripView({ id, ctx }: Props) {
 
   function editPreferences() {
     if (!trip) return;
-    // Load this trip's preferences back into the wizard draft.
     useWizardStore.setState({ prefs: trip.preferences, reached: "summary", done: [] });
     router.push("/plan/summary");
+  }
+
+  async function build() {
+    if (!trip) return;
+    setBuilding(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ preferences: trip.preferences }),
+      });
+      const json: unknown = await res.json();
+      if (!res.ok) {
+        const msg = (json as { error?: string }).error === "unsupported_destination" ? tp("failedUnsupported") : (json as { message?: string }).message ?? res.statusText;
+        setError(tp("failed", { message: msg }));
+        return;
+      }
+      const data = json as { itinerary: unknown; places: unknown; cities: unknown; diagnostics: { unused: string[] } };
+      const plan = guestPlanSchema.parse({ itinerary: data.itinerary, places: data.places, cities: data.cities, unused: data.diagnostics.unused });
+      const updated = updateGuestTrip(trip.id, { plan });
+      if (updated) setTrip(updated);
+    } catch (err) {
+      setError(tp("failed", { message: (err as Error).message }));
+    } finally {
+      setBuilding(false);
+    }
   }
 
   if (trip === undefined) {
@@ -68,16 +99,11 @@ export function GuestTripView({ id, ctx }: Props) {
         <Badge variant="secondary">{t("savedLocally")}</Badge>
       </div>
 
-      <div className="mt-6 flex items-start gap-3 rounded-2xl border border-dashed bg-sunset/10 p-4 text-sm">
-        <Construction className="mt-0.5 size-5 shrink-0 text-sunset" aria-hidden />
-        <p>{t("engineSoon")}</p>
-      </div>
-
-      <div className="mt-8">
-        <PreferencesSummary prefs={trip.preferences} ctx={ctx} />
-      </div>
-
-      <div className="mt-8 flex flex-wrap gap-2">
+      <div className="mt-6 flex flex-wrap gap-2">
+        <Button type="button" onClick={build} disabled={building}>
+          <Sparkles aria-hidden />
+          {building ? tp("building") : trip.plan ? tp("rebuild") : tp("build")}
+        </Button>
         <Button type="button" variant="outline" onClick={editPreferences}>
           <Pencil aria-hidden />
           {t("editPrefs")}
@@ -92,6 +118,41 @@ export function GuestTripView({ id, ctx }: Props) {
           </Link>
         </Button>
       </div>
+
+      {error && (
+        <p role="alert" className="mt-4 flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-sm">
+          <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden />
+          {error}
+        </p>
+      )}
+
+      {trip.plan ? (
+        <section className="mt-8" aria-label={t("planLabel")}>
+          <PlanView plan={trip.plan} />
+        </section>
+      ) : (
+        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-dashed bg-sunset/10 p-4 text-sm">
+          <Sparkles className="mt-0.5 size-5 shrink-0 text-sunset" aria-hidden />
+          <p>{t("engineSoon")}</p>
+        </div>
+      )}
+
+      <section className="mt-10">
+        <button
+          type="button"
+          onClick={() => setShowPrefs((v) => !v)}
+          aria-expanded={showPrefs || !trip.plan}
+          className="flex w-full items-center justify-between rounded-xl px-1 py-2 text-start font-semibold hover:bg-muted"
+        >
+          {t("prefsLabel")}
+          <ChevronDown className={`size-4 transition-transform ${showPrefs || !trip.plan ? "rotate-180" : ""}`} aria-hidden />
+        </button>
+        {(showPrefs || !trip.plan) && (
+          <div className="mt-3">
+            <PreferencesSummary prefs={trip.preferences} ctx={ctx} />
+          </div>
+        )}
+      </section>
     </div>
   );
 }

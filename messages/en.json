@@ -73,8 +73,108 @@
     "statusBody": "Triplan is built in phases. Current phase: foundation. The questionnaire and the planning engine are on the way."
   },
   "plan": {
-    "title": "Plan a trip",
-    "description": "The Triplan questionnaire: 10 short steps."
+    "build": "Build the plan",
+    "rebuild": "Rebuild",
+    "building": "Building your plan...",
+    "failed": "We could not build a plan. {message}",
+    "failedUnsupported": "This destination is not supported yet.",
+    "generatedNote": "Built from attractions verified against OpenStreetMap. Travel times are estimates until real routing is connected.",
+    "dayTitle": "Day {n}",
+    "kinds": {
+      "arrival": "Arrival day",
+      "departure": "Departure day",
+      "full": "Full day",
+      "arrival_departure": "Arrival and departure"
+    },
+    "intensity": {
+      "light": "Light",
+      "moderate": "Moderate",
+      "heavy": "Heavy"
+    },
+    "walk": "{km} km walking",
+    "placesCount": "{count, plural, one {1 attraction} other {# attractions}}",
+    "themes": {
+      "museums": "Museums",
+      "nature": "Nature",
+      "beaches": "Beaches",
+      "history": "History",
+      "food": "Food",
+      "city": "City",
+      "shopping": "Shopping",
+      "kids": "Kids",
+      "nightlife": "Nightlife"
+    },
+    "activity": {
+      "meal": "Lunch",
+      "rest": "Break",
+      "hotel_checkin": "Hotel check-in",
+      "hotel_checkout": "Check-out and transfer to the next hotel",
+      "free": "Free time"
+    },
+    "transit": {
+      "walk": "Walk {minutes} min",
+      "transit": "Public transport {minutes} min",
+      "car": "Drive {minutes} min",
+      "bike": "Bike {minutes} min"
+    },
+    "estimated": "estimated",
+    "reasons": {
+      "near_base": "{minutes} min from the hotel",
+      "near_previous": "{minutes} min from the previous stop",
+      "interest_match": "Matches {interest}",
+      "iconic_first_visit": "A first-visit classic",
+      "hidden_gem_returning": "Local gem",
+      "kid_friendly": "Good with kids",
+      "open_on_day": "Open on {weekday}",
+      "indoor_rain": "Indoors, good in rain",
+      "lunch_time": "Lunch time",
+      "rest_break": "Breather",
+      "advance_booking": "Book in advance",
+      "unverified_hours": "Opening hours unverified",
+      "half_day_arrival": "Half day, arrival",
+      "half_day_departure": "Half day, departure",
+      "day_trip": "Day trip",
+      "hotel_transfer": "Hotel change"
+    },
+    "weekdays": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    },
+    "warnings": {
+      "closed_on_date": "Closed on this date",
+      "unverified_data": "Unverified. Check before you go",
+      "day_too_full": "Busy day",
+      "day_too_light": "Light day, room for more",
+      "base_too_far": "{city} is too far for a day trip from the base ({minutes} min round trip)",
+      "city_dropped": "{city} did not make it into the plan",
+      "no_places": "No attractions for this destination",
+      "holiday": "Local holiday ({name}). Many places closed",
+      "rain_expected": "Rain expected ({probability}%)",
+      "advance_booking_needed": "Book in advance",
+      "walk_budget_tight": "Walking budget almost used up",
+      "few_places_left": "Ran out of attractions for this destination: {days} free days"
+    },
+    "rainPlan": "Rain plan",
+    "tripStats": "Total {km} km walking, {places} attractions, {verified}% with verified opening hours",
+    "dataQuality": {
+      "verified": "Verified",
+      "partial": "Partial",
+      "unverified": "Unverified"
+    },
+    "stays": "Stays",
+    "stayLabel": "{city}: days {from}–{to}",
+    "baseMode": {
+      "single": "One base",
+      "multi": "Moving route"
+    },
+    "website": "Website",
+    "dayWarnings": "Heads up",
+    "emptyDay": "Free day. We ran out of attractions that suit you at this destination."
   },
   "gallery": {
     "title": "Ready plans",
@@ -448,7 +548,7 @@
     "title": "Your trip",
     "notFound": "Trip not found",
     "notFoundBody": "It may be saved in another browser. In guest mode trips are stored on this device only.",
-    "engineSoon": "The planning engine is built in development phase 4. Your preferences are saved on this device and the plan will appear here.",
+    "engineSoon": "No plan for this trip yet. Press \"Build the plan\" and we will build it from your preferences.",
     "editPrefs": "Edit preferences",
     "newTrip": "New trip",
     "savedLocally": "Saved on this device (guest mode)",
@@ -457,6 +557,8 @@
     "created": "Created {date}",
     "delete": "Delete trip",
     "deleteConfirm": "Delete this trip?",
-    "open": "Open"
+    "open": "Open",
+    "planLabel": "The plan",
+    "prefsLabel": "Preferences"
   }
 }

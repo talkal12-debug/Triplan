@@ -73,8 +73,108 @@
     "statusBody": "Triplan נבנה בשלבים. השלב הנוכחי: תשתית. השאלון ומנוע התכנון בדרך."
   },
   "plan": {
-    "title": "תכנון טיול",
-    "description": "השאלון של Triplan: 10 שלבים קצרים."
+    "build": "בנה תוכנית",
+    "rebuild": "בנה מחדש",
+    "building": "בונה תוכנית...",
+    "failed": "לא הצלחנו לבנות תוכנית. {message}",
+    "failedUnsupported": "היעד הזה עדיין לא נתמך.",
+    "generatedNote": "התוכנית נבנתה מאטרקציות שאומתו מול OpenStreetMap. זמני הנסיעה משוערים עד שנחבר ניתוב אמיתי.",
+    "dayTitle": "יום {n}",
+    "kinds": {
+      "arrival": "יום הגעה",
+      "departure": "יום יציאה",
+      "full": "יום מלא",
+      "arrival_departure": "הגעה ויציאה"
+    },
+    "intensity": {
+      "light": "קל",
+      "moderate": "בינוני",
+      "heavy": "מאומץ"
+    },
+    "walk": "{km} ק\"מ הליכה",
+    "placesCount": "{count, plural, one {אטרקציה אחת} other {# אטרקציות}}",
+    "themes": {
+      "museums": "מוזיאונים",
+      "nature": "טבע",
+      "beaches": "חופים",
+      "history": "היסטוריה",
+      "food": "אוכל",
+      "city": "עיר",
+      "shopping": "שופינג",
+      "kids": "ילדים",
+      "nightlife": "חיי לילה"
+    },
+    "activity": {
+      "meal": "ארוחת צהריים",
+      "rest": "הפסקה",
+      "hotel_checkin": "צ'ק-אין במלון",
+      "hotel_checkout": "צ'ק-אאוט והעברה למלון הבא",
+      "free": "זמן חופשי"
+    },
+    "transit": {
+      "walk": "הליכה {minutes} דק'",
+      "transit": "תחבורה ציבורית {minutes} דק'",
+      "car": "נסיעה {minutes} דק'",
+      "bike": "אופניים {minutes} דק'"
+    },
+    "estimated": "משוער",
+    "reasons": {
+      "near_base": "{minutes} דק' מהמלון",
+      "near_previous": "{minutes} דק' מהתחנה הקודמת",
+      "interest_match": "מתאים ל{interest}",
+      "iconic_first_visit": "קלאסיקה לפעם ראשונה",
+      "hidden_gem_returning": "פנינה מקומית",
+      "kid_friendly": "מתאים לילדים",
+      "open_on_day": "פתוח ביום {weekday}",
+      "indoor_rain": "מקורה, טוב גם בגשם",
+      "lunch_time": "שעת ארוחה",
+      "rest_break": "הפסקה לנשימה",
+      "advance_booking": "דורש הזמנה מראש",
+      "unverified_hours": "שעות פתיחה לא אומתו",
+      "half_day_arrival": "חצי יום, יום הגעה",
+      "half_day_departure": "חצי יום, יום יציאה",
+      "day_trip": "טיול יום",
+      "hotel_transfer": "החלפת מלון"
+    },
+    "weekdays": {
+      "sunday": "ראשון",
+      "monday": "שני",
+      "tuesday": "שלישי",
+      "wednesday": "רביעי",
+      "thursday": "חמישי",
+      "friday": "שישי",
+      "saturday": "שבת"
+    },
+    "warnings": {
+      "closed_on_date": "סגור בתאריך הזה",
+      "unverified_data": "לא אומת. בדקו לפני היציאה",
+      "day_too_full": "היום עמוס",
+      "day_too_light": "יום קל, אפשר להוסיף",
+      "base_too_far": "{city} רחוק מדי לטיול יום מהבסיס ({minutes} דק' הלוך-חזור)",
+      "city_dropped": "{city} לא נכנס לתוכנית",
+      "no_places": "אין אטרקציות ליעד הזה",
+      "holiday": "חג מקומי ({name}). הרבה מקומות סגורים",
+      "rain_expected": "צפוי גשם ({probability}%)",
+      "advance_booking_needed": "דורש הזמנה מראש",
+      "walk_budget_tight": "תקציב ההליכה כמעט מלא",
+      "few_places_left": "נגמרו האטרקציות ליעד הזה: {days} ימים חופשיים"
+    },
+    "rainPlan": "תוכנית גשם",
+    "tripStats": "סה\"כ {km} ק\"מ הליכה, {places} אטרקציות, {verified}% מהן עם שעות פתיחה מאומתות",
+    "dataQuality": {
+      "verified": "מאומת",
+      "partial": "חלקי",
+      "unverified": "לא אומת"
+    },
+    "stays": "לינה",
+    "stayLabel": "{city}: ימים {from}–{to}",
+    "baseMode": {
+      "single": "בסיס אחד",
+      "multi": "מסלול נודד"
+    },
+    "website": "אתר",
+    "dayWarnings": "שימו לב",
+    "emptyDay": "יום חופשי. נגמרו האטרקציות שהתאימו לכם ביעד הזה."
   },
   "gallery": {
     "title": "תוכניות מוכנות",
@@ -448,7 +548,7 @@
     "title": "הטיול שלך",
     "notFound": "הטיול לא נמצא",
     "notFoundBody": "אולי הוא נשמר בדפדפן אחר. במצב אורח הטיולים נשמרים במכשיר בלבד.",
-    "engineSoon": "מנוע התכנון נבנה בשלב 4 של הפיתוח. ההעדפות שלכם נשמרו במכשיר הזה, והתוכנית תופיע כאן.",
+    "engineSoon": "עדיין אין תוכנית לטיול הזה. לחצו \"בנה תוכנית\" כדי שנבנה אותה מההעדפות שלכם.",
     "editPrefs": "ערוך את ההעדפות",
     "newTrip": "טיול חדש",
     "savedLocally": "נשמר במכשיר הזה (מצב אורח)",
@@ -457,6 +557,8 @@
     "created": "נוצר {date}",
     "delete": "מחק טיול",
     "deleteConfirm": "למחוק את הטיול הזה?",
-    "open": "פתח"
+    "open": "פתח",
+    "planLabel": "התוכנית",
+    "prefsLabel": "ההעדפות"
   }
 }

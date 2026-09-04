@@ -2,18 +2,30 @@
 
 import { z } from "zod";
 import { tripPreferencesSchema, type TripPreferences } from "@/lib/planner/types";
+import { citySeedSchema, placeSeedSchema } from "@/lib/data/schemas";
+import { itinerarySchema } from "@/lib/planner/itinerary";
 
 /**
  * Guest trips live in localStorage until the traveller signs up (milestone 8).
- * Only the preferences are stored now; the generated itinerary joins in milestone 4.
+ * A trip holds the preferences and, once built, the plan with a snapshot of the
+ * places it references (so it renders offline and survives data updates).
  */
 export const GUEST_TRIPS_KEY = "triplan:guest-trips";
+
+export const guestPlanSchema = z.object({
+  itinerary: itinerarySchema,
+  places: z.record(z.string(), placeSeedSchema),
+  cities: z.array(citySeedSchema),
+  unused: z.array(z.string()),
+});
+export type GuestPlan = z.infer<typeof guestPlanSchema>;
 
 export const guestTripSchema = z.object({
   id: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
   preferences: tripPreferencesSchema,
+  plan: guestPlanSchema.optional(),
 });
 export type GuestTrip = z.infer<typeof guestTripSchema>;
 
@@ -50,6 +62,15 @@ export function createGuestTrip(preferences: TripPreferences): GuestTrip {
   const trip: GuestTrip = { id, createdAt: now, updatedAt: now, preferences };
   write([trip, ...read()]);
   return trip;
+}
+
+export function updateGuestTrip(id: string, patch: Partial<Pick<GuestTrip, "preferences" | "plan">>): GuestTrip | undefined {
+  const trips = read();
+  const idx = trips.findIndex((t) => t.id === id);
+  if (idx < 0) return undefined;
+  trips[idx] = { ...trips[idx], ...patch, updatedAt: new Date().toISOString() };
+  write(trips);
+  return trips[idx];
 }
 
 export function deleteGuestTrip(id: string) {

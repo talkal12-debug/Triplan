@@ -53,6 +53,13 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 | `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
 | `AUTH_*` | Google + email magic-link sign-in. | 8 |
 
+## Planning engine
+
+`src/lib/planner/` is pure TypeScript (no React, DB or network): `generateItinerary({ prefs, places, cities, weather?, holidays? })`
+returns a validated `Itinerary`. Pipeline: budgets -> filter + score -> DBSCAN clusters -> stays (single base with day
+trips, or moving route) -> clusters to days -> weather + variety passes -> timed schedule (opening hours, lunch, rests,
+walking cap) -> validate + repair. Editing ops live in `edit.ts`. Try it: `npx tsx scripts/smoke-plan.ts PT 6`.
+
 ## Data
 
 All data ships with the repo, so the app runs fully offline and without keys.
@@ -81,4 +88,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestones 1-3 done (foundation, data, wizard). Next: milestone 4 (planning engine). See PLAN.md sections 8 and 11.
+Milestones 1-4 done (foundation, data, wizard, planning engine). Next: milestone 5 (plan views: timeline, map, calendar, editing). See PLAN.md sections 8 and 11.
