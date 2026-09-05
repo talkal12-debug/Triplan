@@ -130,6 +130,8 @@ export const placeSeedSchema = z.object({
   requiresAdvanceBooking: z.boolean(),
   indoor: z.boolean(),
   kidFriendly: z.boolean(),
+  /** One-paragraph description per language (Wikipedia extract or Wikidata description) with its source URL. */
+  summary: z.record(z.string(), z.object({ text: z.string(), url: z.string().url().nullable() })).optional(),
   dataQuality: z.enum(dataQualities),
   source: z.enum(["seed", "osm", "google", "user"]),
   wikidata: z.string().regex(/^Q\d+$/).nullable(),

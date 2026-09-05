@@ -17,7 +17,7 @@ import {
 import type { Activity, Reason } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import type { Locale } from "@/lib/i18n/locales";
-import { hhmm, localDateOf, placeLabel } from "@/lib/guest/plan-helpers";
+import { hhmm, localDateOf, placeLabel, placeSummary } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
 import { AffiliateLinks } from "./affiliate-links";
 import { VoteBar } from "./vote-bar";
@@ -56,6 +56,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
   const name = isVisit ? placeLabel(place, locale, a.placeId ?? "") : t(`activity.${a.kind}` as never);
   const Transit = a.transitFromPrev ? transitIcons[a.transitFromPrev.mode] : null;
   const Icon = a.kind === "meal" ? Utensils : a.kind === "rest" ? Coffee : Hotel;
+  const summary = placeSummary(place, locale);
 
   return (
     <li className="relative">
@@ -110,6 +111,22 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
               </Badge>
             )}
           </div>
+          {isVisit && !compact && summary && (
+            <p className="mt-1 text-sm leading-snug text-muted-foreground" dir="auto">
+              {summary.text}
+              {summary.url && (
+                <>
+                  {" "}
+                  <a href={summary.url} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-xs underline-offset-2 hover:underline" onClick={(e) => e.stopPropagation()}>
+                    {t("summarySource")}
+                  </a>
+                </>
+              )}
+            </p>
+          )}
+          {isVisit && !compact && !summary && place && (
+            <p className="mt-1 text-sm text-muted-foreground">{t(`categories.${place.category}`)}</p>
+          )}
           {isVisit && !compact && a.reasons.length > 0 && (
             <ul className="mt-1 flex flex-wrap gap-1">
               {a.reasons.slice(0, 3).map((r, i) => (

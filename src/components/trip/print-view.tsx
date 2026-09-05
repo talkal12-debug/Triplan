@@ -6,7 +6,7 @@ import { Printer } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
-import { hhmm, localDateOf, placeLabel } from "@/lib/guest/plan-helpers";
+import { hhmm, localDateOf, placeLabel, placeSummary } from "@/lib/guest/plan-helpers";
 import type { Locale } from "@/lib/i18n/locales";
 import type { WizardContext } from "@/components/wizard/step-props";
 import { useDistance } from "@/lib/units/use-distance";
@@ -90,6 +90,7 @@ function PrintContent({ trip, ctx }: { trip: GuestTrip & { plan: NonNullable<Gue
                     </td>
                     <td className="py-2">
                       <div className="font-medium">{a.kind === "visit" ? placeLabel(p, locale, a.placeId ?? "") : tp(`activity.${a.kind}` as never)}</div>
+                      {a.kind === "visit" && placeSummary(p, locale) && <div className="text-xs text-muted-foreground" dir="auto">{placeSummary(p, locale)?.text}</div>}
                       {p && (
                         <div className="text-xs text-muted-foreground" dir="ltr">
                           {p.nameLocal} · {p.lat.toFixed(5)}, {p.lng.toFixed(5)}

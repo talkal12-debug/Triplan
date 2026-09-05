@@ -31,3 +31,9 @@ export function todayIso(): string {
 export function googleMapsDirections(lat: number, lng: number): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
+
+/** The place's one-paragraph description in the UI language, falling back to English. */
+export function placeSummary(place: { summary?: Record<string, { text: string; url: string | null }> } | undefined, locale: string): { text: string; url: string | null } | null {
+  if (!place?.summary) return null;
+  return place.summary[locale] ?? place.summary.en ?? null;
+}

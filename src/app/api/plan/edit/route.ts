@@ -15,6 +15,8 @@ import {
 import { refineTravel } from "@/lib/planner/refine";
 import { loadPlanContext } from "@/lib/server/plan-context";
 import { getRouting } from "@/lib/providers/registry";
+import { withSummaries } from "@/lib/providers/summaries";
+import { isLocale } from "@/lib/i18n/locales";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -23,6 +25,7 @@ const requestSchema = z.object({
   preferences: tripPreferencesSchema,
   itinerary: itinerarySchema,
   op: editOpSchema,
+  locale: z.string().optional(),
 });
 
 /**
@@ -36,12 +39,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "invalid_request", issues: parsed.error.issues }, { status: 400 });
   }
   const { preferences, itinerary, op } = parsed.data;
+  const locale = parsed.data.locale && isLocale(parsed.data.locale) ? parsed.data.locale : "he";
   const loaded = await loadPlanContext(preferences);
   if (loaded.places.length === 0) return NextResponse.json({ error: "no_places" }, { status: 422 });
   const ctx = { prefs: preferences, places: loaded.places, cities: loaded.cities };
 
   if (op.type === "alternatives") {
-    return NextResponse.json({ itinerary, alternatives: alternativesFor(itinerary, op.dayIndex, op.activityId, ctx, 3) });
+    const alternatives = await withSummaries(alternativesFor(itinerary, op.dayIndex, op.activityId, ctx, 3), locale === "en" ? ["en"] : [locale, "en"]);
+    return NextResponse.json({ itinerary, alternatives });
   }
 
   let next = itinerary;
@@ -83,6 +88,6 @@ export async function POST(req: Request) {
   }
 
   const referenced = new Set(next.days.flatMap((d) => [...d.activities.map((a) => a.placeId), ...d.rainPlan]));
-  const snapshot = loaded.places.filter((p) => referenced.has(p.id));
+  const snapshot = await withSummaries(loaded.places.filter((p) => referenced.has(p.id)), locale === "en" ? ["en"] : [locale, "en"]);
   return NextResponse.json({ itinerary: next, places: Object.fromEntries(snapshot.map((p) => [p.id, p])) });
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFormatter, useTranslations } from "next-intl";
 import { AlertTriangle, ChevronDown, MapPinOff, Pencil, Plus, Sparkles } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -81,6 +81,39 @@ export function GuestTripView({ id, ctx }: Props) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- run once per trip id
   }, [trip?.id, trip?.plan?.extras?.links.version]);
+
+  // Plans built before place descriptions existed (or opened in another language)
+  // fetch the missing ones once per trip and language; places with no source stay as they are.
+  const summariesChecked = useRef<string>("");
+  useEffect(() => {
+    const plan = trip?.plan;
+    const key = `${trip?.id}:${ctx.locale}`;
+    if (!trip || !plan || summariesChecked.current === key) return;
+    const wanted = ctx.locale === "en" ? ["en"] : [ctx.locale, "en"];
+    const missing = Object.values(plan.places)
+      .filter((p) => p.wikidata && !p.summary?.[ctx.locale] && !p.summary?.en)
+      .map((p) => ({ id: p.id, wikidata: p.wikidata as string }));
+    summariesChecked.current = key;
+    if (missing.length === 0) return;
+    fetch("/api/places/summaries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ places: missing.slice(0, 60), locales: wanted }),
+    })
+      .then(async (r) => (r.ok ? ((await r.json()) as { summaries: Record<string, Record<string, { text: string; url: string | null }>> }).summaries : null))
+      .then((summaries) => {
+        if (!summaries || Object.keys(summaries).length === 0) return;
+        const current = getGuestTrip(trip.id);
+        if (!current?.plan) return;
+        const places = Object.fromEntries(
+          Object.entries(current.plan.places).map(([id, p]) => [id, summaries[id] ? { ...p, summary: { ...(p.summary ?? {}), ...summaries[id] } } : p]),
+        );
+        const updated = updateGuestTrip(trip.id, { plan: { ...current.plan, places } });
+        if (updated) setTrip(updated);
+      })
+      .catch(() => undefined);
+    // No cancellation: the result is merged into whatever is stored by then.
+  }, [trip, ctx.locale]);
 
   function editPreferences() {
     if (!trip) return;

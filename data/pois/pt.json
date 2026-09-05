@@ -95,6 +95,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מגדל בֶּלֶן הוא מגדל מבוצר שנמצא על גדת הנהר טז'ו ברובע בלן שבמערב ליסבון בירת פורטוגל. המגדל נבנה בתחילת המאה ה-16 לציון גילוייו של ואסקו דה גמה, והפך לאחד מסמלי העיר.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%92%D7%93%D7%9C_%D7%91%D7%9C%D7%9F"
+        },
+        "en": {
+          "text": "Belém Tower, officially the Tower of Saint Vincent, is a 16th-century fortification located in Lisbon, Portugal, which served as a point of embarkation and disembarkation for Portuguese explorers and as a ceremonial gateway to Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/Bel%C3%A9m_Tower"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q215003"
@@ -133,6 +143,16 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מנזר ז'רונימוש הוא מנזר ברובע בלן שבמערב ליסבון בירת פורטוגל. המנזר משקף את שיא האדריכלות המנואלינית, סגנון ששגשג באימפריה הפורטוגזית בתחילת המאה ה-16.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A0%D7%96%D7%A8_%D7%96'%D7%A8%D7%95%D7%A0%D7%99%D7%9E%D7%95%D7%A9"
+        },
+        "en": {
+          "text": "The Jerónimos Monastery or Hieronymites Monastery is a former monastery of the Order of Saint Jerome near the Tagus river in the parish of Belém, in the Lisbon Municipality, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Jer%C3%B3nimos_Monastery"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q272781"
@@ -171,6 +191,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "אנדרטת התגליות היא אנדרטה השוכנת ברובע בלן בעיר ליסבון. האנדרטה נבנתה ב-1940 לכבודם של מגלי הארצות הפורטוגלים של עידן התגליות במאה ה-15 וה-16, בו הובילה האימפריה הפורטוגזית מסעות גילוי וכיבוש של ארצות חדשות ברחבי העולם.",
+          "url": "https://he.wikipedia.org/wiki/%D7%90%D7%A0%D7%93%D7%A8%D7%98%D7%AA_%D7%94%D7%AA%D7%92%D7%9C%D7%99%D7%95%D7%AA"
+        },
+        "en": {
+          "text": "The Monument of the Discoveries is a monument on the northern bank of the Tagus River estuary, in the civil parish of Santa Maria de Belém, Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/Monument_of_the_Discoveries"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1133712"
@@ -209,6 +239,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Museum of Art, Architecture and Technology or MAAT is a museum in Lisbon, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Museum_of_Art%2C_Architecture_and_Technology"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q27522479"
@@ -246,6 +282,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Confectionery store in Belém, Lisbon, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q3091352"
@@ -283,6 +325,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בפורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "The National Coach Museum is located in Lisbon, Portugal. First established in 1905 as the Royal Coaches Museum, the museum houses historic horse-drawn coaches and carriages that belonged to the royal houses of Portugal from the 16th to the 19th century.",
+          "url": "https://en.wikipedia.org/wiki/National_Coach_Museum_(Portugal)"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1659559"
@@ -320,6 +372,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "Bookstore chain in Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q135238263"
@@ -357,6 +415,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Lisbon Tropical Botanical Garden is located between the Jerónimos Monastery and the Belém Palace, the official residence of the Portuguese president, in Belém, a few kilometers to the west of the centre of Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Tropical_Botanical_Garden"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q2249320"
@@ -434,6 +498,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Comercial and artistic hub in Lisbon, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q112628482"
@@ -509,6 +579,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בפורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "Cultural heritage monument in Lisboa, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q6941112"
@@ -546,6 +626,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בליסבון, פורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "The Museu Nacional de Arte Antiga, also known in English as the National Museum of Ancient Art, is a Portuguese national art museum located in Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/National_Museum_of_Ancient_Art"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q212459"
@@ -583,6 +673,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Museu da Marioneta has been located since November 2001 in the Convent of Bernardas in Lisbon, Portugal, establishing itself as the first museum in Portugal entirely dedicated to the interpretation and dissemination of the history of puppetry, covering the history of this ar…",
+          "url": "https://en.wikipedia.org/wiki/Museu_da_Marioneta"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q10333706"
@@ -620,6 +716,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Time Out Market Lisboa is a food hall located in the Mercado da Ribeira at Cais do Sodré in Lisbon, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Time_Out_Market_Lisboa"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q28226115"
@@ -657,6 +759,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Bica Funicular, sometimes known as the Elevador da Bica, is a funicular railway line in the civil parish of Misericórdia, in the municipality of Lisbon, Portugal. Operated by Carris, it connects the Rua de São Paulo with Calçada do Combro/Largo do Calhariz/Rua do Loreto.",
+          "url": "https://en.wikipedia.org/wiki/Ascensor_da_Bica"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q99630"
@@ -695,6 +803,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "Bairro Alto is a central district of the city of Lisbon, the Portuguese capital.",
+          "url": "https://en.wikipedia.org/wiki/Bairro_Alto"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q652613"
@@ -732,6 +846,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Park in Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q6672039"
@@ -769,6 +889,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "The Igreja de São Roque is a Catholic church in Lisbon, Portugal. It was the earliest Jesuit church in the Portuguese world, and one of the first Jesuit churches anywhere.",
+          "url": "https://en.wikipedia.org/wiki/Igreja_de_S%C3%A3o_Roque"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1078864"
@@ -844,6 +970,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Bertrand Library is a Portuguese book retailer operating 59 branches nationwide, including 2 in Madeira.",
+          "url": "https://en.wikipedia.org/wiki/Livraria_Bertrand"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1866547"
@@ -881,6 +1013,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בפורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "Museum in Lisbon, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1146790"
@@ -918,6 +1060,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Santa Justa Lift, also called Carmo Lift, is an elevator, or lift, in the civil parish of Santa Maria Maior, in the historic center of Lisbon, Portugal. Situated at the end of Rua de Santa Justa, it connects the lower streets of the Baixa with the higher Largo do Carmo.",
+          "url": "https://en.wikipedia.org/wiki/Santa_Justa_Lift"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q168001"
@@ -993,6 +1141,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "כיכר בליסבון, פורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "The Praça do Comércio, more commonly known in Portuguese as Terreiro do Paço (, is a large, harbour-facing plaza in Portugal's capital, Lisbon, and is one of the largest in Portugal, with an area of 175 by 175 m, that is, 30,600 m2.",
+          "url": "https://en.wikipedia.org/wiki/Pra%C3%A7a_do_Com%C3%A9rcio"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q999002"
@@ -1104,6 +1262,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "The Casa dos Bicos is a historical house in the civil parish of Santa Maria Maior, in the Portuguese municipality of Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/Casa_dos_Bicos"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q2700618"
@@ -1141,6 +1305,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "קתדרלת מריה הקדושה היא קתדרלה רומית-קתולית הממוקמת בליסבון, בירת פורטוגל. הקתדרלה היא הקתדרלה העתיקה בעיר והיא מושבה של הפטריארכיה של ליסבון.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%AA%D7%93%D7%A8%D7%9C%D7%AA_%D7%9C%D7%99%D7%A1%D7%91%D7%95%D7%9F"
+        },
+        "en": {
+          "text": "The Cathedral of Saint Mary Major, often called Lisbon Cathedral or simply the Sé, is a Roman Catholic cathedral located in Lisbon, Portugal. It is the oldest church in the city, built in 1147.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Cathedral"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q432290"
@@ -1179,6 +1353,16 @@
       "requiresAdvanceBooking": true,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "טירת סאו ז'ורז'ה היא טירה בליסבון, בירת פורטוגל. הטירה עומדת על הגבעה הגבוהה ביותר במרכז ההיסטורי של העיר, והיא אחת מאתרי התיירות המרכזיים בה.",
+          "url": "https://he.wikipedia.org/wiki/%D7%98%D7%99%D7%A8%D7%AA_%D7%A1%D7%90%D7%95_%D7%96'%D7%95%D7%A8%D7%96'%D7%94"
+        },
+        "en": {
+          "text": "São Jorge Castle, sometimes known in English as Saint George's Castle, is a historic castle in the Portuguese capital of Lisbon, located in the freguesia of Santa Maria Maior.",
+          "url": "https://en.wikipedia.org/wiki/S%C3%A3o_Jorge_Castle"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q636780"
@@ -1217,6 +1401,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Alfama is the oldest neighborhood of Lisbon, spreading on the slope between the São Jorge Castle and the Tagus river.",
+          "url": "https://en.wikipedia.org/wiki/Alfama"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q985517"
@@ -1255,6 +1445,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Viewpoint in Alfama, Lisbon, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q6837314"
@@ -1329,6 +1525,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בפורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "The Fado Museum is a music museum dedicated to Fado located in the Lisbon neighbourhood of Alfama. It was inaugurated on 25 September 1998.",
+          "url": "https://en.wikipedia.org/wiki/Fado_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1954395"
@@ -1366,6 +1572,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Church of Santa Engrácia is a 17th-century monument in Lisbon, Portugal. Originally a church, it was converted into the National Pantheon, in which important Portuguese personalities are buried.",
+          "url": "https://en.wikipedia.org/wiki/Church_of_Santa_Engr%C3%A1cia"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1601019"
@@ -1516,6 +1728,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בפורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "The Museu Nacional do Azulejo, occasionally known in English as the National Tile Museum, is an art museum in Lisbon, Portugal dedicated to the azulejo, traditional tilework of Portugal and the former Portuguese Empire, as well as of other Iberophone cultures.",
+          "url": "https://en.wikipedia.org/wiki/National_Museum_of_the_Azulejo"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q2313815"
@@ -1554,6 +1776,16 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "בית הכנסת \"שערי תקווה\" בליסבון הוא בית כנסת פורטוגזי היסטורי הממוקם בפרגזיה סנטו אנטוניו, בעיר ליסבון.",
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%AA_%D7%91%D7%9C%D7%99%D7%A1%D7%91%D7%95%D7%9F"
+        },
+        "en": {
+          "text": "The Lisbon Synagogue, formally the Synagogue Shaaré Tikvah, is a Jewish congregation and synagogue, located at 59 Rua Alexandre Herculano, in the civil parish of Santo António, in the municipality of Lisbon, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Synagogue"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q3113484"
@@ -1591,6 +1823,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "he": {
+          "text": "מוזיאון קאלוסט גולבנקיאן, המכונה גם מוזיאון גולבנקיאן, הוא מוזיאון אמנות אנציקלופדי מרכזי בליסבון, פורטוגל, בפרגזיה של אזור אוונידס נובאס.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%A7%D7%90%D7%9C%D7%95%D7%A1%D7%98_%D7%92%D7%95%D7%9C%D7%91%D7%A0%D7%A7%D7%99%D7%90%D7%9F"
+        },
+        "en": {
+          "text": "Lisbon's Calouste Gulbenkian Museum houses one of the world's most important private art collections. It includes works from Ancient Egypt to the early 20th century, spanning the arts of the Islamic World, China and Japan, as well as French decorative arts.",
+          "url": "https://en.wikipedia.org/wiki/Calouste_Gulbenkian_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q211262"
@@ -1629,6 +1871,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Gulbenkian Park also known as Gulbenkian Garden is located in Lisbon, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Gulbenkian_Park"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q10306238"
@@ -1667,6 +1915,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Edward VII Park is a public park in Lisbon, Portugal. The park occupies an area of 26 hectares to the north of Avenida da Liberdade and Marquis of Pombal Square in Lisbon's city center.",
+          "url": "https://en.wikipedia.org/wiki/Edward_VII_Park"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q2034183"
@@ -1705,6 +1959,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Águas Livres Aqueduct is a historic aqueduct system in Lisbon, Portugal. It is considered one of the most remarkable examples of 18th-century Portuguese engineering and one of Lisbon's best-known landmarks.",
+          "url": "https://en.wikipedia.org/wiki/%C3%81guas_Livres_Aqueduct"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q623228"
@@ -1742,6 +2002,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Estrela Basilica or the Royal Basilica and Convent of the Most Sacred Heart of Jesus, is a minor basilica and ancient carmelite convent in Lisbon, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Estrela_Basilica"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q2657972"
@@ -1780,6 +2046,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Urban park in Lisbon, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q10306236"
@@ -1817,6 +2089,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Mercado de Campo de Ourique is a neighborhood food market located in Lisbon, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Mercado_de_Campo_de_Ourique"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q30589995"
@@ -1853,6 +2131,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Lisbon Zoo is a zoological garden in Lisbon, Portugal. It was founded in 1884.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Zoo"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q220063"
@@ -1891,6 +2175,12 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Lisbon Oceanarium is an oceanarium in Lisbon, Portugal. It is located in the Parque das Nações, which was the exhibition grounds for the Expo '98.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Oceanarium"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q652806"
@@ -1928,6 +2218,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Science center located in Lisbon, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q10346955"
@@ -2002,6 +2298,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Parque das Nações, colloquially known as Expo, is a freguesia and typical quarter of Lisbon, the capital city of Portugal. Located in eastern Lisbon, Parque das Nações is to the east of Olivais, northeast of Marvila, and directly south of Lisbon's border with Loures.",
+          "url": "https://en.wikipedia.org/wiki/Parque_das_Na%C3%A7%C3%B5es"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1428475"
@@ -2040,6 +2342,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "פסל",
+          "url": null
+        },
+        "en": {
+          "text": "The Sanctuary of Christ the King is a Catholic monument and shrine dedicated to the Sacred Heart of Jesus Christ overlooking the city of Lisbon situated in Almada, in Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Christ_the_King_(Almada)"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q805446"
@@ -2079,6 +2391,12 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Pena Palace is a Romanticist palace in São Pedro de Penaferrim, in the municipality of Sintra, on the Portuguese Riviera.",
+          "url": "https://en.wikipedia.org/wiki/Pena_Palace"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q69513"
@@ -2156,6 +2474,16 @@
       "requiresAdvanceBooking": true,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון בפורטוגל",
+          "url": null
+        },
+        "en": {
+          "text": "Quinta da Regaleira is a quinta constructed from 1904 to '10 and located near the historic centre of Sintra, Portugal. It is classified as a World Heritage Site by UNESCO within the \"Cultural Landscape of Sintra\".",
+          "url": "https://en.wikipedia.org/wiki/Quinta_da_Regaleira"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q2630165"
@@ -2192,6 +2520,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Palace of Sintra, also called Town Palace, is located in the town of Sintra, in the Lisbon District of Portugal. It is a present-day historic house museum.",
+          "url": "https://en.wikipedia.org/wiki/Sintra_National_Palace"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q532399"
@@ -2269,6 +2603,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "קאבו דה רוקה הוא הנקודה המערבית ביותר באירופה היבשתית. הכף שוכן במערב פורטוגל, כ-42 קילומטרים מערבית לבירה ליסבון, וצוקיו מתנשאים לגובה של 140 מטרים מעל למימי האוקיינוס האטלנטי.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%91%D7%95_%D7%93%D7%94_%D7%A8%D7%95%D7%A7%D7%94"
+        },
+        "en": {
+          "text": "Cabo da Roca or Cape Roca is a cape which forms the westernmost point of the Sintra Mountain Range, of mainland Portugal, of continental Europe, and of the Eurasian landmass. It is located in the municipality of Sintra, near Azóia, to the west of Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/Cabo_da_Roca"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q169175"
@@ -2307,6 +2651,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Praia do Guincho is an Atlantic beach located on Portugal's Estoril coast, 5 km from the town of Cascais, and is located in the municipality of Cascais, more precisely in the parishes of Cascais e Estoril and Alcabideche, in the District of Lisbon.",
+          "url": "https://en.wikipedia.org/wiki/Praia_do_Guincho"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q2107562"
@@ -2345,6 +2695,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Boca do Inferno is a chasm located in the seaside cliffs close to the Portuguese city of Cascais, in the District of Lisbon. The seawater has access to the deep bottom of the chasm and vigorously strikes its rocky walls, making it a popular tourist attraction.",
+          "url": "https://en.wikipedia.org/wiki/Boca_do_Inferno"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q888949"
@@ -2383,6 +2739,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "קשקאיש היא רשות מקומית במרכז פורטוגל, ומהווה פרבר יוקרה של הבירה ליסבון וגם אתר חוף ים מבוקש.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%A9%D7%A7%D7%90%D7%99%D7%A9"
+        },
+        "en": {
+          "text": "Cascais is a town and municipality in the Lisbon District of Portugal, located on the Estoril Coast. The municipality has a total of 214,158 inhabitants in an area of 97.",
+          "url": "https://en.wikipedia.org/wiki/Cascais"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q273059"
@@ -2420,6 +2786,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Beach in Cascaus",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q10352764"
@@ -2571,6 +2943,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Baroque tower in Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q20986654"
@@ -2646,6 +3024,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Porto Cathedral is a Roman Catholic church located in the historical centre of the city of Porto, Portugal. It is one of the city's oldest monuments and one of the most important local Romanesque monuments.",
+          "url": "https://en.wikipedia.org/wiki/Porto_Cathedral"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1441255"
@@ -2719,6 +3103,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "The Church of Saint Francis is the most prominent Gothic monument in Porto, Portugal, being also noted for its outstanding Baroque inner decoration. It is located in the historic centre of the city, declared World Heritage Site by UNESCO.",
+          "url": "https://en.wikipedia.org/wiki/Church_of_S%C3%A3o_Francisco_(Porto)"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1549939"
@@ -2794,6 +3184,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Cultural heritage monument in Porto, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q10328805"
@@ -2831,6 +3227,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Chapel of Santa Catarina, also known as the Chapel of Souls, is a chapel located on the shopping street of Rua de Santa Catarina, in the former parish of Santo Ildefonso, in the city of Porto, in Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Chapel_of_Santa_Catarina"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q9695712"
@@ -2868,6 +3270,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Church in Porto, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q10300891"
@@ -2905,6 +3313,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "Soares dos Reis National Museum is a museum, currently housed in the Carrancas Palace situated in the civil parish of Cedofeita, Santo Ildefonso, Sé, Miragaia, São Nicolau e Vitória, in the northern Portuguese city of Porto.",
+          "url": "https://en.wikipedia.org/wiki/Soares_dos_Reis_National_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1141468"
@@ -2981,6 +3395,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Garden in Porto, Portugal",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q10306385"
@@ -3017,6 +3437,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "The Casa da Música is a concert hall in Porto, Portugal. It was designed by architect Rem Koolhaas and opened in 2005.",
+          "url": "https://en.wikipedia.org/wiki/Casa_da_M%C3%BAsica"
+        },
+        "he": {
+          "text": "קאסה דה מוזיקה הוא אולם קונצרטים בפורטו, פורטוגל. האולם תוכנן על ידי האדריכל רם קולהאס ונפתח ב-2005.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%90%D7%A1%D7%94_%D7%93%D7%94_%D7%9E%D7%95%D7%96%D7%99%D7%A7%D7%94"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q917274"
@@ -3093,6 +3523,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Felgueiras Lighthouse , also known as the Farol de Felgueiras, Farolim do Molhe de Felgueiras, or Farolim Cabeça de Molhe, is a lighthouse on the Portuguese Atlantic coast, situated on a jetty or mole on the right bank of the Douro River, at the point where the river meets t…",
+          "url": "https://en.wikipedia.org/wiki/Felgueiras_Lighthouse"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q10280208"
@@ -3129,6 +3565,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Sea Life Porto is an aquarium located in Porto, Portugal.",
+          "url": "https://en.wikipedia.org/wiki/Sea_Life_Porto"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1439061"

@@ -15,12 +15,12 @@ const responseSchema = z.object({
 export class EditError extends Error {}
 
 /** Send one edit to the server, merge the result into the guest trip and persist it. */
-export async function applyEdit(trip: GuestTrip, op: EditOp): Promise<{ trip: GuestTrip; alternatives: z.infer<typeof placeSeedSchema>[] }> {
+export async function applyEdit(trip: GuestTrip, op: EditOp, locale?: string): Promise<{ trip: GuestTrip; alternatives: z.infer<typeof placeSeedSchema>[] }> {
   if (!trip.plan) throw new EditError("no_plan");
   const res = await fetch("/api/plan/edit", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ preferences: trip.preferences, itinerary: trip.plan.itinerary, op }),
+    body: JSON.stringify({ preferences: trip.preferences, itinerary: trip.plan.itinerary, op, locale: locale ?? document.documentElement.lang }),
   });
   const json: unknown = await res.json().catch(() => null);
   if (!res.ok) throw new EditError((json as { error?: string } | null)?.error ?? res.statusText);

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { PlannerError, generateItinerary, tripPreferencesSchema } from "@/lib/planner";
 import { enrichPlan, loadPlanContext, loadSignals } from "@/lib/server/plan-context";
 import { isLocale } from "@/lib/i18n/locales";
+import { withSummaries } from "@/lib/providers/summaries";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -44,7 +45,11 @@ export async function POST(req: Request) {
     const enriched = await enrichPlan(prefs, itinerary, ctx, signals, locale);
     const usedIds = new Set(enriched.itinerary.days.flatMap((d) => [...d.activities.map((a) => a.placeId), ...d.rainPlan]));
     const unusedTop = diagnostics.unused.slice(0, 40);
-    const keep = ctx.places.filter((p) => usedIds.has(p.id) || unusedTop.includes(p.id));
+    // One-paragraph descriptions (Wikipedia / Wikidata) for the places that made it into the plan.
+    const keep = await withSummaries(
+      ctx.places.filter((p) => usedIds.has(p.id) || unusedTop.includes(p.id)),
+      locale === "en" ? ["en"] : [locale, "en"],
+    );
     return NextResponse.json({
       itinerary: enriched.itinerary,
       places: Object.fromEntries(keep.map((p) => [p.id, p])),

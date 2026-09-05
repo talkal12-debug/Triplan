@@ -210,6 +210,7 @@ model Place {
   /// Bumped when the OSM import logic changes, so stale cache rows are refetched.
   sourceVersion          Int     @default(1)
   wikidata               String?
+  summary                String? /// JSON:Record<lang, { text, url }>
   updatedAt              DateTime @updatedAt
 
   activities Activity[]

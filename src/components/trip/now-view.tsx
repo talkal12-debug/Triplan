@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { ArrowLeft, MapPinOff, Navigation } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import type { Activity } from "@/lib/planner/itinerary";
-import { googleMapsDirections, hhmm, localDateOf, todayIso } from "@/lib/guest/plan-helpers";
+import { googleMapsDirections, hhmm, localDateOf, placeSummary, todayIso } from "@/lib/guest/plan-helpers";
 import { usePlanText } from "./use-plan-text";
 import { cn } from "@/lib/utils";
 
@@ -180,6 +180,8 @@ function BigCard({
   primary: boolean;
   reasonText: ReturnType<typeof usePlanText>["reasonText"];
 }) {
+  const locale = useLocale();
+  const summary = placeSummary(place, locale);
   const t = useTranslations("plan");
   return (
     <section className={cn("rounded-3xl border-2 p-5", primary ? "border-primary bg-primary/5" : "border-border bg-card")}>
@@ -189,6 +191,11 @@ function BigCard({
         <span dir="ltr">{hhmm(activity.startMin)}–{hhmm(activity.endMin)}</span>
         {sub && ` · ${sub}`}
       </p>
+      {summary && (
+        <p className="mt-2 text-sm text-muted-foreground" dir="auto">
+          {summary.text}
+        </p>
+      )}
       {activity.reasons.length > 0 && (
         <p className="mt-2 text-xs text-muted-foreground">{activity.reasons.slice(0, 2).map(reasonText).join(" · ")}</p>
       )}

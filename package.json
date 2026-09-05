@@ -25,7 +25,8 @@
     "lighthouse": "node scripts/lighthouse.mjs",
     "data:templates": "tsx scripts/build-templates.ts",
     "data:flags": "node scripts/fetch-flags.mjs",
-    "data:airports": "node scripts/fetch-airports.mjs"
+    "data:airports": "node scripts/fetch-airports.mjs",
+    "data:summaries": "tsx scripts/fetch-summaries.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",

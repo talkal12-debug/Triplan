@@ -77,6 +77,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Sensō-ji , is an ancient Buddhist temple in Asakusa, Tokyo, Japan. It is Tokyo's oldest-established temple, and one of its most significant.",
+          "url": "https://en.wikipedia.org/wiki/Sens%C5%8D-ji"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q615183"
@@ -190,6 +196,16 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "עץ השמיים הוא מגדל תקשורת, מסעדה ומגדל תצפית הממוקם בסומידה, טוקיו. הוא הפך למבנה הגבוה ביותר ביפן ב-2010, והגיע לגובהו המרבי, 634 מטר, במרץ 2011.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A2%D7%A5_%D7%94%D7%A9%D7%9E%D7%99%D7%99%D7%9D"
+        },
+        "en": {
+          "text": "Tokyo Skytree , a.k.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_Skytree"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q57965"
@@ -226,6 +242,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Sumida Aquarium is a public aquarium located on the 5th and 6th floors of the Tokyo Skytree in Sumida, Tokyo. It opened in 2012 at the same time as Tokyo Skytree itself.",
+          "url": "https://en.wikipedia.org/wiki/Sumida_Aquarium"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q8134074"
@@ -263,6 +285,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "ריוגוקו קוקוג'יקן ידוע גם בשם אולם הסומו ריוגוקו הוא אולם ספורט מקורה הנמצא ברובע סומידה שבטוקיו, יפן סמוך לשכונת ריוגוקו ומכאן שם המקום \"ריוגוקו\" קוקוג'יקן. האולם ממוקם בסמוך למוזיאון אדו טוקיו.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A8%D7%99%D7%95%D7%92%D7%95%D7%A7%D7%95_%D7%A7%D7%95%D7%A7%D7%95%D7%92%D7%99%D7%A7%D7%9F"
+        },
+        "en": {
+          "text": "Ryōgoku Kokugikan , also known as Ryōgoku Sumo Hall or Kokugikan Arena, refers to two different indoor sporting arenas located in Tokyo. The first Ryōgoku Kokugikan opened its doors in 1909 and was located on the premises of the Ekōin temple in Ryōgoku, Tokyo.",
+          "url": "https://en.wikipedia.org/wiki/Ry%C5%8Dgoku_Kokugikan"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q176821"
@@ -301,6 +333,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Meiji Shrine is a Shinto shrine in Shibuya, Tokyo, that is dedicated to the deified spirits of Emperor Meiji and his wife, Empress Shōken. The shrine does not contain the emperor's grave, which is located at Fushimi-momoyama, south of Kyoto.",
+          "url": "https://en.wikipedia.org/wiki/Meiji_Shrine"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q287165"
@@ -339,6 +377,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "פארק יויוגי הוא פארק ברובע שיבויה של טוקיו, בירת יפן. הפארק ממוקם בסמוך לתחנת הרג'וקו ולמקדש מייג'י.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%A8%D7%A7_%D7%99%D7%95%D7%99%D7%95%D7%92%D7%99"
+        },
+        "en": {
+          "text": "Yoyogi Park is a park in Shibuya, Tokyo, Japan. It is located adjacent to Harajuku Station and Meiji Shrine in Yoyogikamizonochō.",
+          "url": "https://en.wikipedia.org/wiki/Yoyogi_Park"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1204253"
@@ -377,6 +425,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Harajuku is a district in Shibuya, Tokyo. Harajuku is the common name given to a geographic area spreading from Harajuku Station to Omotesando, corresponding on official maps of Shibuya ward as Jingūmae 1 chōme to 4 chōme.",
+          "url": "https://en.wikipedia.org/wiki/Harajuku"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q3179287"
@@ -414,6 +468,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Omotesandō is a zelkova tree-lined avenue located in Shibuya and Minato, Tokyo, stretching from the Meiji Shrine entrance to Aoyama-dōri, where Omotesandō Station can be found.",
+          "url": "https://en.wikipedia.org/wiki/Omotesand%C5%8D"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1205090"
@@ -452,6 +512,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "he": {
+          "text": "מוזיאון נזו הוא מוזיאון לאמנות הממוקם ברובע מינאטו של העיר טוקיו, יפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%A0%D7%96%D7%95"
+        },
+        "en": {
+          "text": "The Nezu Museum , formerly known as the Nezu Institute of Fine Arts, is an art museum in the Minato district of Tokyo, Japan.",
+          "url": "https://en.wikipedia.org/wiki/Nezu_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1047097"
@@ -491,6 +561,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מעבר החצייה של שיבויה הוא מעבר החצייה העמוס בעולם, הנמצא בשיבויה בטוקיו שביפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A2%D7%91%D7%A8_%D7%94%D7%97%D7%A6%D7%99%D7%99%D7%94_%D7%A9%D7%9C_%D7%A9%D7%99%D7%91%D7%95%D7%99%D7%94"
+        },
+        "en": {
+          "text": "Shibuya Scramble Crossing , commonly known as Shibuya Crossing, is a scramble crossing in Shibuya, Tokyo, Japan. It is located near Shibuya Station in Shibuya, a major commercial and entertainment district in Tokyo.",
+          "url": "https://en.wikipedia.org/wiki/Shibuya_Crossing"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q21083961"
@@ -528,6 +608,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "A statue of the Akita dog Hachikō, remembered for his unwavering loyalty to his deceased owner, is installed outside Tokyo's Shibuya Station, in Japan.",
+          "url": "https://en.wikipedia.org/wiki/Statue_of_Hachik%C5%8D"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q62124995"
@@ -565,6 +651,12 @@
       "requiresAdvanceBooking": true,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Observation deck in Japan",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q116281743"
@@ -679,6 +771,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Shimo-kitazawa Station is an interchange station on the Odakyu Odawara and the Keio Inokashira lines located in Kitazawa, Setagaya, Tokyo, and jointly operated by the private railway operators Odakyu Electric Railway and Keio Corporation.",
+          "url": "https://en.wikipedia.org/wiki/Shimo-kitazawa_Station"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1059947"
@@ -717,6 +815,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Shinjuku Gyo-en or Shinjuku Gyoen National Garden is a large public garden in Shinjuku and Shibuya, Tokyo, Japan.",
+          "url": "https://en.wikipedia.org/wiki/Shinjuku_Gyo-en"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q776863"
@@ -754,6 +858,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "בניין הממשל העירוני של טוקיו הוא קומפלקס בניינים, המכיל את מטה ממשלת מטרופולין טוקיו, האחראית על ערים, עיירות וכפרים המהווים את כלל מטרופולין טוקיו.",
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%A0%D7%99%D7%99%D7%9F_%D7%94%D7%9E%D7%9E%D7%A9%D7%9C_%D7%94%D7%A2%D7%99%D7%A8%D7%95%D7%A0%D7%99_%D7%A9%D7%9C_%D7%98%D7%95%D7%A7%D7%99%D7%95"
+        },
+        "en": {
+          "text": "The Tokyo Metropolitan Government Building , also referred to as the Tochō for short, is the seat of the Tokyo Metropolitan Government, which governs the special wards, cities, towns, and villages that constitute the Tokyo Metropolis.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_Metropolitan_Government_Building"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q111973"
@@ -792,6 +906,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "The Omekaido Overbridge is a rail bridge in Shinjuku, Tokyo, Japan, which carries large number of JR East tracks going into Shinjuku Station over the Ōme Kaidō highway.",
+          "url": "https://en.wikipedia.org/wiki/Omekaido_Overbridge"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q28684297"
@@ -829,6 +949,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "Shinjuku Golden Gai is a district of Kabukicho within Shinjuku, a special ward of Tokyo, Japan. It is composed of a network of six narrow alleys, connected by even narrower passageways which are about wide enough for a single person to pass through.",
+          "url": "https://en.wikipedia.org/wiki/Shinjuku_Golden_Gai"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q5363705"
@@ -904,6 +1030,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "\"המוזיאון הלאומי של טוקיו\" הוא מוזיאון לאמנות הממוקם בפארק אואנו, ברובע טאייטו של העיר טוקיו, יפן. המוזיאון, שהוקם בשנת 1872 הוא המוזיאון הגדול והוותיק ביפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99_%D7%A9%D7%9C_%D7%98%D7%95%D7%A7%D7%99%D7%95"
+        },
+        "en": {
+          "text": "The Tokyo National Museum or TNM is an art museum in Ueno Park in the Taitō ward of Tokyo, Japan. It is considered the oldest national museum and the largest art museum in Japan.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_National_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q653433"
@@ -942,6 +1078,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "פארק אואנו הוא פארק ציבורי רחב ידיים ברובע אואנו שבטוקיו. הפארק הוקם בשנת 1873 על אדמות שהיו שייכות בעבר למקדש קאניי-ג'י.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%90%D7%A8%D7%A7_%D7%90%D7%95%D7%90%D7%A0%D7%95"
+        },
+        "en": {
+          "text": "Ueno Park is a spacious public park in the Ueno district of Taitō, Tokyo, Japan. The park was established in 1873 on lands formerly belonging to the temple of Kan'ei-ji.",
+          "url": "https://en.wikipedia.org/wiki/Ueno_Park"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q746216"
@@ -978,6 +1124,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "גן החיות של אואנו הוא גן חיות בגודל 143 דונם, המנוהל על ידי ממשלת מטרופולין טוקיו, והוא ממוקם באואנו, טאייטו, טוקיו, יפן. גן החיות של אואנו זהו גן החיות העתיק ביותר ביפן, והוא נפתח ב -20 במרץ 1882.",
+          "url": "https://he.wikipedia.org/wiki/%D7%92%D7%9F_%D7%94%D7%97%D7%99%D7%95%D7%AA_%D7%A9%D7%9C_%D7%90%D7%95%D7%90%D7%A0%D7%95"
+        },
+        "en": {
+          "text": "The Ueno Zoo is a 14.3-hectare zoo, managed by the Tokyo Metropolitan Government, and located in Taitō, Tokyo, Japan.",
+          "url": "https://en.wikipedia.org/wiki/Ueno_Zoo"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q162722"
@@ -1015,6 +1171,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון ביפן",
+          "url": null
+        },
+        "en": {
+          "text": "The National Museum of Nature and Science is in the northeast corner of Ueno Park in Tokyo. The museum has exhibitions on pre-Meiji science in Japan.",
+          "url": "https://en.wikipedia.org/wiki/National_Museum_of_Nature_and_Science"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q74940"
@@ -1165,6 +1331,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Rikugi-en is a metropolitan park in Bunkyō-ku, Tokyo, Japan. The name Rikugi-en means \"garden of six principles\", referring to the six elements in waka poetry, based on the traditional division of Chinese poetry into six categories.",
+          "url": "https://en.wikipedia.org/wiki/Rikugi-en_Gardens"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1889010"
@@ -1202,6 +1374,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Koishikawa Kōrakuen is a large urban park in the Koishikawa neighborhood of Bunkyō, Tokyo, Japan. The Japanese garden dates from the early Edo period.",
+          "url": "https://en.wikipedia.org/wiki/Koishikawa-K%C5%8Drakuen"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1778881"
@@ -1238,6 +1416,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "עיר הטוקיו דום הוא קומפלקס בידור בבונקיו, טוקיו, יפן. בקומפלקס מבקרים כ-30 מיליון איש בשנה, וביום ממוצע כמעט 100,000 איש.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A2%D7%99%D7%A8_%D7%94%D7%98%D7%95%D7%A7%D7%99%D7%95_%D7%93%D7%95%D7%9D"
+        },
+        "en": {
+          "text": "Tokyo Dome City , referred to as Big Egg City before January 1, 2000, is an entertainment complex in Bunkyō, Tokyo, Japan.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_Dome_City"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q564554"
@@ -1314,6 +1502,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Imperial Palace East Gardens is a historical garden in the Tokyo Imperial Palace. The gardens were first used by the Tokugawa shogunate.",
+          "url": "https://en.wikipedia.org/wiki/Imperial_Palace_East_Garden"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q6631907"
@@ -1426,6 +1620,12 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
+      "summary": {
+        "en": {
+          "text": "Kabuki-za in Ginza is the principal theater in Tokyo for the traditional kabuki drama form.",
+          "url": "https://en.wikipedia.org/wiki/Kabuki-za"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q3082575"
@@ -1463,6 +1663,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "השוק הסיטונאי העירוני המרכזי של טוקיו, הידוע יותר כשוק הדגים צוקיג'י היה שוק הדגים ופירות הים הסיטונאי הגדול בעולם ואחד מהשווקים הגדולים בעולם מכל סוג שהוא.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A9%D7%95%D7%A7_%D7%94%D7%93%D7%92%D7%99%D7%9D_%D7%A6%D7%95%D7%A7%D7%99%D7%92'%D7%99"
+        },
+        "en": {
+          "text": "Tsukiji Market is a former seafood market and major tourist attraction in Tokyo. Located in Tsukiji in central Tokyo between the Sumida River and the upmarket Ginza shopping district, the area contains retail markets, restaurants, and associated restaurant supply stores.",
+          "url": "https://en.wikipedia.org/wiki/Tsukiji_fish_market"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q859471"
@@ -1500,6 +1710,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Hama-rikyū Gardens is a metropolitan garden in Chūō ward, Tokyo, Japan. Located at the mouth of the Sumida River, it was opened to the public on April 1, 1946.",
+          "url": "https://en.wikipedia.org/wiki/Hama-riky%C5%AB_Gardens"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1033333"
@@ -1537,6 +1753,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מגדל טוקיו הוא מגדל תקשורת ומגדל תצפית הממוקם בפארק שיבא שברובע מינאטו-קו שבטוקיו. גובה המגדל 332.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%92%D7%93%D7%9C_%D7%98%D7%95%D7%A7%D7%99%D7%95"
+        },
+        "en": {
+          "text": "Tokyo Tower , also known by its official name Japan Radio Tower is a communications and observation tower in the district of Shiba-koen in Minato, Tokyo, Japan, completed in 1958. At 332.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_Tower"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q183536"
@@ -1574,6 +1800,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Zōjō-ji is a Jōdo-shū Buddhist temple in Minato, Tokyo, Japan. It is the main temple of the Jōdo-shū Chinzei sect of Buddhism in the Kantō region.",
+          "url": "https://en.wikipedia.org/wiki/Z%C5%8Dj%C5%8D-ji"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q249139"
@@ -1612,6 +1844,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "גורד שחקים ביפן",
+          "url": null
+        },
+        "en": {
+          "text": "Roppongi Hills Mori Tower is a 54-story mixed-use skyscraper in Roppongi, Minato, Tokyo, Japan. Completed in 2003 and named after builder Minoru Mori, it is the centerpiece of the Roppongi Hills urban development.",
+          "url": "https://en.wikipedia.org/wiki/Roppongi_Hills_Mori_Tower"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1771772"
@@ -1650,6 +1892,12 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Museum in Azabudai, Tokyo",
+          "url": null
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q131314431"
@@ -1725,6 +1973,16 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "\"כוכבי הלכת\" טים-לאב היא תערוכה במוזיאון לאומנות דיגיטלית של קולקטיב טים-לאב. התערוכה משלבת אומנות מדע וטכנולוגיה ומעניקה למבקרים חוויה רב-חושית ואינטראקטיבית.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%95%D7%9B%D7%91%D7%99_%D7%94%D7%9C%D7%9B%D7%AA_%D7%98%D7%99%D7%9D-%D7%9C%D7%90%D7%91"
+        },
+        "en": {
+          "text": "teamLab Planets TOKYO DMM.com is an art museum that utilizes digital technology and was established by teamLab and DMM.",
+          "url": "https://en.wikipedia.org/wiki/TeamLab_Planets_TOKYO_DMM.com"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q97613610"
@@ -1799,6 +2057,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Life-Sized Unicorn Gundam Statue is a full-scale statue of the RX-0 Unicorn Gundam from the series Mobile Suit Gundam Unicorn installed in 2017 outside Odaiba's Gundam-themed mall DiverCity Tokyo Plaza, in Tokyo, Japan. It replaced a previous statue of the RX-78-2 Gundam.",
+          "url": "https://en.wikipedia.org/wiki/Statue_of_Unicorn_Gundam"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q80704016"
@@ -1836,6 +2100,16 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון ביפן",
+          "url": null
+        },
+        "en": {
+          "text": "The National Museum of Emerging Science and Innovation , simply known as the Miraikan , is a museum created by Japan's Science and Technology Agency.",
+          "url": "https://en.wikipedia.org/wiki/Miraikan"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q656957"
@@ -1874,6 +2148,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Park in Tokyo, Japan",
+          "url": null
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q5368576"
@@ -1947,6 +2227,16 @@
       "requiresAdvanceBooking": true,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "דיסנילנד טוקיו הוא פארק השעשועים הראשון של חברת וולט דיסני שנבנה מחוץ לארצות הברית. הפארק נפתח ב־15 באפריל 1983 ומהווה חלק מאתר הנופש טוקיו דיסני ממוקם באורייסו, צ'יבה, פרבר של טוקיו בירת יפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%93%D7%99%D7%A1%D7%A0%D7%99%D7%9C%D7%A0%D7%93_%D7%98%D7%95%D7%A7%D7%99%D7%95"
+        },
+        "en": {
+          "text": "Tokyo Disneyland is a 126-acre theme park at the Tokyo Disney Resort in Urayasu, near Tokyo in Chiba Prefecture, Japan Its main gate is directly adjacent to both Maihama Station and Tokyo Disneyland Station.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_Disneyland"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q843997"
@@ -1984,6 +2274,16 @@
       "requiresAdvanceBooking": true,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "טוקיו דיסניסי הוא פארק שעשועים המצוי באתר הנופש טוקיו דיסני שבאוראיאסו בצ'יבה שביפן, בפרוורי טוקיו. האתר נפתח ב-4 בספטמבר 2001 והוא בבעלות חברת ארצות המזרח - זכיין של חברת וולט דיסני.",
+          "url": "https://he.wikipedia.org/wiki/%D7%98%D7%95%D7%A7%D7%99%D7%95_%D7%93%D7%99%D7%A1%D7%A0%D7%99%D7%A1%D7%99"
+        },
+        "en": {
+          "text": "Tokyo DisneySea is a theme park at the Tokyo Disney Resort located in Urayasu, Chiba Prefecture, Japan, just next to Tokyo. It opened on 4 September 2001, at a cost of 335 billion yen.",
+          "url": "https://en.wikipedia.org/wiki/Tokyo_DisneySea"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q1202341"
@@ -2021,6 +2321,16 @@
       "requiresAdvanceBooking": true,
       "indoor": true,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "מוזיאון ג'יבלי הוא מוזיאון המציג את עבודתו של אולפן ההנפשה היפני סטודיו ג'יבלי. המוזיאון ממוקם בפארק אינוקאשירה אשר נמצא בחלק המערבי של העיר טוקיו שביפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%92'%D7%99%D7%91%D7%9C%D7%99"
+        },
+        "en": {
+          "text": "The Ghibli Museum is a museum showcasing the work of the Japanese animation studio Studio Ghibli. It is located in Inokashira Park in Mitaka, a western city within the Tokyo Metropolitan Area, in Japan.",
+          "url": "https://en.wikipedia.org/wiki/Ghibli_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q947907"
@@ -2059,6 +2369,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Inokashira Park is a park which straddles Musashino and Mitaka in western Tokyo, Japan. Inokashira Pond and the Kanda River water source , established during the Edo period, are the primary sources of the Kanda River.",
+          "url": "https://en.wikipedia.org/wiki/Inokashira_Park"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1200884"
@@ -2134,6 +2450,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "קוטוקו-אין הוא מקדש בודהיסטי של פלג ג'ודו-שו, בעיר קמקורה שבמחוז קנאגאווה, יפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95%D7%98%D7%95%D7%A7%D7%95-%D7%90%D7%99%D7%9F"
+        },
+        "en": {
+          "text": "Kōtoku-in is a Buddhist temple of the Jōdo-shū sect in the city of Kamakura in Kanagawa Prefecture, Japan. Its mountain name is Daii-zan, and its common temple name is Shōjōsen-ji.",
+          "url": "https://en.wikipedia.org/wiki/K%C5%8Dtoku-in"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q672056"
@@ -2171,6 +2497,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Hase-dera , commonly called the Hase-kannon, is one of the Buddhist temples in the city of Kamakura in Kanagawa Prefecture, Japan, famous for housing a massive wooden statue of Jūichimen Kannon, an eleven-headed manifestation of the Bodhisattva Kannon.",
+          "url": "https://en.wikipedia.org/wiki/Hase-dera_(Kamakura)"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1034293"
@@ -2283,6 +2615,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "Enoshima Shrine is a Shinto shrine in Enoshima, Fujisawa, Kanagawa, Japan. The shrine is dedicated to the worship of the kami Benten.",
+          "url": "https://en.wikipedia.org/wiki/Enoshima_Shrine"
+        }
+      },
       "dataQuality": "partial",
       "source": "seed",
       "wikidata": "Q11259219"
@@ -2321,6 +2659,16 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "he": {
+          "text": "המוזיאון הפתוח בהאקונה הוא המוזיאון הפתוח המוקדש לפיסול מסוף המאה ה-19 ואילך, הממוקם בהאקו֗נֶה, במחוז קנאגווה שביפן.",
+          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%94%D7%A4%D7%AA%D7%95%D7%97_%D7%91%D7%94%D7%90%D7%A7%D7%95%D7%A0%D7%94"
+        },
+        "en": {
+          "text": "The Hakone Open-Air Museum, opened in 1969, is Japan's first open-air museum. It is located in Hakone, Ashigarashimo District, Kanagawa Prefecture.",
+          "url": "https://en.wikipedia.org/wiki/Hakone_Open-Air_Museum"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q1134422"
@@ -2397,6 +2745,12 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
+      "summary": {
+        "en": {
+          "text": "The Hakone Shrine is a Japanese Shinto shrine on the shores of Lake Ashi in the town of Hakone in the Ashigarashimo District of Kanagawa Prefecture. It is also known as the Hakone Gongen.",
+          "url": "https://en.wikipedia.org/wiki/Hakone_Shrine"
+        }
+      },
       "dataQuality": "verified",
       "source": "seed",
       "wikidata": "Q705310"

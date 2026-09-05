@@ -70,6 +70,7 @@ async function seedPlaces(): Promise<{ files: string[]; count: number }> {
         dataQuality: p.dataQuality,
         source: p.source,
         wikidata: p.wikidata,
+        summary: p.summary ? JSON.stringify(p.summary) : null,
       };
       await prisma.place.upsert({ where: { id: p.id }, create: { id: p.id, ...row }, update: row });
       count += 1;
