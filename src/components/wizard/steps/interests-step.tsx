@@ -24,7 +24,7 @@ import { Chip, OptionCard } from "../controls";
 import type { StepProps } from "../step-props";
 import { cn } from "@/lib/utils";
 
-const RANKED = 3;
+const RANKED = 5;
 
 export function InterestsStep({ prefs, set, errors }: StepProps) {
   const t = useTranslations("wizard.interests");

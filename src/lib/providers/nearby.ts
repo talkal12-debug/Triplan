@@ -9,7 +9,8 @@ import { classifyVenue, distanceMeters, venueHints, type Venue, type VenueKind }
  * assigned to the nearest requesting point. Nothing is invented: name,
  * coordinates, cuisine, opening hours and website are OSM's, unreviewed.
  */
-const OVERPASS = process.env.OVERPASS_URL || "https://overpass-api.de/api/interpreter";
+/** The public Overpass instance is often overloaded (504); a second instance answers the same query. */
+const OVERPASS_URLS = [process.env.OVERPASS_URL || "https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"];
 export const NEARBY_VERSION = 1;
 
 export type NearbyRequest = {
@@ -85,14 +86,24 @@ export async function nearbyVenues(requests: NearbyRequest[], limit = 6): Promis
   });
   const query = `[out:json][timeout:30];\n(\n${parts.join("\n")}\n);\nout center tags 600;`;
   const cacheKey = `nearby:${NEARBY_VERSION}:${requests.map((r) => `${r.group}${r.lat.toFixed(3)},${r.lng.toFixed(3)},${r.radiusM}`).join("|")}`;
-  const data = await fetchJson(OVERPASS, {
-    provider: "overpass-nearby",
-    schema: overpassSchema,
-    timeoutMs: 40_000,
-    cacheKey,
-    ttlMs: 12 * 60 * 60 * 1000,
-    init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
-  });
+  let data: z.infer<typeof overpassSchema> | null = null;
+  let lastError: unknown = null;
+  for (const url of [...new Set(OVERPASS_URLS)]) {
+    try {
+      data = await fetchJson(url, {
+        provider: "overpass-nearby",
+        schema: overpassSchema,
+        timeoutMs: 40_000,
+        cacheKey,
+        ttlMs: 12 * 60 * 60 * 1000,
+        init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
+      });
+      break;
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  if (!data) throw lastError instanceof Error ? lastError : new Error("overpass-nearby: all instances failed");
 
   const scored = new Map<string, { venue: Venue; score: number }[]>();
   for (const el of data.elements) {

@@ -20,13 +20,25 @@ test("wishlist places are planned first, meals get restaurants, evenings get ven
   await expect(page.getByRole("list", { name: "רשימת החובה שלכם" })).toContainText(/Oceanário/);
   await input.fill("LX Factory");
   await page.getByRole("button", { name: "הוסף", exact: true }).click();
-  await expect(page.getByRole("list", { name: "רשימת החובה שלכם" }).getByRole("listitem")).toHaveCount(2);
+  // A restaurant we do not know: kept as text, located on OpenStreetMap when the plan is built.
+  await input.fill("Cervejaria Ramiro");
+  await page.getByRole("button", { name: "הוסף", exact: true }).click();
+  await expect(page.getByRole("list", { name: "רשימת החובה שלכם" }).getByRole("listitem")).toHaveCount(3);
   // The draft survives a reload.
   await page.reload();
-  await expect(page.getByRole("list", { name: "רשימת החובה שלכם" }).getByRole("listitem")).toHaveCount(2);
+  await expect(page.getByRole("list", { name: "רשימת החובה שלכם" }).getByRole("listitem")).toHaveCount(3);
   await next.click();
 
-  for (const step of ["dates", "party", "visit", "pace", "transport"]) {
+  // Dates in June: the seasonal block knows about Lisbon's festivities.
+  await expect(page).toHaveURL(/\/plan\/dates$/);
+  await page.locator("#start-date").fill("2027-06-10");
+  await expect(page.getByTestId("seasonal")).toContainText("סנטו אנטוניו");
+  await next.click();
+  // One traveller is 65+.
+  await expect(page).toHaveURL(/\/plan\/party$/);
+  await page.getByRole("button", { name: "הוסף מתוכם בני 65+" }).click();
+  await next.click();
+  for (const step of ["visit", "pace", "transport"]) {
     await expect(page).toHaveURL(new RegExp(`/plan/${step}$`));
     await next.click();
   }
@@ -41,15 +53,22 @@ test("wishlist places are planned first, meals get restaurants, evenings get ven
   await expect(page).toHaveURL(/\/plan\/summary$/);
   await expect(page.getByText(/Oceanário/)).toBeVisible();
   await expect(page.getByText(/LX Factory/)).toBeVisible();
+  await expect(page.getByText(/Cervejaria Ramiro/)).toBeVisible();
   await page.getByRole("button", { name: "בנה לי טיול" }).click();
   await expect(page).toHaveURL(/\/he\/trip\/g_/, { timeout: 90_000 });
   await page.getByRole("button", { name: "בנה תוכנית" }).click();
   await expect(page.getByRole("tab", { name: "ציר זמן" })).toBeVisible({ timeout: 150_000 });
 
-  // Both wished places are in the plan and flagged.
+  // Seasonal highlights and 65+ discounts sit above the plan.
+  await expect(page.getByTestId("seasonal")).toContainText("מה קורה בתקופה שלכם");
+  await expect(page.getByTestId("seasonal")).toContainText("סנטו אנטוניו");
+  await expect(page.getByTestId("seniors")).toContainText("הנחות לגיל 65+");
+  await expect(page.getByTestId("seniors")).toContainText("50%");
+  // All three wished places are in the plan and flagged; the restaurant was located on OSM and is a meal.
   await page.getByRole("tab", { name: "רשימה" }).dispatchEvent("mousedown");
   await expect(page.getByText(/Oceanário/).first()).toBeVisible();
   await expect(page.getByText(/LX Factory/).first()).toBeVisible();
+  await expect(page.getByText(/Cervejaria Ramiro/).first()).toBeVisible();
   await page.getByRole("tab", { name: "ציר זמן" }).dispatchEvent("mousedown");
   // Nothing from the list was dropped, and the visits carry the "must-see" reason on whichever day they landed.
   await expect(page.getByText(/מרשימת החובה לא נכנס/)).toHaveCount(0);

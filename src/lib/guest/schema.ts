@@ -4,6 +4,7 @@ import { citySeedSchema, placeSeedSchema } from "@/lib/data/schemas";
 import { itinerarySchema } from "@/lib/planner/itinerary";
 import { affiliateLinkSchema } from "@/lib/providers/affiliate";
 import { eveningSchema, venueSchema } from "@/lib/nearby/schema";
+import { seasonalItemSchema } from "@/lib/data/seasonal";
 
 /**
  * Shapes shared by the browser (localStorage) and the server (share links, sync).
@@ -39,6 +40,15 @@ export const planExtrasSchema = z.object({
   /** Milestone 11: restaurants around each meal (by meal activity id) and one evening per day index. Older plans have none until refreshed. */
   dining: z.record(z.string(), z.array(venueSchema)).optional(),
   evenings: z.record(z.string(), eveningSchema).optional(),
+  /** Milestone 12: seasonal highlights overlapping the dates, and 65+ discounts when someone in the party is 65+. */
+  seasonal: z.array(seasonalItemSchema.extend({ firstDate: z.string() })).optional(),
+  seniors: z
+    .object({
+      countries: z.array(z.object({ countryCode: z.string(), note: z.record(z.string(), z.string()), url: z.string() })),
+      places: z.record(z.string(), z.object({ note: z.record(z.string(), z.string()), url: z.string() })),
+    })
+    .nullable()
+    .optional(),
 });
 export type PlanExtras = z.infer<typeof planExtrasSchema>;
 

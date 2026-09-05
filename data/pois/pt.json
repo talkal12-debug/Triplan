@@ -776,7 +776,8 @@
       "tags": [
         "iconic",
         "photography",
-        "city"
+        "city",
+        "attractions"
       ],
       "lat": 38.7097584,
       "lng": -9.1462053,
@@ -1102,7 +1103,8 @@
       "tags": [
         "iconic",
         "views",
-        "architecture"
+        "architecture",
+        "attractions"
       ],
       "lat": 38.7121169,
       "lng": -9.1393753,
@@ -2228,7 +2230,8 @@
       "category": "zoo",
       "tags": [
         "kids",
-        "nature"
+        "nature",
+        "attractions"
       ],
       "lat": 38.7453673,
       "lng": -9.1719039,
@@ -2277,7 +2280,8 @@
         "kids",
         "nature",
         "iconic",
-        "science"
+        "science",
+        "attractions"
       ],
       "lat": 38.7635196,
       "lng": -9.0937161,
@@ -2372,7 +2376,8 @@
       "category": "landmark",
       "tags": [
         "kids",
-        "views"
+        "views",
+        "attractions"
       ],
       "lat": 38.7622675,
       "lng": -9.0923967,
@@ -3085,7 +3090,8 @@
       "tags": [
         "iconic",
         "views",
-        "history"
+        "history",
+        "attractions"
       ],
       "lat": 41.1456547,
       "lng": -8.6146275,
@@ -3752,7 +3758,8 @@
       "category": "aquarium",
       "tags": [
         "kids",
-        "nature"
+        "nature",
+        "attractions"
       ],
       "lat": 41.1687202,
       "lng": -8.6874591,

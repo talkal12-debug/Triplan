@@ -19,6 +19,8 @@ import { PlanList } from "./plan-list";
 import { SwapSheet } from "./swap-sheet";
 import { usePlanText } from "./use-plan-text";
 import { AffiliateAbout, AffiliateLinks } from "./affiliate-links";
+import { SeasonalHighlights } from "./seasonal-highlights";
+import { seniorText } from "@/lib/data/senior-discounts";
 import { useDistance } from "@/lib/units/use-distance";
 import { useSession } from "next-auth/react";
 import { useLocale } from "next-intl";
@@ -126,6 +128,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
 
   return (
     <div className="space-y-4">
+      {plan.extras?.seasonal && plan.extras.seasonal.length > 0 && <SeasonalHighlights items={plan.extras.seasonal} />}
       <div className="rounded-2xl border bg-card p-4 text-sm">
         <p className="font-medium">
           {t("tripStats", { distance: distance(plan.itinerary.stats.totalWalkKm), places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}
@@ -156,6 +159,20 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
               </p>
             ) : null;
           })()}
+          {plan.extras?.seniors && plan.extras.seniors.countries.length > 0 && (
+            <div className="rounded-xl bg-muted/60 p-3 text-xs" data-testid="seniors">
+              <p className="font-medium text-foreground">{t("seniors.title")}</p>
+              {plan.extras.seniors.countries.map((c) => (
+                <p key={c.countryCode} className="mt-1 text-muted-foreground">
+                  {seniorText(c.note, locale)}{" "}
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
+                    {t("seniors.source")}
+                  </a>
+                </p>
+              ))}
+              <p className="mt-1 text-muted-foreground">{t("seniors.verify")}</p>
+            </div>
+          )}
           {plan.extras && plan.extras.holidays.length > 0 && (
             <p className="text-xs text-muted-foreground">
               <span className="font-medium">{t("holidaysTitle")}: </span>

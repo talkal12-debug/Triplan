@@ -72,9 +72,9 @@ export function classify(tags: Record<string, string>): { category: PlaceCategor
   const wiki = Boolean(t.wikidata || t.wikipedia);
   if (has("tourism", "museum")) return { category: "museum", tags: ["museums", "history"], visitMinutes: 90, indoor: true, kidFriendly: true };
   if (has("tourism", "gallery")) return { category: "gallery", tags: ["art", "museums"], visitMinutes: 75, indoor: true, kidFriendly: false };
-  if (has("tourism", "zoo")) return { category: "zoo", tags: ["kids", "nature"], visitMinutes: 150, indoor: false, kidFriendly: true };
-  if (has("tourism", "aquarium")) return { category: "aquarium", tags: ["kids", "nature"], visitMinutes: 90, indoor: true, kidFriendly: true };
-  if (has("tourism", "theme_park")) return { category: "theme_park", tags: ["kids", "adventure"], visitMinutes: 300, indoor: false, kidFriendly: true };
+  if (has("tourism", "zoo")) return { category: "zoo", tags: ["kids", "nature", "attractions"], visitMinutes: 150, indoor: false, kidFriendly: true };
+  if (has("tourism", "aquarium")) return { category: "aquarium", tags: ["kids", "nature", "attractions"], visitMinutes: 90, indoor: true, kidFriendly: true };
+  if (has("tourism", "theme_park")) return { category: "theme_park", tags: ["kids", "adventure", "attractions"], visitMinutes: 300, indoor: false, kidFriendly: true };
   if (has("tourism", "viewpoint")) return { category: "viewpoint", tags: ["views", "photography", "free"], visitMinutes: 20, indoor: false, kidFriendly: true };
   if (has("historic", "castle") || has("castle_type")) return { category: "castle", tags: ["history", "views"], visitMinutes: 90, indoor: false, kidFriendly: true };
   if (has("historic", "palace") || has("building", "palace")) return { category: "palace", tags: ["history", "architecture"], visitMinutes: 75, indoor: true, kidFriendly: false };
@@ -91,7 +91,7 @@ export function classify(tags: Record<string, string>): { category: PlaceCategor
   if (has("leisure", "park") || has("leisure", "garden")) return { category: has("leisure", "garden") ? "garden" : "park", tags: ["nature", "kids", "free", "walking"], visitMinutes: 60, indoor: false, kidFriendly: true };
   if (has("natural", "beach")) return { category: "beach", tags: ["beaches", "nature", "free", "kids"], visitMinutes: 120, indoor: false, kidFriendly: true };
   if (has("amenity", "marketplace")) return { category: "market", tags: ["food", "local", "shopping"], visitMinutes: 45, indoor: false, kidFriendly: true };
-  if (has("man_made", "tower") && wiki) return { category: "tower", tags: ["views", "architecture"], visitMinutes: 45, indoor: false, kidFriendly: true };
+  if (has("man_made", "tower") && wiki) return { category: "tower", tags: ["views", "architecture", "attractions"], visitMinutes: 45, indoor: false, kidFriendly: true };
   if (has("man_made", "bridge") && wiki) return { category: "bridge", tags: ["architecture", "photography", "free"], visitMinutes: 20, indoor: false, kidFriendly: true };
   if (has("place", "square") && wiki) return { category: "square", tags: ["city", "free", "walking"], visitMinutes: 20, indoor: false, kidFriendly: true };
   if (has("tourism", "attraction")) return { category: "landmark", tags: ["iconic", "photography"], visitMinutes: 45, indoor: false, kidFriendly: true };

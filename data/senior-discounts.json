@@ -1,0 +1,48 @@
+{
+  "note": "Where travellers aged 65+ pay less, for the demo destinations. Country rules come from the national ticketing authorities; place entries from each site's published prices. Always to be confirmed at the ticket office with ID. Checked 2026-09-05.",
+  "countries": [
+    {
+      "countryCode": "PT",
+      "note": {
+        "he": "מוזיאונים ואתרים ממשלתיים (Museus e Monumentos de Portugal: מגדל בלם, מנזר ז'רונימוש, מוזיאון הכרכרות, הפנתיאון הלאומי, מוזיאון האזולז'ו ועוד) נותנים 50% הנחה מגיל 65 בהצגת תעודה מזהה. גם רוב האתרים העירוניים ואתרי סינטרה נותנים כרטיס \"סניור\" מוזל.",
+        "en": "State museums and monuments (Museus e Monumentos de Portugal: Belém Tower, Jerónimos, the Coach Museum, the National Pantheon, the Tile Museum and more) give 50% off from age 65 with ID. Most municipal sites and the Sintra palaces also sell a reduced \"senior\" ticket."
+      },
+      "url": "https://www.museusemonumentos.pt"
+    },
+    {
+      "countryCode": "IT",
+      "note": {
+        "he": "באתרים הממלכתיים של איטליה (קולוסאום, הפורום, גלריה בורגזה ועוד) אין הנחה לגיל 65+: היא בוטלה ב-2014. חינם מתחת לגיל 18, מוזל לאזרחי האיחוד האירופי בני 18–25, וביום ראשון הראשון בכל חודש הכניסה חינם לכולם. מוזיאוני העירייה של רומא נותנים הנחת 65+ רק לתושבי רומא.",
+        "en": "Italy's state sites (Colosseum, Forum, Galleria Borghese and more) give no 65+ discount: it was abolished in 2014. Free under 18, reduced for EU citizens aged 18–25, and free for everyone on the first Sunday of each month. Rome's civic museums give a 65+ discount to Rome residents only."
+      },
+      "url": "https://cultura.gov.it/agevolazioni"
+    },
+    {
+      "countryCode": "JP",
+      "note": {
+        "he": "המתקנים של מחוז טוקיו נותנים הנחה מגיל 65 בהצגת דרכון: הגנים שינג'וקו גיואן, האמה-ריקיו, ריקוגי-אן וקוישיקאווה קוראקואן (כמחצית המחיר) וגן החיות אואנו. המוזיאון הלאומי של טוקיו חינם מגיל 70. מקדשים, Skytree, teamLab ורוב האטרקציות הפרטיות: ללא הנחת גיל.",
+        "en": "Tokyo Metropolitan facilities discount from age 65 with a passport: Shinjuku Gyoen, Hama-rikyu, Rikugi-en and Koishikawa Kōrakuen gardens (about half price) and Ueno Zoo. The Tokyo National Museum is free from 70. Temples, Skytree, teamLab and most private attractions: no age discount."
+      },
+      "url": "https://www.tokyo-park.or.jp/english/"
+    }
+  ],
+  "places": {
+    "pt-lisbon-torre-de-belem": { "note": { "he": "50% הנחה מגיל 65 (אתר ממשלתי)", "en": "50% off from age 65 (state site)" }, "url": "https://www.museusemonumentos.pt" },
+    "pt-lisbon-mosteiro-dos-jeronimos": { "note": { "he": "50% הנחה מגיל 65 (אתר ממשלתי)", "en": "50% off from age 65 (state site)" }, "url": "https://www.museusemonumentos.pt" },
+    "pt-lisbon-museu-dos-coches": { "note": { "he": "50% הנחה מגיל 65 (מוזיאון ממשלתי)", "en": "50% off from age 65 (state museum)" }, "url": "https://www.museusemonumentos.pt" },
+    "pt-lisbon-panteao-nacional": { "note": { "he": "50% הנחה מגיל 65 (אתר ממשלתי)", "en": "50% off from age 65 (state site)" }, "url": "https://www.museusemonumentos.pt" },
+    "pt-lisbon-museu-de-arte-antiga": { "note": { "he": "50% הנחה מגיל 65 (מוזיאון ממשלתי)", "en": "50% off from age 65 (state museum)" }, "url": "https://www.museusemonumentos.pt" },
+    "pt-lisbon-museu-do-azulejo": { "note": { "he": "50% הנחה מגיל 65 (מוזיאון ממשלתי)", "en": "50% off from age 65 (state museum)" }, "url": "https://www.museusemonumentos.pt" },
+    "pt-lisbon-castelo-de-sao-jorge": { "note": { "he": "כרטיס מוזל מגיל 65", "en": "Reduced ticket from age 65" }, "url": "https://castelodesaojorge.pt" },
+    "pt-lisbon-oceanario": { "note": { "he": "כרטיס \"סניור\" מוזל מגיל 65", "en": "Reduced senior ticket from age 65" }, "url": "https://www.oceanario.pt" },
+    "pt-sintra-palacio-da-pena": { "note": { "he": "כרטיס סניור מוזל מגיל 65 (Parques de Sintra)", "en": "Reduced senior ticket from age 65 (Parques de Sintra)" }, "url": "https://www.parquesdesintra.pt" },
+    "pt-sintra-palacio-nacional-de-sintra": { "note": { "he": "כרטיס סניור מוזל מגיל 65 (Parques de Sintra)", "en": "Reduced senior ticket from age 65 (Parques de Sintra)" }, "url": "https://www.parquesdesintra.pt" },
+    "pt-sintra-quinta-da-regaleira": { "note": { "he": "כרטיס מוזל מגיל 65", "en": "Reduced ticket from age 65" }, "url": "https://www.regaleira.pt" },
+    "jp-tokyo-shinjuku-gyoen": { "note": { "he": "כניסה מוזלת מגיל 65 בהצגת דרכון", "en": "Reduced admission from age 65 with passport" }, "url": "https://www.env.go.jp/garden/shinjukugyoen/english/" },
+    "jp-tokyo-hamarikyu-gardens": { "note": { "he": "כניסה מוזלת מגיל 65 (גני מחוז טוקיו)", "en": "Reduced admission from age 65 (Tokyo Metropolitan gardens)" }, "url": "https://www.tokyo-park.or.jp/english/" },
+    "jp-tokyo-rikugien": { "note": { "he": "כניסה מוזלת מגיל 65 (גני מחוז טוקיו)", "en": "Reduced admission from age 65 (Tokyo Metropolitan gardens)" }, "url": "https://www.tokyo-park.or.jp/english/" },
+    "jp-tokyo-koishikawa-korakuen": { "note": { "he": "כניסה מוזלת מגיל 65 (גני מחוז טוקיו)", "en": "Reduced admission from age 65 (Tokyo Metropolitan gardens)" }, "url": "https://www.tokyo-park.or.jp/english/" },
+    "jp-tokyo-ueno-zoo": { "note": { "he": "כניסה מוזלת מגיל 65 בהצגת תעודה", "en": "Reduced admission from age 65 with ID" }, "url": "https://www.tokyo-zoo.net/english/ueno/" },
+    "jp-tokyo-tokyo-national-museum": { "note": { "he": "כניסה חינם מגיל 70 (לתערוכת הקבע)", "en": "Free from age 70 (regular exhibitions)" }, "url": "https://www.tnm.jp" }
+  }
+}

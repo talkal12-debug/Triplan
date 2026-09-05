@@ -152,6 +152,9 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
     const mustIds = new Set(prefs.mustVisit.map((m) => m.placeId));
     if (mustIds.size) ordered = [...ordered.filter((c) => mustIds.has(c.place.id)), ...ordered.filter((c) => !mustIds.has(c.place.id))];
   }
+  // A wished restaurant is a meal, not a morning stop: the first one takes the lunch slot, a second one dinner.
+  const wishedMeals = ordered.filter((c) => c.place.category === "food" && prefs.mustVisit.some((m) => m.placeId === c.place.id));
+  ordered = ordered.filter((c) => !wishedMeals.includes(c));
 
   let here: LatLng = ctx.base;
   let walkKm = 0;
@@ -163,8 +166,49 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   const capacity = day.capacity;
   const deferred: ScoredPlace[] = [];
 
+  /** Visit a wished restaurant as the meal: at lunch (when `slot` is lunch) or in the evening. */
+  const placeMeal = (cand: ScoredPlace, slot: "lunch" | "dinner"): boolean => {
+    const place = cand.place;
+    const transit = travelBetween(here, place, prefs, ctx.travel);
+    const arrive = t + transit.minutes;
+    const earliest = slot === "lunch" ? budget.lunchStart : 18 * 60 + 30;
+    let start = Math.max(arrive, earliest);
+    const latestStart = dayEnd - place.visitMinutes;
+    if (start > latestStart) return false;
+    const openStart = earliestOpenStart(place, day.date, start, place.visitMinutes, latestStart);
+    if (openStart === null) {
+      warnings.push({ code: "closed_on_date", severity: "warning", params: { place: place.id }, dayIndex: day.dayIndex, placeId: place.id });
+      return false;
+    }
+    start = openStart;
+    activities.push({
+      id: nextId(),
+      kind: "visit",
+      placeId: place.id,
+      startMin: start,
+      endMin: start + place.visitMinutes,
+      locked: ctx.locked?.has(place.id) ?? false,
+      reasons: [{ code: "must_visit", params: {} }, { code: "lunch_time", params: {} }],
+      transitFromPrev: transit,
+      dataQuality: place.dataQuality,
+    });
+    if (place.dataQuality === "unverified") warnings.push({ code: "unverified_data", severity: "info", params: { place: place.id }, dayIndex: day.dayIndex, placeId: place.id });
+    here = place;
+    t = start + place.visitMinutes;
+    walkKm += walkedKm(transit);
+    activeMinutes += transit.minutes;
+    transitMinutes += transit.minutes;
+    if (slot === "lunch") hadLunch = true;
+    sinceRest = 0;
+    return true;
+  };
+
   const placeVisit = (cand: ScoredPlace, allowDefer: boolean): boolean => {
     const place = cand.place;
+    // Lunch is due and the traveller named a restaurant: eat there first, then continue.
+    if (wishedMeals.length && !hadLunch && t + travelBetween(here, place, prefs, ctx.travel).minutes >= budget.lunchStart - 15) {
+      if (placeMeal(wishedMeals[0], "lunch")) wishedMeals.shift();
+    }
     const transit = travelBetween(here, place, prefs, ctx.travel);
     const arrive = t + transit.minutes;
     const walkAfter = walkKm + walkedKm(transit);
@@ -253,6 +297,11 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   }
   for (const cand of deferred) {
     if (!placeVisit(cand, false)) leftovers.push(cand);
+  }
+  // Wished restaurants not yet eaten at: a late lunch, then dinner; anything left is retried another day.
+  while (wishedMeals.length) {
+    const cand = wishedMeals.shift()!;
+    if (!placeMeal(cand, hadLunch ? "dinner" : "lunch")) leftovers.push(cand);
   }
 
   // Light day? Top up from the pool with places near the current position.

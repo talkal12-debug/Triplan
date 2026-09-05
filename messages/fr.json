@@ -463,6 +463,23 @@
       "mapsQuiet": "adresses pour une soirée tranquille",
       "mapsCulture": "spectacles et théâtre",
       "mapsNightlife": "bars et clubs"
+    },
+    "seasonal": {
+      "title": "Ce qui se passe à vos dates",
+      "source": "source officielle",
+      "datesVary": "Les dates exactes changent chaque année. Vérifiez sur le site officiel avant de vous organiser.",
+      "kinds": {
+        "festival": "Festival",
+        "nature": "Nature et saison",
+        "market": "Marché et illuminations",
+        "caution": "Attention"
+      }
+    },
+    "seniors": {
+      "title": "Réductions 65 ans et plus",
+      "badge": "réduction 65+",
+      "verify": "À confirmer à la billetterie avec une pièce d'identité. D'après les sites officiels ; les prix changent.",
+      "source": "(source)"
     }
   },
   "gallery": {
@@ -771,7 +788,7 @@
     },
     "interests": {
       "title": "Qu'est-ce qui vous intéresse ?",
-      "subtitle": "Choisissez autant que vous voulez, puis classez les 3 principaux.",
+      "subtitle": "Choisissez autant que vous voulez, puis classez les 5 principaux.",
       "options": {
         "nature": "Nature",
         "city": "Villes",
@@ -785,9 +802,10 @@
         "shopping": "Shopping",
         "photography": "Photographie",
         "religion": "Religion et patrimoine",
-        "kids": "Avec des enfants"
+        "kids": "Avec des enfants",
+        "attractions": "Attractions et parcs"
       },
-      "ranked": "Top 3, par ordre d'importance",
+      "ranked": "Top 5, par ordre d'importance",
       "rankedHint": "Glissez pour réordonner, ou utilisez les flèches.",
       "rest": "Autres centres d'intérêt choisis",
       "moveUp": "Monter {name}",

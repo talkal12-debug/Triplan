@@ -31,7 +31,7 @@ export function exclusionReason(place: PlannerPlace, prefs: TripPreferences): Ex
   return null;
 }
 
-const rankWeight = [1, 0.85, 0.7];
+const rankWeight = [1, 0.85, 0.7, 0.6, 0.5];
 
 /**
  * 0..1 desirability. Deterministic; the same inputs always give the same score.

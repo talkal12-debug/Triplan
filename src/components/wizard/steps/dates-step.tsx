@@ -3,6 +3,8 @@
 import { useFormatter, useTranslations } from "next-intl";
 import { CloudSun } from "lucide-react";
 import { seasonFor, tripEndDate } from "@/lib/planner/types";
+import { seasonalFor } from "@/lib/data/seasonal";
+import { SeasonalHighlights } from "@/components/trip/seasonal-highlights";
 import { FieldLabel, Stepper, inputClass } from "../controls";
 import type { StepProps } from "../step-props";
 
@@ -15,6 +17,8 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
   const first = ctx.countries.find((c) => c.code === prefs.destinations[0]?.countryCode);
   const validStart = !Number.isNaN(new Date(`${dates.start}T00:00:00`).getTime());
   const season = first && validStart ? seasonFor(dates.start, first.lat) : null;
+  // Curated highlights overlapping the dates in the chosen countries (ctx.seasonal is the full list; the wizard has no server round-trip).
+  const seasonal = validStart && ctx.seasonal ? seasonalFor(prefs.destinations, dates.start, dates.days).filter((i) => ctx.seasonal!.some((x) => x.id === i.id)) : [];
   const end = validStart ? tripEndDate(dates) : null;
 
   return (
@@ -62,6 +66,9 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
           </div>
         </div>
       )}
+
+      {validStart && seasonal.length > 0 && <SeasonalHighlights items={seasonal} compact />}
+
 
       <fieldset className="rounded-2xl border bg-card p-4">
         <legend className="px-1 font-medium">{t("flights")}</legend>

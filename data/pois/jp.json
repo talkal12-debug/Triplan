@@ -183,7 +183,8 @@
       "tags": [
         "iconic",
         "views",
-        "kids"
+        "kids",
+        "attractions"
       ],
       "lat": 35.7100543,
       "lng": 139.8107141,
@@ -229,7 +230,8 @@
       "category": "aquarium",
       "tags": [
         "kids",
-        "nature"
+        "nature",
+        "attractions"
       ],
       "lat": 35.7101011,
       "lng": 139.8093338,
@@ -663,7 +665,8 @@
       "tags": [
         "views",
         "iconic",
-        "photography"
+        "photography",
+        "attractions"
       ],
       "lat": 35.6582857,
       "lng": 139.7022617,
@@ -1150,7 +1153,8 @@
       "category": "zoo",
       "tags": [
         "kids",
-        "nature"
+        "nature",
+        "attractions"
       ],
       "lat": 35.7153426,
       "lng": 139.768896,
@@ -1452,7 +1456,8 @@
       "category": "theme_park",
       "tags": [
         "kids",
-        "adventure"
+        "adventure",
+        "attractions"
       ],
       "lat": 35.704961,
       "lng": 139.7525594,
@@ -1804,7 +1809,8 @@
       "tags": [
         "iconic",
         "views",
-        "kids"
+        "kids",
+        "attractions"
       ],
       "lat": 35.6584491,
       "lng": 139.745536,
@@ -1948,7 +1954,8 @@
         "art",
         "iconic",
         "kids",
-        "photography"
+        "photography",
+        "attractions"
       ],
       "lat": 35.6620024,
       "lng": 139.7434178,
@@ -2034,7 +2041,8 @@
         "art",
         "iconic",
         "kids",
-        "photography"
+        "photography",
+        "attractions"
       ],
       "lat": 35.64938,
       "lng": 139.789728,
@@ -2118,7 +2126,8 @@
         "kids",
         "iconic",
         "photography",
-        "free"
+        "free",
+        "attractions"
       ],
       "lat": 35.624438,
       "lng": 139.7754905,
@@ -2261,7 +2270,8 @@
       "category": "aquarium",
       "tags": [
         "kids",
-        "nature"
+        "nature",
+        "attractions"
       ],
       "lat": 35.6400593,
       "lng": 139.8621905,
@@ -2298,7 +2308,8 @@
       "tags": [
         "kids",
         "iconic",
-        "adventure"
+        "adventure",
+        "attractions"
       ],
       "lat": 35.6326586,
       "lng": 139.8814172,
@@ -2345,7 +2356,8 @@
       "tags": [
         "kids",
         "iconic",
-        "adventure"
+        "adventure",
+        "attractions"
       ],
       "lat": 35.6272587,
       "lng": 139.8844109,
@@ -2392,7 +2404,8 @@
       "tags": [
         "kids",
         "art",
-        "iconic"
+        "iconic",
+        "attractions"
       ],
       "lat": 35.6961731,
       "lng": 139.5706324,

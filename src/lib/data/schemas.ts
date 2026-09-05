@@ -37,7 +37,7 @@ export const placeCategories = [
 ] as const;
 export type PlaceCategory = (typeof placeCategories)[number];
 
-/** Interest tags. The first 13 mirror the wizard's interest list. */
+/** Interest tags. The first 13 and `attractions` mirror the wizard's interest list. */
 export const placeTags = [
   "nature",
   "city",
@@ -62,6 +62,7 @@ export const placeTags = [
   "iconic",
   "science",
   "jewish",
+  "attractions",
 ] as const;
 export type PlaceTag = (typeof placeTags)[number];
 

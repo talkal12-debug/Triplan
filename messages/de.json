@@ -463,6 +463,23 @@
       "mapsQuiet": "Orte für einen ruhigen Abend",
       "mapsCulture": "Shows und Theater",
       "mapsNightlife": "Bars und Clubs"
+    },
+    "seasonal": {
+      "title": "Was an Ihren Terminen los ist",
+      "source": "offizielle Quelle",
+      "datesVary": "Die genauen Termine ändern sich jedes Jahr. Prüfen Sie die offizielle Seite, bevor Sie darum herum planen.",
+      "kinds": {
+        "festival": "Festival",
+        "nature": "Natur und Saison",
+        "market": "Markt und Lichter",
+        "caution": "Achtung"
+      }
+    },
+    "seniors": {
+      "title": "Ermäßigungen ab 65",
+      "badge": "Ermäßigung 65+",
+      "verify": "An der Kasse mit Ausweis bestätigen. Von den offiziellen Seiten; Preise ändern sich.",
+      "source": "(Quelle)"
     }
   },
   "gallery": {
@@ -771,7 +788,7 @@
     },
     "interests": {
       "title": "Was interessiert Sie?",
-      "subtitle": "Wählen Sie beliebig viele und ordnen Sie dann die Top 3.",
+      "subtitle": "Wählen Sie beliebig viele und ordnen Sie dann die Top 5.",
       "options": {
         "nature": "Natur",
         "city": "Städte",
@@ -785,9 +802,10 @@
         "shopping": "Einkaufen",
         "photography": "Fotografie",
         "religion": "Religion und Kulturerbe",
-        "kids": "Mit Kindern"
+        "kids": "Mit Kindern",
+        "attractions": "Attraktionen und Freizeitparks"
       },
-      "ranked": "Top 3, nach Wichtigkeit",
+      "ranked": "Top 5, nach Wichtigkeit",
       "rankedHint": "Ziehen Sie zum Sortieren oder nutzen Sie die Pfeile.",
       "rest": "Weitere gewählte Interessen",
       "moveUp": "{name} nach oben",

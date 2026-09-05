@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import { AffiliateLinks } from "./affiliate-links";
 import { VoteBar } from "./vote-bar";
 import { DiningSuggestions } from "./dining-suggestions";
+import { seniorText } from "@/lib/data/senior-discounts";
 
 const transitIcons = { walk: Footprints, transit: Bus, car: Car, bike: Bike } as const;
 
@@ -112,6 +113,13 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
               </Badge>
             )}
           </div>
+          {isVisit && !compact && a.placeId && plan.extras?.seniors?.places[a.placeId] && (
+            <p className="mt-1 text-xs" data-testid="senior-discount">
+              <a href={plan.extras.seniors.places[a.placeId].url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 font-medium text-emerald-800 underline-offset-2 hover:underline dark:bg-emerald-950/40 dark:text-emerald-300" onClick={(e) => e.stopPropagation()} title={t("seniors.verify")}>
+                {t("seniors.badge")}: {seniorText(plan.extras.seniors.places[a.placeId].note, locale)}
+              </a>
+            </p>
+          )}
           {isVisit && !compact && summary && (
             <p className="mt-1 text-sm leading-snug text-muted-foreground" dir="auto">
               {summary.text}

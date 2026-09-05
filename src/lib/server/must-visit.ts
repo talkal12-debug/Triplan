@@ -30,7 +30,20 @@ const nominatimSchema = z.array(
   }),
 );
 
-async function lookupOnOsm(name: string, city: CitySeed): Promise<{ point: { lat: number; lng: number }; wikidata: string | null; website: string | null; nameEn?: string } | null> {
+type OsmHit = { point: { lat: number; lng: number }; wikidata: string | null; website: string | null; nameEn?: string; osmClass?: string; osmType?: string; openingHours?: string | null; description?: string };
+
+const wikidataSearchSchema = z.object({ search: z.array(z.object({ id: z.string(), label: z.string().optional(), description: z.string().optional() })) });
+
+/** A one-line description from Wikidata's search when OSM has no wikidata tag (e.g. "restaurant chain"), so the card can say what the place is. */
+async function describeOnWikidata(name: string): Promise<string | null> {
+  const url = `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(name)}&language=en&limit=3&format=json`;
+  const data = await fetchJson(url, { provider: "wikidata", schema: wikidataSearchSchema, cacheKey: url, ttlMs: 24 * 60 * 60 * 1000, init: { headers: { "User-Agent": USER_AGENT } } });
+  const q = name.trim().toLowerCase();
+  const hit = data.search.find((s) => s.label?.toLowerCase() === q && s.description);
+  return hit?.description ? hit.description.charAt(0).toUpperCase() + hit.description.slice(1) : null;
+}
+
+async function lookupOnOsm(name: string, city: CitySeed): Promise<OsmHit | null> {
   const params = new URLSearchParams({
     q: `${name}, ${city.names.en}`,
     countrycodes: city.countryCode.toLowerCase(),
@@ -47,7 +60,23 @@ async function lookupOnOsm(name: string, city: CitySeed): Promise<{ point: { lat
     const point = { lat: Number(r.lat), lng: Number(r.lon) };
     // Must be inside (or just around) the chosen city, not a namesake elsewhere in the country.
     if (point.lat < s - 0.2 || point.lat > n + 0.2 || point.lng < w - 0.2 || point.lng > e + 0.2) continue;
-    return { point, wikidata: r.extratags?.wikidata ?? null, website: r.extratags?.website ?? null, nameEn: r.namedetails?.["name:en"] ?? r.name };
+    const hit: OsmHit = {
+      point,
+      wikidata: r.extratags?.wikidata ?? null,
+      website: r.extratags?.website ?? null,
+      nameEn: r.namedetails?.["name:en"] ?? r.name,
+      osmClass: r.category,
+      osmType: r.type,
+      openingHours: r.extratags?.opening_hours ?? null,
+    };
+    if (!hit.wikidata) {
+      try {
+        hit.description = (await describeOnWikidata(name)) ?? undefined;
+      } catch {
+        // Optional: the card falls back to the category.
+      }
+    }
+    return hit;
   }
   return null;
 }
@@ -76,7 +105,7 @@ export async function resolveMustVisit(prefs: TripPreferences, places: PlaceSeed
       continue;
     }
     let point = entry.lat !== undefined && entry.lng !== undefined ? { lat: entry.lat, lng: entry.lng } : null;
-    let extra: { wikidata?: string | null; website?: string | null; nameEn?: string } = {};
+    let extra: Partial<OsmHit> = {};
     if (!point && cities.length > 0) {
       try {
         const hit = await lookupOnOsm(entry.name, cities[0]);

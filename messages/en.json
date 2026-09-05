@@ -463,6 +463,23 @@
       "mapsQuiet": "places for a relaxed evening",
       "mapsCulture": "shows and theatre",
       "mapsNightlife": "bars and clubs"
+    },
+    "seasonal": {
+      "title": "What is on during your dates",
+      "source": "official source",
+      "datesVary": "Exact dates change every year. Check the official site before planning around them.",
+      "kinds": {
+        "festival": "Festival",
+        "nature": "Nature and season",
+        "market": "Market and lights",
+        "caution": "Heads up"
+      }
+    },
+    "seniors": {
+      "title": "Discounts for 65+",
+      "badge": "65+ discount",
+      "verify": "Confirm at the ticket office with ID. From the official sites; prices change.",
+      "source": "(source)"
     }
   },
   "gallery": {
@@ -771,7 +788,7 @@
     },
     "interests": {
       "title": "What interests you?",
-      "subtitle": "Pick as many as you like, then order the top 3.",
+      "subtitle": "Pick as many as you like, then order the top 5.",
       "options": {
         "nature": "Nature",
         "city": "Cities",
@@ -785,9 +802,10 @@
         "shopping": "Shopping",
         "photography": "Photography",
         "religion": "Religion and heritage",
-        "kids": "With kids"
+        "kids": "With kids",
+        "attractions": "Attractions and theme parks"
       },
-      "ranked": "Top 3, in order of importance",
+      "ranked": "Top 5, in order of importance",
       "rankedHint": "Drag to reorder, or use the arrows.",
       "rest": "Other interests you picked",
       "moveUp": "Move {name} up",

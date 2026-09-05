@@ -128,6 +128,13 @@ Every attraction card shows one or two sentences about the place. The text is ne
 - **Evenings**: the interests step asks for an evening style (relaxed / culture / nightlife / none). Each day gets an evening block: dinner near the hotel, venues for the style within 1.5 km (viewpoints and wine bars, theatres and live music, or bars and clubs), real events on that date when `TICKETMASTER_API_KEY` is set, and search links (GetYourGuide/Viator evening tours, Eventbrite, Songkick, Ticketmaster, Resident Advisor) built by the same link builder as the booking links.
 - Plans saved before this milestone get their restaurants and evenings on next open through the links refresh (`LINKS_VERSION` 3).
 
+## Interests, seasonal highlights and 65+ discounts (milestone 12)
+
+- Interests: five ranked slots (weights 1 / 0.85 / 0.7 / 0.6 / 0.5) and a new "Attractions and theme parks" interest (tag `attractions` on zoos, aquariums, theme parks, towers and paid experiences).
+- `data/seasonal.json`: curated festivals, blossoms, markets and crowd warnings for the demo destinations, each with its official source. Matched against the trip's dates (windows may cross New Year) and shown in the dates step and above the plan; the UI always says dates move every year.
+- `data/senior-discounts.json`: country rules and per-place notes on 65+ prices, from the official ticketing sites. Shown only when the party includes someone 65+, as a note above the plan and a badge on the card, always with "confirm with ID".
+- Wished places typed as free text are now classified from OpenStreetMap's class/type (a restaurant becomes a meal, a park an hour outdoors) and get a one-line description from Wikidata's search when OSM has no Wikidata link. A wished restaurant takes the lunch slot (a second one becomes dinner) and "too full" never drops a wished place.
+
 ## Performance notes
 
 - `npm run lighthouse` (median of 3 mobile runs, `LIGHTHOUSE_RUNS` to change) against `npm run build && next start`.

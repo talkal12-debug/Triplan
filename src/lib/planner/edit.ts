@@ -151,7 +151,8 @@ export function rebalanceDay(it: Itinerary, dayIndex: number, direction: "lighte
   if (!day) return it;
   const ids = visitIds(day);
   if (direction === "lighter") {
-    const unlocked = day.activities.filter((a) => a.kind === "visit" && !a.locked && a.placeId);
+    const isWished = (id: string | null) => ctx.prefs.mustVisit.some((m) => m.placeId === id);
+    const unlocked = day.activities.filter((a) => a.kind === "visit" && !a.locked && a.placeId && !isWished(a.placeId));
     if (unlocked.length === 0) return it;
     const places = placeMap(ctx);
     const worst = unlocked
@@ -203,7 +204,7 @@ export function toggleLock(it: Itinerary, dayIndex: number, activityId: string):
 export function rebuildUnlocked(it: Itinerary, dayIndex: number, ctx: EditContext): Itinerary {
   const day = it.days[dayIndex];
   if (!day) return it;
-  const lockedIds = day.activities.filter((a) => a.kind === "visit" && a.locked).map((a) => a.placeId!);
+  const lockedIds = day.activities.filter((a) => a.kind === "visit" && (a.locked || ctx.prefs.mustVisit.some((m) => m.placeId === a.placeId))).map((a) => a.placeId!);
   const used = usedPlaceIds(it);
   for (const id of visitIds(day)) used.delete(id);
   const { center } = baseFor(it, day, ctx);

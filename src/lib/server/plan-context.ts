@@ -14,6 +14,8 @@ import { airportForCityName, nearestAirport } from "@/lib/data/airports";
 import { LINKS_VERSION } from "@/lib/links-version";
 import { buildNearby } from "./nearby-plan";
 import type { Evening, Venue } from "@/lib/nearby/schema";
+import { seasonalFor, type SeasonalItem } from "@/lib/data/seasonal";
+import { seniorInfoFor, type SeniorInfo } from "@/lib/data/senior-discounts";
 
 export type PlanContext = {
   places: PlaceSeed[];
@@ -62,7 +64,17 @@ export type PlanExtras = {
   notes: string[];
   dining: Record<string, Venue[]>;
   evenings: Record<string, Evening>;
+  seasonal: (SeasonalItem & { firstDate: string })[];
+  seniors: SeniorInfo | null;
 };
+
+/** Seasonal highlights for the dates and 65+ discounts for the places, from the curated files. */
+export function buildHighlights(prefs: TripPreferences, itinerary: Itinerary): Pick<PlanExtras, "seasonal" | "seniors"> {
+  const seasonal = seasonalFor(prefs.destinations, prefs.dates.start, prefs.dates.days);
+  const placeIds = itinerary.days.flatMap((d) => d.activities.map((a) => a.placeId).filter((id): id is string => Boolean(id)));
+  const seniors = prefs.party.seniors > 0 ? seniorInfoFor(prefs.destinations.map((d) => d.countryCode), placeIds) : null;
+  return { seasonal, seniors };
+}
 
 function addDays(iso: string, n: number): string {
   const d = new Date(`${iso}T00:00:00Z`);
@@ -132,6 +144,7 @@ export async function enrichPlan(
       notes,
       dining: nearby.dining,
       evenings: nearby.evenings,
+      ...buildHighlights(prefs, refined.itinerary),
     },
   };
 }

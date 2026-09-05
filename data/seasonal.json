@@ -1,0 +1,206 @@
+{
+  "note": "Recurring seasonal highlights for the demo destinations. Dates are typical month/day windows; exact dates change every year, the UI says so and links to the official source. Nothing here is generated: every entry names its source.",
+  "items": [
+    {
+      "id": "pt-lisbon-santo-antonio",
+      "countryCode": "PT",
+      "cities": ["lisbon"],
+      "kind": "festival",
+      "from": "06-01",
+      "to": "06-30",
+      "peak": "06-12",
+      "names": { "he": "פסטיבלי ליסבון וחג סנטו אנטוניו", "en": "Festas de Lisboa and Santo António" },
+      "description": { "he": "כל יוני: סרדינים על הגריל, מסיבות רחוב באלפמה ובבאירו אלטו, ובליל 12–13 ביוני התהלוכה בשדרת ליברדאדה.", "en": "All June: grilled sardines, street parties in Alfama and Bairro Alto, and the parade on Avenida da Liberdade on the night of 12–13 June." },
+      "url": "https://www.festasdelisboa.com"
+    },
+    {
+      "id": "pt-porto-sao-joao",
+      "countryCode": "PT",
+      "cities": ["porto"],
+      "kind": "festival",
+      "from": "06-23",
+      "to": "06-24",
+      "names": { "he": "סאו ז'ואאו בפורטו", "en": "São João in Porto" },
+      "description": { "he": "הלילה הגדול של פורטו: פטישי פלסטיק, בלוני אש, זיקוקים על הדורו אחרי חצות.", "en": "Porto's big night: plastic hammers, sky lanterns, fireworks over the Douro after midnight." },
+      "url": "https://www.visitporto.travel"
+    },
+    {
+      "id": "pt-lisbon-christmas",
+      "countryCode": "PT",
+      "cities": ["lisbon"],
+      "kind": "market",
+      "from": "11-25",
+      "to": "01-06",
+      "names": { "he": "אורות חג המולד ושוק Wonderland בליסבון", "en": "Christmas lights and the Wonderland market in Lisbon" },
+      "description": { "he": "תאורת חג ברחובות המרכז ושוק חג מולד עם גלגל ענק וקרח בפארק אדוארד השביעי.", "en": "Holiday lights downtown and a Christmas market with a Ferris wheel and ice rink in Parque Eduardo VII." },
+      "url": "https://www.visitlisboa.com"
+    },
+    {
+      "id": "pt-lisbon-nos-alive",
+      "countryCode": "PT",
+      "cities": ["lisbon"],
+      "kind": "festival",
+      "from": "07-08",
+      "to": "07-13",
+      "names": { "he": "פסטיבל NOS Alive (אואיירש)", "en": "NOS Alive festival (Oeiras)" },
+      "description": { "he": "אחד מפסטיבלי הרוק הגדולים באירופה, שלושה ימים בתחילת-אמצע יולי ליד ליסבון.", "en": "One of Europe's big rock festivals, three days in early-to-mid July just outside Lisbon." },
+      "url": "https://nosalive.com"
+    },
+    {
+      "id": "it-rome-piazza-navona-christmas",
+      "countryCode": "IT",
+      "cities": ["rome"],
+      "kind": "market",
+      "from": "12-01",
+      "to": "01-06",
+      "names": { "he": "שוק חג המולד בפיאצה נבונה", "en": "Christmas market in Piazza Navona" },
+      "description": { "he": "דוכנים, סוכריות ובובות מולד בכיכר, עד חג ההתגלות (הבפאנה) ב-6 בינואר.", "en": "Stalls, sweets and nativity figures in the square, until Epiphany (La Befana) on 6 January." },
+      "url": "https://www.turismoroma.it"
+    },
+    {
+      "id": "it-rome-natale-di-roma",
+      "countryCode": "IT",
+      "cities": ["rome"],
+      "kind": "festival",
+      "from": "04-19",
+      "to": "04-21",
+      "peak": "04-21",
+      "names": { "he": "יום הולדת רומא (Natale di Roma)", "en": "Rome's birthday (Natale di Roma)" },
+      "description": { "he": "ב-21 באפריל רומא חוגגת את ייסודה: תהלוכות בתחפושות רומיות בקירקוס מקסימוס וכניסה חינם למוזיאונים עירוניים.", "en": "On 21 April Rome celebrates its founding: costumed parades at the Circus Maximus and free civic museums." },
+      "url": "https://www.turismoroma.it"
+    },
+    {
+      "id": "it-rome-estate-romana",
+      "countryCode": "IT",
+      "cities": ["rome"],
+      "kind": "festival",
+      "from": "06-15",
+      "to": "09-15",
+      "names": { "he": "Estate Romana: הקיץ של רומא", "en": "Estate Romana: Rome's summer programme" },
+      "description": { "he": "קולנוע תחת כיפת השמיים, הופעות ודוכנים לאורך הטיבר (Lungo il Tevere) בכל ערבי הקיץ.", "en": "Open-air cinema, concerts and stalls along the Tiber (Lungo il Tevere) every summer evening." },
+      "url": "https://www.turismoroma.it"
+    },
+    {
+      "id": "it-rome-film-fest",
+      "countryCode": "IT",
+      "cities": ["rome"],
+      "kind": "festival",
+      "from": "10-15",
+      "to": "10-26",
+      "names": { "he": "פסטיבל הקולנוע של רומא", "en": "Rome Film Fest" },
+      "description": { "he": "הקרנות בכורה ושטיח אדום באודיטוריום פארקו דלה מוזיקה, בערך עשרה ימים באמצע אוקטובר.", "en": "Premieres and red carpets at the Auditorium Parco della Musica, about ten days in mid-October." },
+      "url": "https://www.romacinemafest.it"
+    },
+    {
+      "id": "it-ferragosto",
+      "countryCode": "IT",
+      "cities": null,
+      "kind": "caution",
+      "from": "08-10",
+      "to": "08-20",
+      "peak": "08-15",
+      "names": { "he": "פראגוסטו (15 באוגוסט)", "en": "Ferragosto (15 August)" },
+      "description": { "he": "חג לאומי; סביבו הרבה מסעדות וחנויות משפחתיות ברומא סגורות לחופשת קיץ. האתרים הגדולים פתוחים.", "en": "National holiday; many family restaurants and shops in Rome close for summer holidays around it. Major sites stay open." },
+      "url": "https://www.turismoroma.it"
+    },
+    {
+      "id": "jp-sakura",
+      "countryCode": "JP",
+      "cities": null,
+      "kind": "nature",
+      "from": "03-20",
+      "to": "04-10",
+      "names": { "he": "פריחת הדובדבן (סאקורה)", "en": "Cherry blossom (sakura)" },
+      "description": { "he": "שיא הפריחה בטוקיו בדרך כלל בסוף מרץ עד תחילת אפריל: פארק אואנו, שינג'וקו גיואן, נהר מגורו. התאריך משתנה בכל שנה לפי מזג האוויר.", "en": "Peak bloom in Tokyo is usually late March to early April: Ueno Park, Shinjuku Gyoen, the Meguro River. The date shifts every year with the weather." },
+      "url": "https://www.japan.travel/en/sakura/"
+    },
+    {
+      "id": "jp-golden-week",
+      "countryCode": "JP",
+      "cities": null,
+      "kind": "caution",
+      "from": "04-29",
+      "to": "05-05",
+      "names": { "he": "שבוע הזהב (Golden Week)", "en": "Golden Week" },
+      "description": { "he": "רצף חגים לאומיים: כל יפן בחופשה, רכבות ומלונות מלאים ויקרים. להזמין מראש.", "en": "A run of national holidays: all of Japan travels, trains and hotels are full and expensive. Book ahead." },
+      "url": "https://www.japan.travel/en/"
+    },
+    {
+      "id": "jp-tokyo-sanja-matsuri",
+      "countryCode": "JP",
+      "cities": ["tokyo"],
+      "kind": "festival",
+      "from": "05-15",
+      "to": "05-19",
+      "names": { "he": "סאנג'ה מאצורי באסאקוסה", "en": "Sanja Matsuri in Asakusa" },
+      "description": { "he": "אחד משלושת הפסטיבלים הגדולים של טוקיו: מאות מקדשים ניידים (מיקושי) סביב סנסו-ג'י בסוף השבוע השלישי של מאי.", "en": "One of Tokyo's three great festivals: hundreds of portable shrines (mikoshi) around Sensō-ji on the third weekend of May." },
+      "url": "https://www.asakusajinja.jp"
+    },
+    {
+      "id": "jp-kamakura-ajisai",
+      "countryCode": "JP",
+      "cities": ["kamakura-hakone"],
+      "kind": "nature",
+      "from": "06-01",
+      "to": "06-30",
+      "names": { "he": "הידרנגאות (אג'יסאי) בקמאקורה", "en": "Hydrangeas (ajisai) in Kamakura" },
+      "description": { "he": "יוני הוא חודש ההידרנגאות: מדרון הפריחה בהאסה-דרה ומקדש מייגצו-אין. צפוי לתורים בסופי שבוע.", "en": "June is hydrangea month: the flowering slope at Hase-dera and Meigetsu-in temple. Expect queues at weekends." },
+      "url": "https://www.hasedera.jp"
+    },
+    {
+      "id": "jp-tokyo-sumida-fireworks",
+      "countryCode": "JP",
+      "cities": ["tokyo"],
+      "kind": "festival",
+      "from": "07-25",
+      "to": "07-31",
+      "names": { "he": "זיקוקי נהר סומידה", "en": "Sumida River Fireworks" },
+      "description": { "he": "כ-20,000 זיקוקים מעל הנהר ליד אסאקוסה, בשבת האחרונה של יולי. מקומות טובים נתפסים שעות מראש.", "en": "About 20,000 fireworks over the river near Asakusa, on the last Saturday of July. Good spots fill up hours ahead." },
+      "url": "https://www.sumidagawa-hanabi.com"
+    },
+    {
+      "id": "jp-obon",
+      "countryCode": "JP",
+      "cities": null,
+      "kind": "caution",
+      "from": "08-13",
+      "to": "08-16",
+      "names": { "he": "אובון", "en": "Obon" },
+      "description": { "he": "חופשת אמצע אוגוסט: יפנים נוסעים לעיירות המוצא, רכבות מלאות, בערים ריקוד בון-אודורי בערבים. ב-16 באוגוסט: מדורת הדאימונג'י בהאקונה.", "en": "Mid-August holiday: Japanese travel to their home towns, trains are packed, cities hold Bon-odori dances in the evenings. On 16 August: the Daimonji bonfire in Hakone." },
+      "url": "https://www.hakone.or.jp"
+    },
+    {
+      "id": "jp-koyo",
+      "countryCode": "JP",
+      "cities": null,
+      "kind": "nature",
+      "from": "11-15",
+      "to": "12-10",
+      "names": { "he": "שלכת (קויו)", "en": "Autumn leaves (kōyō)" },
+      "description": { "he": "שיא השלכת בטוקיו באמצע נובמבר עד תחילת דצמבר: ריקוגי-אן וקוישיקאווה קוראקואן (תאורת ערב), שדרת הגינקו במייג'י ג'ינגו גאיאן.", "en": "Peak colour in Tokyo from mid-November to early December: Rikugi-en and Koishikawa Kōrakuen (evening illuminations), the ginkgo avenue at Meiji Jingu Gaien." },
+      "url": "https://www.japan.travel/en/"
+    },
+    {
+      "id": "jp-tokyo-illuminations",
+      "countryCode": "JP",
+      "cities": ["tokyo"],
+      "kind": "market",
+      "from": "11-10",
+      "to": "12-25",
+      "names": { "he": "תאורות החורף של טוקיו", "en": "Tokyo winter illuminations" },
+      "description": { "he": "מרונואוצ'י, רופונגי הילס, שיבויה ואבישו גארדן פלייס מוארים בערבים מאמצע נובמבר עד חג המולד.", "en": "Marunouchi, Roppongi Hills, Shibuya and Ebisu Garden Place light up in the evenings from mid-November to Christmas." },
+      "url": "https://www.gotokyo.org"
+    },
+    {
+      "id": "jp-hatsumode",
+      "countryCode": "JP",
+      "cities": null,
+      "kind": "caution",
+      "from": "12-31",
+      "to": "01-03",
+      "names": { "he": "ראש השנה והביקור הראשון במקדש (האצומודה)", "en": "New Year and hatsumōde" },
+      "description": { "he": "מיליוני מבקרים במייג'י ג'ינגו ובסנסו-ג'י ב-1–3 בינואר; מוזיאונים ורוב החנויות סגורים ב-1 בינואר.", "en": "Millions visit Meiji Jingu and Sensō-ji on 1–3 January; museums and most shops are closed on 1 January." },
+      "url": "https://www.meijijingu.or.jp"
+    }
+  ]
+}

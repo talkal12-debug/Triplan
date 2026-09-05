@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { itinerarySchema, tripPreferencesSchema } from "@/lib/planner";
 import { isLocale } from "@/lib/i18n/locales";
-import { loadPlanContext, buildPlanLinks } from "@/lib/server/plan-context";
+import { loadPlanContext, buildPlanLinks, buildHighlights } from "@/lib/server/plan-context";
 import { buildNearby } from "@/lib/server/nearby-plan";
 
 export const runtime = "nodejs";
@@ -23,5 +23,5 @@ export async function POST(req: Request) {
   const ctx = await loadPlanContext(preferences);
   const notes: string[] = [];
   const nearby = await buildNearby(preferences, itinerary, ctx, locale, notes);
-  return NextResponse.json({ links: buildPlanLinks(preferences, itinerary, ctx, locale), dining: nearby.dining, evenings: nearby.evenings, notes });
+  return NextResponse.json({ links: buildPlanLinks(preferences, itinerary, ctx, locale), dining: nearby.dining, evenings: nearby.evenings, ...buildHighlights(preferences, itinerary), notes });
 }

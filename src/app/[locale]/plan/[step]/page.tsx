@@ -7,6 +7,7 @@ import { isWizardStep, wizardSteps } from "@/lib/wizard/steps";
 import { getCountriesLite, getDemoCitiesLite } from "@/lib/data/countries-lite";
 import { WizardShell } from "@/components/wizard/wizard-shell";
 import { PageMessages } from "@/i18n/page-messages";
+import { seasonalItems } from "@/lib/data/seasonal";
 
 type Props = { params: Promise<{ locale: string; step: string }> };
 
@@ -35,6 +36,7 @@ export default async function WizardStepPage({ params }: Props) {
           locale: uiLocale,
           countries: getCountriesLite(uiLocale),
           cities: getDemoCitiesLite(uiLocale),
+          seasonal: [...seasonalItems],
         }}
       />
     </PageMessages>

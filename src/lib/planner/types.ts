@@ -85,6 +85,7 @@ export const interests = [
   "photography",
   "religion",
   "kids",
+  "attractions",
 ] as const satisfies readonly (typeof placeTags)[number][];
 export type Interest = (typeof interests)[number];
 
@@ -132,7 +133,7 @@ export const tripPreferencesSchema = z.object({
     avoidCityDriving: z.boolean(),
   }),
   /** Selected interests, in priority order. The first three are the ranked ones. */
-  interests: z.array(z.enum(interests)).max(13),
+  interests: z.array(z.enum(interests)).max(14),
   /** Places the traveller wants no matter what (wishlist step). Added in milestone 11; older drafts have none. */
   mustVisit: z.array(mustVisitSchema).max(20).default([]),
   /** Evening style (interests step). Added in milestone 11. */
