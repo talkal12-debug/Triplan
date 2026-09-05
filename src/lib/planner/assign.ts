@@ -119,6 +119,8 @@ export function assignClusters(
     remaining.set(city, clusters.map((c) => ({ ...c, members: [...c.members] })));
   }
   const days: DayPlan[] = [];
+  const mustIds = new Set(prefs.mustVisit.map((m) => m.placeId).filter((id): id is string => Boolean(id)));
+  const holdsMust = (c: Cluster) => c.members.some((m) => mustIds.has(m.place.id));
 
   // Small destination, long stay: spread what there is over the days instead of
   // filling the first ones and leaving the rest empty.
@@ -164,7 +166,10 @@ export function assignClusters(
       cluster.visitMinutes = keep.reduce((s, m) => s + m.place.visitMinutes, 0);
     };
 
-    cityClusters.sort((a, b) => b.value - a.value || a.id.localeCompare(b.id));
+    // Wishlist first: a cluster with a must-see place takes a full day before the value ranking
+    // (on arrival / departure days the usual ranking applies, unless nothing else is left).
+    const mustFirst = kind === "full" || slot.dayIndex === total - 1;
+    cityClusters.sort((a, b) => (mustFirst ? Number(holdsMust(b)) - Number(holdsMust(a)) : 0) || b.value - a.value || a.id.localeCompare(b.id));
     const first = cityClusters.find((c) => c.members.length > 0);
     if (first) {
       clusterIds.push(first.id);

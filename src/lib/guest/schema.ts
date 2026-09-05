@@ -3,6 +3,7 @@ import { tripPreferencesSchema } from "@/lib/planner/types";
 import { citySeedSchema, placeSeedSchema } from "@/lib/data/schemas";
 import { itinerarySchema } from "@/lib/planner/itinerary";
 import { affiliateLinkSchema } from "@/lib/providers/affiliate";
+import { eveningSchema, venueSchema } from "@/lib/nearby/schema";
 
 /**
  * Shapes shared by the browser (localStorage) and the server (share links, sync).
@@ -35,6 +36,9 @@ export const planExtrasSchema = z.object({
   }),
   providers: z.record(z.string(), z.string()),
   notes: z.array(z.string()),
+  /** Milestone 11: restaurants around each meal (by meal activity id) and one evening per day index. Older plans have none until refreshed. */
+  dining: z.record(z.string(), z.array(venueSchema)).optional(),
+  evenings: z.record(z.string(), eveningSchema).optional(),
 });
 export type PlanExtras = z.infer<typeof planExtrasSchema>;
 

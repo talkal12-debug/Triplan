@@ -69,13 +69,13 @@ export function GuestTripView({ id, ctx }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ preferences: trip.preferences, itinerary: plan.itinerary, locale: ctx.locale }),
     })
-      .then(async (r) => (r.ok ? planExtrasSchema.shape.links.parse(((await r.json()) as { links: unknown }).links) : null))
-      .then((links) => {
-        if (!links || cancelled) return;
+      .then(async (r) => (r.ok ? planExtrasSchema.pick({ links: true, dining: true, evenings: true }).parse(await r.json()) : null))
+      .then((fresh) => {
+        if (!fresh || cancelled) return;
         // Merge into whatever is stored now: the descriptions refresh below may have written meanwhile.
         const current = getGuestTrip(trip.id);
         const base = current?.plan ?? plan;
-        const updated = updateGuestTrip(trip.id, { plan: { ...base, extras: { ...(base.extras ?? extras), links } } });
+        const updated = updateGuestTrip(trip.id, { plan: { ...base, extras: { ...(base.extras ?? extras), links: fresh.links, dining: fresh.dining, evenings: fresh.evenings } } });
         if (updated) setTrip(updated);
       })
       .catch(() => undefined);

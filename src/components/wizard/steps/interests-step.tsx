@@ -19,8 +19,8 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { ArrowDown, ArrowUp, GripVertical } from "lucide-react";
-import { interests, type Interest } from "@/lib/planner/types";
-import { Chip } from "../controls";
+import { eveningStyles, interests, type Interest } from "@/lib/planner/types";
+import { Chip, OptionCard } from "../controls";
 import type { StepProps } from "../step-props";
 import { cn } from "@/lib/utils";
 
@@ -118,6 +118,15 @@ export function InterestsStep({ prefs, set, errors }: StepProps) {
           </ol>
         </section>
       )}
+      <fieldset className="space-y-3">
+        <legend className="text-sm font-medium">{t("evening.title")}</legend>
+        <p className="text-sm text-muted-foreground">{t("evening.subtitle")}</p>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {eveningStyles.map((style) => (
+            <OptionCard key={style} name="evening" selected={prefs.evening === style} onSelect={() => set("evening", style)} title={t(`evening.options.${style}.title`)} body={t(`evening.options.${style}.body`)} />
+          ))}
+        </div>
+      </fieldset>
     </div>
   );
 }

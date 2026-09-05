@@ -15,6 +15,7 @@ import { dayDirectionsUrl } from "@/lib/trip/google-maps";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
 import { WeatherBadge } from "./weather-badge";
+import { EveningPanel } from "./evening-panel";
 
 type Props = {
   plan: GuestPlan;
@@ -156,6 +157,10 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
             </ol>
           </SortableContext>
         </DndContext>
+      )}
+
+      {plan.extras?.evenings?.[String(day.index)] && day.kind !== "departure" && (
+        <EveningPanel evening={plan.extras.evenings[String(day.index)]} date={day.date} cityLabel={city(day.citySlug)} />
       )}
 
       {day.rainPlan.length > 0 && (

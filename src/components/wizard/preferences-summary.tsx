@@ -89,17 +89,25 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
         </>
       ),
     },
+    { step: "wishlist", content: prefs.mustVisit.length ? listFormat.format(prefs.mustVisit.map((m) => m.name)) : ts("none") },
     { step: "transport", content: transportModes.length ? listFormat.format(transportModes) : ts("none") },
     {
       step: "interests",
-      content: prefs.interests.length
-        ? prefs.interests.map((i, k) => (
-            <span key={i} className={k < 3 ? "font-medium" : "text-muted-foreground"}>
-              {k > 0 && ", "}
-              {t(`interests.options.${i}`)}
-            </span>
-          ))
-        : ts("none"),
+      content: (
+        <>
+          {prefs.interests.length
+            ? prefs.interests.map((i, k) => (
+                <span key={i} className={k < 3 ? "font-medium" : "text-muted-foreground"}>
+                  {k > 0 && ", "}
+                  {t(`interests.options.${i}`)}
+                </span>
+              ))
+            : ts("none")}
+          <span className="block text-sm text-muted-foreground">
+            {t("interests.evening.title")}: {t(`interests.evening.options.${prefs.evening}.title`)}
+          </span>
+        </>
+      ),
     },
     {
       step: "budget",

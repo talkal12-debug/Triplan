@@ -192,7 +192,8 @@
       "half_day_arrival": "半天，抵达",
       "half_day_departure": "半天，离开",
       "day_trip": "一日游",
-      "hotel_transfer": "更换酒店"
+      "hotel_transfer": "更换酒店",
+      "must_visit": "在您的必去清单中"
     },
     "weekdays": {
       "sunday": "周日",
@@ -215,7 +216,9 @@
       "rain_expected": "预计有雨（{probability}%）",
       "advance_booking_needed": "需提前预订",
       "walk_budget_tight": "步行额度即将用完",
-      "few_places_left": "此目的地的景点已用完：{days} 个空闲日"
+      "few_places_left": "此目的地的景点已用完：{days} 个空闲日",
+      "must_visit_unplaced": "清单中的“{name}”未能安排（您的日期不开放或太远）。请尝试“重新生成”或手动添加。",
+      "must_visit_unresolved": "无法定位“{name}”。请检查拼写或选择一个建议。"
     },
     "rainPlan": "雨天方案",
     "tripStats": "共步行 {distance}，{places} 个景点，{verified}% 的开放时间已核实",
@@ -353,8 +356,16 @@
         "kiwi": "把不同航空公司（含廉航）组合成一张票的机票搜索。",
         "skyscanner": "比较所有航空公司的机票价格，支持整月搜索。",
         "rentalcars": "Booking 集团的租车平台，比较本地和国际公司，可免费取消。",
-        "discovercars": "租车比价平台，含本地公司评分和便宜的全险。"
-      }
+        "discovercars": "租车比价平台，含本地公司评分和便宜的全险。",
+        "ticketmaster": "音乐会、体育和戏剧票务；按城市搜索。",
+        "eventbrite": "本地活动、工作坊和派对，很多免费。",
+        "songkick": "按城市和日期的音乐会信息。",
+        "residentadvisor": "全球夜店和电子音乐之夜的主要指南。"
+      },
+      "ticketmaster": "Ticketmaster",
+      "eventbrite": "Eventbrite",
+      "songkick": "Songkick",
+      "residentadvisor": "Resident Advisor"
     },
     "rates": "目的地货币：1 {base} ≈ {value} {quote}",
     "ratesDemo": "（近似汇率）",
@@ -393,7 +404,66 @@
       "day_trip": "一日游"
     },
     "summaryTranslated": "（机器翻译，维基百科）",
-    "summaryGoogle": "用 Google 翻译"
+    "summaryGoogle": "用 Google 翻译",
+    "nearby": {
+      "dining": "附近餐厅",
+      "noDining": "OpenStreetMap 上步行范围内没有登记的餐厅。",
+      "searchMaps": "在 Google 地图搜索餐厅（含评分）",
+      "mapsQuery": "附近餐厅",
+      "osmNote": "来源：OpenStreetMap。名称和营业时间以其登记为准，无评分，未经我们核实。",
+      "openMap": "在地图上打开",
+      "hours": "营业时间",
+      "website": "网站",
+      "kinds": {
+        "restaurant": "餐厅",
+        "cafe": "咖啡馆",
+        "fast_food": "快餐",
+        "bar": "酒吧",
+        "pub": "小酒馆",
+        "nightclub": "夜店",
+        "theatre": "剧院",
+        "cinema": "电影院",
+        "music": "现场音乐",
+        "arts": "艺术中心",
+        "casino": "赌场",
+        "viewpoint": "观景点",
+        "ice_cream": "冰淇淋"
+      },
+      "hints": {
+        "outdoor": "户外座位",
+        "wheelchair": "轮椅无障碍",
+        "vegetarian": "素食选择",
+        "live_music": "现场音乐",
+        "wine": "葡萄酒吧",
+        "family": "适合家庭"
+      }
+    },
+    "evening": {
+      "title": "夜晚",
+      "dinner": "酒店附近的晚餐",
+      "styles": {
+        "quiet": "轻松",
+        "culture": "文化",
+        "nightlife": "夜生活",
+        "none": "不安排夜晚"
+      },
+      "venuesTitle": {
+        "quiet": "适合轻松夜晚的地方",
+        "culture": "文化与演出",
+        "nightlife": "酒吧与夜店",
+        "none": "不安排夜晚"
+      },
+      "noVenues": "OpenStreetMap 上酒店附近没有合适的场所。",
+      "events": "{date} 的活动",
+      "noEvents": "该日期未找到活动。",
+      "eventsNeedKey": "该日期的真实活动需要 Ticketmaster 密钥（免费，见 README）。在此之前，下方链接会打开该日期的搜索。",
+      "eventsSource": "来源：{source}",
+      "links": "搜索活动和演出",
+      "searchMapsVenues": "在地图上搜索",
+      "mapsQuiet": "适合轻松夜晚的地方",
+      "mapsCulture": "演出和剧院",
+      "mapsNightlife": "酒吧和夜店"
+    }
   },
   "gallery": {
     "title": "现成计划",
@@ -440,7 +510,8 @@
       "hotel": "住宿",
       "flight": "机票",
       "car": "租车",
-      "ticket": "门票与旅行团"
+      "ticket": "门票与旅行团",
+      "event": "活动与夜晚"
     },
     "statusAffiliate": "联盟链接已启用",
     "statusPlain": "普通链接，无佣金"
@@ -556,7 +627,8 @@
       "interests": "兴趣",
       "budget": "预算",
       "hotel": "住宿",
-      "summary": "摘要"
+      "summary": "摘要",
+      "wishlist": "必去"
     },
     "destination": {
       "title": "去哪里？",
@@ -722,7 +794,29 @@
       "moveDown": "下移 {name}",
       "dragHandle": "拖动 {name} 排序",
       "rank": "第 {n} 位",
-      "atLeastOne": "请至少选择一项兴趣"
+      "atLeastOne": "请至少选择一项兴趣",
+      "evening": {
+        "title": "您喜欢怎样度过夜晚？",
+        "subtitle": "每个夜晚都会有匹配的晚餐、场所和活动。",
+        "options": {
+          "quiet": {
+            "title": "轻松",
+            "body": "一顿好晚餐、散步、日落观景点、安静的葡萄酒吧。"
+          },
+          "culture": {
+            "title": "文化",
+            "body": "您行程日期内的演出、戏剧、音乐会和活动。"
+          },
+          "nightlife": {
+            "title": "夜生活",
+            "body": "酒吧、夜店和深夜演出。"
+          },
+          "none": {
+            "title": "不安排夜晚",
+            "body": "只推荐晚餐，其他不安排。"
+          }
+        }
+      }
     },
     "budget": {
       "title": "预算",
@@ -812,6 +906,22 @@
       "noCap": "无每日上限",
       "errors": "生成前需要修正部分步骤：",
       "stroller": "携带婴儿车"
+    },
+    "wishlist": {
+      "title": "有什么地方是一定要去的？",
+      "subtitle": "写下您不想错过的景点、餐厅或街区。计划会优先安排它们。",
+      "label": "添加地点",
+      "hint": "开始输入并从列表中选择，或输入任意名称后点击添加。",
+      "placeholder": "例如：贝伦塔",
+      "add": "添加",
+      "suggestions": "建议",
+      "searching": "搜索中...",
+      "noResults": "不在我们的目录中。可作为文字添加，生成计划时我们会查找。",
+      "empty": "还没有地点。可以跳过，计划将按您的兴趣安排。",
+      "listLabel": "您的必去清单",
+      "resolvedLater": "生成计划时定位",
+      "remove": "移除 {name}",
+      "full": "最多 20 个地点。"
     }
   },
   "trip": {

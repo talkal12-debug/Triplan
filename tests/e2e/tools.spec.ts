@@ -11,7 +11,7 @@ async function buildLisbonTrip(page: Page) {
   await page.getByRole("checkbox", { name: /^פורטוגל / }).click();
   await page.getByRole("checkbox", { name: /ליסבון/ }).click();
   await next.click();
-  for (const step of ["dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"]) {
+  for (const step of ["wishlist", "dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"]) {
     await expect(page).toHaveURL(new RegExp(`/plan/${step}$`));
     await next.click();
   }

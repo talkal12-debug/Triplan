@@ -54,6 +54,8 @@ export function allErrors(prefs: TripPreferences, today = new Date()): Partial<R
 export function applyStepDefault(step: WizardStep, prefs: TripPreferences): TripPreferences {
   const d = defaultTripPreferences();
   switch (step) {
+    case "wishlist":
+      return { ...prefs, mustVisit: d.mustVisit };
     case "dates":
       return { ...prefs, dates: d.dates };
     case "party":
@@ -65,7 +67,7 @@ export function applyStepDefault(step: WizardStep, prefs: TripPreferences): Trip
     case "transport":
       return { ...prefs, transport: d.transport, carOptions: d.carOptions };
     case "interests":
-      return { ...prefs, interests: d.interests };
+      return { ...prefs, interests: d.interests, evening: d.evening };
     case "budget":
       return { ...prefs, budget: { ...d.budget, currency: prefs.budget.currency } };
     case "hotel":

@@ -4,6 +4,7 @@ import { PlannerError, generateItinerary, tripPreferencesSchema } from "@/lib/pl
 import { enrichPlan, loadPlanContext, loadSignals } from "@/lib/server/plan-context";
 import { isLocale } from "@/lib/i18n/locales";
 import { withSummaries } from "@/lib/providers/summaries";
+import { resolveMustVisit } from "@/lib/server/must-visit";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -20,16 +21,19 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json({ error: "invalid_preferences", issues: parsed.error.issues }, { status: 400 });
   }
-  const prefs = parsed.data.preferences;
   const locale = parsed.data.locale && isLocale(parsed.data.locale) ? parsed.data.locale : "he";
 
-  const ctx = await loadPlanContext(prefs);
+  const ctx = await loadPlanContext(parsed.data.preferences);
   if (ctx.cities.length === 0) {
     return NextResponse.json({ error: "no_cities", notes: ctx.notes }, { status: 422 });
   }
   if (ctx.places.length === 0) {
     return NextResponse.json({ error: "no_places", notes: ctx.notes }, { status: 422 });
   }
+  // Wishlist: catalogue ids stay, free text is matched by name or looked up on OSM; the rest is reported.
+  const wish = await resolveMustVisit(parsed.data.preferences, ctx.places, ctx.cities, ctx.notes);
+  const prefs = wish.prefs;
+  ctx.places.push(...wish.added);
 
   const signals = await loadSignals(prefs, ctx.cities, ctx.notes);
   const weatherForEngine = Object.fromEntries(Object.entries(signals.weather).map(([d, w]) => [d, { precipProbability: w.precipProbability, tempMax: w.tempMax }]));
@@ -42,6 +46,7 @@ export async function POST(req: Request) {
       weather: weatherForEngine,
       holidays: signals.holidays.map((h) => ({ date: h.date, name: h.localName })),
     });
+    for (const name of wish.unresolved) itinerary.warnings.push({ code: "must_visit_unresolved", severity: "warning", params: { name } });
     const enriched = await enrichPlan(prefs, itinerary, ctx, signals, locale);
     const usedIds = new Set(enriched.itinerary.days.flatMap((d) => [...d.activities.map((a) => a.placeId), ...d.rainPlan]));
     const unusedTop = diagnostics.unused.slice(0, 40);

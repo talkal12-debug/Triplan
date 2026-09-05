@@ -10,6 +10,8 @@ async function buildRomeTripWithCar(page: Page) {
   const next = page.getByRole("button", { name: "המשך" });
   await page.getByRole("checkbox", { name: /^איטליה / }).click();
   await next.click();
+  await expect(page).toHaveURL(/\/plan\/wishlist$/);
+  await next.click();
   await expect(page).toHaveURL(/\/plan\/dates$/);
   await page.getByLabel(/מאיפה טסים/).fill("Tel Aviv");
   await next.click();

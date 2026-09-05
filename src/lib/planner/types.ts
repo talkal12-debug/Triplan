@@ -88,6 +88,22 @@ export const interests = [
 ] as const satisfies readonly (typeof placeTags)[number][];
 export type Interest = (typeof interests)[number];
 
+/** How the traveller likes to spend evenings; drives the evening suggestions (milestone 11). */
+export const eveningStyles = ["quiet", "culture", "nightlife", "none"] as const;
+export type EveningStyle = (typeof eveningStyles)[number];
+
+/**
+ * A place the traveller insists on. `placeId` is set when picked from our catalogue;
+ * a free-text entry is resolved at planning time (catalogue name match, then OpenStreetMap).
+ */
+export const mustVisitSchema = z.object({
+  name: z.string().trim().min(1).max(120),
+  placeId: z.string().nullable(),
+  lat: z.number().optional(),
+  lng: z.number().optional(),
+});
+export type MustVisit = z.infer<typeof mustVisitSchema>;
+
 /** 0 = never, 1 = a little, 2 = normal, 3 = prefer */
 export const transportWeight = z.number().int().min(0).max(3);
 
@@ -117,6 +133,10 @@ export const tripPreferencesSchema = z.object({
   }),
   /** Selected interests, in priority order. The first three are the ranked ones. */
   interests: z.array(z.enum(interests)).max(13),
+  /** Places the traveller wants no matter what (wishlist step). Added in milestone 11; older drafts have none. */
+  mustVisit: z.array(mustVisitSchema).max(20).default([]),
+  /** Evening style (interests step). Added in milestone 11. */
+  evening: z.enum(eveningStyles).default("quiet"),
   budget: z.object({
     level: z.enum(budgetLevels),
     dailyCap: z.number().int().positive().max(100000).nullable(),
@@ -156,6 +176,8 @@ export function defaultTripPreferences(today = new Date()): TripPreferences {
     transport: { walk: 3, bike: 0, car: 0, transit: 2, tours: 1 },
     carOptions: { oppositeSideOk: true, avoidMountainRoads: false, avoidCityDriving: false },
     interests: ["city", "history", "food"],
+    mustVisit: [],
+    evening: "quiet",
     budget: { level: "mid", dailyCap: null, currency: "ILS" },
     hotel: { type: "4star", locationPref: "center", baseMode: "auto" },
   };

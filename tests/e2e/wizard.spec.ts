@@ -21,7 +21,12 @@ test("guest can complete the wizard and land on a saved trip", async ({ page }) 
   await expect(next).toBeEnabled();
   await next.click();
 
-  // Step 2: dates (defaults are valid).
+  // Step 2: wishlist is optional.
+  await expect(page).toHaveURL(/\/plan\/wishlist$/);
+  await expect(page.getByText("עדיין אין מקומות ברשימה")).toBeVisible();
+  await next.click();
+
+  // Step 3: dates (defaults are valid).
   await expect(page).toHaveURL(/\/plan\/dates$/);
   await expect(page.getByText(/עונה ביעד/)).toBeVisible();
   await next.click();

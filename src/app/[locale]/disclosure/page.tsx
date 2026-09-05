@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t("title") };
 }
 
-const kinds: Record<AffiliateProvider, "hotel" | "ticket" | "flight" | "car"> = {
+const kinds: Record<AffiliateProvider, "hotel" | "ticket" | "flight" | "car" | "event"> = {
   booking: "hotel",
   hotelscom: "hotel",
   agoda: "hotel",
@@ -23,6 +23,10 @@ const kinds: Record<AffiliateProvider, "hotel" | "ticket" | "flight" | "car"> = 
   skyscanner: "flight",
   rentalcars: "car",
   discovercars: "car",
+  ticketmaster: "event",
+  eventbrite: "event",
+  songkick: "event",
+  residentadvisor: "event",
 };
 
 /** Which partners currently carry a tracking id (server-side env), so the page tells the truth. */
@@ -44,7 +48,7 @@ export default async function DisclosurePage({ params }: Props) {
   const t = await getTranslations("disclosure");
   const tl = await getTranslations("plan.links");
   const active = activePrograms();
-  const groups = ["hotel", "flight", "car", "ticket"] as const;
+  const groups = ["hotel", "flight", "car", "ticket", "event"] as const;
 
   return (
     <article className="mx-auto w-full max-w-2xl px-4 py-12 sm:px-6">

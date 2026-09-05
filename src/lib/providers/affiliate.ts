@@ -22,12 +22,16 @@ export const affiliateProviders = [
   "skyscanner",
   "rentalcars",
   "discovercars",
+  "ticketmaster",
+  "eventbrite",
+  "songkick",
+  "residentadvisor",
 ] as const;
 export type AffiliateProvider = (typeof affiliateProviders)[number];
 
 export const affiliateLinkSchema = z.object({
   provider: z.enum(affiliateProviders),
-  kind: z.enum(["hotel", "ticket", "flight", "car"]),
+  kind: z.enum(["hotel", "ticket", "flight", "car", "event"]),
   url: z.string().url(),
   /** true when an affiliate id was applied */
   affiliate: z.boolean(),
@@ -215,6 +219,46 @@ export function carLinks(q: CarQuery, ids: AffiliateIds = {}): AffiliateLink[] {
  * AFFILIATE_QUERY_<PROVIDER> holds a raw tracking query string for any provider,
  * e.g. AFFILIATE_QUERY_AGODA="cid=1234567".
  */
+export type EveningQuery = {
+  city: string;
+  countryCode: string;
+  countryName?: string;
+  date: string;
+  style: "quiet" | "culture" | "nightlife" | "none";
+};
+
+/**
+ * Where to look for evening plans on a given date: tours (affiliate-capable) for
+ * every style, concert/event search for culture, club listings for nightlife.
+ * Search links, not results: the sites decide what is on.
+ */
+export function eveningLinks(q: EveningQuery, ids: AffiliateIds = {}): AffiliateLink[] {
+  if (q.style === "none") return [];
+  const out: AffiliateLink[] = [];
+  const tourQuery = compact(`${q.city} ${q.style === "nightlife" ? "night" : "evening"}`);
+  const gyg = withTracking(
+    `https://www.getyourguide.com/s/?q=${enc(tourQuery)}&date_from=${q.date}&date_to=${q.date}`,
+    "getyourguide",
+    ids,
+    ids.getYourGuidePartnerId ? `partner_id=${enc(ids.getYourGuidePartnerId)}` : undefined,
+  );
+  out.push({ provider: "getyourguide", kind: "event", ...gyg });
+  if (q.style !== "quiet") {
+    const country = q.countryName ? slug(q.countryName) : q.countryCode.toLowerCase();
+    out.push({ provider: "eventbrite", kind: "event", ...withTracking(`https://www.eventbrite.com/d/${country}--${slug(q.city)}/events/?start_date=${q.date}&end_date=${q.date}`, "eventbrite", ids) });
+    out.push({ provider: "songkick", kind: "event", ...withTracking(`https://www.songkick.com/search?utf8=%E2%9C%93&type=upcoming&query=${enc(q.city)}`, "songkick", ids) });
+  }
+  if (q.style === "culture") {
+    out.push({ provider: "ticketmaster", kind: "event", ...withTracking(`https://www.ticketmaster.com/search?q=${enc(q.city)}`, "ticketmaster", ids) });
+  }
+  if (q.style === "nightlife") {
+    out.push({ provider: "residentadvisor", kind: "event", ...withTracking(`https://ra.co/events/${q.countryCode.toLowerCase()}/${slug(q.city)}`, "residentadvisor", ids) });
+  }
+  const viator = withTracking(`https://www.viator.com/searchResults/all?text=${enc(tourQuery)}`, "viator", ids, ids.viatorPid ? `pid=${enc(ids.viatorPid)}&mcid=42383&medium=link` : undefined);
+  out.push({ provider: "viator", kind: "event", ...viator });
+  return out;
+}
+
 export function affiliateIdsFromEnv(env: NodeJS.ProcessEnv = process.env): AffiliateIds {
   const query: Partial<Record<AffiliateProvider, string>> = {};
   for (const p of affiliateProviders) {

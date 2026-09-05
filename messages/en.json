@@ -192,7 +192,8 @@
       "half_day_arrival": "Half day, arrival",
       "half_day_departure": "Half day, departure",
       "day_trip": "Day trip",
-      "hotel_transfer": "Hotel change"
+      "hotel_transfer": "Hotel change",
+      "must_visit": "On your must-see list"
     },
     "weekdays": {
       "sunday": "Sunday",
@@ -215,7 +216,9 @@
       "rain_expected": "Rain expected ({probability}%)",
       "advance_booking_needed": "Book in advance",
       "walk_budget_tight": "Walking budget almost used up",
-      "few_places_left": "Ran out of attractions for this destination: {days} free days"
+      "few_places_left": "Ran out of attractions for this destination: {days} free days",
+      "must_visit_unplaced": "\"{name}\" from your must-see list did not fit (closed on your dates or too far). Try \"Rebuild\" or add it by hand.",
+      "must_visit_unresolved": "We could not locate \"{name}\". Check the spelling or pick a suggestion."
     },
     "rainPlan": "Rain plan",
     "tripStats": "Total {distance} walking, {places} attractions, {verified}% with verified opening hours",
@@ -353,8 +356,16 @@
         "kiwi": "Flight search that combines different airlines (low-cost too) into one ticket.",
         "skyscanner": "Flight price comparison across all airlines, including whole-month search.",
         "rentalcars": "Car rental from the Booking group, comparing local and international companies with free cancellation.",
-        "discovercars": "Car rental comparison with ratings of the local companies and cheap full-coverage insurance."
-      }
+        "discovercars": "Car rental comparison with ratings of the local companies and cheap full-coverage insurance.",
+        "ticketmaster": "Tickets for concerts, sports and theatre; search by city.",
+        "eventbrite": "Local events, workshops and parties, many of them free.",
+        "songkick": "Concert listings by city and date.",
+        "residentadvisor": "The main listing for clubs and electronic music nights worldwide."
+      },
+      "ticketmaster": "Ticketmaster",
+      "eventbrite": "Eventbrite",
+      "songkick": "Songkick",
+      "residentadvisor": "Resident Advisor"
     },
     "rates": "Destination currency: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(approximate rate)",
@@ -393,7 +404,66 @@
       "day_trip": "Day trip"
     },
     "summaryTranslated": "(machine translation, Wikipedia)",
-    "summaryGoogle": "Translate with Google"
+    "summaryGoogle": "Translate with Google",
+    "nearby": {
+      "dining": "Restaurants nearby",
+      "noDining": "No restaurants listed on OpenStreetMap within walking distance.",
+      "searchMaps": "Search restaurants on Google Maps (with ratings)",
+      "mapsQuery": "restaurants near",
+      "osmNote": "Source: OpenStreetMap. Names and hours as listed there, no rating and not checked by us.",
+      "openMap": "Open on the map",
+      "hours": "Opening hours",
+      "website": "Website",
+      "kinds": {
+        "restaurant": "Restaurant",
+        "cafe": "Café",
+        "fast_food": "Fast food",
+        "bar": "Bar",
+        "pub": "Pub",
+        "nightclub": "Club",
+        "theatre": "Theatre",
+        "cinema": "Cinema",
+        "music": "Live music",
+        "arts": "Arts centre",
+        "casino": "Casino",
+        "viewpoint": "Viewpoint",
+        "ice_cream": "Ice cream"
+      },
+      "hints": {
+        "outdoor": "Outdoor seating",
+        "wheelchair": "Wheelchair accessible",
+        "vegetarian": "Vegetarian option",
+        "live_music": "Live music",
+        "wine": "Wine bar",
+        "family": "Family friendly"
+      }
+    },
+    "evening": {
+      "title": "Evening",
+      "dinner": "Dinner near the hotel",
+      "styles": {
+        "quiet": "Relaxed",
+        "culture": "Culture",
+        "nightlife": "Nightlife",
+        "none": "No evenings"
+      },
+      "venuesTitle": {
+        "quiet": "Places for a relaxed evening",
+        "culture": "Culture and shows",
+        "nightlife": "Bars and clubs",
+        "none": "No evenings"
+      },
+      "noVenues": "No matching venues on OpenStreetMap near the hotel.",
+      "events": "Events on {date}",
+      "noEvents": "No events found for this date.",
+      "eventsNeedKey": "Real events for the date need a Ticketmaster key (free, see README). Until then the links below open a search for the date.",
+      "eventsSource": "Source: {source}",
+      "links": "Search events and shows",
+      "searchMapsVenues": "Search on the map",
+      "mapsQuiet": "places for a relaxed evening",
+      "mapsCulture": "shows and theatre",
+      "mapsNightlife": "bars and clubs"
+    }
   },
   "gallery": {
     "title": "Ready plans",
@@ -440,7 +510,8 @@
       "hotel": "Stays",
       "flight": "Flights",
       "car": "Car rental",
-      "ticket": "Tickets and tours"
+      "ticket": "Tickets and tours",
+      "event": "Events and evenings"
     },
     "statusAffiliate": "Affiliate link active",
     "statusPlain": "Plain link, no commission"
@@ -556,7 +627,8 @@
       "interests": "Interests",
       "budget": "Budget",
       "hotel": "Stay",
-      "summary": "Summary"
+      "summary": "Summary",
+      "wishlist": "Must see"
     },
     "destination": {
       "title": "Where to?",
@@ -722,7 +794,29 @@
       "moveDown": "Move {name} down",
       "dragHandle": "Drag {name} to rank",
       "rank": "Rank {n}",
-      "atLeastOne": "Pick at least one interest"
+      "atLeastOne": "Pick at least one interest",
+      "evening": {
+        "title": "How do you like your evenings?",
+        "subtitle": "Every evening gets a dinner, venues and events to match.",
+        "options": {
+          "quiet": {
+            "title": "Relaxed",
+            "body": "A good dinner, a stroll, a sunset viewpoint, a quiet wine bar."
+          },
+          "culture": {
+            "title": "Culture",
+            "body": "Shows, theatre, concerts and events on your dates."
+          },
+          "nightlife": {
+            "title": "Nightlife",
+            "body": "Bars, clubs and late shows."
+          },
+          "none": {
+            "title": "No evenings",
+            "body": "Just a dinner suggestion, nothing else."
+          }
+        }
+      }
     },
     "budget": {
       "title": "Budget",
@@ -812,6 +906,22 @@
       "noCap": "No daily cap",
       "errors": "Some steps need fixing before building:",
       "stroller": "with a stroller"
+    },
+    "wishlist": {
+      "title": "Anything you must see?",
+      "subtitle": "List attractions, restaurants or neighbourhoods you refuse to miss. The plan places them before anything else.",
+      "label": "Add a place",
+      "hint": "Start typing and pick from the list, or type any name and press Add.",
+      "placeholder": "e.g. Belém Tower",
+      "add": "Add",
+      "suggestions": "Suggestions",
+      "searching": "Searching...",
+      "noResults": "Not in our catalogue. Add it as free text and we will look it up when the plan is built.",
+      "empty": "No places yet. You can skip; the plan follows your interests.",
+      "listLabel": "Your must-see list",
+      "resolvedLater": "located when the plan is built",
+      "remove": "Remove {name}",
+      "full": "Up to 20 places."
     }
   },
   "trip": {

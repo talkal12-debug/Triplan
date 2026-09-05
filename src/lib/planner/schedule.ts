@@ -51,6 +51,7 @@ function reasonsFor(
   prefs: TripPreferences,
 ): Reason[] {
   const reasons: Reason[] = [];
+  if (prefs.mustVisit.some((m) => m.placeId === place.id)) reasons.push({ code: "must_visit", params: {} });
   if (transit) {
     if (isFirst && transit.minutes <= 25) reasons.push({ code: "near_base", params: { minutes: transit.minutes, mode: transit.mode } });
     else if (!isFirst) reasons.push({ code: "near_previous", params: { minutes: transit.minutes, mode: transit.mode } });
@@ -147,6 +148,9 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   } else {
     const order = tourOrder(ctx.base, candidates.map((c) => c.place));
     ordered = order.map((i) => candidates[i]);
+    // Wishlist first: a far-away must-see would otherwise come last in the tour and be left over.
+    const mustIds = new Set(prefs.mustVisit.map((m) => m.placeId));
+    if (mustIds.size) ordered = [...ordered.filter((c) => mustIds.has(c.place.id)), ...ordered.filter((c) => !mustIds.has(c.place.id))];
   }
 
   let here: LatLng = ctx.base;

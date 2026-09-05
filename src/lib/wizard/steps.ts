@@ -1,6 +1,7 @@
-/** The 10 wizard steps, in order. Slugs appear in the URL: /plan/destination ... /plan/summary */
+/** The 11 wizard steps, in order. Slugs appear in the URL: /plan/destination ... /plan/summary */
 export const wizardSteps = [
   "destination",
+  "wishlist",
   "dates",
   "party",
   "visit",

@@ -14,7 +14,13 @@ export type ExclusionReason =
 /**
  * Hard filters. A place that fails any of these never appears in the plan.
  */
+export function isMustVisit(place: PlannerPlace, prefs: TripPreferences): boolean {
+  return prefs.mustVisit.some((m) => m.placeId === place.id);
+}
+
 export function exclusionReason(place: PlannerPlace, prefs: TripPreferences): ExclusionReason | null {
+  // The traveller asked for it explicitly: no filter overrides that.
+  if (isMustVisit(place, prefs)) return null;
   if (prefs.alreadySeen.includes(place.id)) return "already_seen";
   const youngest = Math.min(...prefs.party.childrenAges, prefs.party.infants > 0 ? 0 : 99);
   if (place.minAge !== null && youngest < place.minAge) return "min_age";
@@ -32,6 +38,8 @@ const rankWeight = [1, 0.85, 0.7];
  */
 export function scorePlace(place: PlannerPlace, prefs: TripPreferences): number {
   let score = 0;
+  // Wishlist places outrank everything else (scores are otherwise 0..1).
+  if (isMustVisit(place, prefs)) score += 1;
 
   // Interest match: best-matching ranked interest counts most.
   let interest = 0;

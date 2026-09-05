@@ -107,11 +107,13 @@ describe("wizard validation", () => {
 
 describe("wizard steps", () => {
   it("has 10 steps starting with destination and ending with summary", () => {
-    expect(wizardSteps.length).toBe(10);
+    expect(wizardSteps.length).toBe(11);
     expect(wizardSteps[0]).toBe("destination");
-    expect(wizardSteps[9]).toBe("summary");
+    expect(wizardSteps[1]).toBe("wishlist");
+    expect(wizardSteps[10]).toBe("summary");
     expect(prevStep("destination")).toBeNull();
     expect(nextStep("summary")).toBeNull();
-    expect(nextStep("destination")).toBe("dates");
+    expect(nextStep("destination")).toBe("wishlist");
+    expect(nextStep("wishlist")).toBe("dates");
   });
 });

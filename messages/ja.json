@@ -192,7 +192,8 @@
       "half_day_arrival": "半日、到着",
       "half_day_departure": "半日、出発",
       "day_trip": "日帰り旅行",
-      "hotel_transfer": "ホテル移動"
+      "hotel_transfer": "ホテル移動",
+      "must_visit": "必ず行くリストの場所"
     },
     "weekdays": {
       "sunday": "日曜日",
@@ -215,7 +216,9 @@
       "rain_expected": "雨の予報（{probability}%）",
       "advance_booking_needed": "要事前予約",
       "walk_budget_tight": "徒歩の上限にほぼ達しています",
-      "few_places_left": "この目的地の観光スポットを使い切りました：空き{days}日"
+      "few_places_left": "この目的地の観光スポットを使い切りました：空き{days}日",
+      "must_visit_unplaced": "リストの「{name}」を組み込めませんでした（日程中は休業、または遠すぎます）。「再作成」するか手動で追加してください。",
+      "must_visit_unresolved": "「{name}」を特定できませんでした。つづりを確認するか候補から選んでください。"
     },
     "rainPlan": "雨天プラン",
     "tripStats": "合計 徒歩{distance}、{places}か所、営業時間確認済み{verified}%",
@@ -353,8 +356,16 @@
         "kiwi": "異なる航空会社（LCC含む）を1枚の航空券に組み合わせる検索エンジン。",
         "skyscanner": "全航空会社の運賃比較。月まるごと検索も可能。",
         "rentalcars": "Bookingグループのレンタカー。現地・国際各社を比較、無料キャンセル可。",
-        "discovercars": "現地会社の評価付きレンタカー比較。安価なフルカバー保険あり。"
-      }
+        "discovercars": "現地会社の評価付きレンタカー比較。安価なフルカバー保険あり。",
+        "ticketmaster": "コンサート、スポーツ、演劇のチケット。都市で検索。",
+        "eventbrite": "地元のイベント、ワークショップ、パーティー。無料も多数。",
+        "songkick": "都市と日付ごとのコンサート情報。",
+        "residentadvisor": "世界のクラブとエレクトロニック・ナイトの主要ガイド。"
+      },
+      "ticketmaster": "Ticketmaster",
+      "eventbrite": "Eventbrite",
+      "songkick": "Songkick",
+      "residentadvisor": "Resident Advisor"
     },
     "rates": "現地通貨：1 {base} ≈ {value} {quote}",
     "ratesDemo": "（概算レート）",
@@ -393,7 +404,66 @@
       "day_trip": "日帰り旅行"
     },
     "summaryTranslated": "（機械翻訳、ウィキペディア）",
-    "summaryGoogle": "Google で翻訳"
+    "summaryGoogle": "Google で翻訳",
+    "nearby": {
+      "dining": "近くのレストラン",
+      "noDining": "OpenStreetMap には徒歩圏内のレストラン登録がありません。",
+      "searchMaps": "Google マップでレストランを検索（評価付き）",
+      "mapsQuery": "近くのレストラン",
+      "osmNote": "出典：OpenStreetMap。名称と営業時間は登録どおりで、評価や当方の確認はありません。",
+      "openMap": "地図で開く",
+      "hours": "営業時間",
+      "website": "ウェブサイト",
+      "kinds": {
+        "restaurant": "レストラン",
+        "cafe": "カフェ",
+        "fast_food": "ファストフード",
+        "bar": "バー",
+        "pub": "パブ",
+        "nightclub": "クラブ",
+        "theatre": "劇場",
+        "cinema": "映画館",
+        "music": "ライブ音楽",
+        "arts": "アートセンター",
+        "casino": "カジノ",
+        "viewpoint": "展望スポット",
+        "ice_cream": "アイスクリーム"
+      },
+      "hints": {
+        "outdoor": "屋外席",
+        "wheelchair": "車椅子対応",
+        "vegetarian": "ベジタリアン対応",
+        "live_music": "ライブ音楽",
+        "wine": "ワインバー",
+        "family": "家族向け"
+      }
+    },
+    "evening": {
+      "title": "夜",
+      "dinner": "ホテル近くの夕食",
+      "styles": {
+        "quiet": "のんびり",
+        "culture": "カルチャー",
+        "nightlife": "ナイトライフ",
+        "none": "夜の予定なし"
+      },
+      "venuesTitle": {
+        "quiet": "のんびりした夜のスポット",
+        "culture": "カルチャーと公演",
+        "nightlife": "バーとクラブ",
+        "none": "夜の予定なし"
+      },
+      "noVenues": "OpenStreetMap にホテル近くの適したスポットがありません。",
+      "events": "{date} のイベント",
+      "noEvents": "この日のイベントは見つかりませんでした。",
+      "eventsNeedKey": "その日の実際のイベントには Ticketmaster キーが必要です（無料、README 参照）。それまでは下のリンクでその日の検索を開きます。",
+      "eventsSource": "出典：{source}",
+      "links": "イベントと公演を検索",
+      "searchMapsVenues": "地図で検索",
+      "mapsQuiet": "のんびりした夜のスポット",
+      "mapsCulture": "公演と劇場",
+      "mapsNightlife": "バーとクラブ"
+    }
   },
   "gallery": {
     "title": "完成プラン",
@@ -440,7 +510,8 @@
       "hotel": "宿泊",
       "flight": "航空券",
       "car": "レンタカー",
-      "ticket": "チケットとツアー"
+      "ticket": "チケットとツアー",
+      "event": "イベントと夜"
     },
     "statusAffiliate": "アフィリエイトリンク有効",
     "statusPlain": "通常のリンク、手数料なし"
@@ -556,7 +627,8 @@
       "interests": "興味",
       "budget": "予算",
       "hotel": "宿泊",
-      "summary": "まとめ"
+      "summary": "まとめ",
+      "wishlist": "必ず行く"
     },
     "destination": {
       "title": "どこへ？",
@@ -722,7 +794,29 @@
       "moveDown": "{name}を下へ",
       "dragHandle": "{name}をドラッグして順位付け",
       "rank": "{n}位",
-      "atLeastOne": "少なくとも1つの興味を選んでください"
+      "atLeastOne": "少なくとも1つの興味を選んでください",
+      "evening": {
+        "title": "夜はどう過ごしたいですか？",
+        "subtitle": "毎晩、夕食・スポット・イベントを合わせて提案します。",
+        "options": {
+          "quiet": {
+            "title": "のんびり",
+            "body": "おいしい夕食、散歩、夕日の展望スポット、静かなワインバー。"
+          },
+          "culture": {
+            "title": "カルチャー",
+            "body": "旅行日程中の公演、演劇、コンサート、イベント。"
+          },
+          "nightlife": {
+            "title": "ナイトライフ",
+            "body": "バー、クラブ、深夜のショー。"
+          },
+          "none": {
+            "title": "夜の予定なし",
+            "body": "夕食の提案のみ。"
+          }
+        }
+      }
     },
     "budget": {
       "title": "予算",
@@ -812,6 +906,22 @@
       "noCap": "1日の上限なし",
       "errors": "作成前に修正が必要なステップがあります：",
       "stroller": "ベビーカーあり"
+    },
+    "wishlist": {
+      "title": "絶対に見たい場所はありますか？",
+      "subtitle": "見逃したくない観光地、レストラン、街並みを書き出してください。プランでは何よりも優先して組み込みます。",
+      "label": "場所を追加",
+      "hint": "入力してリストから選ぶか、名前を入力して「追加」を押してください。",
+      "placeholder": "例：ベレンの塔",
+      "add": "追加",
+      "suggestions": "候補",
+      "searching": "検索中...",
+      "noResults": "カタログにありません。テキストとして追加すれば、プラン作成時に検索します。",
+      "empty": "まだ場所がありません。スキップしても、プランは興味に沿って作られます。",
+      "listLabel": "必ず行くリスト",
+      "resolvedLater": "プラン作成時に特定",
+      "remove": "{name} を削除",
+      "full": "最大 20 か所。"
     }
   },
   "trip": {

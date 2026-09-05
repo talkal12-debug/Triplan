@@ -55,6 +55,7 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 | `NEXT_PUBLIC_DEMO_MODE` | Force the demo banner `true`/`false`. | 1 |
 | `GOOGLE_PLACES_API_KEY` | Better POI data than OpenStreetMap. | 6 |
 | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | The AI assistant tab (structured plan edits). Model defaults to `claude-sonnet-5`. | 8c |
+| `TICKETMASTER_API_KEY` | Real events (concerts, shows, sport) on each evening of the trip, Ticketmaster Discovery API (free developer key). Without it the evening block shows date-bound search links. | 11 |
 | `ANTHROPIC_TRANSLATE_MODEL` | Model for translating place descriptions into the UI language when Wikipedia has none (needs `ANTHROPIC_API_KEY`). Defaults to `claude-haiku-4-5-20251001`. | 10 |
 | `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
 | `AUTH_SECRET` | Auth.js session signing. Required in production; dev has a fixed fallback. | 8b |
@@ -119,6 +120,13 @@ Every attraction card shows one or two sentences about the place. The text is ne
 - Any other language: Wikipedia in that language first; otherwise, with `ANTHROPIC_API_KEY`, the English lead is translated on demand (marked as such, cached in the database); otherwise the English text is shown with a "Translate with Google" link, which needs no key.
 - Other languages, places found on OpenStreetMap at plan time, and plans saved before this feature existed are filled in on demand: the planner asks for the UI language (plus English as fallback) when it builds or edits a plan, and the trip page calls `POST /api/places/summaries` for anything still missing. Results are remembered in the `Place.summary` column.
 - Wikimedia rate-limits eager clients, so requests are paced (50 Wikidata items per call, Wikipedia pages one after another, back-off on 429). A plan with 40 new places takes a few seconds to fill in; the page renders immediately without waiting.
+
+## Must-see list, restaurants and evenings (milestone 11)
+
+- **Must-see list**: step 2 of the wizard. Catalogue places are suggested while typing (`GET /api/places/suggest`); any other name is kept as text and resolved when the plan is built: catalogue name match first, then a Nominatim lookup inside the trip's first city (an `unverified` entry, source `user`). Wished places outrank everything in scoring, bypass the soft filters (already seen, price, kids) and are marked "On your must-see list" on the card. A wish that never fits (closed on the dates) or cannot be located produces a plan warning instead of a silent drop.
+- **Restaurants near every meal**: one Overpass request per plan fetches restaurants/cafes within 500 m of the stop before each lunch and within 900 m of each hotel for dinner (`src/lib/providers/nearby.ts`). Entries are ranked by how complete their OSM record is (website, opening hours, cuisine, Wikidata) and shown with a map link, plus a Google Maps search for ratings we do not have. Fast food only for the budget level.
+- **Evenings**: the interests step asks for an evening style (relaxed / culture / nightlife / none). Each day gets an evening block: dinner near the hotel, venues for the style within 1.5 km (viewpoints and wine bars, theatres and live music, or bars and clubs), real events on that date when `TICKETMASTER_API_KEY` is set, and search links (GetYourGuide/Viator evening tours, Eventbrite, Songkick, Ticketmaster, Resident Advisor) built by the same link builder as the booking links.
+- Plans saved before this milestone get their restaurants and evenings on next open through the links refresh (`LINKS_VERSION` 3).
 
 ## Performance notes
 

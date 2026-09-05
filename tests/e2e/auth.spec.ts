@@ -14,7 +14,7 @@ test("guest trip moves into the account after signing in", async ({ page }) => {
   const next = page.getByRole("button", { name: "המשך" });
   await page.getByRole("checkbox", { name: /^פורטוגל / }).click();
   await next.click();
-  for (const step of ["dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"]) {
+  for (const step of ["wishlist", "dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"]) {
     await expect(page).toHaveURL(new RegExp(`/plan/${step}$`));
     await next.click();
   }

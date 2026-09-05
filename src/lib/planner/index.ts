@@ -73,6 +73,12 @@ export function generateItinerary(input: PlannerInput): PlannerResult {
     const base = plan.isDayTrip ? (cityCenter.get(plan.citySlug) ?? stay.center) : stay.center;
     const cityPool = pool.get(plan.citySlug) ?? [];
     let current: DayPlan = plan;
+    // Wished places that did not fit an earlier day get another chance today.
+    const mustPending = cityPool.filter((c) => prefs.mustVisit.some((m) => m.placeId === c.place.id) && !current.candidates.some((x) => x.place.id === c.place.id));
+    if (mustPending.length) {
+      for (const c of mustPending) cityPool.splice(cityPool.indexOf(c), 1);
+      current = { ...current, candidates: [...mustPending, ...current.candidates] };
+    }
     let result = scheduleDay(current, { prefs, budget, base, pool: cityPool });
     let attempts = 0;
     while (attempts++ < MAX_REPAIRS) {
@@ -111,6 +117,15 @@ export function generateItinerary(input: PlannerInput): PlannerResult {
     for (const d of days) {
       const w = weather[d.date];
       if (w && w.precipProbability >= 60) warnings.push({ code: "rain_expected", severity: "info", params: { probability: w.precipProbability }, dayIndex: d.index });
+    }
+  }
+
+  // Wishlist: warn about entries that did not fit anywhere (the visit reason itself is set by the scheduler).
+  const mustIds = new Set(prefs.mustVisit.map((m) => m.placeId).filter((id): id is string => Boolean(id)));
+  if (mustIds.size) {
+    const placed = new Set(days.flatMap((d) => d.activities.map((a) => a.placeId)));
+    for (const m of prefs.mustVisit) {
+      if (m.placeId && mustIds.has(m.placeId) && !placed.has(m.placeId)) warnings.push({ code: "must_visit_unplaced", severity: "warning", params: { name: m.name }, placeId: m.placeId });
     }
   }
 

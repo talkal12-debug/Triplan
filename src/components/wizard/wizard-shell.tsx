@@ -23,6 +23,7 @@ import { DestinationStep } from "./steps/destination-step";
 const stepLoading = () => <Skeleton className="h-40 w-full rounded-2xl" />;
 const stepComponents: Record<WizardStep, React.ComponentType<StepProps>> = {
   destination: DestinationStep,
+  wishlist: dynamic(() => import("./steps/wishlist-step").then((m) => m.WishlistStep), { loading: stepLoading }),
   dates: dynamic(() => import("./steps/dates-step").then((m) => m.DatesStep), { loading: stepLoading }),
   party: dynamic(() => import("./steps/party-step").then((m) => m.PartyStep), { loading: stepLoading }),
   visit: dynamic(() => import("./steps/visit-step").then((m) => m.VisitStep), { loading: stepLoading }),
@@ -35,7 +36,7 @@ const stepComponents: Record<WizardStep, React.ComponentType<StepProps>> = {
 };
 
 /** Steps where "skip" makes sense (destination has no default, summary is the end). */
-const skippable: WizardStep[] = ["dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"];
+const skippable: WizardStep[] = ["wishlist", "dates", "party", "visit", "pace", "transport", "interests", "budget", "hotel"];
 
 type Props = { step: WizardStep; ctx: WizardContext };
 

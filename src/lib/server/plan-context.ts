@@ -12,6 +12,8 @@ import { tripEndDate } from "@/lib/planner/types";
 import type { Locale } from "@/lib/i18n/locales";
 import { airportForCityName, nearestAirport } from "@/lib/data/airports";
 import { LINKS_VERSION } from "@/lib/links-version";
+import { buildNearby } from "./nearby-plan";
+import type { Evening, Venue } from "@/lib/nearby/schema";
 
 export type PlanContext = {
   places: PlaceSeed[];
@@ -58,6 +60,8 @@ export type PlanExtras = {
   };
   providers: Record<string, string>;
   notes: string[];
+  dining: Record<string, Venue[]>;
+  evenings: Record<string, Evening>;
 };
 
 function addDays(iso: string, n: number): string {
@@ -114,6 +118,7 @@ export async function enrichPlan(
       : await tryProvider("currency", () => currencyProvider.rates(destCurrency, [prefs.budget.currency]), null, notes);
 
   const links = buildPlanLinks(prefs, refined.itinerary, ctx, locale);
+  const nearby = await buildNearby(prefs, refined.itinerary, ctx, locale, notes);
 
   return {
     itinerary: refined.itinerary,
@@ -123,8 +128,10 @@ export async function enrichPlan(
       holidays: signals.holidays,
       rates,
       links,
-      providers: { routing: refined.refinedDays.length ? routing.name : "estimate", currency: rates ? currencyProvider.name : "none", ...signals.providerNames },
+      providers: { routing: refined.refinedDays.length ? routing.name : "estimate", currency: rates ? currencyProvider.name : "none", ...signals.providerNames, nearby: "openstreetmap", events: nearby.eventsProvider },
       notes,
+      dining: nearby.dining,
+      evenings: nearby.evenings,
     },
   };
 }

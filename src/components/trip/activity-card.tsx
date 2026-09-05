@@ -21,6 +21,7 @@ import { hhmm, localDateOf, placeLabel, googleTranslateUrl, placeSummary } from 
 import { cn } from "@/lib/utils";
 import { AffiliateLinks } from "./affiliate-links";
 import { VoteBar } from "./vote-bar";
+import { DiningSuggestions } from "./dining-suggestions";
 
 const transitIcons = { walk: Footprints, transit: Bus, car: Car, bike: Bike } as const;
 
@@ -149,6 +150,13 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
             <AffiliateLinks links={plan.extras.links.tickets[a.placeId]} label={t("links.tickets")} size="xs" className="mt-1.5" about />
           )}
           {isVisit && !compact && <VoteBar activityId={a.id} />}
+          {a.kind === "meal" && !compact && (() => {
+            // Where the meal happens: the stop before it, else the one after.
+            const day = plan.itinerary.days[dayIndex];
+            const i = day.activities.findIndex((x) => x.id === a.id);
+            const around = [...day.activities.slice(0, i).reverse(), ...day.activities.slice(i + 1)].map((x) => (x.placeId ? plan.places[x.placeId] : undefined)).find(Boolean);
+            return <DiningSuggestions venues={plan.extras?.dining?.[a.id]} at={around ? { lat: around.lat, lng: around.lng } : null} label={around ? placeLabel(around, locale) : ""} />;
+          })()}
         </div>
         {isVisit && actions && (
           <DropdownMenu>

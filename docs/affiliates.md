@@ -32,6 +32,10 @@ Triplan מקשר מכל תוכנית טיול לאתרי הזמנה חיצוני
 | Skyscanner | השוואת טיסות | https://www.partners.skyscanner.net (או דרך Travelpayouts / Impact) | `AFFILIATE_QUERY_SKYSCANNER` |
 | Rentalcars.com | השכרת רכב (Booking) | https://www.rentalcars.com/affiliates | `AFFILIATE_QUERY_RENTALCARS` |
 | Discover Cars | השוואת השכרת רכב | https://www.discovercars.com/affiliate | `AFFILIATE_QUERY_DISCOVERCARS` (למשל `a_aid=...`) |
+| Ticketmaster | כרטיסים להופעות ותיאטרון (בלוק הערב) | https://www.ticketmaster.com/affiliates (רשת Impact) | `AFFILIATE_QUERY_TICKETMASTER` |
+| Eventbrite | אירועים מקומיים (בלוק הערב) | אין תוכנית שותפים ציבורית; הקישור רגיל | `AFFILIATE_QUERY_EVENTBRITE` (אם תיפתח) |
+| Songkick | הופעות לפי עיר ותאריך (בלוק הערב) | אין תוכנית שותפים ציבורית; הקישור רגיל | `AFFILIATE_QUERY_SONGKICK` (אם תיפתח) |
+| Resident Advisor | מועדונים ומסיבות (חיי לילה) | אין תוכנית שותפים ציבורית; הקישור רגיל | `AFFILIATE_QUERY_RESIDENTADVISOR` (אם תיפתח) |
 
 הכתובות נכונות לספטמבר 2026. אם קישור ההרשמה זז, חפשו "<שם האתר> affiliate program".
 

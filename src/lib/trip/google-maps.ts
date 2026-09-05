@@ -5,6 +5,11 @@ export type GoogleTravelMode = "walking" | "driving" | "bicycling" | "transit";
 /** Google Maps Directions URLs accept the origin, the destination and at most this many waypoints. */
 export const MAX_WAYPOINTS = 9;
 
+/** Google Maps search for a venue or a query ("restaurants") at a point: reviews and photos we do not have. */
+export function placeSearchUrl(query: string, lat: number, lng: number): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${query} @${lat.toFixed(5)},${lng.toFixed(5)}`)}`;
+}
+
 const fmt = (p: { lat: number; lng: number }) => `${p.lat.toFixed(6)},${p.lng.toFixed(6)}`;
 
 /**

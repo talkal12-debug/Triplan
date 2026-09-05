@@ -42,6 +42,7 @@ export const reasonSchema = z.object({
     "half_day_departure",
     "day_trip",
     "hotel_transfer",
+    "must_visit",
   ]),
   params: z.record(z.string(), z.union([z.string(), z.number()])).default({}),
 });
@@ -61,6 +62,8 @@ export const warningSchema = z.object({
     "advance_booking_needed",
     "walk_budget_tight",
     "few_places_left",
+    "must_visit_unplaced",
+    "must_visit_unresolved",
   ]),
   severity: z.enum(["info", "warning", "error"]),
   params: z.record(z.string(), z.union([z.string(), z.number()])).default({}),

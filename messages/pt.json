@@ -192,7 +192,8 @@
       "half_day_arrival": "Meio dia, chegada",
       "half_day_departure": "Meio dia, partida",
       "day_trip": "Passeio de um dia",
-      "hotel_transfer": "Mudança de hotel"
+      "hotel_transfer": "Mudança de hotel",
+      "must_visit": "Na vossa lista de imperdíveis"
     },
     "weekdays": {
       "sunday": "domingo",
@@ -215,7 +216,9 @@
       "rain_expected": "Chuva prevista ({probability}%)",
       "advance_booking_needed": "Reservar com antecedência",
       "walk_budget_tight": "Orçamento de caminhada quase esgotado",
-      "few_places_left": "Esgotámos as atrações para este destino: {days} dias livres"
+      "few_places_left": "Esgotámos as atrações para este destino: {days} dias livres",
+      "must_visit_unplaced": "«{name}» da vossa lista não coube (fechado nas vossas datas ou longe demais). Tentem «Reconstruir» ou adicionem à mão.",
+      "must_visit_unresolved": "Não conseguimos localizar «{name}». Verifiquem a ortografia ou escolham uma sugestão."
     },
     "rainPlan": "Plano de chuva",
     "tripStats": "Total de {distance} a pé, {places} atrações, {verified}% com horários verificados",
@@ -353,8 +356,16 @@
         "kiwi": "Pesquisa de voos que combina companhias diferentes (também low cost) num só bilhete.",
         "skyscanner": "Comparação de preços de voos de todas as companhias, com pesquisa por mês inteiro.",
         "rentalcars": "Aluguer de carros do grupo Booking: compara empresas locais e internacionais com cancelamento gratuito.",
-        "discovercars": "Comparador de aluguer de carros com classificações das empresas locais e seguro completo barato."
-      }
+        "discovercars": "Comparador de aluguer de carros com classificações das empresas locais e seguro completo barato.",
+        "ticketmaster": "Bilhetes para concertos, desporto e teatro; pesquisa por cidade.",
+        "eventbrite": "Eventos locais, workshops e festas, muitos grátis.",
+        "songkick": "Agenda de concertos por cidade e data.",
+        "residentadvisor": "O principal guia de discotecas e noites de eletrónica no mundo."
+      },
+      "ticketmaster": "Ticketmaster",
+      "eventbrite": "Eventbrite",
+      "songkick": "Songkick",
+      "residentadvisor": "Resident Advisor"
     },
     "rates": "Moeda do destino: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(câmbio aproximado)",
@@ -393,7 +404,66 @@
       "day_trip": "Passeio de um dia"
     },
     "summaryTranslated": "(tradução automática, Wikipédia)",
-    "summaryGoogle": "Traduzir com o Google"
+    "summaryGoogle": "Traduzir com o Google",
+    "nearby": {
+      "dining": "Restaurantes por perto",
+      "noDining": "Sem restaurantes registados no OpenStreetMap a pé.",
+      "searchMaps": "Procurar restaurantes no Google Maps (com avaliações)",
+      "mapsQuery": "restaurantes perto de",
+      "osmNote": "Fonte: OpenStreetMap. Nomes e horários tal como lá constam, sem avaliação nem verificação nossa.",
+      "openMap": "Abrir no mapa",
+      "hours": "Horário",
+      "website": "Site",
+      "kinds": {
+        "restaurant": "Restaurante",
+        "cafe": "Café",
+        "fast_food": "Comida rápida",
+        "bar": "Bar",
+        "pub": "Pub",
+        "nightclub": "Discoteca",
+        "theatre": "Teatro",
+        "cinema": "Cinema",
+        "music": "Música ao vivo",
+        "arts": "Centro de artes",
+        "casino": "Casino",
+        "viewpoint": "Miradouro",
+        "ice_cream": "Gelataria"
+      },
+      "hints": {
+        "outdoor": "Esplanada",
+        "wheelchair": "Acessível a cadeira de rodas",
+        "vegetarian": "Opção vegetariana",
+        "live_music": "Música ao vivo",
+        "wine": "Bar de vinhos",
+        "family": "Para famílias"
+      }
+    },
+    "evening": {
+      "title": "À noite",
+      "dinner": "Jantar perto do hotel",
+      "styles": {
+        "quiet": "Tranquila",
+        "culture": "Cultura",
+        "nightlife": "Vida noturna",
+        "none": "Sem noites"
+      },
+      "venuesTitle": {
+        "quiet": "Locais para uma noite tranquila",
+        "culture": "Cultura e espetáculos",
+        "nightlife": "Bares e discotecas",
+        "none": "Sem noites"
+      },
+      "noVenues": "Sem locais adequados no OpenStreetMap perto do hotel.",
+      "events": "Eventos a {date}",
+      "noEvents": "Nenhum evento encontrado para esta data.",
+      "eventsNeedKey": "Eventos reais para a data precisam de uma chave Ticketmaster (grátis, ver README). Até lá, as ligações abaixo abrem uma pesquisa para a data.",
+      "eventsSource": "Fonte: {source}",
+      "links": "Procurar eventos e espetáculos",
+      "searchMapsVenues": "Procurar no mapa",
+      "mapsQuiet": "locais para uma noite tranquila",
+      "mapsCulture": "espetáculos e teatro",
+      "mapsNightlife": "bares e discotecas"
+    }
   },
   "gallery": {
     "title": "Planos prontos",
@@ -440,7 +510,8 @@
       "hotel": "Alojamento",
       "flight": "Voos",
       "car": "Aluguer de carro",
-      "ticket": "Bilhetes e visitas"
+      "ticket": "Bilhetes e visitas",
+      "event": "Eventos e noites"
     },
     "statusAffiliate": "Link de afiliado ativo",
     "statusPlain": "Link normal, sem comissão"
@@ -556,7 +627,8 @@
       "interests": "Interesses",
       "budget": "Orçamento",
       "hotel": "Alojamento",
-      "summary": "Resumo"
+      "summary": "Resumo",
+      "wishlist": "Imperdíveis"
     },
     "destination": {
       "title": "Para onde?",
@@ -722,7 +794,29 @@
       "moveDown": "Mover {name} para baixo",
       "dragHandle": "Arrastar {name} para ordenar",
       "rank": "Posição {n}",
-      "atLeastOne": "Escolha pelo menos um interesse"
+      "atLeastOne": "Escolha pelo menos um interesse",
+      "evening": {
+        "title": "Como gostam das vossas noites?",
+        "subtitle": "Cada noite terá jantar, locais e eventos à medida.",
+        "options": {
+          "quiet": {
+            "title": "Tranquila",
+            "body": "Um bom jantar, um passeio, um miradouro ao pôr do sol, um bar de vinhos calmo."
+          },
+          "culture": {
+            "title": "Cultura",
+            "body": "Espetáculos, teatro, concertos e eventos nas vossas datas."
+          },
+          "nightlife": {
+            "title": "Vida noturna",
+            "body": "Bares, discotecas e espetáculos até tarde."
+          },
+          "none": {
+            "title": "Sem noites",
+            "body": "Só uma sugestão de jantar, mais nada."
+          }
+        }
+      }
     },
     "budget": {
       "title": "Orçamento",
@@ -812,6 +906,22 @@
       "noCap": "Sem limite diário",
       "errors": "Alguns passos precisam de correção antes de criar o plano:",
       "stroller": "com carrinho de bebé"
+    },
+    "wishlist": {
+      "title": "Há algo que têm mesmo de ver?",
+      "subtitle": "Anotem monumentos, restaurantes ou bairros que não querem perder. O plano coloca-os antes de tudo o resto.",
+      "label": "Adicionar um lugar",
+      "hint": "Comecem a escrever e escolham da lista, ou escrevam um nome e carreguem em Adicionar.",
+      "placeholder": "ex.: Torre de Belém",
+      "add": "Adicionar",
+      "suggestions": "Sugestões",
+      "searching": "A procurar...",
+      "noResults": "Não está no nosso catálogo. Adicionem como texto e procuramos ao criar o plano.",
+      "empty": "Ainda sem lugares. Podem saltar; o plano segue os vossos interesses.",
+      "listLabel": "A vossa lista de imperdíveis",
+      "resolvedLater": "localizado ao criar o plano",
+      "remove": "Remover {name}",
+      "full": "Até 20 lugares."
     }
   },
   "trip": {
