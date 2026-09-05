@@ -61,9 +61,9 @@ export function AffiliateAbout({ links, className }: { links: AffiliateLink[]; c
   const providers = links.map((l) => l.provider).filter((p, i, all) => all.indexOf(p) === i);
   if (providers.length === 0) return null;
   return (
-    <details className={cn("text-xs text-muted-foreground", className)}>
-      <summary className="inline-flex cursor-pointer items-center gap-1 rounded hover:text-foreground">
-        <Info className="size-3.5" aria-hidden />
+    <details className={cn("text-xs text-muted-foreground", className)} onClick={(e) => e.stopPropagation()}>
+      <summary className="inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-full border border-dashed bg-card px-3 py-1 text-xs font-medium text-foreground hover:bg-muted [&::-webkit-details-marker]:hidden">
+        <Info className="size-3.5 text-primary" aria-hidden />
         {t("aboutTitle")}
       </summary>
       <ul className="mt-1.5 space-y-1 ps-5">

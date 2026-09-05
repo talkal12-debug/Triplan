@@ -121,7 +121,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
             </ul>
           )}
           {isVisit && !compact && a.placeId && plan.extras?.links.tickets[a.placeId] && (
-            <AffiliateLinks links={plan.extras.links.tickets[a.placeId]} label={t("links.tickets")} size="xs" className="mt-1.5" />
+            <AffiliateLinks links={plan.extras.links.tickets[a.placeId]} label={t("links.tickets")} size="xs" className="mt-1.5" about />
           )}
           {isVisit && !compact && <VoteBar activityId={a.id} />}
         </div>
