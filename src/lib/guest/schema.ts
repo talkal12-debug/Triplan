@@ -30,6 +30,8 @@ export const planExtrasSchema = z.object({
     flights: z.array(affiliateLinkSchema),
     /** Added in milestone 9; older saved plans have none. */
     cars: z.array(affiliateLinkSchema).optional(),
+    /** Link format version; the trip view refreshes links whose version is older (see LINKS_VERSION). */
+    version: z.number().int().optional(),
   }),
   providers: z.record(z.string(), z.string()),
   notes: z.array(z.string()),

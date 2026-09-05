@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSession } from "next-auth/react";
-import { getGuestTrip, guestPlanSchema, onGuestTripsChange, updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
+import { getGuestTrip, guestPlanSchema, onGuestTripsChange, planExtrasSchema, updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
+import { LINKS_VERSION } from "@/lib/links-version";
 import { pullTrip } from "@/lib/trips/sync";
 import { useCollabStore } from "@/lib/collab/store";
 import { useWizardStore } from "@/lib/wizard/store";
@@ -56,6 +57,30 @@ export function GuestTripView({ id, ctx }: Props) {
     };
   }, [status, id]);
   const readOnly = trip?.membership?.role === "viewer";
+
+  // Plans saved before a link format change get fresh booking links (cheap: no re-planning).
+  useEffect(() => {
+    const extras = trip?.plan?.extras;
+    if (!trip?.plan || !extras || (extras.links.version ?? 0) >= LINKS_VERSION) return;
+    const plan = trip.plan;
+    let cancelled = false;
+    fetch("/api/plan/links", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ preferences: trip.preferences, itinerary: plan.itinerary, locale: ctx.locale }),
+    })
+      .then(async (r) => (r.ok ? planExtrasSchema.shape.links.parse(((await r.json()) as { links: unknown }).links) : null))
+      .then((links) => {
+        if (!links || cancelled) return;
+        const updated = updateGuestTrip(trip.id, { plan: { ...plan, extras: { ...extras, links } } });
+        if (updated) setTrip(updated);
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once per trip id
+  }, [trip?.id, trip?.plan?.extras?.links.version]);
 
   function editPreferences() {
     if (!trip) return;

@@ -10,6 +10,8 @@ import type { DailyWeather, PublicHoliday, Rates } from "@/lib/providers/types";
 import { affiliateIdsFromEnv, carLinks, flightLinks, hotelLinks, ticketLinks, type AffiliateLink } from "@/lib/providers/affiliate";
 import { tripEndDate } from "@/lib/planner/types";
 import type { Locale } from "@/lib/i18n/locales";
+import { airportForCityName, nearestAirport } from "@/lib/data/airports";
+import { LINKS_VERSION } from "@/lib/links-version";
 
 export type PlanContext = {
   places: PlaceSeed[];
@@ -52,6 +54,7 @@ export type PlanExtras = {
     tickets: Record<string, AffiliateLink[]>;
     flights: AffiliateLink[];
     cars: AffiliateLink[];
+    version: number;
   };
   providers: Record<string, string>;
   notes: string[];
@@ -110,6 +113,24 @@ export async function enrichPlan(
       ? null
       : await tryProvider("currency", () => currencyProvider.rates(destCurrency, [prefs.budget.currency]), null, notes);
 
+  const links = buildPlanLinks(prefs, refined.itinerary, ctx, locale);
+
+  return {
+    itinerary: refined.itinerary,
+    extras: {
+      weather: signals.weather,
+      weatherSource: signals.weatherSource,
+      holidays: signals.holidays,
+      rates,
+      links,
+      providers: { routing: refined.refinedDays.length ? routing.name : "estimate", currency: rates ? currencyProvider.name : "none", ...signals.providerNames },
+      notes,
+    },
+  };
+}
+
+/** Booking deep links for a plan: hotels per stay, tickets for paid/booked places, flights, car rental. */
+export function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerary, ctx: Pick<PlanContext, "places" | "cities">, locale: Locale): PlanExtras["links"] {
   const ids = affiliateIdsFromEnv();
   const endDate = tripEndDate(prefs.dates);
   // Partner sites get English city names: their search understands "Rome", not every UI language.
@@ -117,12 +138,13 @@ export async function enrichPlan(
     const c = ctx.cities.find((x) => x.slug === slug);
     return c ? c.names.en : slug;
   };
-  const hotels = refined.itinerary.stays.map((s) => ({
+  const hotels = itinerary.stays.map((s) => ({
     stayId: s.id,
     links: hotelLinks(
       {
         city: cityName(s.citySlug),
         countryName: getCountry(s.countryCode) ? countryName(getCountry(s.countryCode)!, "en") : undefined,
+        countryCode: s.countryCode,
         checkIn: addDays(prefs.dates.start, s.fromDay),
         checkOut: addDays(prefs.dates.start, s.toDay + 1),
         adults: prefs.party.adults,
@@ -134,7 +156,7 @@ export async function enrichPlan(
   }));
   const tickets: Record<string, AffiliateLink[]> = {};
   const placeById = new Map(ctx.places.map((p) => [p.id, p]));
-  for (const day of refined.itinerary.days) {
+  for (const day of itinerary.days) {
     for (const a of day.activities) {
       const p = a.placeId ? placeById.get(a.placeId) : undefined;
       if (!p || (!p.requiresAdvanceBooking && (p.priceLevel ?? 0) < 1)) continue;
@@ -150,8 +172,10 @@ export async function enrichPlan(
     ? flightLinks(
         {
           originCity: origin,
+          originIata: origin ? airportForCityName(origin)?.iata ?? null : null,
           destinationCity: first.names.en,
           destinationCountryName: countryEn(first.countryCode),
+          destinationIata: nearestAirport(first.center)?.iata ?? null,
           departDate: prefs.dates.start,
           returnDate: endDate,
           adults: prefs.party.adults,
@@ -175,16 +199,5 @@ export async function enrichPlan(
         )
       : [];
 
-  return {
-    itinerary: refined.itinerary,
-    extras: {
-      weather: signals.weather,
-      weatherSource: signals.weatherSource,
-      holidays: signals.holidays,
-      rates,
-      links: { hotels, tickets, flights, cars },
-      providers: { routing: refined.refinedDays.length ? routing.name : "estimate", currency: rates ? currencyProvider.name : "none", ...signals.providerNames },
-      notes,
-    },
-  };
+  return { hotels, tickets, flights, cars, version: LINKS_VERSION };
 }

@@ -76,3 +76,16 @@ test("disclosure page lists every partner with its status", async ({ page }) => 
   }
   expect(await page.getByText("קישור רגיל, ללא עמלה").count()).toBeGreaterThanOrEqual(10);
 });
+
+test("plans saved with an older link format get fresh links on open (Skyscanner with airport codes, Agoda city page)", async ({ page }) => {
+  test.setTimeout(180_000);
+  // Gallery templates were generated before milestone 9: their links carry no version.
+  await page.goto("/he/gallery");
+  await page.getByRole("listitem").filter({ hasText: "רומא בפעם הראשונה" }).getByRole("button", { name: "העתק לטיולים שלי" }).click();
+  await expect(page).toHaveURL(/\/he\/trip\/g_/, { timeout: 90_000 });
+  // The old links show first; the refreshed ones replace them once /api/plan/links answers.
+  const skyscanner = page.getByRole("link", { name: /^Skyscanner/ }).first();
+  await expect(skyscanner).toHaveAttribute("href", /skyscanner\.net\/transport\/flights\/tlv\/[a-z]{3}\/\d{6}\/\d{6}\//, { timeout: 60_000 });
+  const agoda = page.getByRole("link", { name: /^Agoda/ }).first();
+  await expect(agoda).toHaveAttribute("href", /agoda\.com\/city\/rome-it\.html\?checkIn=/);
+});

@@ -50,12 +50,14 @@ describe("affiliate links", () => {
   });
 
   it("builds flight links from the traveller's city with dates and passengers", () => {
-    const [kiwi, skyscanner] = flightLinks({ originCity: "Tel Aviv", destinationCity: "Tokyo", destinationCountryName: "Japan", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 2, children: 1 });
+    const [kiwi, skyscanner] = flightLinks({ originCity: "Tel Aviv", originIata: "TLV", destinationCity: "Tokyo", destinationCountryName: "Japan", destinationIata: "HND", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 2, children: 1 });
     expect(kiwi.url).toContain("/tel-aviv/tokyo-japan/2026-10-16/2026-10-23");
     expect(kiwi.url).toContain("children=1");
-    expect(skyscanner.url).toContain("/tel-aviv/tokyo/261016/261023/");
-    const [anywhere] = flightLinks({ originCity: "", destinationCity: "Tokyo", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 1, children: 0 });
-    expect(anywhere.url).toContain("/anywhere/tokyo/");
+    expect(skyscanner.url).toContain("/tlv/hnd/261016/261023/");
+    // Skyscanner needs airport codes: without them only Kiwi (which understands names) is offered.
+    const noCodes = flightLinks({ originCity: "", destinationCity: "Tokyo", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 1, children: 0 });
+    expect(noCodes.map((l) => l.provider)).toEqual(["kiwi"]);
+    expect(noCodes[0].url).toContain("/anywhere/tokyo/");
   });
 
   it("builds car rental links for the trip dates and applies raw tracking queries", () => {
@@ -71,7 +73,8 @@ describe("affiliate links", () => {
   it("reads raw tracking queries from AFFILIATE_QUERY_<PROVIDER>", () => {
     const ids = affiliateIdsFromEnv({ AFFILIATE_QUERY_AGODA: "cid=777", AFFILIATE_BOOKING_AID: "1" } as unknown as NodeJS.ProcessEnv);
     expect(ids.query?.agoda).toBe("cid=777");
-    const agoda = hotelLinks({ city: "Tokyo", checkIn: "2026-10-16", checkOut: "2026-10-20", adults: 2, childrenAges: [] }, ids).find((l) => l.provider === "agoda");
+    const agoda = hotelLinks({ city: "Tokyo", countryCode: "JP", checkIn: "2026-10-16", checkOut: "2026-10-20", adults: 2, childrenAges: [] }, ids).find((l) => l.provider === "agoda");
+    expect(agoda?.url).toContain("agoda.com/city/tokyo-jp.html?checkIn=2026-10-16");
     expect(agoda?.url).toContain("&cid=777");
     expect(agoda?.affiliate).toBe(true);
   });

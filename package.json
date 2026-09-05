@@ -24,7 +24,8 @@
     "verify:offline": "node scripts/verify-offline.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
     "data:templates": "tsx scripts/build-templates.ts",
-    "data:flags": "node scripts/fetch-flags.mjs"
+    "data:flags": "node scripts/fetch-flags.mjs",
+    "data:airports": "node scripts/fetch-airports.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",

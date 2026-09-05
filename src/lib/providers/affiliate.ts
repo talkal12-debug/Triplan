@@ -53,6 +53,8 @@ export type AffiliateIds = {
 export type HotelQuery = {
   city: string;
   countryName?: string;
+  /** ISO 3166-1 alpha-2, for partners whose URLs are keyed by country (Agoda city pages). */
+  countryCode?: string;
   checkIn: string;
   checkOut: string;
   adults: number;
@@ -71,6 +73,9 @@ export type FlightQuery = {
   originCity: string;
   destinationCity: string;
   destinationCountryName?: string;
+  /** Airport codes, when known (see src/lib/data/airports.ts). Skyscanner only works with codes. */
+  originIata?: string | null;
+  destinationIata?: string | null;
   departDate: string;
   returnDate: string;
   adults: number;
@@ -120,8 +125,10 @@ export function hotelLinks(q: HotelQuery, ids: AffiliateIds = {}): AffiliateLink
     "hotelscom",
     ids,
   );
+  // Agoda's text search redirects to its home page; its city pages (city/<name>-<cc>.html) take the dates.
+  const agodaPath = q.countryCode ? `city/${slug(q.city)}-${q.countryCode.toLowerCase()}.html` : "search";
   const agoda = withTracking(
-    `https://www.agoda.com/search?textToSearch=${enc(dest)}&checkIn=${q.checkIn}&checkOut=${q.checkOut}&adults=${q.adults}&children=${q.childrenAges.length}&rooms=1`,
+    `https://www.agoda.com/${agodaPath}?checkIn=${q.checkIn}&checkOut=${q.checkOut}&adults=${q.adults}&children=${q.childrenAges.length}&rooms=1`,
     "agoda",
     ids,
   );
@@ -169,17 +176,18 @@ export function flightLinks(q: FlightQuery, ids: AffiliateIds = {}): AffiliateLi
     ids,
     ids.kiwiAffilId ? `affilid=${enc(ids.kiwiAffilId)}` : undefined,
   );
-  // Skyscanner's URL form takes free-text origin/destination and the dates as YYMMDD.
-  const yymmdd = (d: string) => d.slice(2).replaceAll("-", "");
-  const skyscanner = withTracking(
-    `https://www.skyscanner.net/transport/flights/${enc(q.originCity ? slug(q.originCity) : "anywhere")}/${enc(slug(q.destinationCity))}/${yymmdd(q.departDate)}/${yymmdd(q.returnDate)}/?adults=${q.adults}&children=${q.children}&rtn=1`,
-    "skyscanner",
-    ids,
-  );
-  return [
-    { provider: "kiwi", kind: "flight", ...kiwi },
-    { provider: "skyscanner", kind: "flight", ...skyscanner },
-  ];
+  const links: AffiliateLink[] = [{ provider: "kiwi", kind: "flight", ...kiwi }];
+  // Skyscanner's URL form is /flights/<origin code>/<destination code>/<yymmdd>/<yymmdd>/ and answers 404 to names.
+  if (q.originIata && q.destinationIata) {
+    const yymmdd = (d: string) => d.slice(2).replaceAll("-", "");
+    const skyscanner = withTracking(
+      `https://www.skyscanner.net/transport/flights/${q.originIata.toLowerCase()}/${q.destinationIata.toLowerCase()}/${yymmdd(q.departDate)}/${yymmdd(q.returnDate)}/?adults=${q.adults}&children=${q.children}&rtn=1`,
+      "skyscanner",
+      ids,
+    );
+    links.push({ provider: "skyscanner", kind: "flight", ...skyscanner });
+  }
+  return links;
 }
 
 export function carLinks(q: CarQuery, ids: AffiliateIds = {}): AffiliateLink[] {
