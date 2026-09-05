@@ -28,6 +28,8 @@ export const planExtrasSchema = z.object({
     hotels: z.array(z.object({ stayId: z.string(), links: z.array(affiliateLinkSchema) })),
     tickets: z.record(z.string(), z.array(affiliateLinkSchema)),
     flights: z.array(affiliateLinkSchema),
+    /** Added in milestone 9; older saved plans have none. */
+    cars: z.array(affiliateLinkSchema).optional(),
   }),
   providers: z.record(z.string(), z.string()),
   notes: z.array(z.string()),

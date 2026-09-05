@@ -7,7 +7,7 @@ import type { Itinerary, PlannerCity } from "@/lib/planner/itinerary";
 import { refineTravel } from "@/lib/planner/refine";
 import { getCurrency, getHolidays, getRouting, getWeather, placesForCity, tryProvider } from "@/lib/providers/registry";
 import type { DailyWeather, PublicHoliday, Rates } from "@/lib/providers/types";
-import { affiliateIdsFromEnv, flightLinks, hotelLinks, ticketLinks, type AffiliateLink } from "@/lib/providers/affiliate";
+import { affiliateIdsFromEnv, carLinks, flightLinks, hotelLinks, ticketLinks, type AffiliateLink } from "@/lib/providers/affiliate";
 import { tripEndDate } from "@/lib/planner/types";
 import type { Locale } from "@/lib/i18n/locales";
 
@@ -51,6 +51,7 @@ export type PlanExtras = {
     hotels: { stayId: string; links: AffiliateLink[] }[];
     tickets: Record<string, AffiliateLink[]>;
     flights: AffiliateLink[];
+    cars: AffiliateLink[];
   };
   providers: Record<string, string>;
   notes: string[];
@@ -111,9 +112,10 @@ export async function enrichPlan(
 
   const ids = affiliateIdsFromEnv();
   const endDate = tripEndDate(prefs.dates);
+  // Partner sites get English city names: their search understands "Rome", not every UI language.
   const cityName = (slug: string) => {
     const c = ctx.cities.find((x) => x.slug === slug);
-    return c ? (c.names[locale] ?? c.names.en) : slug;
+    return c ? c.names.en : slug;
   };
   const hotels = refined.itinerary.stays.map((s) => ({
     stayId: s.id,
@@ -140,11 +142,16 @@ export async function enrichPlan(
     }
   }
   const first = ctx.cities[0];
+  const last = ctx.cities[ctx.cities.length - 1];
+  const countryEn = (code: string) => (getCountry(code) ? countryName(getCountry(code)!, "en") : undefined);
+  // Flights: from the traveller's city when they told us, else a locale default (Israelis fly from Tel Aviv).
+  const origin = (prefs.dates.origin ?? "").trim() || (locale === "he" ? "Tel Aviv" : "");
   const flights = first
     ? flightLinks(
         {
+          originCity: origin,
           destinationCity: first.names.en,
-          destinationCountryCode: first.countryCode,
+          destinationCountryName: countryEn(first.countryCode),
           departDate: prefs.dates.start,
           returnDate: endDate,
           adults: prefs.party.adults,
@@ -153,6 +160,20 @@ export async function enrichPlan(
         ids,
       )
     : [];
+  // Car rental only when the traveller wants to drive: pick up in the first area, drop off in the last.
+  const cars =
+    first && prefs.transport.car > 0
+      ? carLinks(
+          {
+            pickUpCity: first.names.en,
+            dropOffCity: (last ?? first).names.en,
+            countryName: countryEn(first.countryCode),
+            pickUpDate: prefs.dates.start,
+            dropOffDate: endDate,
+          },
+          ids,
+        )
+      : [];
 
   return {
     itinerary: refined.itinerary,
@@ -161,7 +182,7 @@ export async function enrichPlan(
       weatherSource: signals.weatherSource,
       holidays: signals.holidays,
       rates,
-      links: { hotels, tickets, flights },
+      links: { hotels, tickets, flights, cars },
       providers: { routing: refined.refinedDays.length ? routing.name : "estimate", currency: rates ? currencyProvider.name : "none", ...signals.providerNames },
       notes,
     },

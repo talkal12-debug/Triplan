@@ -271,7 +271,11 @@
       "showing": "显示第 {n} 天",
       "zoomIn": "放大",
       "zoomOut": "缩小",
-      "fit": "适配路线"
+      "fit": "适配路线",
+      "legendReal": "当天路线沿真实街道（OSRM）。",
+      "navigateDay": "在 Google 地图中导航这一天",
+      "navigateHint": "在地图应用中按顺序打开所有站点，从酒店出发。",
+      "navigateTruncated": "Google 地图最多接受 {max} 个站点，因此只显示前几个。"
     },
     "calendar": {
       "title": "旅行日历",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "租车",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "这些网站是什么？",
+      "aboutMore": "了解更多关于链接和联盟计划",
+      "about": {
+        "booking": "全球最大的酒店和公寓预订网站。多数报价可免费取消；直接打开您的城市和日期。",
+        "hotelscom": "Expedia 集团的酒店网站，有会员计划（每住十晚送一晚）。",
+        "agoda": "在亚洲尤其强，日本和泰国常有最低价。",
+        "hostelworld": "青年旅舍和廉价住宿的主要网站，附年轻旅行者的评价。",
+        "getyourguide": "景点门票和导览团，通常可免排队入场。",
+        "viator": "TripAdvisor 旗下的旅行团和体验，选择极多。",
+        "tiqets": "博物馆和景点的电子票，适合临时购买。",
+        "klook": "亚洲票务、铁路通票和 SIM 卡网站，在日本和远东很强。",
+        "kiwi": "把不同航空公司（含廉航）组合成一张票的机票搜索。",
+        "skyscanner": "比较所有航空公司的机票价格，支持整月搜索。",
+        "rentalcars": "Booking 集团的租车平台，比较本地和国际公司，可免费取消。",
+        "discovercars": "租车比价平台，含本地公司评分和便宜的全险。"
+      }
     },
     "rates": "目的地货币：1 {base} ≈ {value} {quote}",
     "ratesDemo": "（近似汇率）",
@@ -378,7 +401,17 @@
     "affiliate": "其中部分是联盟链接。如果您通过这些链接预订，Triplan 可能获得少量佣金。您的价格不会改变。",
     "marking": "每个此类链接在界面中都标注为“联盟链接”，并在新标签页中打开。",
     "data": "未经核实的景点数据标注为“未核实”。出发前请确认开放时间和价格。",
-    "noKeys": "目前没有启用任何联盟密钥，链接均为普通搜索链接。"
+    "noKeys": "目前没有启用任何联盟密钥，链接均为普通搜索链接。",
+    "partners": "我们链接的网站",
+    "partnersIntro": "每个链接都会直接打开该旅行的城市、日期和出行人数。以下是这些网站及其用途：",
+    "kinds": {
+      "hotel": "住宿",
+      "flight": "机票",
+      "car": "租车",
+      "ticket": "门票与旅行团"
+    },
+    "statusAffiliate": "联盟链接已启用",
+    "statusPlain": "普通链接，无佣金"
   },
   "footer": {
     "madeWith": "基于开放地图和免费数据构建",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "天气预报和当地节假日会显示在计划中。",
       "pastDate": "该日期已过",
-      "invalidDate": "日期无效"
+      "invalidDate": "日期无效",
+      "origin": "从哪里出发？（可选）",
+      "originPlaceholder": "例如上海",
+      "originHint": "这样机票链接会直接打开您的航线。"
     },
     "party": {
       "title": "谁出行？",

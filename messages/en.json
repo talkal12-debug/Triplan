@@ -271,7 +271,11 @@
       "showing": "Showing day {n}",
       "zoomIn": "Zoom in",
       "zoomOut": "Zoom out",
-      "fit": "Fit to route"
+      "fit": "Fit to route",
+      "legendReal": "The day's route on real streets (OSRM).",
+      "navigateDay": "Navigate the day in Google Maps",
+      "navigateHint": "Opens the maps app with every stop in order, starting at the hotel.",
+      "navigateTruncated": "Google Maps takes up to {max} stops, so the first ones are shown."
     },
     "calendar": {
       "title": "Trip calendar",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "Car rental",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "What are these sites?",
+      "aboutMore": "More about the links and partner programs",
+      "about": {
+        "booking": "The world's largest booking site for hotels and apartments. Free cancellation on most offers; opens on your city and dates.",
+        "hotelscom": "Expedia Group's hotel site with a loyalty program (one free night per ten).",
+        "agoda": "Especially strong in Asia, often the lowest prices for Japan and Thailand.",
+        "hostelworld": "The main site for hostels and budget stays, with reviews by young travellers.",
+        "getyourguide": "Tickets for attractions and guided tours, usually with skip-the-line entry.",
+        "viator": "Tours and experiences by TripAdvisor, a huge selection.",
+        "tiqets": "Digital tickets for museums and attractions, good for last-minute buys.",
+        "klook": "Asian site for tickets, rail passes and SIM cards, strong in Japan and the Far East.",
+        "kiwi": "Flight search that combines different airlines (low-cost too) into one ticket.",
+        "skyscanner": "Flight price comparison across all airlines, including whole-month search.",
+        "rentalcars": "Car rental from the Booking group, comparing local and international companies with free cancellation.",
+        "discovercars": "Car rental comparison with ratings of the local companies and cheap full-coverage insurance."
+      }
     },
     "rates": "Destination currency: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(approximate rate)",
@@ -378,7 +401,17 @@
     "affiliate": "Some of these links are affiliate links. If you book through them, Triplan may earn a small commission. Your price does not change.",
     "marking": "Every such link is labeled \"Affiliate link\" in the interface and opens in a new tab.",
     "data": "Attraction data that has not been verified is labeled \"unverified\". Check opening hours and prices before you go.",
-    "noKeys": "There are currently no active affiliate keys, and the links are plain search links."
+    "noKeys": "There are currently no active affiliate keys, and the links are plain search links.",
+    "partners": "The sites we link to",
+    "partnersIntro": "Every link opens on the trip's city, dates and number of travellers. These are the sites and what each one does:",
+    "kinds": {
+      "hotel": "Stays",
+      "flight": "Flights",
+      "car": "Car rental",
+      "ticket": "Tickets and tours"
+    },
+    "statusAffiliate": "Affiliate link active",
+    "statusPlain": "Plain link, no commission"
   },
   "footer": {
     "madeWith": "Built on open maps and free data",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "Weather forecast and local holidays appear in the plan itself.",
       "pastDate": "This date has already passed",
-      "invalidDate": "Invalid date"
+      "invalidDate": "Invalid date",
+      "origin": "Flying from? (optional)",
+      "originPlaceholder": "e.g. London",
+      "originHint": "So the flight links open on your route."
     },
     "party": {
       "title": "Who is travelling?",

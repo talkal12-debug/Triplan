@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { useLocale, useTranslations } from "next-intl";
 import * as maplibregl from "maplibre-gl";
@@ -14,7 +14,28 @@ type Props = {
   dayIndex: number;
   selectedId: string | null;
   onSelect: (id: string | null) => void;
+  /** Called with true once the street route replaced the straight lines (false when a new day starts loading). */
+  onRealRoute?: (real: boolean) => void;
 };
+
+type RouteResult = { coordinates: [number, number][]; meters: number; minutes: number } | null;
+const routeCache = new Map<string, Promise<RouteResult>>();
+
+/** Street geometry from /api/route (OSRM). Cached per day in memory; null = keep straight lines. */
+function fetchRoute(coords: [number, number][], mode: "walk" | "bike" | "car"): Promise<RouteResult> {
+  const key = `${mode}:${coords.map((c) => c.join(",")).join(";")}`;
+  const cached = routeCache.get(key);
+  if (cached) return cached;
+  const p = fetch("/api/route", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ points: coords.map(([lng, lat]) => ({ lat, lng })), mode }),
+  })
+    .then(async (r) => (r.ok ? ((await r.json()) as { route: RouteResult }).route : null))
+    .catch(() => null);
+  routeCache.set(key, p);
+  return p;
+}
 
 const STYLE_LIGHT = "https://tiles.openfreemap.org/styles/liberty";
 const STYLE_DARK = "https://tiles.openfreemap.org/styles/fiord";
@@ -24,7 +45,7 @@ const STYLE_DARK = "https://tiles.openfreemap.org/styles/fiord";
 maplibregl.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
 /** MapLibre map of one day's route. Loaded lazily (see plan-map.tsx). */
-export function PlanMapInner({ plan, dayIndex, selectedId, onSelect }: Props) {
+export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute }: Props) {
   const t = useTranslations("plan");
   const locale = useLocale() as Locale;
   const { resolvedTheme } = useTheme();
@@ -33,6 +54,10 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect }: Props) {
   const markersRef = useRef<maplibregl.Marker[]>([]);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
+  const routeKeyRef = useRef<string | null>(null);
+  const onRealRouteRef = useRef(onRealRoute);
+  onRealRouteRef.current = onRealRoute;
+  const [realRoute, setRealRoute] = useState(false);
 
   // Create the map once.
   useEffect(() => {
@@ -92,6 +117,7 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect }: Props) {
       if (stay) coords.push([stay.center.lng, stay.center.lat]);
       for (const p of points) coords.push([p.place.lng, p.place.lat]);
       if (coords.length >= 2) {
+        // Straight dashed lines first (instant, offline); replaced by the street route when it arrives.
         map.addSource(routeId, { type: "geojson", data: { type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: coords } } });
         map.addLayer({
           id: routeId,
@@ -99,6 +125,23 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect }: Props) {
           source: routeId,
           paint: { "line-color": "#2a8fa3", "line-width": 3, "line-dasharray": [2, 1.5], "line-opacity": 0.85 },
         });
+        const legs = day.activities.map((a) => a.transitFromPrev?.mode).filter(Boolean) as string[];
+        const top = legs.sort((a, b) => legs.filter((x) => x === b).length - legs.filter((x) => x === a).length)[0];
+        const mode = top === "car" ? "car" : top === "bike" ? "bike" : "walk";
+        const requestKey = `${dayIndex}:${coords.map((c) => c.join(",")).join(";")}:${mode}`;
+        void fetchRoute(coords, mode).then((route) => {
+          if (!route || mapRef.current !== map || routeKeyRef.current !== requestKey) return;
+          const src = map.getSource(routeId) as maplibregl.GeoJSONSource | undefined;
+          if (!src) return;
+          src.setData({ type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: route.coordinates } });
+          map.setPaintProperty(routeId, "line-dasharray", [1, 0]);
+          map.setPaintProperty(routeId, "line-width", 4);
+          setRealRoute(true);
+          onRealRouteRef.current?.(true);
+        });
+        routeKeyRef.current = requestKey;
+        setRealRoute(false);
+        onRealRouteRef.current?.(false);
       }
 
       if (stay) {
@@ -152,7 +195,7 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect }: Props) {
   return (
     <div className="relative">
       <div ref={containerRef} className="h-[60vh] min-h-80 w-full overflow-hidden rounded-2xl border" role="region" aria-label={t("map.showing", { n: dayIndex + 1 })} />
-      <p className="mt-2 text-xs text-muted-foreground">{t("map.legend")}</p>
+      <p className="mt-2 text-xs text-muted-foreground">{realRoute ? t("map.legendReal") : t("map.legend")}</p>
     </div>
   );
 }

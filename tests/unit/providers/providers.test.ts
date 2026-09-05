@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { affiliateIdsFromEnv, flightLinks, hotelLinks, ticketLinks } from "@/lib/providers/affiliate";
+import { affiliateIdsFromEnv, carLinks, flightLinks, hotelLinks, ticketLinks } from "@/lib/providers/affiliate";
 import { classify, enrichWithWikidata, iconicityFromSitelinks, slugify, toPlace, type WikidataFacts } from "@/lib/providers/pois/osm";
 import { osrmRouting } from "@/lib/providers/routing/osrm";
 import { estimateRouting } from "@/lib/providers/routing/estimate";
@@ -49,10 +49,31 @@ describe("affiliate links", () => {
     expect(gyg.url).toContain("Bel%C3%A9m%20Tower%20Lisbon");
   });
 
-  it("builds flight links with dates and passengers", () => {
-    const [kiwi] = flightLinks({ destinationCity: "Tokyo", destinationCountryCode: "JP", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 2, children: 1 });
-    expect(kiwi.url).toContain("/Tokyo/2026-10-16/2026-10-23");
+  it("builds flight links from the traveller's city with dates and passengers", () => {
+    const [kiwi, skyscanner] = flightLinks({ originCity: "Tel Aviv", destinationCity: "Tokyo", destinationCountryName: "Japan", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 2, children: 1 });
+    expect(kiwi.url).toContain("/tel-aviv/tokyo-japan/2026-10-16/2026-10-23");
     expect(kiwi.url).toContain("children=1");
+    expect(skyscanner.url).toContain("/tel-aviv/tokyo/261016/261023/");
+    const [anywhere] = flightLinks({ originCity: "", destinationCity: "Tokyo", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 1, children: 0 });
+    expect(anywhere.url).toContain("/anywhere/tokyo/");
+  });
+
+  it("builds car rental links for the trip dates and applies raw tracking queries", () => {
+    const [rentalcars, discover] = carLinks({ pickUpCity: "Rome", dropOffCity: "Rome", countryName: "Italy", pickUpDate: "2026-10-16", dropOffDate: "2026-10-20" }, { query: { discovercars: "a_aid=triplan" } });
+    expect(rentalcars.url).toContain("location=Rome%2C%20Italy");
+    expect(rentalcars.url).toContain("puYear=2026");
+    expect(rentalcars.affiliate).toBe(false);
+    expect(discover.url).toContain("/italy/rome?pickupDate=2026-10-16");
+    expect(discover.url).toContain("&a_aid=triplan");
+    expect(discover.affiliate).toBe(true);
+  });
+
+  it("reads raw tracking queries from AFFILIATE_QUERY_<PROVIDER>", () => {
+    const ids = affiliateIdsFromEnv({ AFFILIATE_QUERY_AGODA: "cid=777", AFFILIATE_BOOKING_AID: "1" } as unknown as NodeJS.ProcessEnv);
+    expect(ids.query?.agoda).toBe("cid=777");
+    const agoda = hotelLinks({ city: "Tokyo", checkIn: "2026-10-16", checkOut: "2026-10-20", adults: 2, childrenAges: [] }, ids).find((l) => l.provider === "agoda");
+    expect(agoda?.url).toContain("&cid=777");
+    expect(agoda?.affiliate).toBe(true);
   });
 });
 

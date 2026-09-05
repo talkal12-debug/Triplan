@@ -271,7 +271,11 @@
       "showing": "Giorno {n} visualizzato",
       "zoomIn": "Ingrandisci",
       "zoomOut": "Riduci",
-      "fit": "Adatta al percorso"
+      "fit": "Adatta al percorso",
+      "legendReal": "Il percorso del giorno su strade reali (OSRM).",
+      "navigateDay": "Naviga la giornata in Google Maps",
+      "navigateHint": "Apre l'app delle mappe con tutte le tappe in ordine, dall'hotel.",
+      "navigateTruncated": "Google Maps accetta fino a {max} tappe, quindi vengono mostrate le prime."
     },
     "calendar": {
       "title": "Calendario del viaggio",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "Noleggio auto",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "Cosa sono questi siti?",
+      "aboutMore": "Di più sui link e sui programmi di affiliazione",
+      "about": {
+        "booking": "Il più grande sito di prenotazioni per hotel e appartamenti. Cancellazione gratuita sulla maggior parte delle offerte; si apre già sulla tua città e le tue date.",
+        "hotelscom": "Il sito di hotel del gruppo Expedia con programma fedeltà (una notte gratis ogni dieci).",
+        "agoda": "Particolarmente forte in Asia, spesso i prezzi più bassi per Giappone e Thailandia.",
+        "hostelworld": "Il sito principale per ostelli e alloggi economici, con recensioni di giovani viaggiatori.",
+        "getyourguide": "Biglietti per attrazioni e tour guidati, di solito salta-fila.",
+        "viator": "Tour ed esperienze di TripAdvisor, una scelta enorme.",
+        "tiqets": "Biglietti digitali per musei e attrazioni, ideali all'ultimo minuto.",
+        "klook": "Sito asiatico per biglietti, pass ferroviari e SIM, forte in Giappone e in Estremo Oriente.",
+        "kiwi": "Motore di ricerca voli che combina compagnie diverse (anche low cost) in un unico biglietto.",
+        "skyscanner": "Confronto prezzi dei voli tra tutte le compagnie, con ricerca per mese intero.",
+        "rentalcars": "Noleggio auto del gruppo Booking: confronta compagnie locali e internazionali con cancellazione gratuita.",
+        "discovercars": "Confronto noleggio auto con valutazioni delle compagnie locali e assicurazione completa economica."
+      }
     },
     "rates": "Valuta della destinazione: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(cambio approssimativo)",
@@ -378,7 +401,17 @@
     "affiliate": "Alcuni di questi link sono link di affiliazione. Se prenoti tramite essi, Triplan può ricevere una piccola commissione. Il tuo prezzo non cambia.",
     "marking": "Ogni link di questo tipo è etichettato \"Link di affiliazione\" nell'interfaccia e si apre in una nuova scheda.",
     "data": "I dati delle attrazioni non verificati sono etichettati \"non verificato\". Controlla orari e prezzi prima di andare.",
-    "noKeys": "Al momento non ci sono chiavi di affiliazione attive e i link sono semplici link di ricerca."
+    "noKeys": "Al momento non ci sono chiavi di affiliazione attive e i link sono semplici link di ricerca.",
+    "partners": "I siti a cui rimandiamo",
+    "partnersIntro": "Ogni link si apre sulla città, le date e il numero di viaggiatori del viaggio. Questi sono i siti e cosa fa ciascuno:",
+    "kinds": {
+      "hotel": "Alloggio",
+      "flight": "Voli",
+      "car": "Noleggio auto",
+      "ticket": "Biglietti e tour"
+    },
+    "statusAffiliate": "Link di affiliazione attivo",
+    "statusPlain": "Link normale, senza commissione"
   },
   "footer": {
     "madeWith": "Costruito su mappe aperte e dati liberi",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "Le previsioni meteo e le festività locali compaiono nel piano stesso.",
       "pastDate": "Questa data è già passata",
-      "invalidDate": "Data non valida"
+      "invalidDate": "Data non valida",
+      "origin": "Da dove parti? (facoltativo)",
+      "originPlaceholder": "es. Milano",
+      "originHint": "Così i link dei voli si aprono già sulla tua tratta."
     },
     "party": {
       "title": "Chi viaggia?",

@@ -10,4 +10,7 @@ export const estimateRouting: RoutingProvider = {
     const meters = points.map((a) => points.map((b) => Math.round(haversineKm(a, b) * 1.3 * 1000)));
     return { minutes, meters, estimated: true };
   },
+  async route() {
+    return null;
+  },
 };

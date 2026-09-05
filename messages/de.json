@@ -271,7 +271,11 @@
       "showing": "Zeigt Tag {n}",
       "zoomIn": "Vergrößern",
       "zoomOut": "Verkleinern",
-      "fit": "An Route anpassen"
+      "fit": "An Route anpassen",
+      "legendReal": "Die Route des Tages auf echten Straßen (OSRM).",
+      "navigateDay": "Den Tag in Google Maps navigieren",
+      "navigateHint": "Öffnet die Karten-App mit allen Stopps der Reihe nach, ab dem Hotel.",
+      "navigateTruncated": "Google Maps nimmt bis zu {max} Stopps an, daher werden die ersten gezeigt."
     },
     "calendar": {
       "title": "Reisekalender",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "Mietwagen",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "Was sind das für Seiten?",
+      "aboutMore": "Mehr zu den Links und Partnerprogrammen",
+      "about": {
+        "booking": "Die größte Buchungsseite für Hotels und Apartments. Kostenlose Stornierung bei den meisten Angeboten; öffnet direkt Ihre Stadt und Daten.",
+        "hotelscom": "Die Hotelseite der Expedia-Gruppe mit Treueprogramm (jede zehnte Nacht gratis).",
+        "agoda": "Besonders stark in Asien, oft die niedrigsten Preise für Japan und Thailand.",
+        "hostelworld": "Die wichtigste Seite für Hostels und günstige Unterkünfte, mit Bewertungen junger Reisender.",
+        "getyourguide": "Tickets für Sehenswürdigkeiten und geführte Touren, meist ohne Anstehen.",
+        "viator": "Touren und Erlebnisse von TripAdvisor, riesige Auswahl.",
+        "tiqets": "Digitale Tickets für Museen und Sehenswürdigkeiten, gut für Last-Minute-Käufe.",
+        "klook": "Asiatische Seite für Tickets, Bahnpässe und SIM-Karten, stark in Japan und Fernost.",
+        "kiwi": "Flugsuche, die verschiedene Airlines (auch Billigflieger) zu einem Ticket kombiniert.",
+        "skyscanner": "Flugpreisvergleich über alle Airlines, inklusive Suche über einen ganzen Monat.",
+        "rentalcars": "Mietwagen von der Booking-Gruppe: vergleicht lokale und internationale Anbieter, kostenlose Stornierung.",
+        "discovercars": "Mietwagenvergleich mit Bewertungen der lokalen Anbieter und günstiger Vollkaskoversicherung."
+      }
     },
     "rates": "Währung am Ziel: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(ungefährer Kurs)",
@@ -378,7 +401,17 @@
     "affiliate": "Einige dieser Links sind Affiliate-Links. Wenn Sie darüber buchen, erhält Triplan möglicherweise eine kleine Provision. Ihr Preis ändert sich nicht.",
     "marking": "Jeder solche Link ist in der Oberfläche als „Affiliate-Link“ gekennzeichnet und öffnet in einem neuen Tab.",
     "data": "Daten zu Sehenswürdigkeiten, die nicht geprüft wurden, sind als „ungeprüft“ gekennzeichnet. Prüfen Sie Öffnungszeiten und Preise vor dem Besuch.",
-    "noKeys": "Derzeit sind keine Affiliate-Schlüssel aktiv, und die Links sind einfache Suchlinks."
+    "noKeys": "Derzeit sind keine Affiliate-Schlüssel aktiv, und die Links sind einfache Suchlinks.",
+    "partners": "Die Seiten, auf die wir verlinken",
+    "partnersIntro": "Jeder Link öffnet Stadt, Daten und Reisendenzahl der Reise. Das sind die Seiten und was jede tut:",
+    "kinds": {
+      "hotel": "Unterkunft",
+      "flight": "Flüge",
+      "car": "Mietwagen",
+      "ticket": "Tickets und Touren"
+    },
+    "statusAffiliate": "Affiliate-Link aktiv",
+    "statusPlain": "Normaler Link, ohne Provision"
   },
   "footer": {
     "madeWith": "Gebaut auf offenen Karten und freien Daten",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "Wettervorhersage und lokale Feiertage erscheinen im Plan selbst.",
       "pastDate": "Dieses Datum liegt bereits in der Vergangenheit",
-      "invalidDate": "Ungültiges Datum"
+      "invalidDate": "Ungültiges Datum",
+      "origin": "Von wo fliegen Sie? (optional)",
+      "originPlaceholder": "z. B. Berlin",
+      "originHint": "Damit die Fluglinks direkt Ihre Strecke öffnen."
     },
     "party": {
       "title": "Wer reist?",

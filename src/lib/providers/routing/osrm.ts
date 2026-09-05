@@ -1,7 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { fetchJson } from "../http";
-import type { RoutingProvider, TravelMatrix } from "../types";
+import type { RouteGeometry, RoutingProvider, TravelMatrix } from "../types";
 import type { LatLng } from "@/lib/planner/geo";
 import type { TravelMode } from "@/lib/planner/itinerary";
 import { estimateRouting } from "./estimate";
@@ -43,5 +43,34 @@ export function osrmRouting(baseUrl = process.env.OSRM_BASE_URL || DEFAULT_BASE)
         estimated: false,
       };
     },
+    /** Street geometry for the map: one route through all the day's stops in order. */
+    async route(points: LatLng[], mode: TravelMode): Promise<RouteGeometry | null> {
+      const profile = profiles[mode];
+      if (!profile || points.length < 2 || points.length > MAX_POINTS) return null;
+      const coords = points.map((p) => `${p.lng.toFixed(5)},${p.lat.toFixed(5)}`).join(";");
+      const base = baseUrl.replace("{profile}", profile);
+      const url = `${base}/route/v1/driving/${coords}?overview=full&geometries=geojson&steps=false`;
+      try {
+        const data = await fetchJson(url, { provider: `osrm-${profile}-route`, schema: routeSchema, cacheKey: url, ttlMs: 24 * 60 * 60 * 1000, timeoutMs: 15_000 });
+        const r = data.routes?.[0];
+        if (data.code !== "Ok" || !r) return null;
+        return { coordinates: r.geometry.coordinates, meters: Math.round(r.distance), minutes: Math.max(1, Math.round(r.duration / 60)) };
+      } catch {
+        return null;
+      }
+    },
   };
 }
+
+const routeSchema = z.object({
+  code: z.string(),
+  routes: z
+    .array(
+      z.object({
+        distance: z.number(),
+        duration: z.number(),
+        geometry: z.object({ type: z.literal("LineString"), coordinates: z.array(z.tuple([z.number(), z.number()])) }),
+      }),
+    )
+    .optional(),
+});

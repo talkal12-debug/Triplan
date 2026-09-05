@@ -271,7 +271,11 @@
       "showing": "A mostrar o dia {n}",
       "zoomIn": "Ampliar",
       "zoomOut": "Reduzir",
-      "fit": "Ajustar ao percurso"
+      "fit": "Ajustar ao percurso",
+      "legendReal": "O percurso do dia em ruas reais (OSRM).",
+      "navigateDay": "Navegar o dia no Google Maps",
+      "navigateHint": "Abre a app de mapas com todas as paragens por ordem, a partir do hotel.",
+      "navigateTruncated": "O Google Maps aceita até {max} paragens, por isso mostram-se as primeiras."
     },
     "calendar": {
       "title": "Calendário da viagem",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "Aluguer de carro",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "O que são estes sites?",
+      "aboutMore": "Mais sobre os links e os programas de afiliados",
+      "about": {
+        "booking": "O maior site de reservas de hotéis e apartamentos. Cancelamento gratuito na maioria das ofertas; abre já na sua cidade e datas.",
+        "hotelscom": "O site de hotéis do grupo Expedia com programa de fidelidade (uma noite grátis por cada dez).",
+        "agoda": "Especialmente forte na Ásia, muitas vezes os preços mais baixos para o Japão e a Tailândia.",
+        "hostelworld": "O principal site de hostels e alojamento barato, com avaliações de jovens viajantes.",
+        "getyourguide": "Bilhetes para atrações e visitas guiadas, normalmente sem filas.",
+        "viator": "Visitas e experiências da TripAdvisor, uma seleção enorme.",
+        "tiqets": "Bilhetes digitais para museus e atrações, bom para compras de última hora.",
+        "klook": "Site asiático de bilhetes, passes de comboio e cartões SIM, forte no Japão e no Extremo Oriente.",
+        "kiwi": "Pesquisa de voos que combina companhias diferentes (também low cost) num só bilhete.",
+        "skyscanner": "Comparação de preços de voos de todas as companhias, com pesquisa por mês inteiro.",
+        "rentalcars": "Aluguer de carros do grupo Booking: compara empresas locais e internacionais com cancelamento gratuito.",
+        "discovercars": "Comparador de aluguer de carros com classificações das empresas locais e seguro completo barato."
+      }
     },
     "rates": "Moeda do destino: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(câmbio aproximado)",
@@ -378,7 +401,17 @@
     "affiliate": "Alguns destes links são links de afiliado. Se reservar através deles, o Triplan pode receber uma pequena comissão. O seu preço não muda.",
     "marking": "Cada link deste tipo está identificado como \"Link de afiliado\" na interface e abre num novo separador.",
     "data": "Os dados de atrações que não foram verificados estão identificados como \"não verificado\". Confirme horários e preços antes de ir.",
-    "noKeys": "Atualmente não há chaves de afiliado ativas e os links são simples links de pesquisa."
+    "noKeys": "Atualmente não há chaves de afiliado ativas e os links são simples links de pesquisa.",
+    "partners": "Os sites para onde ligamos",
+    "partnersIntro": "Cada link abre na cidade, nas datas e no número de viajantes da viagem. Estes são os sites e o que cada um faz:",
+    "kinds": {
+      "hotel": "Alojamento",
+      "flight": "Voos",
+      "car": "Aluguer de carro",
+      "ticket": "Bilhetes e visitas"
+    },
+    "statusAffiliate": "Link de afiliado ativo",
+    "statusPlain": "Link normal, sem comissão"
   },
   "footer": {
     "madeWith": "Construído sobre mapas abertos e dados livres",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "A previsão meteorológica e os feriados locais aparecem no próprio plano.",
       "pastDate": "Esta data já passou",
-      "invalidDate": "Data inválida"
+      "invalidDate": "Data inválida",
+      "origin": "De onde voa? (opcional)",
+      "originPlaceholder": "p. ex. Lisboa",
+      "originHint": "Para que os links de voos abram já na sua rota."
     },
     "party": {
       "title": "Quem viaja?",

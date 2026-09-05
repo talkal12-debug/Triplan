@@ -36,6 +36,8 @@ export const datesSchema = z.object({
   days: z.number().int().min(1).max(30),
   arrivalTime: hhmm.nullable().default(null),
   departureTime: hhmm.nullable().default(null),
+  /** City the traveller flies from (free text). Empty = the flight sites ask. */
+  origin: z.string().max(80).optional(),
 });
 
 export const partySchema = z
@@ -144,7 +146,7 @@ export function defaultTripPreferences(today = new Date()): TripPreferences {
   return {
     version: 1,
     destinations: [],
-    dates: { start: defaultStartDate(today), days: 7, arrivalTime: null, departureTime: null },
+    dates: { start: defaultStartDate(today), days: 7, arrivalTime: null, departureTime: null, origin: "" },
     party: { adults: 2, childrenAges: [], infants: 0, stroller: false, seniors: 0 },
     visitNumber: 1,
     alreadySeenNotes: "",

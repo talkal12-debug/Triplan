@@ -92,6 +92,19 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
   reports `enabled: false` and the tab explains that a key is needed. The provider call is not covered by tests (no key
   in CI); the compaction and the no-key state are.
 
+## Booking links, affiliate programs and navigation (milestone 9)
+
+- Every outbound link is built in `src/lib/providers/affiliate.ts` and deep-links into the partner's search for the
+  trip: English city name, dates, adults and children's ages. Flights start from the city entered in the dates step
+  (Hebrew UI defaults to Tel Aviv); car rental links (Rentalcars, Discover Cars) appear when the traveller chose a car.
+- Affiliate tracking: six partners have dedicated env vars, every partner accepts `AFFILIATE_QUERY_<PROVIDER>` with
+  the raw tracking query from its link generator. Sign-up links and what to paste: `docs/affiliates.md` (Hebrew).
+  `/disclosure` lists every partner with a one-line description and whether its link currently carries a tracking id.
+- Each link has a one-line explanation (tooltip and the "What are these sites?" block under the links), in 12 languages.
+- Every day has "Navigate the day in Google Maps": a Directions URL from the hotel through the stops in order (Google
+  accepts 9 waypoints; longer days are truncated with a note). The day map draws straight lines first, then replaces
+  them with the street route from `POST /api/route` (OSRM foot/bike/car); transit days get walking geometry.
+
 ## Performance notes
 
 - `npm run lighthouse` (median of 3 mobile runs, `LIGHTHOUSE_RUNS` to change) against `npm run build && next start`.

@@ -4,13 +4,14 @@ import { useFormatter, useTranslations } from "next-intl";
 import { DndContext, KeyboardSensor, PointerSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { CloudRain, Info, Minus, Plus, RefreshCw } from "lucide-react";
+import { CloudRain, Info, Minus, Navigation, Plus, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Activity } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import { localDateOf } from "@/lib/guest/plan-helpers";
 import { useDistance } from "@/lib/units/use-distance";
+import { dayDirectionsUrl } from "@/lib/trip/google-maps";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
 import { WeatherBadge } from "./weather-badge";
@@ -34,6 +35,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
   const distance = useDistance();
   const { reasonText, warningText, name, city } = usePlanText(plan);
   const day = plan.itinerary.days[dayIndex];
+  const directions = dayDirectionsUrl(plan, dayIndex);
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
@@ -83,6 +85,18 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
           <span className="text-muted-foreground">{t("placesCount", { count: visits.length })}</span>
         </div>
       </header>
+
+      {directions && (
+        <div className="flex flex-wrap items-center gap-2">
+          <Button asChild size="sm" variant="secondary">
+            <a href={directions.url} target="_blank" rel="noopener noreferrer">
+              <Navigation aria-hidden />
+              {t("map.navigateDay")}
+            </a>
+          </Button>
+          <span className="text-xs text-muted-foreground">{directions.truncated ? t("map.navigateTruncated", { max: 10 }) : t("map.navigateHint")}</span>
+        </div>
+      )}
 
       {actions && (
       <div className="flex flex-wrap gap-2">

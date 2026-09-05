@@ -18,7 +18,7 @@ import { PlanCalendar } from "./plan-calendar";
 import { PlanList } from "./plan-list";
 import { SwapSheet } from "./swap-sheet";
 import { usePlanText } from "./use-plan-text";
-import { AffiliateLinks } from "./affiliate-links";
+import { AffiliateAbout, AffiliateLinks } from "./affiliate-links";
 import { useDistance } from "@/lib/units/use-distance";
 import { useSession } from "next-auth/react";
 import { useLocale } from "next-intl";
@@ -143,6 +143,10 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
             );
           })}
           {plan.extras && plan.extras.links.flights.length > 0 && <AffiliateLinks links={plan.extras.links.flights} label={t("links.flights")} size="xs" />}
+          {plan.extras && (plan.extras.links.cars?.length ?? 0) > 0 && <AffiliateLinks links={plan.extras.links.cars ?? []} label={t("links.car")} size="xs" />}
+          {plan.extras && (
+            <AffiliateAbout links={[...plan.extras.links.hotels.flatMap((h) => h.links), ...plan.extras.links.flights, ...(plan.extras.links.cars ?? [])]} className="mt-1" />
+          )}
           {plan.extras?.rates && (() => {
             const quote = Object.keys(plan.extras.rates.rates)[0];
             const value = quote ? plan.extras.rates.rates[quote] : undefined;

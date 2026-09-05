@@ -66,6 +66,20 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
       <fieldset className="rounded-2xl border bg-card p-4">
         <legend className="px-1 font-medium">{t("flights")}</legend>
         <p className="mb-3 text-sm text-muted-foreground">{t("flightsHint")}</p>
+        <div className="mb-3">
+          <FieldLabel htmlFor="flight-origin">{t("origin")}</FieldLabel>
+          <input
+            id="flight-origin"
+            type="text"
+            maxLength={80}
+            autoComplete="off"
+            placeholder={t("originPlaceholder")}
+            value={dates.origin ?? ""}
+            onChange={(e) => set("dates", { ...dates, origin: e.target.value })}
+            className={inputClass}
+          />
+          <p className="mt-1 text-xs text-muted-foreground">{t("originHint")}</p>
+        </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <FieldLabel htmlFor="arrival-time">{t("arrival")}</FieldLabel>

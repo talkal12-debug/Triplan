@@ -15,10 +15,19 @@ export type TravelMatrix = {
   estimated: boolean;
 };
 
+export type RouteGeometry = {
+  /** [lng, lat] pairs along real streets, in order */
+  coordinates: [number, number][];
+  meters: number;
+  minutes: number;
+};
+
 export interface RoutingProvider {
   readonly name: string;
   /** Pairwise travel matrix for up to ~25 points. */
   matrix(points: LatLng[], mode: TravelMode): Promise<TravelMatrix>;
+  /** Street geometry through the points in order, or null when the provider cannot (estimates, transit). */
+  route(points: LatLng[], mode: TravelMode): Promise<RouteGeometry | null>;
 }
 
 export type DailyWeather = {

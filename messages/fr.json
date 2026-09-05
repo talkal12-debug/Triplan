@@ -271,7 +271,11 @@
       "showing": "Affichage du jour {n}",
       "zoomIn": "Zoom avant",
       "zoomOut": "Zoom arrière",
-      "fit": "Ajuster à l'itinéraire"
+      "fit": "Ajuster à l'itinéraire",
+      "legendReal": "L'itinéraire du jour sur de vraies rues (OSRM).",
+      "navigateDay": "Naviguer la journée dans Google Maps",
+      "navigateHint": "Ouvre l'appli de cartes avec toutes les étapes dans l'ordre, depuis l'hôtel.",
+      "navigateTruncated": "Google Maps accepte jusqu'à {max} étapes ; les premières sont affichées."
     },
     "calendar": {
       "title": "Calendrier du voyage",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "Location de voiture",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "C'est quoi, ces sites ?",
+      "aboutMore": "En savoir plus sur les liens et les programmes partenaires",
+      "about": {
+        "booking": "Le plus grand site de réservation d'hôtels et d'appartements. Annulation gratuite sur la plupart des offres ; s'ouvre sur votre ville et vos dates.",
+        "hotelscom": "Le site d'hôtels du groupe Expedia avec un programme de fidélité (une nuit offerte toutes les dix).",
+        "agoda": "Particulièrement fort en Asie, souvent les prix les plus bas pour le Japon et la Thaïlande.",
+        "hostelworld": "Le site de référence des auberges de jeunesse et logements pas chers, avec des avis de jeunes voyageurs.",
+        "getyourguide": "Billets pour les attractions et visites guidées, généralement en coupe-file.",
+        "viator": "Visites et expériences par TripAdvisor, un choix énorme.",
+        "tiqets": "Billets numériques pour musées et attractions, pratique en dernière minute.",
+        "klook": "Site asiatique de billets, pass ferroviaires et cartes SIM, fort au Japon et en Extrême-Orient.",
+        "kiwi": "Moteur de recherche de vols qui combine différentes compagnies (low cost comprises) en un seul billet.",
+        "skyscanner": "Comparateur de prix de vols toutes compagnies, avec recherche sur un mois entier.",
+        "rentalcars": "Location de voitures du groupe Booking : compare loueurs locaux et internationaux, annulation gratuite.",
+        "discovercars": "Comparateur de location de voitures avec les notes des loueurs locaux et une assurance tous risques bon marché."
+      }
     },
     "rates": "Monnaie de la destination : 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(taux approximatif)",
@@ -378,7 +401,17 @@
     "affiliate": "Certains de ces liens sont des liens affiliés. Si vous réservez via ces liens, Triplan peut toucher une petite commission. Votre prix ne change pas.",
     "marking": "Chaque lien de ce type est signalé « Lien affilié » dans l'interface et s'ouvre dans un nouvel onglet.",
     "data": "Les données d'attractions non vérifiées sont signalées « non vérifié ». Vérifiez horaires et prix avant de partir.",
-    "noKeys": "Il n'y a actuellement aucune clé d'affiliation active ; les liens sont de simples liens de recherche."
+    "noKeys": "Il n'y a actuellement aucune clé d'affiliation active ; les liens sont de simples liens de recherche.",
+    "partners": "Les sites vers lesquels nous renvoyons",
+    "partnersIntro": "Chaque lien s'ouvre sur la ville, les dates et le nombre de voyageurs du voyage. Voici les sites et ce que fait chacun :",
+    "kinds": {
+      "hotel": "Hébergement",
+      "flight": "Vols",
+      "car": "Location de voiture",
+      "ticket": "Billets et visites"
+    },
+    "statusAffiliate": "Lien d'affiliation actif",
+    "statusPlain": "Lien simple, sans commission"
   },
   "footer": {
     "madeWith": "Construit sur des cartes ouvertes et des données libres",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "Les prévisions météo et les jours fériés locaux apparaissent dans le plan lui-même.",
       "pastDate": "Cette date est déjà passée",
-      "invalidDate": "Date invalide"
+      "invalidDate": "Date invalide",
+      "origin": "Vous partez d'où ? (facultatif)",
+      "originPlaceholder": "ex. Paris",
+      "originHint": "Pour que les liens de vols s'ouvrent directement sur votre trajet."
     },
     "party": {
       "title": "Qui voyage ?",

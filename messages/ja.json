@@ -271,7 +271,11 @@
       "showing": "{n}日目を表示中",
       "zoomIn": "拡大",
       "zoomOut": "縮小",
-      "fit": "ルートに合わせる"
+      "fit": "ルートに合わせる",
+      "legendReal": "実際の道路に沿った1日のルート（OSRM）。",
+      "navigateDay": "この日をGoogleマップでナビ",
+      "navigateHint": "ホテルから順にすべての立ち寄り先を地図アプリで開きます。",
+      "navigateTruncated": "Googleマップは最大{max}か所まで受け付けるため、最初の分が表示されます。"
     },
     "calendar": {
       "title": "旅行カレンダー",
@@ -331,7 +335,26 @@
       "tiqets": "Tiqets",
       "klook": "Klook",
       "kiwi": "Kiwi",
-      "skyscanner": "Skyscanner"
+      "skyscanner": "Skyscanner",
+      "car": "レンタカー",
+      "rentalcars": "Rentalcars",
+      "discovercars": "Discover Cars",
+      "aboutTitle": "これらのサイトは？",
+      "aboutMore": "リンクとパートナープログラムについて詳しく",
+      "about": {
+        "booking": "ホテルとアパートの世界最大の予約サイト。多くのプランで無料キャンセル可。あなたの都市と日程で開きます。",
+        "hotelscom": "Expediaグループのホテルサイト。ポイント制度（10泊で1泊無料）あり。",
+        "agoda": "アジアに特に強く、日本やタイでは最安値になることが多い。",
+        "hostelworld": "ホステルや格安宿の定番サイト。若い旅行者のレビュー付き。",
+        "getyourguide": "観光地のチケットやガイドツアー。多くは優先入場付き。",
+        "viator": "TripAdvisorのツアー・体験サイト。品揃えが非常に豊富。",
+        "tiqets": "博物館や観光地の電子チケット。直前購入に便利。",
+        "klook": "チケット、鉄道パス、SIMのアジア系サイト。日本や東アジアに強い。",
+        "kiwi": "異なる航空会社（LCC含む）を1枚の航空券に組み合わせる検索エンジン。",
+        "skyscanner": "全航空会社の運賃比較。月まるごと検索も可能。",
+        "rentalcars": "Bookingグループのレンタカー。現地・国際各社を比較、無料キャンセル可。",
+        "discovercars": "現地会社の評価付きレンタカー比較。安価なフルカバー保険あり。"
+      }
     },
     "rates": "現地通貨：1 {base} ≈ {value} {quote}",
     "ratesDemo": "（概算レート）",
@@ -378,7 +401,17 @@
     "affiliate": "一部のリンクはアフィリエイトリンクです。そこから予約するとTriplanが少額の手数料を受け取ることがあります。お客様の価格は変わりません。",
     "marking": "該当するリンクはすべて画面上で「アフィリエイトリンク」と表示され、新しいタブで開きます。",
     "data": "確認していない観光スポットの情報には「未確認」と表示されます。営業時間と料金は出発前にご確認ください。",
-    "noKeys": "現在アフィリエイトキーは有効化されておらず、リンクは通常の検索リンクです。"
+    "noKeys": "現在アフィリエイトキーは有効化されておらず、リンクは通常の検索リンクです。",
+    "partners": "リンク先のサイト",
+    "partnersIntro": "すべてのリンクは旅行の都市・日程・人数で開きます。各サイトの内容：",
+    "kinds": {
+      "hotel": "宿泊",
+      "flight": "航空券",
+      "car": "レンタカー",
+      "ticket": "チケットとツアー"
+    },
+    "statusAffiliate": "アフィリエイトリンク有効",
+    "statusPlain": "通常のリンク、手数料なし"
   },
   "footer": {
     "madeWith": "オープンな地図と自由なデータで作られています",
@@ -540,7 +573,10 @@
       },
       "weatherLater": "天気予報と現地の祝日はプラン内に表示されます。",
       "pastDate": "この日付はすでに過ぎています",
-      "invalidDate": "無効な日付"
+      "invalidDate": "無効な日付",
+      "origin": "出発地は？（任意）",
+      "originPlaceholder": "例：東京",
+      "originHint": "航空券のリンクがあなたの路線で開くようになります。"
     },
     "party": {
       "title": "誰が旅行しますか？",
