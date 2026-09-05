@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import NextAuth from "next-auth";
 import type { Provider } from "next-auth/providers";
 import Google from "next-auth/providers/google";
@@ -14,6 +15,12 @@ import { isDemoLoginEnabled, isGoogleEnabled, rememberDemoLink, sendWithResend }
  * Sessions live in the database (Session table) so sign-out is server-side.
  */
 const env = getEnv();
+
+function fallbackSecret(): string {
+  if (env.NODE_ENV !== "production") return "triplan-dev-secret-not-for-production";
+  console.warn("[auth] AUTH_SECRET is not set: using a random secret, sessions will not survive a restart.");
+  return randomBytes(32).toString("hex");
+}
 
 const providers: Provider[] = [
   {
@@ -45,8 +52,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers,
   session: { strategy: "database" },
-  // Production must set AUTH_SECRET; development gets a stable fallback so the app runs with zero config.
-  secret: env.AUTH_SECRET ?? (env.NODE_ENV === "production" ? undefined : "triplan-dev-secret-not-for-production"),
+  // Production should set AUTH_SECRET. Without it the app still runs (guest mode must never break):
+  // a random per-process secret is used, so sessions simply do not survive a restart.
+  secret: env.AUTH_SECRET ?? fallbackSecret(),
   trustHost: true,
   pages: { signIn: "/he/signin", verifyRequest: "/he/signin?sent=1", error: "/he/signin" },
   callbacks: {

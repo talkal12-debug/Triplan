@@ -128,7 +128,7 @@
       }
     },
     "statusTitle": "Entwicklungsstand",
-    "statusBody": "Triplan wird in Phasen gebaut. Aktuelle Phase: Grundlagen. Fragebogen und Planungsmodul sind in Arbeit."
+    "statusBody": "Triplan entsteht in Phasen. Heute funktionieren: Fragebogen, Planungsmodul, vier Ansichten, Karte, Export, Offline, 12 Sprachen, Konten und gemeinsames Planen. Der KI-Assistent braucht einen Anthropic-Schlüssel."
   },
   "plan": {
     "build": "Plan erstellen",
@@ -465,7 +465,8 @@
       "melanesia": "Melanesien",
       "micronesia": "Mikronesien",
       "central_asia": "Zentralasien"
-    }
+    },
+    "showAll": "Alle {count} Länder anzeigen"
   },
   "wizard": {
     "title": "Reise planen",
@@ -760,7 +761,14 @@
     "deleteConfirm": "Diese Reise löschen?",
     "open": "Öffnen",
     "planLabel": "Der Plan",
-    "prefsLabel": "Vorgaben"
+    "prefsLabel": "Vorgaben",
+    "sharedBy": "Geteilt von {name} ({role})",
+    "synced": "Mit dem Konto synchronisiert",
+    "roles": {
+      "owner": "Besitzer",
+      "editor": "Bearbeiter",
+      "viewer": "Betrachter"
+    }
   },
   "tools": {
     "title": "Reisewerkzeuge",
@@ -769,7 +777,9 @@
       "packing": "Packliste",
       "checklist": "Checkliste",
       "share": "Export & Teilen",
-      "journal": "Tagebuch"
+      "journal": "Tagebuch",
+      "collab": "Mitreisende",
+      "chat": "KI-Assistent"
     },
     "budget": {
       "title": "Geschätztes Budget",
@@ -911,5 +921,59 @@
     "copyToMine": "Zu meinen Reisen kopieren",
     "copied": "Zu Ihren Reisen kopiert",
     "by": "Reise nach {destinations}"
+  },
+  "collab": {
+    "needAccount": "Gemeinsames Planen braucht ein Konto, damit alle denselben Plan sehen.",
+    "notSynced": "Diese Reise ist noch nicht mit dem Konto synchronisiert. Versuchen Sie es gleich noch einmal.",
+    "members": "Mitreisende",
+    "you": "Sie",
+    "roles": {
+      "owner": "Besitzer",
+      "editor": "Bearbeiter",
+      "viewer": "Betrachter"
+    },
+    "leave": "Reise verlassen",
+    "remove": "{name} entfernen",
+    "invite": "Mitreisende einladen",
+    "inviteHint": "Wer den Link öffnet und sich anmeldet, tritt der Reise bei. Der Link kann jederzeit ersetzt werden.",
+    "inviteRole": "Rolle für Beitretende:",
+    "createInvite": "Einladungslink erstellen",
+    "copy": "Link kopieren",
+    "copied": "Kopiert!",
+    "rotate": "Neuer Link",
+    "revoke": "Link widerrufen",
+    "comments": "Kommentare",
+    "noComments": "Noch keine Kommentare.",
+    "writeComment": "Kommentar an die Mitreisenden schreiben...",
+    "aboutDay": "Zu welchem Tag",
+    "wholeTrip": "Ganze Reise",
+    "send": "Senden",
+    "deleteComment": "Kommentar löschen",
+    "formerMember": "Ehemaliger Mitreisender",
+    "syncNote": "Änderungen der Mitreisenden kommen innerhalb einer halben Minute an. Wer eine neuere Version speichert, gewinnt.",
+    "votes": "Abstimmung",
+    "voteUp": "Dafür",
+    "voteDown": "Dagegen",
+    "joinTitle": "Einladung zur Reise",
+    "joinBody": "{owner} lädt Sie ein, der Reise als {role} beizutreten.",
+    "someone": "Jemand",
+    "join": "Reise beitreten",
+    "joining": "Beitritt läuft...",
+    "joinError": "Beitritt fehlgeschlagen. Vielleicht wurde der Link widerrufen.",
+    "inviteInvalid": "Dieser Link ist ungültig oder wurde widerrufen."
+  },
+  "chat": {
+    "needsKey": "Der Assistent braucht einen Anthropic-Schlüssel",
+    "needsKeyBody": "Sobald ANTHROPIC_API_KEY auf dem Server gesetzt ist, können Sie hier frei formulieren („mach Tag 2 leichter“, „tausch das Museum gegen etwas im Freien“), und der Assistent schlägt strukturierte Änderungen am Plan vor. Ohne Schlüssel erledigen die Schaltflächen im Plan dasselbe von Hand.",
+    "noPlan": "Der Assistent arbeitet an einem bestehenden Plan. Erstellen Sie zuerst einen.",
+    "intro": "Sagen Sie, was sich ändern soll. Der Assistent ({model}) schlägt strukturierte Operationen vor, die durch das normale Bearbeitungsmodul laufen.",
+    "examples": "Beispiele: „Tag 2 ist zu voll“, „verschieb das Kolosseum auf Tag 3“, „tausch das Museum gegen etwas draußen“, „streich das ganze Einkaufen“.",
+    "placeholder": "Was soll sich am Plan ändern?",
+    "send": "Senden",
+    "thinking": "Denkt nach...",
+    "opsApplied": "{applied} von {total} Änderungen angewendet",
+    "opsReadOnly": "{count} Änderungen vorgeschlagen (nur Ansicht, nicht angewendet)",
+    "error": "Der Assistent ist gescheitert: {message}",
+    "disclaimer": "Der Assistent erfindet keine Orte: Er wählt nur aus Sehenswürdigkeiten, die das Modul kennt, und jede Änderung durchläuft dieselben Prüfungen wie eine manuelle Bearbeitung."
   }
 }

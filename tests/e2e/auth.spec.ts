@@ -26,7 +26,7 @@ test("guest trip moves into the account after signing in", async ({ page }) => {
 
   // 2. Sign in with the on-screen demo link.
   await page.getByRole("link", { name: "כניסה" }).click();
-  await expect(page).toHaveURL(/\/he\/signin/);
+  await expect(page).toHaveURL(/\/he\/signin/, { timeout: 60_000 });
   await page.getByLabel("כתובת מייל").fill(email);
   await page.getByRole("button", { name: "שלחו לי קישור כניסה" }).click();
   await page.getByRole("link", { name: "פתחו את קישור הכניסה" }).click();

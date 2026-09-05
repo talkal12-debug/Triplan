@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { NowView } from "@/components/trip/now-view";
+import { PageMessages } from "@/i18n/page-messages";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -13,5 +14,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function NowPage({ params }: Props) {
   const { locale, id } = await params;
   setRequestLocale(locale);
-  return <NowView id={id} />;
+  return (
+    <PageMessages namespaces={["plan", "trip"]}>
+      <NowView id={id} />
+    </PageMessages>
+  );
 }

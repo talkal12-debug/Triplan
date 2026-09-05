@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
-import { Direction } from "radix-ui";
+import * as Direction from "@radix-ui/react-direction";
 import type { TextDirection } from "@/lib/i18n/locales";
 import { TripSync } from "@/components/auth/trip-sync";
 

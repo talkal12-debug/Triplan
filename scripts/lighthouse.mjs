@@ -36,19 +36,27 @@ if (!process.env.LIGHTHOUSE_URL) {
   await waitFor(`${base}/he`, 60_000);
 }
 
+const runs = Number(process.env.LIGHTHOUSE_RUNS ?? 3);
+const median = (xs) => [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)];
+
 const browser = await chromium.launch({ args: [`--remote-debugging-port=${port}`] });
 const results = [];
 try {
   for (const path of pages) {
-    const { lhr, report } = await lighthouse(`${base}${path}`, {
-      port,
-      output: "json",
-      logLevel: "error",
-      onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
-    });
-    writeFileSync(join(outDir, `${path.replace(/[^a-z0-9]+/gi, "_")}.json`), report);
-    const scores = Object.fromEntries(Object.entries(lhr.categories).map(([k, v]) => [k, Math.round(v.score * 100)]));
-    results.push({ path, ...scores });
+    // Local runs are noisy (±5-8 points): take the median of several.
+    const perRun = [];
+    for (let i = 0; i < runs; i++) {
+      const { lhr, report } = await lighthouse(`${base}${path}`, {
+        port,
+        output: "json",
+        logLevel: "error",
+        onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+      });
+      if (i === 0) writeFileSync(join(outDir, `${path.replace(/[^a-z0-9]+/gi, "_")}.json`), report);
+      perRun.push(Object.fromEntries(Object.entries(lhr.categories).map(([k, v]) => [k, Math.round(v.score * 100)])));
+    }
+    const scores = Object.fromEntries(Object.keys(perRun[0]).map((k) => [k, median(perRun.map((r) => r[k]))]));
+    results.push({ path, ...scores, "perf runs": perRun.map((r) => r.performance).join("/") });
   }
 } finally {
   await browser.close();

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { ArrowLeft, ArrowRight, Check, RotateCcw, Sparkles } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -16,27 +16,22 @@ import { localeDir } from "@/lib/i18n/locales";
 import { cn } from "@/lib/utils";
 import type { StepProps, WizardContext } from "./step-props";
 import { DestinationStep } from "./steps/destination-step";
-import { DatesStep } from "./steps/dates-step";
-import { PartyStep } from "./steps/party-step";
-import { VisitStep } from "./steps/visit-step";
-import { PaceStep } from "./steps/pace-step";
-import { TransportStep } from "./steps/transport-step";
-import { InterestsStep } from "./steps/interests-step";
-import { BudgetStep } from "./steps/budget-step";
-import { HotelStep } from "./steps/hotel-step";
-import { SummaryStep } from "./steps/summary-step";
-
-const stepComponents: Record<WizardStep, (props: StepProps) => React.ReactNode> = {
+// One chunk per step: a visitor on the destination step does not download the
+// drag-and-drop code of the interests step or the summary's formatting.
+// The destination step is the landing page of the wizard: imported statically so it is part of the
+// first server-rendered HTML instead of a streamed Suspense boundary (better LCP, no layout shift).
+const stepLoading = () => <Skeleton className="h-40 w-full rounded-2xl" />;
+const stepComponents: Record<WizardStep, React.ComponentType<StepProps>> = {
   destination: DestinationStep,
-  dates: DatesStep,
-  party: PartyStep,
-  visit: VisitStep,
-  pace: PaceStep,
-  transport: TransportStep,
-  interests: InterestsStep,
-  budget: BudgetStep,
-  hotel: HotelStep,
-  summary: SummaryStep,
+  dates: dynamic(() => import("./steps/dates-step").then((m) => m.DatesStep), { loading: stepLoading }),
+  party: dynamic(() => import("./steps/party-step").then((m) => m.PartyStep), { loading: stepLoading }),
+  visit: dynamic(() => import("./steps/visit-step").then((m) => m.VisitStep), { loading: stepLoading }),
+  pace: dynamic(() => import("./steps/pace-step").then((m) => m.PaceStep), { loading: stepLoading }),
+  transport: dynamic(() => import("./steps/transport-step").then((m) => m.TransportStep), { loading: stepLoading }),
+  interests: dynamic(() => import("./steps/interests-step").then((m) => m.InterestsStep), { loading: stepLoading }),
+  budget: dynamic(() => import("./steps/budget-step").then((m) => m.BudgetStep), { loading: stepLoading }),
+  hotel: dynamic(() => import("./steps/hotel-step").then((m) => m.HotelStep), { loading: stepLoading }),
+  summary: dynamic(() => import("./steps/summary-step").then((m) => m.SummaryStep), { loading: stepLoading }),
 };
 
 /** Steps where "skip" makes sense (destination has no default, summary is the end). */
@@ -47,11 +42,14 @@ type Props = { step: WizardStep; ctx: WizardContext };
 export function WizardShell({ step, ctx }: Props) {
   const t = useTranslations("wizard");
   const router = useRouter();
-  const reduceMotion = useReducedMotion();
   const store = useWizardStore();
   const [building, setBuilding] = useState(false);
   const lastIndex = useRef(stepIndex(step));
   const direction = stepIndex(step) >= lastIndex.current ? 1 : -1;
+  // The first step a visitor lands on paints without the slide-in (it would only delay the LCP);
+  // moving between steps animates.
+  const initialStep = useRef(step);
+  const animate = step !== initialStep.current;
   useEffect(() => {
     lastIndex.current = stepIndex(step);
   }, [step]);
@@ -79,7 +77,8 @@ export function WizardShell({ step, ctx }: Props) {
   const summaryBlocked = isSummary && Object.keys(allErrors(store.prefs)).length > 0;
   const Step = stepComponents[step];
   const rtl = localeDir[ctx.locale] === "rtl";
-  const slide = reduceMotion ? 0 : 24 * direction * (rtl ? -1 : 1);
+  // Reduced motion is handled globally in globals.css (animations collapse to ~0 ms).
+  const slide = 24 * direction * (rtl ? -1 : 1);
 
   function goNext() {
     if (!next || errors.length) return;
@@ -156,26 +155,16 @@ export function WizardShell({ step, ctx }: Props) {
         <p className="mt-1 text-muted-foreground">{t(`${step}.subtitle`)}</p>
       </header>
 
-      <div className="mt-6 min-h-64">
-        {store.hydrated ? (
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, x: slide }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -slide }}
-              transition={{ duration: reduceMotion ? 0 : 0.22, ease: "easeOut" }}
-            >
-              <Step prefs={store.prefs} set={store.set} update={store.update} ctx={ctx} errors={errors} />
-            </motion.div>
-          </AnimatePresence>
-        ) : (
-          <div className="space-y-3" aria-busy aria-label={t("loading")}>
-            <Skeleton className="h-16 w-full rounded-2xl" />
-            <Skeleton className="h-16 w-full rounded-2xl" />
-            <Skeleton className="h-16 w-full rounded-2xl" />
-          </div>
-        )}
+      {/*
+        The step is server-rendered with the default answers and swapped for the saved draft right
+        after localStorage rehydrates, so the first paint is real content (LCP) rather than a skeleton.
+        Until then the controls are disabled (aria-busy) so a tap cannot land on stale defaults.
+      */}
+      <div className="mt-6 min-h-64" aria-busy={!store.hydrated} aria-label={store.hydrated ? undefined : t("loading")}>
+        {/* Keyed on the step so the CSS enter animation (globals.css) replays; direction-aware via a custom property. */}
+        <div key={step} className={cn(animate && "wizard-step-enter", !store.hydrated && "pointer-events-none")} style={{ "--wizard-slide": `${slide}px` } as React.CSSProperties}>
+          <Step prefs={store.prefs} set={store.set} update={store.update} ctx={ctx} errors={errors} />
+        </div>
       </div>
 
       <footer className="sticky bottom-16 z-30 mt-8 rounded-2xl border bg-background/95 p-3 shadow-lg backdrop-blur md:bottom-4">

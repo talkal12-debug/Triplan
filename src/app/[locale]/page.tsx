@@ -27,13 +27,13 @@ export default async function HomePage({ params }: Props) {
       <section className="relative overflow-hidden rounded-3xl bg-hero-gradient px-6 py-16 text-center sm:px-12 sm:py-24 mt-6">
         <div
           aria-hidden
-          className="pointer-events-none absolute -end-24 -top-24 size-72 rounded-full bg-sunset/30 blur-3xl"
+          className="pointer-events-none absolute -end-24 -top-24 hidden size-72 rounded-full bg-sunset/30 blur-3xl sm:block"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-24 -start-24 size-72 rounded-full bg-primary/30 blur-3xl"
+          className="pointer-events-none absolute -bottom-24 -start-24 hidden size-72 rounded-full bg-primary/30 blur-3xl sm:block"
         />
-        <FadeIn className="relative mx-auto max-w-2xl">
+        <div className="relative mx-auto max-w-2xl">
           <Badge variant="secondary" className="mb-4">
             {t("eyebrow")}
           </Badge>
@@ -54,7 +54,7 @@ export default async function HomePage({ params }: Props) {
               <Link href="/gallery">{t("ctaSecondary")}</Link>
             </Button>
           </div>
-        </FadeIn>
+        </div>
       </section>
 
       {/* Features */}
@@ -62,7 +62,7 @@ export default async function HomePage({ params }: Props) {
         <h2 id="features-title" className="text-center text-2xl font-semibold sm:text-3xl">
           {t("featuresTitle")}
         </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {features.map(({ key, icon: Icon }, i) => (
             <FadeIn key={key} delay={i * 0.08}>
               <Card className="h-full rounded-2xl">
@@ -86,7 +86,7 @@ export default async function HomePage({ params }: Props) {
         <h2 id="how-title" className="text-center text-2xl font-semibold sm:text-3xl">
           {t("howTitle")}
         </h2>
-        <ol className="mt-8 grid gap-6 sm:grid-cols-3">
+        <ol className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {steps.map((step, i) => (
             <FadeIn key={step} delay={i * 0.08} as="li" className="flex gap-4">
                 <span

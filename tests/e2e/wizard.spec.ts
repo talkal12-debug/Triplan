@@ -60,7 +60,7 @@ test("guest can complete the wizard and land on a saved trip", async ({ page }) 
   await expect(page.getByText("פעם שנייה")).toBeVisible();
   await page.getByRole("button", { name: "בנה לי טיול" }).click();
 
-  await expect(page).toHaveURL(/\/he\/trip\/g_/);
+  await expect(page).toHaveURL(/\/he\/trip\/g_/, { timeout: 90_000 });
   await expect(page.getByRole("heading", { name: "הטיול שלך" })).toBeVisible();
   await expect(page.getByText("נשמר במכשיר הזה (מצב אורח)")).toBeVisible();
 

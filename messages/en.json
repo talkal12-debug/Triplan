@@ -128,7 +128,7 @@
       }
     },
     "statusTitle": "Development status",
-    "statusBody": "Triplan is built in phases. Current phase: foundation. The questionnaire and the planning engine are on the way."
+    "statusBody": "Triplan is built in phases. Working today: questionnaire, planning engine, four views, map, export, offline, 12 languages, accounts and planning together. The AI assistant needs an Anthropic key."
   },
   "plan": {
     "build": "Build the plan",
@@ -465,7 +465,8 @@
       "melanesia": "Melanesia",
       "micronesia": "Micronesia",
       "central_asia": "Central Asia"
-    }
+    },
+    "showAll": "Show all {count} countries"
   },
   "wizard": {
     "title": "Plan a trip",
@@ -760,7 +761,14 @@
     "deleteConfirm": "Delete this trip?",
     "open": "Open",
     "planLabel": "The plan",
-    "prefsLabel": "Preferences"
+    "prefsLabel": "Preferences",
+    "sharedBy": "Shared by {name} ({role})",
+    "synced": "Synced to account",
+    "roles": {
+      "owner": "owner",
+      "editor": "editor",
+      "viewer": "viewer"
+    }
   },
   "tools": {
     "title": "Trip tools",
@@ -769,7 +777,9 @@
       "packing": "Packing",
       "checklist": "Checklist",
       "share": "Export & share",
-      "journal": "Journal"
+      "journal": "Journal",
+      "collab": "Travel partners",
+      "chat": "AI assistant"
     },
     "budget": {
       "title": "Estimated budget",
@@ -911,5 +921,59 @@
     "copyToMine": "Copy to my trips",
     "copied": "Copied to your trips",
     "by": "Trip to {destinations}"
+  },
+  "collab": {
+    "needAccount": "Planning together needs an account, so everyone sees the same plan.",
+    "notSynced": "This trip is not synced to the account yet. Try again in a moment.",
+    "members": "Travel partners",
+    "you": "you",
+    "roles": {
+      "owner": "Owner",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "leave": "Leave the trip",
+    "remove": "Remove {name}",
+    "invite": "Invite partners",
+    "inviteHint": "Anyone who opens the link and signs in joins the trip. You can replace the link at any time.",
+    "inviteRole": "Role for joiners:",
+    "createInvite": "Create invite link",
+    "copy": "Copy link",
+    "copied": "Copied!",
+    "rotate": "New link",
+    "revoke": "Revoke link",
+    "comments": "Comments",
+    "noComments": "No comments yet.",
+    "writeComment": "Write a comment for your partners...",
+    "aboutDay": "About which day",
+    "wholeTrip": "Whole trip",
+    "send": "Send",
+    "deleteComment": "Delete comment",
+    "formerMember": "Former partner",
+    "syncNote": "Partners' changes arrive within half a minute. When someone saves a newer version, it wins.",
+    "votes": "Vote",
+    "voteUp": "For",
+    "voteDown": "Against",
+    "joinTitle": "Trip invitation",
+    "joinBody": "{owner} invites you to join the trip as {role}.",
+    "someone": "Someone",
+    "join": "Join the trip",
+    "joining": "Joining...",
+    "joinError": "Joining failed. The link may have been revoked.",
+    "inviteInvalid": "This link is invalid or was revoked."
+  },
+  "chat": {
+    "needsKey": "The assistant needs an Anthropic key",
+    "needsKeyBody": "Once ANTHROPIC_API_KEY is set on the server you can type free requests here (\"make day 2 lighter\", \"swap the museum for something outdoors\") and the assistant proposes structured changes to the plan. Without a key, every button in the plan does the same things by hand.",
+    "noPlan": "The assistant works on an existing plan. Build one first.",
+    "intro": "Say what to change. The assistant ({model}) proposes structured operations, which go through the regular editing engine.",
+    "examples": "Examples: \"day 2 is too busy\", \"move the Colosseum to day 3\", \"swap the museum for something outdoors\", \"drop all the shopping\".",
+    "placeholder": "What should change in the plan?",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "opsApplied": "{applied} of {total} changes applied",
+    "opsReadOnly": "{count} changes proposed (view only, not applied)",
+    "error": "The assistant failed: {message}",
+    "disclaimer": "The assistant never invents places: it only picks from attractions the engine knows, and every change passes the same checks as a manual edit."
   }
 }

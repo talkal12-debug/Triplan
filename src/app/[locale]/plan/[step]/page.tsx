@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { isWizardStep, wizardSteps } from "@/lib/wizard/steps";
 import { getCountriesLite, getDemoCitiesLite } from "@/lib/data/countries-lite";
 import { WizardShell } from "@/components/wizard/wizard-shell";
+import { PageMessages } from "@/i18n/page-messages";
 
 type Props = { params: Promise<{ locale: string; step: string }> };
 
@@ -27,13 +28,15 @@ export default async function WizardStepPage({ params }: Props) {
   const uiLocale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
 
   return (
-    <WizardShell
-      step={step}
-      ctx={{
-        locale: uiLocale,
-        countries: getCountriesLite(uiLocale),
-        cities: getDemoCitiesLite(uiLocale),
-      }}
-    />
+    <PageMessages namespaces={["wizard", "plan"]}>
+      <WizardShell
+        step={step}
+        ctx={{
+          locale: uiLocale,
+          countries: getCountriesLite(uiLocale),
+          cities: getDemoCitiesLite(uiLocale),
+        }}
+      />
+    </PageMessages>
   );
 }

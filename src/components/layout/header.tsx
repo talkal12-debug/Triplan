@@ -44,6 +44,7 @@ export function Header() {
               <Link
                 key={key}
                 href={href}
+                prefetch={false}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
@@ -82,6 +83,7 @@ export function Header() {
                     <Link
                       key={key}
                       href={href}
+                      prefetch={false}
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
                       className={cn(

@@ -8,6 +8,7 @@ import { countryName, getCountry } from "@/lib/data/countries";
 import { tripPreferencesSchema } from "@/lib/planner/types";
 import { guestPlanSchema } from "@/lib/guest/schema";
 import { SharedTripView } from "@/components/trip/shared-trip-view";
+import { PageMessages } from "@/i18n/page-messages";
 
 type Props = { params: Promise<{ locale: string; token: string }> };
 
@@ -34,5 +35,9 @@ export default async function SharePage({ params }: Props) {
       return c ? countryName(c, uiLocale) : d.countryCode;
     })
     .join(" · ");
-  return <SharedTripView token={token} preferences={preferences.data} plan={plan.data} canEdit={trip.shareCanEdit} destinations={destinations} />;
+  return (
+    <PageMessages namespaces={["shared", "plan", "tools", "wizard", "trip", "journal", "collab", "chat"]}>
+      <SharedTripView token={token} preferences={preferences.data} plan={plan.data} canEdit={trip.shareCanEdit} destinations={destinations} />
+    </PageMessages>
+  );
 }

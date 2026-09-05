@@ -213,7 +213,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
 
       {view === "timeline" && <DayTimeline plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} actions={actions} busy={busy} />}
       {view === "map" && (
-        <div className="grid gap-4 lg:grid-cols-[3fr_2fr]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[3fr_2fr]">
           <PlanMap plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} />
           <div className="max-h-[60vh] overflow-y-auto">
             <DayTimeline plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} actions={actions} busy={busy} />

@@ -126,7 +126,7 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
   ];
 
   return (
-    <dl className="grid gap-3 sm:grid-cols-2">
+    <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {sections.map(({ step, content }) => (
         <div key={step} className="rounded-2xl border bg-card p-4">
           <div className="flex items-center justify-between gap-2">

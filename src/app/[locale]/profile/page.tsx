@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { getCountriesLite, getDemoCitiesLite } from "@/lib/data/countries-lite";
 import { ProfileForm } from "@/components/profile/profile-form";
+import { PageMessages } from "@/i18n/page-messages";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -21,5 +22,9 @@ export default async function ProfilePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const uiLocale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
-  return <ProfileForm ctx={{ locale: uiLocale, countries: getCountriesLite(uiLocale), cities: getDemoCitiesLite(uiLocale) }} />;
+  return (
+    <PageMessages namespaces={["profile", "wizard"]}>
+      <ProfileForm ctx={{ locale: uiLocale, countries: getCountriesLite(uiLocale), cities: getDemoCitiesLite(uiLocale) }} />
+    </PageMessages>
+  );
 }

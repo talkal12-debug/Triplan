@@ -128,7 +128,7 @@
       }
     },
     "statusTitle": "Estado do desenvolvimento",
-    "statusBody": "O Triplan é construído por fases. Fase atual: fundações. O questionário e o motor de planeamento estão a caminho."
+    "statusBody": "O Triplan é construído por fases. Já funciona: questionário, motor de planeamento, quatro vistas, mapa, exportação, offline, 12 idiomas, contas e planeamento em conjunto. O assistente de IA precisa de uma chave da Anthropic."
   },
   "plan": {
     "build": "Criar o plano",
@@ -465,7 +465,8 @@
       "melanesia": "Melanésia",
       "micronesia": "Micronésia",
       "central_asia": "Ásia Central"
-    }
+    },
+    "showAll": "Mostrar todos os {count} países"
   },
   "wizard": {
     "title": "Planear uma viagem",
@@ -760,7 +761,14 @@
     "deleteConfirm": "Eliminar esta viagem?",
     "open": "Abrir",
     "planLabel": "O plano",
-    "prefsLabel": "Preferências"
+    "prefsLabel": "Preferências",
+    "sharedBy": "Partilhado por {name} ({role})",
+    "synced": "Sincronizado com a conta",
+    "roles": {
+      "owner": "proprietário",
+      "editor": "editor",
+      "viewer": "observador"
+    }
   },
   "tools": {
     "title": "Ferramentas de viagem",
@@ -769,7 +777,9 @@
       "packing": "Mala",
       "checklist": "Lista de tarefas",
       "share": "Exportar e partilhar",
-      "journal": "Diário"
+      "journal": "Diário",
+      "collab": "Companheiros",
+      "chat": "Assistente IA"
     },
     "budget": {
       "title": "Orçamento estimado",
@@ -911,5 +921,59 @@
     "copyToMine": "Copiar para as minhas viagens",
     "copied": "Copiado para as suas viagens",
     "by": "Viagem a {destinations}"
+  },
+  "collab": {
+    "needAccount": "Planear em conjunto requer uma conta, para que todos vejam o mesmo plano.",
+    "notSynced": "Esta viagem ainda não está sincronizada com a conta. Tente novamente daqui a pouco.",
+    "members": "Companheiros de viagem",
+    "you": "você",
+    "roles": {
+      "owner": "Proprietário",
+      "editor": "Editor",
+      "viewer": "Observador"
+    },
+    "leave": "Sair da viagem",
+    "remove": "Remover {name}",
+    "invite": "Convidar companheiros",
+    "inviteHint": "Quem abrir o link e iniciar sessão junta-se à viagem. Pode substituir o link a qualquer momento.",
+    "inviteRole": "Papel de quem se junta:",
+    "createInvite": "Criar link de convite",
+    "copy": "Copiar link",
+    "copied": "Copiado!",
+    "rotate": "Novo link",
+    "revoke": "Revogar link",
+    "comments": "Comentários",
+    "noComments": "Ainda sem comentários.",
+    "writeComment": "Escreva um comentário para os companheiros...",
+    "aboutDay": "Sobre que dia",
+    "wholeTrip": "Toda a viagem",
+    "send": "Enviar",
+    "deleteComment": "Eliminar comentário",
+    "formerMember": "Antigo companheiro",
+    "syncNote": "As alterações dos companheiros chegam em meio minuto. Quando alguém guarda uma versão mais recente, é essa que fica.",
+    "votes": "Votar",
+    "voteUp": "A favor",
+    "voteDown": "Contra",
+    "joinTitle": "Convite para uma viagem",
+    "joinBody": "{owner} convida-o a juntar-se à viagem como {role}.",
+    "someone": "Alguém",
+    "join": "Juntar-me à viagem",
+    "joining": "A juntar...",
+    "joinError": "Não foi possível juntar-se. O link pode ter sido revogado.",
+    "inviteInvalid": "Este link é inválido ou foi revogado."
+  },
+  "chat": {
+    "needsKey": "O assistente precisa de uma chave da Anthropic",
+    "needsKeyBody": "Quando ANTHROPIC_API_KEY estiver definida no servidor, pode escrever aqui pedidos livres (\"torna o dia 2 mais leve\", \"troca o museu por algo ao ar livre\") e o assistente propõe alterações estruturadas ao plano. Sem chave, todos os botões do plano fazem o mesmo manualmente.",
+    "noPlan": "O assistente trabalha sobre um plano existente. Crie um primeiro.",
+    "intro": "Diga o que mudar. O assistente ({model}) propõe operações estruturadas que passam pelo motor de edição habitual.",
+    "examples": "Exemplos: \"o dia 2 está demasiado cheio\", \"passa o Coliseu para o dia 3\", \"troca o museu por algo ao ar livre\", \"tira as compras todas\".",
+    "placeholder": "O que mudar no plano?",
+    "send": "Enviar",
+    "thinking": "A pensar...",
+    "opsApplied": "{applied} de {total} alterações aplicadas",
+    "opsReadOnly": "{count} alterações propostas (só leitura, não aplicadas)",
+    "error": "O assistente falhou: {message}",
+    "disclaimer": "O assistente nunca inventa lugares: escolhe apenas entre as atrações que o motor conhece, e cada alteração passa pelas mesmas verificações de uma edição manual."
   }
 }

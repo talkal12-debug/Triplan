@@ -128,7 +128,7 @@
       }
     },
     "statusTitle": "开发状态",
-    "statusBody": "Triplan 分阶段构建。当前阶段：基础。问卷和规划引擎即将上线。"
+    "statusBody": "Triplan 分阶段构建。目前可用：问卷、规划引擎、四种视图、地图、导出、离线、12 种语言、账户和共同规划。AI 助手需要 Anthropic 密钥。"
   },
   "plan": {
     "build": "生成计划",
@@ -465,7 +465,8 @@
       "melanesia": "美拉尼西亚",
       "micronesia": "密克罗尼西亚",
       "central_asia": "中亚"
-    }
+    },
+    "showAll": "显示全部 {count} 个国家"
   },
   "wizard": {
     "title": "规划旅行",
@@ -760,7 +761,14 @@
     "deleteConfirm": "删除此旅行？",
     "open": "打开",
     "planLabel": "计划",
-    "prefsLabel": "偏好"
+    "prefsLabel": "偏好",
+    "sharedBy": "由 {name} 分享（{role}）",
+    "synced": "已同步到账户",
+    "roles": {
+      "owner": "所有者",
+      "editor": "编辑者",
+      "viewer": "查看者"
+    }
   },
   "tools": {
     "title": "旅行工具",
@@ -769,7 +777,9 @@
       "packing": "行李",
       "checklist": "清单",
       "share": "导出与分享",
-      "journal": "日记"
+      "journal": "日记",
+      "collab": "同行者",
+      "chat": "AI 助手"
     },
     "budget": {
       "title": "预算估算",
@@ -911,5 +921,59 @@
     "copyToMine": "复制到我的旅行",
     "copied": "已复制到您的旅行",
     "by": "{destinations}之旅"
+  },
+  "collab": {
+    "needAccount": "共同规划需要账户，这样每个人看到的都是同一份计划。",
+    "notSynced": "此旅行尚未同步到账户。请稍后再试。",
+    "members": "同行者",
+    "you": "您",
+    "roles": {
+      "owner": "所有者",
+      "editor": "编辑者",
+      "viewer": "查看者"
+    },
+    "leave": "退出旅行",
+    "remove": "移除 {name}",
+    "invite": "邀请同行者",
+    "inviteHint": "任何打开链接并登录的人都会加入旅行。您可以随时更换链接。",
+    "inviteRole": "加入者的角色：",
+    "createInvite": "创建邀请链接",
+    "copy": "复制链接",
+    "copied": "已复制！",
+    "rotate": "新链接",
+    "revoke": "撤销链接",
+    "comments": "评论",
+    "noComments": "还没有评论。",
+    "writeComment": "给同行者写一条评论...",
+    "aboutDay": "关于哪一天",
+    "wholeTrip": "整个旅行",
+    "send": "发送",
+    "deleteComment": "删除评论",
+    "formerMember": "已离开的同行者",
+    "syncNote": "同行者的更改会在半分钟内到达。当有人保存了更新的版本时，以该版本为准。",
+    "votes": "投票",
+    "voteUp": "赞成",
+    "voteDown": "反对",
+    "joinTitle": "旅行邀请",
+    "joinBody": "{owner} 邀请您以{role}身份加入旅行。",
+    "someone": "有人",
+    "join": "加入旅行",
+    "joining": "正在加入...",
+    "joinError": "加入失败。链接可能已被撤销。",
+    "inviteInvalid": "此链接无效或已被撤销。"
+  },
+  "chat": {
+    "needsKey": "助手需要 Anthropic 密钥",
+    "needsKeyBody": "在服务器上设置 ANTHROPIC_API_KEY 后，您可以在这里输入自由请求（“让第 2 天轻松一点”、“把博物馆换成户外活动”），助手会对计划提出结构化的修改。没有密钥时，计划中的各个按钮可以手动完成同样的事。",
+    "noPlan": "助手基于现有计划工作。请先生成计划。",
+    "intro": "说出要改什么。助手（{model}）提出结构化操作，这些操作会经过常规的编辑引擎。",
+    "examples": "示例：“第 2 天太紧凑”、“把斗兽场移到第 3 天”、“把博物馆换成户外活动”、“去掉所有购物”。",
+    "placeholder": "计划中要改什么？",
+    "send": "发送",
+    "thinking": "思考中...",
+    "opsApplied": "已应用 {applied}/{total} 项更改",
+    "opsReadOnly": "提出了 {count} 项更改（仅查看，未应用）",
+    "error": "助手失败：{message}",
+    "disclaimer": "助手从不虚构地点：它只从引擎已知的景点中选择，每项更改都要通过与手动编辑相同的检查。"
   }
 }

@@ -114,7 +114,7 @@ export default async function CountryPage({ params }: Props) {
         <h2 id="facts-title" className="text-xl font-semibold">
           {t("facts")}
         </h2>
-        <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+        <dl className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {facts.map(({ key, icon: Icon, value }) => (
             <div key={key} className="flex gap-3 rounded-xl border bg-card p-4">
               <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
@@ -136,7 +136,7 @@ export default async function CountryPage({ params }: Props) {
           {t("practical")}
         </h2>
         {extras ? (
-          <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+          <dl className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Fact icon={Plug} label={t("plug")}>
               {t("plugValue", { types: extras.plugTypes.join(" / "), voltage: extras.voltage, frequency: extras.frequency })}
             </Fact>

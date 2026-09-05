@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { baseNamespaces, pickMessages } from "@/i18n/page-messages";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { localeDir } from "@/lib/i18n/locales";
@@ -17,7 +18,11 @@ import "../globals.css";
 const rubik = Rubik({
   subsets: ["latin", "latin-ext", "hebrew", "arabic", "cyrillic"],
   variable: "--font-rubik",
-  display: "swap",
+  // "optional": if the font is not ready within ~100 ms the system font stays for this page view,
+  // so text never reflows (no layout shift). The file is cached, so the next page gets Rubik.
+  display: "optional",
+  // No preload of all five subsets: unicode-range lets the browser fetch only the scripts on the page.
+  preload: false,
 });
 
 type Props = {
@@ -69,6 +74,8 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   const dir = localeDir[locale];
   const t = await getTranslations("common");
+  // Only the namespaces the shell needs go to the client here; pages add their own (see page-messages.tsx).
+  const shellMessages = pickMessages(await getMessages(), baseNamespaces);
 
   return (
     <html
@@ -78,7 +85,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
     >
       <body className="flex min-h-dvh flex-col bg-background text-foreground antialiased">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={shellMessages}>
           <Providers dir={dir}>
             <a
               href="#main"

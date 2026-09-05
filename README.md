@@ -41,6 +41,7 @@ Open http://localhost:3000 — you are redirected to `/he` (Hebrew, RTL). Englis
 | `npm run data:countries` | Rebuild `data/countries.json` from mledoze/countries + Wikidata. |
 | `npm run data:pois [CC] [id,id]` | Resolve the curated POI lists against OpenStreetMap into `data/pois/{cc}.json`. |
 | `npm run data:templates` | Rebuild the gallery plans in `data/templates/` by calling the planner of a running `npm run dev`. |
+| `npm run data:flags` | Download all country flags (flagcdn.com, public domain) into `public/flags/` so the app serves them itself. |
 
 ## Environment variables
 
@@ -51,7 +52,7 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 | `DATABASE_URL` | Prisma. SQLite file in dev, PostgreSQL in production. | 2 |
 | `NEXT_PUBLIC_DEMO_MODE` | Force the demo banner `true`/`false`. | 1 |
 | `GOOGLE_PLACES_API_KEY` | Better POI data than OpenStreetMap. | 6 |
-| `ANTHROPIC_API_KEY` | Free-text itinerary editing chat. | 8 |
+| `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | The AI assistant tab (structured plan edits). Model defaults to `claude-sonnet-5`. | 8c |
 | `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
 | `AUTH_SECRET` | Auth.js session signing. Required in production; dev has a fixed fallback. | 8b |
 | `AUTH_RESEND_KEY`, `AUTH_EMAIL_FROM` | Email magic links via Resend. Without them the link is shown on screen (demo mode, see below). | 8b |
@@ -72,6 +73,34 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 - Journal tab under the plan: a note and a 1-5 rating per day, saved with the trip, never included in share links.
 - Gallery: ready-made plans in `data/templates/*.json`, built by `npm run data:templates` against a running dev server.
   "Copy to my trips" shifts the dates to the same weekday at least four weeks ahead and drops stale weather/holidays.
+
+## Planning together (milestone 8c)
+
+- The owner creates an invite link in the "Travel partners" tab (`/api/trips/:id/collab`, action `invite`), choosing
+  editor or viewer; the link can be rotated or revoked. Opening `/join/<token>` while signed in joins the trip.
+- Members see the trip in "My trips" with a "shared by" badge; viewers get the read-only plan. Votes (thumbs on every
+  attraction) and comments (per trip or per day) live in the `Vote` and `Comment` tables.
+- No real-time: the open trip polls every 30 s. A save that is older than the server copy is rejected as `stale` and the
+  client pulls the newer one (last write wins).
+
+## AI assistant (milestone 8c)
+
+- `POST /api/chat` sends a compact view of the plan (`src/lib/chat/compact.ts`) to Claude with one tool,
+  `propose_edits`, whose output is a list of the same `EditOp` objects the buttons use. Ids that do not exist in the plan
+  are dropped server-side; the client applies the rest through `/api/plan/edit`, one by one.
+- Needs `ANTHROPIC_API_KEY` (`ANTHROPIC_MODEL` overrides the default `claude-sonnet-5`). Without it, `GET /api/chat`
+  reports `enabled: false` and the tab explains that a key is needed. The provider call is not covered by tests (no key
+  in CI); the compaction and the no-key state are.
+
+## Performance notes
+
+- `npm run lighthouse` (median of 3 mobile runs, `LIGHTHOUSE_RUNS` to change) against `npm run build && next start`.
+- Things that mattered: per-primitive `@radix-ui/react-*` imports (the `radix-ui` umbrella pulled 160 KB into every
+  page), CSS step transitions instead of Framer Motion, one chunk per wizard step, per-page message namespaces
+  (`src/i18n/page-messages.tsx`), self-hosted flags in fixed-size boxes, no prefetch on navigation links, inlined CSS,
+  and a server-rendered country index with 24 visible rows.
+- `content-visibility: auto` on grid rows made the page overflow horizontally in RTL; `tests/e2e/locales.spec.ts`
+  now fails on any horizontal overflow.
 
 ## Planning engine
 
@@ -139,4 +168,4 @@ next-intl, Prisma, Zod, MapLibre GL, Serwist (PWA), Vitest, Playwright.
 
 ## Status
 
-Milestones 1-7, 8a and 8b done (foundation, data, wizard, engine, plan views, providers, export/share/offline/tools, 12 languages + units toggle, accounts + sync, profile, visited archive, journal, gallery). Next: milestone 8c (collaboration, AI chat, Lighthouse 90+). See PLAN.md sections 8 and 11.
+All planned milestones are done (1-7, 8a, 8b, 8c): foundation, data, wizard, engine, plan views, providers, export/share/offline/tools, 12 languages + units toggle, accounts + sync, profile, visited archive, journal, gallery, planning together, AI assistant (needs a key), performance pass. Open items: Lighthouse performance on the wizard (~79 on a simulated slow phone), native-speaker review of the 10 machine-translated locales, deployment (Vercel + PostgreSQL). See PLAN.md sections 8, 9 and 11.

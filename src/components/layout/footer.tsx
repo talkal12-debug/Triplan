@@ -10,7 +10,7 @@ export async function Footer() {
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-muted-foreground sm:flex-row sm:px-6">
         <p>{t("rights", { year })}</p>
         <p>{t("madeWith")}</p>
-        <Link href="/disclosure" className="underline-offset-4 hover:underline">
+        <Link href="/disclosure" prefetch={false} className="underline-offset-4 hover:underline">
           {tn("disclosure")}
         </Link>
       </div>

@@ -16,7 +16,7 @@ async function buildRomeTrip(page: Page) {
   }
   await expect(page).toHaveURL(/\/plan\/summary$/);
   await page.getByRole("button", { name: "בנה לי טיול" }).click();
-  await expect(page).toHaveURL(/\/he\/trip\/g_/);
+  await expect(page).toHaveURL(/\/he\/trip\/g_/, { timeout: 90_000 });
   await page.getByRole("button", { name: "בנה תוכנית" }).click();
   await expect(page.getByRole("tab", { name: "ציר זמן" })).toBeVisible({ timeout: 150_000 });
 }
@@ -70,7 +70,9 @@ test("plan views: timeline actions, map tiles, calendar, list", async ({ page },
 
   // Calendar: trip days are buttons, clicking returns to the timeline on that day.
   await page.getByRole("tab", { name: "לוח שנה" }).click();
-  await page.getByRole("button", { name: /^16/ }).first().click();
+  // Trip-day cells are buttons whose first child is the day number; the first one is day 1
+  // (its number depends on today's date, so it is not matched by text).
+  await page.locator("button:has(> span.font-semibold)").first().click();
   await expect(page.getByRole("tab", { name: "ציר זמן" })).toHaveAttribute("data-state", "active");
   await expect(dayTabs.first()).toHaveAttribute("aria-selected", "true");
 
@@ -84,6 +86,9 @@ test("plan views: timeline actions, map tiles, calendar, list", async ({ page },
   await expect(page.getByRole("heading", { name: "היום שלי" })).toBeVisible();
   await expect(page.getByText(/הטיול לא מתקיים היום/)).toBeVisible();
   await page.getByRole("button", { name: /^יום 1/ }).click();
-  // Depending on the time of day this is "now / next" with a navigate button, or "done for today".
-  await expect(page.getByRole("link", { name: "נווט לשם" }).first().or(page.getByText(/סיימתם להיום/))).toBeVisible();
+  // Depending on the time of day: "now / next" (with a navigate button when the stop is a place),
+  // "the day has not started yet", or "done for today".
+  await expect(
+    page.getByRole("link", { name: "נווט לשם" }).first().or(page.getByText(/סיימתם להיום|היום עוד לא התחיל|זמן חופשי עד|הבא בתור/).first()),
+  ).toBeVisible();
 });

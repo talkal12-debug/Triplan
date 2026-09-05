@@ -15,6 +15,10 @@ const withSerwist = withSerwistInit({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  experimental: {
+    // Inline the (small) global stylesheet into the HTML: one render-blocking request less on first paint.
+    inlineCss: true,
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "upload.wikimedia.org" },

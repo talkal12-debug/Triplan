@@ -9,6 +9,7 @@ import { Chip, inputClass } from "../controls";
 import type { StepProps } from "../step-props";
 import type { CustomCity, Destination } from "@/lib/planner/types";
 import { cn } from "@/lib/utils";
+import { countryMatches } from "@/lib/data/country-match";
 
 const MAX_DESTINATIONS = 3;
 const TOP_COUNT = 30;
@@ -25,7 +26,7 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
 
   const results = useMemo(() => {
     if (!deferred) return ctx.countries.slice(0, TOP_COUNT);
-    return ctx.countries.filter((c) => c.search.some((s) => s.includes(deferred)));
+    return ctx.countries.filter((c) => countryMatches(c, deferred));
   }, [ctx.countries, deferred]);
 
   const full = prefs.destinations.length >= MAX_DESTINATIONS;
@@ -147,7 +148,7 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
         <p className="mt-2 text-xs text-muted-foreground">{t("osmHint")}</p>
         {!deferred && <p className="mt-1 text-xs text-muted-foreground">{t("showingTop", { count: TOP_COUNT })}</p>}
         {results.length === 0 && <p className="mt-4 text-sm text-muted-foreground">{t("noResults")}</p>}
-        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+        <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
           {results.map((c) => {
             const selected = selectedCodes.includes(c.code);
             const disabled = full && !selected;

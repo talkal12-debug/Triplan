@@ -18,7 +18,7 @@ export function BudgetPanel({ trip }: { trip: GuestTrip }) {
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Stat label={t("perPersonPerDay")} value={money(budget.perPersonPerDay)} big />
         <Stat label={t("perPersonTotal")} value={money(budget.perPersonTotal)} />
         <Stat label={t("groupTotal", { people: budget.people, nights: budget.nights })} value={money(budget.groupTotal)} />

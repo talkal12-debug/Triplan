@@ -24,7 +24,8 @@ for (const locale of locales) {
 
     // The CTA must lead into the localized wizard.
     await page.getByRole("main").getByRole("link").first().click();
-    await expect(page).toHaveURL(new RegExp(`/${locale}/plan/destination$`));
+    // First hit of the wizard route on a cold dev server compiles it (no prefetch on nav links any more).
+    await expect(page).toHaveURL(new RegExp(`/${locale}/plan/destination$`), { timeout: 90_000 });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByRole("checkbox").first()).toBeVisible();
 
@@ -40,6 +41,10 @@ for (const locale of locales) {
       const cardCenter = cardBox.x + cardBox.width / 2;
       expect(isRtl ? flagCenter > cardCenter : flagCenter < cardCenter, `${locale}: flag should sit at the ${isRtl ? "right" : "left"} edge of the card`).toBe(true);
     }
+
+    // No horizontal overflow: an element wider than the viewport makes the whole page scroll sideways in RTL.
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow, `${locale}: wizard page overflows horizontally by ${overflow}px`).toBeLessThanOrEqual(0);
 
     expect(intlErrors, `${locale}: ${intlErrors.join("\n")}`).toEqual([]);
     if (testInfo.project.name === "desktop-chromium" && (locale === "ar" || locale === "ja" || locale === "hi")) {

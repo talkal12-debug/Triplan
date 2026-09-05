@@ -11,8 +11,8 @@ export type CountryLite = {
   demo: boolean;
   drivingSide: "left" | "right";
   lat: number;
-  /** lower-cased spellings for search */
-  search: string[];
+  /** English name when it differs from `name`, so search works in English too. */
+  en: string | null;
 };
 
 export type CityLite = { slug: string; name: string; local: string | null };
@@ -29,7 +29,7 @@ export function getCountriesLite(locale: Locale): CountryLite[] {
         demo: isDemoCountry(c.code),
         drivingSide: c.drivingSide,
         lat: c.lat,
-        search: [...new Set(Object.values(c.names).map((n) => n.toLowerCase()))],
+        en: c.names.en !== name ? c.names.en : null,
       };
     })
     .sort((a, b) => Number(b.demo) - Number(a.demo) || collator.compare(a.name, b.name));

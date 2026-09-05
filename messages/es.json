@@ -128,7 +128,7 @@
       }
     },
     "statusTitle": "Estado del desarrollo",
-    "statusBody": "Triplan se construye por fases. Fase actual: base. El cuestionario y el motor de planificación están en camino."
+    "statusBody": "Triplan se construye por fases. Ya funciona: cuestionario, motor de planificación, cuatro vistas, mapa, exportación, modo sin conexión, 12 idiomas, cuentas y planificación en grupo. El asistente de IA necesita una clave de Anthropic."
   },
   "plan": {
     "build": "Crear el plan",
@@ -465,7 +465,8 @@
       "melanesia": "Melanesia",
       "micronesia": "Micronesia",
       "central_asia": "Asia central"
-    }
+    },
+    "showAll": "Mostrar los {count} países"
   },
   "wizard": {
     "title": "Planificar un viaje",
@@ -760,7 +761,14 @@
     "deleteConfirm": "¿Eliminar este viaje?",
     "open": "Abrir",
     "planLabel": "El plan",
-    "prefsLabel": "Preferencias"
+    "prefsLabel": "Preferencias",
+    "sharedBy": "Compartido por {name} ({role})",
+    "synced": "Sincronizado con la cuenta",
+    "roles": {
+      "owner": "propietario",
+      "editor": "editor",
+      "viewer": "observador"
+    }
   },
   "tools": {
     "title": "Herramientas del viaje",
@@ -769,7 +777,9 @@
       "packing": "Equipaje",
       "checklist": "Lista de tareas",
       "share": "Exportar y compartir",
-      "journal": "Diario"
+      "journal": "Diario",
+      "collab": "Compañeros",
+      "chat": "Asistente IA"
     },
     "budget": {
       "title": "Presupuesto estimado",
@@ -911,5 +921,59 @@
     "copyToMine": "Copiar a mis viajes",
     "copied": "Copiado a tus viajes",
     "by": "Viaje a {destinations}"
+  },
+  "collab": {
+    "needAccount": "Planificar juntos requiere una cuenta, para que todos vean el mismo plan.",
+    "notSynced": "Este viaje aún no está sincronizado con la cuenta. Inténtalo en un momento.",
+    "members": "Compañeros de viaje",
+    "you": "tú",
+    "roles": {
+      "owner": "Propietario",
+      "editor": "Editor",
+      "viewer": "Observador"
+    },
+    "leave": "Salir del viaje",
+    "remove": "Quitar a {name}",
+    "invite": "Invitar compañeros",
+    "inviteHint": "Quien abra el enlace e inicie sesión se une al viaje. Puedes cambiar el enlace en cualquier momento.",
+    "inviteRole": "Rol para quienes se unan:",
+    "createInvite": "Crear enlace de invitación",
+    "copy": "Copiar enlace",
+    "copied": "¡Copiado!",
+    "rotate": "Nuevo enlace",
+    "revoke": "Revocar enlace",
+    "comments": "Comentarios",
+    "noComments": "Todavía no hay comentarios.",
+    "writeComment": "Escribe un comentario para tus compañeros...",
+    "aboutDay": "Sobre qué día",
+    "wholeTrip": "Todo el viaje",
+    "send": "Enviar",
+    "deleteComment": "Eliminar comentario",
+    "formerMember": "Antiguo compañero",
+    "syncNote": "Los cambios de los compañeros llegan en medio minuto. Cuando alguien guarda una versión más reciente, esa gana.",
+    "votes": "Votar",
+    "voteUp": "A favor",
+    "voteDown": "En contra",
+    "joinTitle": "Invitación a un viaje",
+    "joinBody": "{owner} te invita a unirte al viaje como {role}.",
+    "someone": "Alguien",
+    "join": "Unirme al viaje",
+    "joining": "Uniéndome...",
+    "joinError": "No se pudo unir. Puede que el enlace se haya revocado.",
+    "inviteInvalid": "Este enlace no es válido o fue revocado."
+  },
+  "chat": {
+    "needsKey": "El asistente necesita una clave de Anthropic",
+    "needsKeyBody": "Cuando ANTHROPIC_API_KEY esté configurada en el servidor, podrás escribir aquí peticiones libres (\"haz el día 2 más ligero\", \"cambia el museo por algo al aire libre\") y el asistente propondrá cambios estructurados al plan. Sin clave, todos los botones del plan hacen lo mismo a mano.",
+    "noPlan": "El asistente trabaja sobre un plan existente. Crea uno primero.",
+    "intro": "Di qué cambiar. El asistente ({model}) propone operaciones estructuradas que pasan por el motor de edición habitual.",
+    "examples": "Ejemplos: \"el día 2 está demasiado cargado\", \"mueve el Coliseo al día 3\", \"cambia el museo por algo al aire libre\", \"quita todas las compras\".",
+    "placeholder": "¿Qué cambiar en el plan?",
+    "send": "Enviar",
+    "thinking": "Pensando...",
+    "opsApplied": "{applied} de {total} cambios aplicados",
+    "opsReadOnly": "{count} cambios propuestos (solo lectura, no aplicados)",
+    "error": "El asistente falló: {message}",
+    "disclaimer": "El asistente nunca inventa lugares: solo elige entre las atracciones que conoce el motor, y cada cambio pasa las mismas comprobaciones que una edición manual."
   }
 }
