@@ -72,7 +72,10 @@ export function GuestTripView({ id, ctx }: Props) {
       .then(async (r) => (r.ok ? planExtrasSchema.shape.links.parse(((await r.json()) as { links: unknown }).links) : null))
       .then((links) => {
         if (!links || cancelled) return;
-        const updated = updateGuestTrip(trip.id, { plan: { ...plan, extras: { ...extras, links } } });
+        // Merge into whatever is stored now: the descriptions refresh below may have written meanwhile.
+        const current = getGuestTrip(trip.id);
+        const base = current?.plan ?? plan;
+        const updated = updateGuestTrip(trip.id, { plan: { ...base, extras: { ...(base.extras ?? extras), links } } });
         if (updated) setTrip(updated);
       })
       .catch(() => undefined);
@@ -88,10 +91,10 @@ export function GuestTripView({ id, ctx }: Props) {
   useEffect(() => {
     const plan = trip?.plan;
     const key = `${trip?.id}:${ctx.locale}`;
-    if (!trip || !plan || summariesChecked.current === key) return;
+    if (!trip || !plan || summariesChecked.current === key || plan.summariesFor?.includes(ctx.locale)) return;
     const wanted = ctx.locale === "en" ? ["en"] : [ctx.locale, "en"];
     const missing = Object.values(plan.places)
-      .filter((p) => p.wikidata && !p.summary?.[ctx.locale] && !p.summary?.en)
+      .filter((p) => p.wikidata && !p.summary?.[ctx.locale])
       .map((p) => ({ id: p.id, wikidata: p.wikidata as string }));
     summariesChecked.current = key;
     if (missing.length === 0) return;
@@ -100,15 +103,15 @@ export function GuestTripView({ id, ctx }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ places: missing.slice(0, 60), locales: wanted }),
     })
-      .then(async (r) => (r.ok ? ((await r.json()) as { summaries: Record<string, Record<string, { text: string; url: string | null }>> }).summaries : null))
+      .then(async (r) => (r.ok ? ((await r.json()) as { summaries: Record<string, Record<string, { text: string; url: string | null; translatedFrom?: string }>> }).summaries : null))
       .then((summaries) => {
-        if (!summaries || Object.keys(summaries).length === 0) return;
         const current = getGuestTrip(trip.id);
-        if (!current?.plan) return;
+        if (!current?.plan || !summaries) return;
         const places = Object.fromEntries(
           Object.entries(current.plan.places).map(([id, p]) => [id, summaries[id] ? { ...p, summary: { ...(p.summary ?? {}), ...summaries[id] } } : p]),
         );
-        const updated = updateGuestTrip(trip.id, { plan: { ...current.plan, places } });
+        const summariesFor = [...new Set([...(current.plan.summariesFor ?? []), ctx.locale])];
+        const updated = updateGuestTrip(trip.id, { plan: { ...current.plan, places, summariesFor } });
         if (updated) setTrip(updated);
       })
       .catch(() => undefined);

@@ -391,7 +391,9 @@
       "nightlife": "夜生活",
       "nature": "自然",
       "day_trip": "一日游"
-    }
+    },
+    "summaryTranslated": "（机器翻译，维基百科）",
+    "summaryGoogle": "用 Google 翻译"
   },
   "gallery": {
     "title": "现成计划",

@@ -55,6 +55,7 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 | `NEXT_PUBLIC_DEMO_MODE` | Force the demo banner `true`/`false`. | 1 |
 | `GOOGLE_PLACES_API_KEY` | Better POI data than OpenStreetMap. | 6 |
 | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | The AI assistant tab (structured plan edits). Model defaults to `claude-sonnet-5`. | 8c |
+| `ANTHROPIC_TRANSLATE_MODEL` | Model for translating place descriptions into the UI language when Wikipedia has none (needs `ANTHROPIC_API_KEY`). Defaults to `claude-haiku-4-5-20251001`. | 10 |
 | `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
 | `AUTH_SECRET` | Auth.js session signing. Required in production; dev has a fixed fallback. | 8b |
 | `AUTH_RESEND_KEY`, `AUTH_EMAIL_FROM` | Email magic links via Resend. Without them the link is shown on screen (demo mode, see below). | 8b |
@@ -114,7 +115,8 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 
 Every attraction card shows one or two sentences about the place. The text is never generated: it is the lead of the Wikipedia article linked from the place's Wikidata item (with a "(Wikipedia)" link to the article, CC BY-SA), or, when there is no article in that language, the short Wikidata description. A place with neither shows only its category.
 
-- The curated demo places ship with Hebrew and English descriptions (`npm run data:summaries`).
+- The curated demo places ship with Hebrew and English descriptions (`npm run data:summaries`). Where Hebrew Wikipedia has no article, the Hebrew text is a translation of the English lead, marked "(machine translation, Wikipedia)" and linked to the English article.
+- Any other language: Wikipedia in that language first; otherwise, with `ANTHROPIC_API_KEY`, the English lead is translated on demand (marked as such, cached in the database); otherwise the English text is shown with a "Translate with Google" link, which needs no key.
 - Other languages, places found on OpenStreetMap at plan time, and plans saved before this feature existed are filled in on demand: the planner asks for the UI language (plus English as fallback) when it builds or edits a plan, and the trip page calls `POST /api/places/summaries` for anything still missing. Results are remembered in the `Place.summary` column.
 - Wikimedia rate-limits eager clients, so requests are paced (50 Wikidata items per call, Wikipedia pages one after another, back-off on 429). A plan with 40 new places takes a few seconds to fill in; the page renders immediately without waiting.
 

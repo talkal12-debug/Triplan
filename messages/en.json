@@ -391,7 +391,9 @@
       "nightlife": "Nightlife",
       "nature": "Nature",
       "day_trip": "Day trip"
-    }
+    },
+    "summaryTranslated": "(machine translation, Wikipedia)",
+    "summaryGoogle": "Translate with Google"
   },
   "gallery": {
     "title": "Ready plans",

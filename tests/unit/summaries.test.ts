@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { trimExtract, wikiLang } from "@/lib/providers/summaries-core";
+import { googleTranslateUrl, placeSummary } from "@/lib/guest/plan-helpers";
 
 describe("trimExtract", () => {
   it("keeps one or two sentences and drops parentheticals", () => {
@@ -23,5 +24,26 @@ describe("trimExtract", () => {
   it("maps the Chinese UI locale to the zh Wikipedia", () => {
     expect(wikiLang("zh-CN")).toBe("zh");
     expect(wikiLang("he")).toBe("he");
+  });
+});
+
+describe("placeSummary", () => {
+  const place = {
+    summary: {
+      en: { text: "A park in Lisbon.", url: "https://en.wikipedia.org/wiki/Park" },
+      he: { text: "פארק בליסבון.", url: "https://en.wikipedia.org/wiki/Park", translatedFrom: "en" },
+    },
+  };
+
+  it("prefers the UI language and reports the language shown", () => {
+    expect(placeSummary(place, "he")).toEqual({ text: "פארק בליסבון.", url: "https://en.wikipedia.org/wiki/Park", translatedFrom: "en", lang: "he" });
+    expect(placeSummary(place, "fr")).toEqual({ text: "A park in Lisbon.", url: "https://en.wikipedia.org/wiki/Park", lang: "en" });
+    expect(placeSummary({ summary: {} }, "he")).toBeNull();
+    expect(placeSummary(undefined, "he")).toBeNull();
+  });
+
+  it("builds a Google Translate link for text shown in another language", () => {
+    const url = googleTranslateUrl("A park in Lisbon.", "en", "he");
+    expect(url).toContain("https://translate.google.com/?sl=en&tl=he&text=A%20park%20in%20Lisbon.");
   });
 });

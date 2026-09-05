@@ -17,7 +17,7 @@ import {
 import type { Activity, Reason } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import type { Locale } from "@/lib/i18n/locales";
-import { hhmm, localDateOf, placeLabel, placeSummary } from "@/lib/guest/plan-helpers";
+import { hhmm, localDateOf, placeLabel, googleTranslateUrl, placeSummary } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
 import { AffiliateLinks } from "./affiliate-links";
 import { VoteBar } from "./vote-bar";
@@ -118,7 +118,15 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
                 <>
                   {" "}
                   <a href={summary.url} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-xs underline-offset-2 hover:underline" onClick={(e) => e.stopPropagation()}>
-                    {t("summarySource")}
+                    {summary.translatedFrom ? t("summaryTranslated") : t("summarySource")}
+                  </a>
+                </>
+              )}
+              {summary.lang !== locale && (
+                <>
+                  {" "}
+                  <a href={googleTranslateUrl(summary.text, summary.lang, locale)} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-xs underline-offset-2 hover:underline" onClick={(e) => e.stopPropagation()}>
+                    {t("summaryGoogle")}
                   </a>
                 </>
               )}

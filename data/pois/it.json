@@ -365,6 +365,11 @@
         "en": {
           "text": "The Piazza di Spagna is a square in the centre of Rome, the capital of Italy. It lies at the foot of the Spanish Steps and owes its name to the Palazzo di Spagna, the seat of the Embassy of Spain to the Holy See.",
           "url": "https://en.wikipedia.org/wiki/Piazza_di_Spagna"
+        },
+        "he": {
+          "text": "פיאצה די ספאניה היא כיכר במרכז רומא, בירת איטליה. היא שוכנת למרגלות המדרגות הספרדיות וקרויה על שם פלאצו די ספאניה, מושב שגרירות ספרד בכס הקדוש.",
+          "url": "https://en.wikipedia.org/wiki/Piazza_di_Spagna",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -674,6 +679,11 @@
         "en": {
           "text": "The Museum of the Ara Pacis belongs to the Sistema dei Musei in Comune of Rome; it houses the Ara Pacis of Augustus, an ancient monument that was initially inaugurated on 30 January 9 B.C.",
           "url": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis"
+        },
+        "he": {
+          "text": "מוזיאון ארה פאקיס שייך למערכת המוזיאונים העירוניים של רומא; הוא מאכלס את ארה פאקיס של אוגוסטוס, מונומנט עתיק שנחנך ב-30 בינואר 9 לפנה\"ס.",
+          "url": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -848,6 +858,11 @@
         "en": {
           "text": "Children's museum in Rome, Italy",
           "url": null
+        },
+        "he": {
+          "text": "מוזיאון ילדים ברומא, איטליה",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1110,6 +1125,11 @@
         "en": {
           "text": "The Villa Doria Pamphili is a seventeenth-century villa with what is today the largest landscaped public park in Rome, Italy.",
           "url": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili"
+        },
+        "he": {
+          "text": "וילה דוריה פמפילי היא וילה מהמאה ה-17 שבשטחה הפארק הציבורי המעוצב הגדול ביותר ברומא.",
+          "url": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -1200,6 +1220,11 @@
         "en": {
           "text": "Largo di Torre Argentina is a large open space in Rome, Italy, with four Roman Republican temples and the remains of Pompey's Theatre. It is in the ancient Campus Martius.",
           "url": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina"
+        },
+        "he": {
+          "text": "לארגו די טורה ארג'נטינה הוא מרחב פתוח גדול ברומא ובו ארבעה מקדשים מהתקופה הרפובליקנית ושרידי תיאטרון פומפיוס. הוא שוכן בשדה מארס העתיק.",
+          "url": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1327,6 +1352,11 @@
         "en": {
           "text": "The Galleria Doria Pamphilj is a large private art collection housed in the Palazzo Doria Pamphilj in Rome, Italy, between Via del Corso and Via della Gatta. The principal entrance is on the Via del Corso.",
           "url": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj"
+        },
+        "he": {
+          "text": "גלריה דוריה פמפילי היא אוסף אמנות פרטי גדול השוכן בפלאצו דוריה פמפילי ברומא, בין ויה דל קורסו לוויה דלה גאטה. הכניסה הראשית היא מוויה דל קורסו.",
+          "url": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1463,6 +1493,11 @@
         "en": {
           "text": "Trajan's Market is a large complex of ruins in the city of Rome, Italy, located on the Via dei Fori Imperiali, at the opposite end to the Colosseum.",
           "url": "https://en.wikipedia.org/wiki/Trajan's_Market"
+        },
+        "he": {
+          "text": "שוקי טראיאנוס הם מתחם חורבות גדול ברומא, על ויה דיי פורי אימפריאלי, בקצה הנגדי לקולוסאום.",
+          "url": "https://en.wikipedia.org/wiki/Trajan's_Market",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1544,6 +1579,11 @@
         "en": {
           "text": "The Domus Aurea was a vast landscaped complex built by the Emperor Nero largely on the Oppian Hill in the heart of ancient Rome after the great fire in 64 AD had destroyed a large part of the city.",
           "url": "https://en.wikipedia.org/wiki/Domus_Aurea"
+        },
+        "he": {
+          "text": "דומוס אאוריה (\"בית הזהב\") היה מתחם ארמונות עצום שבנה הקיסר נירון, בעיקר על גבעת אופיוס בלב רומא העתיקה, לאחר שהשרפה הגדולה של שנת 64 החריבה חלק גדול מהעיר.",
+          "url": "https://en.wikipedia.org/wiki/Domus_Aurea",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1993,6 +2033,11 @@
         "en": {
           "text": "The Orange Trees Garden is the name used in Rome to describe the Parco Savello. It is about 7,800 square meters and is located on the Aventine Hill.",
           "url": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome"
+        },
+        "he": {
+          "text": "גן התפוזים הוא השם שבו מכנים ברומא את פארקו סאבלו. שטחו כ-7,800 מ\"ר והוא שוכן על גבעת האוונטין.",
+          "url": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2032,15 +2077,20 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
-      "summary": {
-        "en": {
-          "text": "Square",
-          "url": null
-        }
-      },
       "dataQuality": "partial",
       "source": "seed",
-      "wikidata": "Q1235341"
+      "wikidata": "Q123752976",
+      "summary": {
+        "en": {
+          "text": "Tourist attraction in Rome, Italy",
+          "url": null
+        },
+        "he": {
+          "text": "אתר תיירות ברומא, איטליה",
+          "url": null,
+          "translatedFrom": "en"
+        }
+      }
     },
     {
       "id": "it-rome-terme-di-caracalla",
@@ -2368,6 +2418,11 @@
         "en": {
           "text": "The Catacomb of Callixtus is one of the Catacombs of Rome on the Appian Way, notable for containing the Crypt of the Popes, which once contained the tombs of several popes from the 2nd to 4th centuries.",
           "url": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus"
+        },
+        "he": {
+          "text": "קטקומבות קליסטוס הן מהקטקומבות של רומא על הוויה אפיה, וידועות בזכות \"קריפטת האפיפיורים\" שבה נקברו כמה אפיפיורים מהמאה ה-2 עד ה-4.",
+          "url": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",

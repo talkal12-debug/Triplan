@@ -33,7 +33,17 @@ export function googleMapsDirections(lat: number, lng: number): string {
 }
 
 /** The place's one-paragraph description in the UI language, falling back to English. */
-export function placeSummary(place: { summary?: Record<string, { text: string; url: string | null }> } | undefined, locale: string): { text: string; url: string | null } | null {
+export type ShownSummary = { text: string; url: string | null; translatedFrom?: string; /** language of `text` */ lang: string };
+
+/** The description to show: the UI language when there is one, otherwise English (marked by `lang`). */
+export function placeSummary(place: { summary?: Record<string, { text: string; url: string | null; translatedFrom?: string }> } | undefined, locale: string): ShownSummary | null {
   if (!place?.summary) return null;
-  return place.summary[locale] ?? place.summary.en ?? null;
+  if (place.summary[locale]) return { ...place.summary[locale], lang: locale };
+  if (place.summary.en) return { ...place.summary.en, lang: "en" };
+  return null;
+}
+
+/** Google Translate for a description shown in another language (free, no key; opens in a new tab). */
+export function googleTranslateUrl(text: string, from: string, to: string): string {
+  return `https://translate.google.com/?sl=${encodeURIComponent(from)}&tl=${encodeURIComponent(to)}&text=${encodeURIComponent(text)}&op=translate`;
 }

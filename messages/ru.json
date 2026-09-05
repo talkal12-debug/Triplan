@@ -391,7 +391,9 @@
       "nightlife": "Ночная жизнь",
       "nature": "Природа",
       "day_trip": "Поездка на день"
-    }
+    },
+    "summaryTranslated": "(машинный перевод, Википедия)",
+    "summaryGoogle": "Перевести в Google"
   },
   "gallery": {
     "title": "Готовые планы",

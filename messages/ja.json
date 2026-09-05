@@ -391,7 +391,9 @@
       "nightlife": "ナイトライフ",
       "nature": "自然",
       "day_trip": "日帰り旅行"
-    }
+    },
+    "summaryTranslated": "（機械翻訳、ウィキペディア）",
+    "summaryGoogle": "Google で翻訳"
   },
   "gallery": {
     "title": "完成プラン",

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import type { Activity } from "@/lib/planner/itinerary";
-import { googleMapsDirections, hhmm, localDateOf, placeSummary, todayIso } from "@/lib/guest/plan-helpers";
+import { googleMapsDirections, hhmm, localDateOf, googleTranslateUrl, placeSummary, todayIso } from "@/lib/guest/plan-helpers";
 import { usePlanText } from "./use-plan-text";
 import { cn } from "@/lib/utils";
 
@@ -194,6 +194,14 @@ function BigCard({
       {summary && (
         <p className="mt-2 text-sm text-muted-foreground" dir="auto">
           {summary.text}
+          {summary.lang !== locale && (
+            <>
+              {" "}
+              <a href={googleTranslateUrl(summary.text, summary.lang, locale)} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-xs underline-offset-2 hover:underline">
+                {t("summaryGoogle")}
+              </a>
+            </>
+          )}
         </p>
       )}
       {activity.reasons.length > 0 && (

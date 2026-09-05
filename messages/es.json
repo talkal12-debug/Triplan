@@ -391,7 +391,9 @@
       "nightlife": "Vida nocturna",
       "nature": "Naturaleza",
       "day_trip": "Excursión de un día"
-    }
+    },
+    "summaryTranslated": "(traducción automática, Wikipedia)",
+    "summaryGoogle": "Traducir con Google"
   },
   "gallery": {
     "title": "Planes listos",

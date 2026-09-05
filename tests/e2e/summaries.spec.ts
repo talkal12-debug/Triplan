@@ -25,4 +25,12 @@ test("attraction cards show a description line, also for older plans from the ga
   await day2.click();
   await expect(day2).toHaveAttribute("aria-selected", "true");
   await expect.poll(async () => page.locator("p.text-sm.leading-snug.text-muted-foreground").count()).toBeGreaterThanOrEqual(3);
+  // Places without a Hebrew article show a Hebrew translation of the English lead, marked as such.
+  await expect(page.getByRole("link", { name: "(תרגום אוטומטי, ויקיפדיה)" }).first()).toBeVisible({ timeout: 30_000 });
+  // Every description on the page is in the UI language, so no "translate with Google" fallback is offered.
+  expect(await page.getByRole("link", { name: "תרגום ב-Google" }).count()).toBe(0);
+  // The booking-links refresh that runs on the same open must not wipe the descriptions (both write the stored plan).
+  await expect(page.getByRole("link", { name: /^Skyscanner/ }).first()).toHaveAttribute("href", /\/flights\/tlv\/[a-z]{3}\//, { timeout: 60_000 });
+  await page.waitForTimeout(1_000);
+  expect(await page.locator("p.text-sm.leading-snug.text-muted-foreground").count()).toBeGreaterThanOrEqual(3);
 });

@@ -391,7 +391,9 @@
       "nightlife": "Vita notturna",
       "nature": "Natura",
       "day_trip": "Gita di un giorno"
-    }
+    },
+    "summaryTranslated": "(traduzione automatica, Wikipedia)",
+    "summaryGoogle": "Traduci con Google"
   },
   "gallery": {
     "title": "Piani pronti",

@@ -10,7 +10,7 @@ import { z } from "zod";
  * Wikimedia rate-limits eager clients (HTTP 429), so Wikidata items are fetched
  * 50 per request and Wikipedia pages one after another with a short pause.
  */
-export type Summary = { text: string; url: string | null };
+export type Summary = { text: string; url: string | null; translatedFrom?: string };
 
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
 const USER_AGENT = "Triplan/1.0 (trip planner; contact via repository)";

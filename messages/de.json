@@ -391,7 +391,9 @@
       "nightlife": "Nachtleben",
       "nature": "Natur",
       "day_trip": "Tagesausflug"
-    }
+    },
+    "summaryTranslated": "(maschinelle Übersetzung, Wikipedia)",
+    "summaryGoogle": "Mit Google übersetzen"
   },
   "gallery": {
     "title": "Fertige Pläne",

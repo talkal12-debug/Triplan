@@ -44,6 +44,8 @@ export const guestPlanSchema = z.object({
   cities: z.array(citySeedSchema),
   unused: z.array(z.string()),
   extras: planExtrasSchema.optional(),
+  /** UI languages for which place descriptions were already requested (so a place without any source is not re-asked on every open). */
+  summariesFor: z.array(z.string()).optional(),
 });
 export type GuestPlan = z.infer<typeof guestPlanSchema>;
 

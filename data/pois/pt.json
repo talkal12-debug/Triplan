@@ -243,6 +243,11 @@
         "en": {
           "text": "The Museum of Art, Architecture and Technology or MAAT is a museum in Lisbon, Portugal.",
           "url": "https://en.wikipedia.org/wiki/Museum_of_Art%2C_Architecture_and_Technology"
+        },
+        "he": {
+          "text": "מוזיאון האמנות, האדריכלות והטכנולוגיה (MAAT) הוא מוזיאון בליסבון, פורטוגל.",
+          "url": "https://en.wikipedia.org/wiki/Museum_of_Art%2C_Architecture_and_Technology",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -286,6 +291,11 @@
         "en": {
           "text": "Confectionery store in Belém, Lisbon, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "חנות ממתקים ברובע בלן, ליסבון, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -372,15 +382,20 @@
       "requiresAdvanceBooking": false,
       "indoor": true,
       "kidFriendly": false,
-      "summary": {
-        "en": {
-          "text": "Bookstore chain in Portugal",
-          "url": null
-        }
-      },
       "dataQuality": "verified",
       "source": "seed",
-      "wikidata": "Q135238263"
+      "wikidata": "Q1054277",
+      "summary": {
+        "en": {
+          "text": "The Belém Cultural Center is a complex of artistic venues located in Belém in the city of Lisbon, Portugal. It is the largest building with cultural facilities in Portugal, with over 140,000 m2 of usable space.",
+          "url": "https://en.wikipedia.org/wiki/Bel%C3%A9m_Cultural_Center"
+        },
+        "he": {
+          "text": "מרכז התרבות בלן הוא מתחם של אולמות אמנות ברובע בלן בליסבון. זהו הבניין הגדול ביותר בפורטוגל המיועד לתרבות, עם יותר מ-140,000 מ\"ר שטח שימושי.",
+          "url": "https://en.wikipedia.org/wiki/Bel%C3%A9m_Cultural_Center",
+          "translatedFrom": "en"
+        }
+      }
     },
     {
       "id": "pt-lisbon-jardim-botanico-tropical",
@@ -419,6 +434,11 @@
         "en": {
           "text": "The Lisbon Tropical Botanical Garden is located between the Jerónimos Monastery and the Belém Palace, the official residence of the Portuguese president, in Belém, a few kilometers to the west of the centre of Lisbon.",
           "url": "https://en.wikipedia.org/wiki/Lisbon_Tropical_Botanical_Garden"
+        },
+        "he": {
+          "text": "הגן הבוטני הטרופי של ליסבון שוכן בין מנזר ז'רונימוש לארמון בלן, מעונו הרשמי של נשיא פורטוגל, ברובע בלן, כמה קילומטרים מערבית למרכז ליסבון.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Tropical_Botanical_Garden",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -502,6 +522,11 @@
         "en": {
           "text": "Comercial and artistic hub in Lisbon, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "מתחם מסחרי ואמנותי בליסבון, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -677,6 +702,11 @@
         "en": {
           "text": "The Museu da Marioneta has been located since November 2001 in the Convent of Bernardas in Lisbon, Portugal, establishing itself as the first museum in Portugal entirely dedicated to the interpretation and dissemination of the history of puppetry, covering the history of this ar…",
           "url": "https://en.wikipedia.org/wiki/Museu_da_Marioneta"
+        },
+        "he": {
+          "text": "מוזיאון המריונטות שוכן מאז נובמבר 2001 במנזר ברנרדאס בליסבון, והוא המוזיאון הראשון בפורטוגל המוקדש כולו לתולדות תיאטרון הבובות.",
+          "url": "https://en.wikipedia.org/wiki/Museu_da_Marioneta",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -720,6 +750,11 @@
         "en": {
           "text": "Time Out Market Lisboa is a food hall located in the Mercado da Ribeira at Cais do Sodré in Lisbon, Portugal.",
           "url": "https://en.wikipedia.org/wiki/Time_Out_Market_Lisboa"
+        },
+        "he": {
+          "text": "שוק טיים אאוט ליסבון הוא היכל אוכל השוכן בשוק דה ריביירה בקאיש דו סודרה, ליסבון.",
+          "url": "https://en.wikipedia.org/wiki/Time_Out_Market_Lisboa",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -763,6 +798,11 @@
         "en": {
           "text": "The Bica Funicular, sometimes known as the Elevador da Bica, is a funicular railway line in the civil parish of Misericórdia, in the municipality of Lisbon, Portugal. Operated by Carris, it connects the Rua de São Paulo with Calçada do Combro/Largo do Calhariz/Rua do Loreto.",
           "url": "https://en.wikipedia.org/wiki/Ascensor_da_Bica"
+        },
+        "he": {
+          "text": "פוניקולר ביקה הוא קו רכבל-מדרון בשכונת מיזריקורדיה בליסבון. הוא מופעל על ידי קאריש ומחבר את רואה דה סאו פאולו עם קלסאדה דו קומברו ולארגו דו קליאריש.",
+          "url": "https://en.wikipedia.org/wiki/Ascensor_da_Bica",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -807,6 +847,11 @@
         "en": {
           "text": "Bairro Alto is a central district of the city of Lisbon, the Portuguese capital.",
           "url": "https://en.wikipedia.org/wiki/Bairro_Alto"
+        },
+        "he": {
+          "text": "באירו אלטו הוא רובע מרכזי בעיר ליסבון, בירת פורטוגל.",
+          "url": "https://en.wikipedia.org/wiki/Bairro_Alto",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -850,6 +895,11 @@
         "en": {
           "text": "Park in Portugal",
           "url": null
+        },
+        "he": {
+          "text": "פארק בפורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -893,6 +943,11 @@
         "en": {
           "text": "The Igreja de São Roque is a Catholic church in Lisbon, Portugal. It was the earliest Jesuit church in the Portuguese world, and one of the first Jesuit churches anywhere.",
           "url": "https://en.wikipedia.org/wiki/Igreja_de_S%C3%A3o_Roque"
+        },
+        "he": {
+          "text": "כנסיית סאו רוקה היא כנסייה קתולית בליסבון. זו הייתה הכנסייה הישועית הראשונה בעולם הפורטוגלי ואחת הכנסיות הישועיות הראשונות בעולם.",
+          "url": "https://en.wikipedia.org/wiki/Igreja_de_S%C3%A3o_Roque",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -974,6 +1029,11 @@
         "en": {
           "text": "The Bertrand Library is a Portuguese book retailer operating 59 branches nationwide, including 2 in Madeira.",
           "url": "https://en.wikipedia.org/wiki/Livraria_Bertrand"
+        },
+        "he": {
+          "text": "ליבראריה ברטראנד היא רשת חנויות ספרים פורטוגלית עם 59 סניפים ברחבי המדינה, מהם שניים במדיירה.",
+          "url": "https://en.wikipedia.org/wiki/Livraria_Bertrand",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -1064,6 +1124,11 @@
         "en": {
           "text": "The Santa Justa Lift, also called Carmo Lift, is an elevator, or lift, in the civil parish of Santa Maria Maior, in the historic center of Lisbon, Portugal. Situated at the end of Rua de Santa Justa, it connects the lower streets of the Baixa with the higher Largo do Carmo.",
           "url": "https://en.wikipedia.org/wiki/Santa_Justa_Lift"
+        },
+        "he": {
+          "text": "מעלית סנטה ז'וסטה, הנקראת גם מעלית קארמו, היא מעלית במרכז ההיסטורי של ליסבון. היא ניצבת בקצה רואה דה סנטה ז'וסטה ומחברת את רחובות הבאישה התחתונים עם לארגו דו קארמו שמעליהם.",
+          "url": "https://en.wikipedia.org/wiki/Santa_Justa_Lift",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1266,6 +1331,11 @@
         "en": {
           "text": "The Casa dos Bicos is a historical house in the civil parish of Santa Maria Maior, in the Portuguese municipality of Lisbon.",
           "url": "https://en.wikipedia.org/wiki/Casa_dos_Bicos"
+        },
+        "he": {
+          "text": "קאזה דוש ביקוש הוא בית היסטורי בשכונת סנטה מריה מאיור בליסבון.",
+          "url": "https://en.wikipedia.org/wiki/Casa_dos_Bicos",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1405,6 +1475,11 @@
         "en": {
           "text": "The Alfama is the oldest neighborhood of Lisbon, spreading on the slope between the São Jorge Castle and the Tagus river.",
           "url": "https://en.wikipedia.org/wiki/Alfama"
+        },
+        "he": {
+          "text": "אלפמה היא השכונה העתיקה ביותר בליסבון, המשתרעת על המדרון שבין מצודת סאו ז'ורז'ה לנהר הטז'ו.",
+          "url": "https://en.wikipedia.org/wiki/Alfama",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1449,6 +1524,11 @@
         "en": {
           "text": "Viewpoint in Alfama, Lisbon, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "נקודת תצפית באלפמה, ליסבון, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1576,6 +1656,11 @@
         "en": {
           "text": "The Church of Santa Engrácia is a 17th-century monument in Lisbon, Portugal. Originally a church, it was converted into the National Pantheon, in which important Portuguese personalities are buried.",
           "url": "https://en.wikipedia.org/wiki/Church_of_Santa_Engr%C3%A1cia"
+        },
+        "he": {
+          "text": "כנסיית סנטה אנגרסיה היא מונומנט מהמאה ה-17 בליסבון. במקור כנסייה, היא הוסבה לפנתיאון הלאומי, שבו קבורים אישים פורטוגלים חשובים.",
+          "url": "https://en.wikipedia.org/wiki/Church_of_Santa_Engr%C3%A1cia",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -1875,6 +1960,11 @@
         "en": {
           "text": "The Gulbenkian Park also known as Gulbenkian Garden is located in Lisbon, Portugal.",
           "url": "https://en.wikipedia.org/wiki/Gulbenkian_Park"
+        },
+        "he": {
+          "text": "פארק גולבנקיאן, הידוע גם כגן גולבנקיאן, שוכן בליסבון, פורטוגל.",
+          "url": "https://en.wikipedia.org/wiki/Gulbenkian_Park",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1919,6 +2009,11 @@
         "en": {
           "text": "Edward VII Park is a public park in Lisbon, Portugal. The park occupies an area of 26 hectares to the north of Avenida da Liberdade and Marquis of Pombal Square in Lisbon's city center.",
           "url": "https://en.wikipedia.org/wiki/Edward_VII_Park"
+        },
+        "he": {
+          "text": "פארק אדוארד השביעי הוא פארק ציבורי בליסבון. הפארק משתרע על 26 הקטרים מצפון לשדרת ליברדאדה ולכיכר מרקש דה פומבל במרכז העיר.",
+          "url": "https://en.wikipedia.org/wiki/Edward_VII_Park",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -1963,6 +2058,11 @@
         "en": {
           "text": "The Águas Livres Aqueduct is a historic aqueduct system in Lisbon, Portugal. It is considered one of the most remarkable examples of 18th-century Portuguese engineering and one of Lisbon's best-known landmarks.",
           "url": "https://en.wikipedia.org/wiki/%C3%81guas_Livres_Aqueduct"
+        },
+        "he": {
+          "text": "אמת המים אגואש ליברש היא מערכת אמות מים היסטורית בליסבון. היא נחשבת לאחת הדוגמאות המרשימות ביותר להנדסה הפורטוגלית של המאה ה-18 ולאחד מסמלי העיר המוכרים.",
+          "url": "https://en.wikipedia.org/wiki/%C3%81guas_Livres_Aqueduct",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2006,6 +2106,11 @@
         "en": {
           "text": "The Estrela Basilica or the Royal Basilica and Convent of the Most Sacred Heart of Jesus, is a minor basilica and ancient carmelite convent in Lisbon, Portugal.",
           "url": "https://en.wikipedia.org/wiki/Estrela_Basilica"
+        },
+        "he": {
+          "text": "בזיליקת אשטרלה, או הבזיליקה והמנזר המלכותיים של לב ישו הקדוש, היא בזיליקה מינורית ומנזר כרמליתי עתיק בליסבון.",
+          "url": "https://en.wikipedia.org/wiki/Estrela_Basilica",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2050,6 +2155,11 @@
         "en": {
           "text": "Urban park in Lisbon, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "פארק עירוני בליסבון, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2093,6 +2203,11 @@
         "en": {
           "text": "Mercado de Campo de Ourique is a neighborhood food market located in Lisbon, Portugal.",
           "url": "https://en.wikipedia.org/wiki/Mercado_de_Campo_de_Ourique"
+        },
+        "he": {
+          "text": "שוק קמפו דה אוריקה הוא שוק מזון שכונתי בליסבון, פורטוגל.",
+          "url": "https://en.wikipedia.org/wiki/Mercado_de_Campo_de_Ourique",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2135,6 +2250,11 @@
         "en": {
           "text": "Lisbon Zoo is a zoological garden in Lisbon, Portugal. It was founded in 1884.",
           "url": "https://en.wikipedia.org/wiki/Lisbon_Zoo"
+        },
+        "he": {
+          "text": "גן החיות של ליסבון הוא גן זואולוגי בליסבון. הוא נוסד ב-1884.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Zoo",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2179,6 +2299,11 @@
         "en": {
           "text": "The Lisbon Oceanarium is an oceanarium in Lisbon, Portugal. It is located in the Parque das Nações, which was the exhibition grounds for the Expo '98.",
           "url": "https://en.wikipedia.org/wiki/Lisbon_Oceanarium"
+        },
+        "he": {
+          "text": "האוקיינריום של ליסבון שוכן בפארק דאש נסואש, שטח התערוכה של אקספו 98'.",
+          "url": "https://en.wikipedia.org/wiki/Lisbon_Oceanarium",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2222,6 +2347,11 @@
         "en": {
           "text": "Science center located in Lisbon, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "מרכז מדע בליסבון, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2302,6 +2432,11 @@
         "en": {
           "text": "The Parque das Nações, colloquially known as Expo, is a freguesia and typical quarter of Lisbon, the capital city of Portugal. Located in eastern Lisbon, Parque das Nações is to the east of Olivais, northeast of Marvila, and directly south of Lisbon's border with Loures.",
           "url": "https://en.wikipedia.org/wiki/Parque_das_Na%C3%A7%C3%B5es"
+        },
+        "he": {
+          "text": "פארק דאש נסואש, המכונה בפי כול אקספו, הוא רובע במזרח ליסבון. הוא שוכן ממזרח לאוליבאיש, צפונית-מזרחית למרווילה וסמוך לגבול העיר עם לורש.",
+          "url": "https://en.wikipedia.org/wiki/Parque_das_Na%C3%A7%C3%B5es",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2395,6 +2530,11 @@
         "en": {
           "text": "The Pena Palace is a Romanticist palace in São Pedro de Penaferrim, in the municipality of Sintra, on the Portuguese Riviera.",
           "url": "https://en.wikipedia.org/wiki/Pena_Palace"
+        },
+        "he": {
+          "text": "ארמון פנה הוא ארמון בסגנון רומנטי בסאו פדרו דה פנפרים שבסינטרה, על הריביירה הפורטוגלית.",
+          "url": "https://en.wikipedia.org/wiki/Pena_Palace",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2524,6 +2664,11 @@
         "en": {
           "text": "The Palace of Sintra, also called Town Palace, is located in the town of Sintra, in the Lisbon District of Portugal. It is a present-day historic house museum.",
           "url": "https://en.wikipedia.org/wiki/Sintra_National_Palace"
+        },
+        "he": {
+          "text": "הארמון הלאומי של סינטרה, הנקרא גם ארמון העיר, שוכן בעיירה סינטרה שבמחוז ליסבון. כיום הוא בית-מוזיאון היסטורי.",
+          "url": "https://en.wikipedia.org/wiki/Sintra_National_Palace",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -2655,6 +2800,11 @@
         "en": {
           "text": "Praia do Guincho is an Atlantic beach located on Portugal's Estoril coast, 5 km from the town of Cascais, and is located in the municipality of Cascais, more precisely in the parishes of Cascais e Estoril and Alcabideche, in the District of Lisbon.",
           "url": "https://en.wikipedia.org/wiki/Praia_do_Guincho"
+        },
+        "he": {
+          "text": "פראיה דו גינשו הוא חוף אטלנטי בחוף אשטוריל, כ-5 ק\"מ מהעיירה קשקאיש, בתחומי העירייה קשקאיש שבמחוז ליסבון.",
+          "url": "https://en.wikipedia.org/wiki/Praia_do_Guincho",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2699,6 +2849,11 @@
         "en": {
           "text": "Boca do Inferno is a chasm located in the seaside cliffs close to the Portuguese city of Cascais, in the District of Lisbon. The seawater has access to the deep bottom of the chasm and vigorously strikes its rocky walls, making it a popular tourist attraction.",
           "url": "https://en.wikipedia.org/wiki/Boca_do_Inferno"
+        },
+        "he": {
+          "text": "בוקה דו אינפרנו (\"פי הגיהינום\") הוא נקיק בצוקי החוף סמוך לקשקאיש. מי הים חודרים לעומק הנקיק ומכים בעוצמה בקירותיו הסלעיים, ולכן הוא אתר תיירות פופולרי.",
+          "url": "https://en.wikipedia.org/wiki/Boca_do_Inferno",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2790,6 +2945,11 @@
         "en": {
           "text": "Beach in Cascaus",
           "url": null
+        },
+        "he": {
+          "text": "חוף בקשקאיש",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -2947,6 +3107,11 @@
         "en": {
           "text": "Baroque tower in Portugal",
           "url": null
+        },
+        "he": {
+          "text": "מגדל בסגנון בארוק בפורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -3028,6 +3193,11 @@
         "en": {
           "text": "The Porto Cathedral is a Roman Catholic church located in the historical centre of the city of Porto, Portugal. It is one of the city's oldest monuments and one of the most important local Romanesque monuments.",
           "url": "https://en.wikipedia.org/wiki/Porto_Cathedral"
+        },
+        "he": {
+          "text": "קתדרלת פורטו היא כנסייה קתולית במרכז ההיסטורי של פורטו. היא מהמונומנטים העתיקים ביותר בעיר ומהחשובים במונומנטים הרומנסקיים המקומיים.",
+          "url": "https://en.wikipedia.org/wiki/Porto_Cathedral",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -3107,6 +3277,11 @@
         "en": {
           "text": "The Church of Saint Francis is the most prominent Gothic monument in Porto, Portugal, being also noted for its outstanding Baroque inner decoration. It is located in the historic centre of the city, declared World Heritage Site by UNESCO.",
           "url": "https://en.wikipedia.org/wiki/Church_of_S%C3%A3o_Francisco_(Porto)"
+        },
+        "he": {
+          "text": "כנסיית סאו פרנסישקו היא המונומנט הגותי הבולט ביותר בפורטו, הידועה גם בעיטור הפנים הבארוקי המרהיב שלה. היא שוכנת במרכז ההיסטורי של העיר, אתר מורשת עולמית של אונסק\"ו.",
+          "url": "https://en.wikipedia.org/wiki/Church_of_S%C3%A3o_Francisco_(Porto)",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -3188,6 +3363,11 @@
         "en": {
           "text": "Cultural heritage monument in Porto, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "מונומנט מורשת תרבותית בפורטו, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -3231,6 +3411,11 @@
         "en": {
           "text": "The Chapel of Santa Catarina, also known as the Chapel of Souls, is a chapel located on the shopping street of Rua de Santa Catarina, in the former parish of Santo Ildefonso, in the city of Porto, in Portugal.",
           "url": "https://en.wikipedia.org/wiki/Chapel_of_Santa_Catarina"
+        },
+        "he": {
+          "text": "קפלת סנטה קתרינה, הידועה גם כקפלת הנשמות, היא קפלה ברחוב הקניות רואה דה סנטה קתרינה בעיר פורטו.",
+          "url": "https://en.wikipedia.org/wiki/Chapel_of_Santa_Catarina",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -3274,6 +3459,11 @@
         "en": {
           "text": "Church in Porto, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "כנסייה בפורטו, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -3317,6 +3507,11 @@
         "en": {
           "text": "Soares dos Reis National Museum is a museum, currently housed in the Carrancas Palace situated in the civil parish of Cedofeita, Santo Ildefonso, Sé, Miragaia, São Nicolau e Vitória, in the northern Portuguese city of Porto.",
           "url": "https://en.wikipedia.org/wiki/Soares_dos_Reis_National_Museum"
+        },
+        "he": {
+          "text": "המוזיאון הלאומי סוארש דוש רייש שוכן בארמון קאראנקאש שבעיר פורטו בצפון פורטוגל.",
+          "url": "https://en.wikipedia.org/wiki/Soares_dos_Reis_National_Museum",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -3399,6 +3594,11 @@
         "en": {
           "text": "Garden in Porto, Portugal",
           "url": null
+        },
+        "he": {
+          "text": "גן בפורטו, פורטוגל",
+          "url": null,
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",
@@ -3527,6 +3727,11 @@
         "en": {
           "text": "The Felgueiras Lighthouse , also known as the Farol de Felgueiras, Farolim do Molhe de Felgueiras, or Farolim Cabeça de Molhe, is a lighthouse on the Portuguese Atlantic coast, situated on a jetty or mole on the right bank of the Douro River, at the point where the river meets t…",
           "url": "https://en.wikipedia.org/wiki/Felgueiras_Lighthouse"
+        },
+        "he": {
+          "text": "מגדלור פלגיירש הוא מגדלור על החוף האטלנטי של פורטוגל, הניצב על שובר גלים בגדה הימנית של נהר הדורו, בנקודה שבה הנהר נשפך לים.",
+          "url": "https://en.wikipedia.org/wiki/Felgueiras_Lighthouse",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "partial",
@@ -3569,6 +3774,11 @@
         "en": {
           "text": "Sea Life Porto is an aquarium located in Porto, Portugal.",
           "url": "https://en.wikipedia.org/wiki/Sea_Life_Porto"
+        },
+        "he": {
+          "text": "סי לייף פורטו הוא אקווריום בפורטו, פורטוגל.",
+          "url": "https://en.wikipedia.org/wiki/Sea_Life_Porto",
+          "translatedFrom": "en"
         }
       },
       "dataQuality": "verified",

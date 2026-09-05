@@ -391,7 +391,9 @@
       "nightlife": "חיי לילה",
       "nature": "טבע",
       "day_trip": "טיול יום"
-    }
+    },
+    "summaryTranslated": "(תרגום אוטומטי, ויקיפדיה)",
+    "summaryGoogle": "תרגום ב-Google"
   },
   "gallery": {
     "title": "תוכניות מוכנות",

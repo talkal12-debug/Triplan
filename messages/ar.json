@@ -391,7 +391,9 @@
       "nightlife": "حياة ليلية",
       "nature": "طبيعة",
       "day_trip": "رحلة يومية"
-    }
+    },
+    "summaryTranslated": "(ترجمة آلية، ويكيبيديا)",
+    "summaryGoogle": "ترجمة عبر Google"
   },
   "gallery": {
     "title": "خطط جاهزة",
