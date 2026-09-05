@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth/session";
 import { guestTripSchema } from "@/lib/guest/schema";
-import { deleteUserTrip, rowToTrip, upsertUserTrip } from "@/lib/trips/server";
+import { deleteUserTrip, roleOn, rowToTrip, upsertUserTrip } from "@/lib/trips/server";
 import { prisma } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -13,10 +13,12 @@ export async function GET(_req: Request, { params }: Ctx) {
   const user = await currentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const { id } = await params;
-  const row = await prisma.trip.findFirst({ where: { id, ownerId: user.id } });
-  const trip = row ? rowToTrip(row) : null;
+  const access = await roleOn(user.id, id);
+  if (!access) return NextResponse.json({ error: "not_found" }, { status: 404 });
+  const owner = access.trip.ownerId ? await prisma.user.findUnique({ where: { id: access.trip.ownerId }, select: { name: true, email: true } }) : null;
+  const trip = rowToTrip(access.trip, { role: access.role, ownerName: owner?.name ?? owner?.email ?? null });
   if (!trip) return NextResponse.json({ error: "not_found" }, { status: 404 });
-  return NextResponse.json({ trip });
+  return NextResponse.json({ trip, role: access.role });
 }
 
 /** PUT /api/trips/:id { trip } -> { result } */

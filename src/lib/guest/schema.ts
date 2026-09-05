@@ -65,5 +65,7 @@ export const guestTripSchema = z.object({
   share: z.object({ token: z.string(), canEdit: z.boolean(), createdAt: z.string() }).optional(),
   /** Map tiles pre-cached for offline use */
   offline: z.object({ tiles: z.number(), at: z.string() }).optional(),
+  /** Set by the sync layer for trips shared with this account (absent = my own trip). */
+  membership: z.object({ role: z.enum(["owner", "editor", "viewer"]), ownerName: z.string().nullable() }).optional(),
 });
 export type GuestTrip = z.infer<typeof guestTripSchema>;

@@ -40,9 +40,24 @@ export async function pushTrip(trip: GuestTrip): Promise<string | null> {
   try {
     const res = await fetch(`/api/trips/${encodeURIComponent(trip.id)}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ trip }) });
     if (!res.ok) return null;
-    return ((await res.json()) as { result: string }).result;
+    const { result } = (await res.json()) as { result: string };
+    // Someone else saved a newer version (shared trip): take theirs, last write wins.
+    if (result === "stale") await pullTrip(trip.id);
+    return result;
   } catch {
     return null;
+  }
+}
+
+/** Fetch one trip (own or shared) and merge it in if the server copy is newer. */
+export async function pullTrip(id: string): Promise<boolean> {
+  try {
+    const res = await fetch(`/api/trips/${encodeURIComponent(id)}`, { cache: "no-store" });
+    if (!res.ok) return false;
+    const { trip } = z.object({ trip: guestTripSchema }).parse(await res.json());
+    return mergeRemoteTrips([trip]).length > 0;
+  } catch {
+    return false;
   }
 }
 

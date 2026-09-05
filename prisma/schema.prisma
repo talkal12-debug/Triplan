@@ -32,6 +32,8 @@ model User {
   memberships TripMember[]
   accounts    Account[]
   sessions    Session[]
+  comments    Comment[]
+  votes       Vote[]
 }
 
 // --- Auth.js (milestone 8b). Shapes required by @auth/prisma-adapter. ---
@@ -91,6 +93,9 @@ model Trip {
   baseMode     String   @default("auto") // single | multi | auto
   shareToken   String?  @unique
   shareCanEdit Boolean  @default(false)
+  /// Invite link for collaborators (milestone 8c). Rotated by the owner; role applies to everyone who joins with it.
+  inviteToken  String?  @unique
+  inviteRole   String   @default("editor") // editor | viewer
   /// JSON:GuestPlan snapshot (itinerary + places + extras) for shared / synced trips
   plan         String?
   packingList  String? /// JSON:PackingList
@@ -104,8 +109,38 @@ model Trip {
   days           Day[]
   accommodations Accommodation[]
   members        TripMember[]
+  comments       Comment[]
+  votes          Vote[]
 
   @@index([ownerId])
+}
+
+/// Collaboration (milestone 8c): a comment on the trip, a day or one activity.
+model Comment {
+  id         String   @id @default(cuid())
+  tripId     String
+  userId     String
+  dayIndex   Int?
+  activityId String?
+  text       String
+  createdAt  DateTime @default(now())
+  trip       Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tripId, createdAt])
+}
+
+/// Thumbs up / down on an activity of the plan (activityId lives in the plan JSON).
+model Vote {
+  id         String @id @default(cuid())
+  tripId     String
+  userId     String
+  activityId String
+  value      Int // 1 | -1
+  trip       Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tripId, userId, activityId])
 }
 
 model Day {

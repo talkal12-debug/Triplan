@@ -7,7 +7,10 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useSession } from "next-auth/react";
 import { getGuestTrip, guestPlanSchema, onGuestTripsChange, updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
+import { pullTrip } from "@/lib/trips/sync";
+import { useCollabStore } from "@/lib/collab/store";
 import { useWizardStore } from "@/lib/wizard/store";
 import { PreferencesSummary } from "@/components/wizard/preferences-summary";
 import type { WizardContext } from "@/components/wizard/step-props";
@@ -33,6 +36,26 @@ export function GuestTripView({ id, ctx }: Props) {
       if (changed?.remote && changed.id === id) setTrip(getGuestTrip(id) ?? null);
     });
   }, [id]);
+
+  // Members: keep the trip and its votes/comments fresh while it is open (no real-time yet).
+  const { status } = useSession();
+  useEffect(() => {
+    if (status !== "authenticated") return;
+    const collab = useCollabStore.getState();
+    const tick = () => {
+      void collab.load(id).then((state) => {
+        // Only shared trips can change elsewhere; own solo trips are not re-fetched.
+        if (getGuestTrip(id)?.membership || (state && state.members.length > 1)) void pullTrip(id);
+      });
+    };
+    tick();
+    const timer = setInterval(tick, 30_000);
+    return () => {
+      clearInterval(timer);
+      collab.clear();
+    };
+  }, [status, id]);
+  const readOnly = trip?.membership?.role === "viewer";
 
   function editPreferences() {
     if (!trip) return;
@@ -101,7 +124,13 @@ export function GuestTripView({ id, ctx }: Props) {
             {t("created", { date: format.dateTime(new Date(trip.createdAt), { dateStyle: "medium" }) })}
           </p>
         </div>
-        <Badge variant="secondary">{t("savedLocally")}</Badge>
+        <Badge variant="secondary">
+          {trip.membership
+            ? t("sharedBy", { name: trip.membership.ownerName ?? "?", role: t(`roles.${trip.membership.role}`) })
+            : status === "authenticated"
+              ? t("synced")
+              : t("savedLocally")}
+        </Badge>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2">
@@ -133,7 +162,7 @@ export function GuestTripView({ id, ctx }: Props) {
 
       {trip.plan ? (
         <section className="mt-8" aria-label={t("planLabel")}>
-          <PlanWorkspace trip={trip as GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }} onTripChange={setTrip} nowHref={`/trip/${trip.id}/now`} />
+          <PlanWorkspace trip={trip as GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }} onTripChange={setTrip} readOnly={readOnly} nowHref={`/trip/${trip.id}/now`} />
         </section>
       ) : (
         <div className="mt-6 flex items-start gap-3 rounded-2xl border border-dashed bg-sunset/10 p-4 text-sm">
@@ -143,7 +172,7 @@ export function GuestTripView({ id, ctx }: Props) {
       )}
 
       <section className="mt-10" aria-label={tt("title")}>
-        <TripTools trip={trip} ctx={ctx} onTripChange={setTrip} />
+        <TripTools trip={trip} ctx={ctx} onTripChange={setTrip} readOnly={readOnly} />
       </section>
 
       <section className="mt-10">

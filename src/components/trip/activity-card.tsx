@@ -20,6 +20,7 @@ import type { Locale } from "@/lib/i18n/locales";
 import { hhmm, localDateOf, placeLabel } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
 import { AffiliateLinks } from "./affiliate-links";
+import { VoteBar } from "./vote-bar";
 
 const transitIcons = { walk: Footprints, transit: Bus, car: Car, bike: Bike } as const;
 
@@ -122,6 +123,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
           {isVisit && !compact && a.placeId && plan.extras?.links.tickets[a.placeId] && (
             <AffiliateLinks links={plan.extras.links.tickets[a.placeId]} label={t("links.tickets")} size="xs" className="mt-1.5" />
           )}
+          {isVisit && !compact && <VoteBar activityId={a.id} />}
         </div>
         {isVisit && actions && (
           <DropdownMenu>

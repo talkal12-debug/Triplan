@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { BookOpen, Calculator, ClipboardCheck, Luggage, Share2 } from "lucide-react";
+import { BookOpen, Bot, Calculator, ClipboardCheck, Luggage, Share2, Users } from "lucide-react";
 import { JournalPanel } from "./tools/journal-panel";
+import { CollabPanel } from "./tools/collab-panel";
+import { ChatPanel } from "./tools/chat-panel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { GuestTrip } from "@/lib/guest/trips";
 import type { WizardContext } from "@/components/wizard/step-props";
@@ -12,10 +14,10 @@ import { PackingPanel } from "./tools/packing-panel";
 import { ChecklistPanel } from "./tools/checklist-panel";
 import { SharePanel } from "./tools/share-panel";
 
-type Props = { trip: GuestTrip; ctx: WizardContext; onTripChange: (trip: GuestTrip) => void };
+type Props = { trip: GuestTrip; ctx: WizardContext; onTripChange: (trip: GuestTrip) => void; readOnly?: boolean };
 
-/** Budget, packing list, pre-trip checklist, export/share/offline. */
-export function TripTools({ trip, ctx, onTripChange }: Props) {
+/** Budget, packing list, pre-trip checklist, export/share/offline, journal, collaborators, AI assistant. */
+export function TripTools({ trip, ctx, onTripChange, readOnly = false }: Props) {
   const t = useTranslations("tools");
   const [tab, setTab] = useState("checklist");
   const tabs = [
@@ -24,6 +26,8 @@ export function TripTools({ trip, ctx, onTripChange }: Props) {
     { id: "budget", icon: Calculator },
     { id: "share", icon: Share2 },
     { id: "journal", icon: BookOpen },
+    { id: "collab", icon: Users },
+    { id: "chat", icon: Bot },
   ] as const;
   return (
     <div>
@@ -51,6 +55,12 @@ export function TripTools({ trip, ctx, onTripChange }: Props) {
         </TabsContent>
         <TabsContent value="journal" className="mt-3">
           <JournalPanel trip={trip} onTripChange={onTripChange} />
+        </TabsContent>
+        <TabsContent value="collab" className="mt-3">
+          <CollabPanel trip={trip} />
+        </TabsContent>
+        <TabsContent value="chat" className="mt-3">
+          <ChatPanel trip={trip} onTripChange={onTripChange} readOnly={readOnly} />
         </TabsContent>
       </Tabs>
     </div>
