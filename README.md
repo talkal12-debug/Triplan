@@ -34,7 +34,7 @@ Open http://localhost:3000 — you are redirected to `/he` (Hebrew, RTL). Englis
 | `npm run check` | lint + typecheck + i18n:check + test. |
 | `npm run test:e2e` | Playwright end-to-end tests (phone + desktop Chromium). Starts `next dev` if needed; first run: `npx playwright install chromium`. |
 | `npm run lighthouse` | Lighthouse (mobile) scores for a few pages against a production build (`npm run build` first). Uses Playwright's Chromium. |
-| `npm run db:push` | Create / update the local SQLite schema (`prisma/dev.db`). |
+| `npm run db:push` | Create / update the database schema (PostgreSQL, `DATABASE_URL`). |
 | `npm run db:seed` | Load `data/countries.json` and `data/pois/*.json` into the database (idempotent). |
 | `npm run db:reset` | Drop and recreate the local database, then seed. |
 | `npm run db:studio` | Browse the database in Prisma Studio. |
@@ -134,6 +134,10 @@ Every attraction card shows one or two sentences about the place. The text is ne
 - `data/seasonal.json`: curated festivals, blossoms, markets and crowd warnings for the demo destinations, each with its official source. Matched against the trip's dates (windows may cross New Year) and shown in the dates step and above the plan; the UI always says dates move every year.
 - `data/senior-discounts.json`: country rules and per-place notes on 65+ prices, from the official ticketing sites. Shown only when the party includes someone 65+, as a note above the plan and a badge on the card, always with "confirm with ID".
 - Wished places typed as free text are now classified from OpenStreetMap's class/type (a restaurant becomes a meal, a park an hour outdoors) and get a one-line description from Wikidata's search when OSM has no Wikidata link. A wished restaurant takes the lunch slot (a second one becomes dinner) and "too full" never drops a wished place.
+
+## Deployment (milestone 13)
+
+Vercel + Neon (PostgreSQL), both free tiers. `vercel.json` sets the build command: `prisma db push` (schema), `npm run db:seed` (countries + curated places, idempotent), `next build`. The only required environment variable is `AUTH_SECRET`; the Neon integration adds `DATABASE_URL`. Every push to `main` deploys. Step-by-step guide in Hebrew: `docs/deploy.md`. Prisma now targets PostgreSQL everywhere; local development uses the same Neon database (or none: guest planning does not touch the database).
 
 ## Performance notes
 

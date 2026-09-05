@@ -2,8 +2,10 @@
 //
 // Conventions:
 // - No Prisma enums: enum-like fields are String and validated with Zod
-//   (src/lib/data/schemas.ts) so SQLite (dev) and PostgreSQL (prod) behave the same.
-// - Structured data is stored as JSON-encoded String (SQLite has no Json type).
+//   (src/lib/data/schemas.ts). PostgreSQL everywhere since the deployment milestone
+//   (Neon on Vercel; local dev points at the same database, or runs without one:
+//   guest planning never needs it).
+// - Structured data is stored as JSON-encoded String (kept from the SQLite days; parsed through Zod).
 //   Every such field is marked `/// JSON:<TypeName>` and parsed through Zod.
 
 generator client {
@@ -11,7 +13,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
