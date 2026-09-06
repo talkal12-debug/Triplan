@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { fetchJson, USER_AGENT } from "../http";
+import { overpassQuery } from "../overpass";
 import type { PoiProvider } from "../types";
 import { citySeedSchema, placeSeedSchema, type CitySeed, type PlaceCategory, type PlaceSeed, type PlaceTag } from "@/lib/data/schemas";
 
@@ -13,7 +14,6 @@ import { citySeedSchema, placeSeedSchema, type CitySeed, type PlaceCategory, typ
  */
 
 const NOMINATIM = process.env.NOMINATIM_URL || "https://nominatim.openstreetmap.org";
-const OVERPASS = process.env.OVERPASS_URL || "https://overpass-api.de/api/interpreter";
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
 
 /** Bump when classification / ranking changes so cached cities are refetched. */
@@ -275,13 +275,12 @@ out center tags 1500;`;
 );
 out center tags 400;`;
     const run = (query: string, tier: number) =>
-      fetchJson(OVERPASS, {
+      overpassQuery(query, {
         provider: "overpass",
         schema: overpassSchema,
-        timeoutMs: 50_000,
+        timeoutMs: 45_000,
         cacheKey: `overpass:${city.slug}:${tier}:${OSM_PROVIDER_VERSION}`,
         ttlMs: 6 * 60 * 60 * 1000,
-        init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
       });
     const [a, b] = await Promise.all([run(tier1, 1), run(tier2, 2).catch(() => ({ elements: [] }))]);
     const raw = [...a.elements, ...b.elements].map((el) => toPlace(el, city)).filter((p): p is PlaceSeed => p !== null);
