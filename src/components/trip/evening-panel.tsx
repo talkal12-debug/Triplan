@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
-import { CalendarDays, ExternalLink, Moon, Utensils } from "lucide-react";
+import { CalendarDays, ExternalLink, Moon, Ticket, Utensils } from "lucide-react";
 import type { Evening } from "@/lib/nearby/schema";
 import { placeSearchUrl } from "@/lib/trip/google-maps";
 import { AffiliateLinks } from "./affiliate-links";
@@ -68,15 +68,18 @@ export function EveningPanel({ evening, date, cityLabel }: { evening: Evening; d
           {evening.events.length > 0 ? (
             <ul className="mt-1 space-y-1">
               {evening.events.map((e) => (
-                <li key={e.id} className="text-sm">
-                  <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="font-medium underline-offset-2 hover:underline">
-                    {e.name}
-                  </a>
+                <li key={e.id} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                  <span className="font-medium">{e.name}</span>
                   <span className="text-xs text-muted-foreground">
-                    {e.start.length > 10 && ` · ${format.dateTime(new Date(e.start), { hour: "2-digit", minute: "2-digit" })}`}
-                    {e.venue && ` · ${e.venue}`}
-                    {e.category && ` · ${e.category}`}
+                    {e.start.length > 10 && `${format.dateTime(new Date(e.start), { hour: "2-digit", minute: "2-digit" })} · `}
+                    {e.venue && `${e.venue} · `}
+                    {e.category}
+                    {e.priceMin != null && e.currency && ` · ${t("price", { price: format.number(e.priceMin, { style: "currency", currency: e.currency, maximumFractionDigits: 0 }) })}`}
                   </span>
+                  <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1 rounded-full border border-primary/40 px-2 py-0.5 text-xs font-medium text-primary hover:bg-primary/10">
+                    <Ticket className="size-3" aria-hidden />
+                    {t("buy")}
+                  </a>
                 </li>
               ))}
               <li className="text-[11px] text-muted-foreground">{t("eventsSource", { source: evening.eventsSource ?? "" })}</li>

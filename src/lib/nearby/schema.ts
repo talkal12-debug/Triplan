@@ -38,6 +38,11 @@ export const eventSchema = z.object({
   venue: z.string().nullable(),
   category: z.string().nullable(),
   source: z.string(),
+  /** Ticket price range as published by the seller, when it says. */
+  priceMin: z.number().nullable().optional(),
+  priceMax: z.number().nullable().optional(),
+  currency: z.string().nullable().optional(),
+  image: z.string().url().nullable().optional(),
 });
 export type EventItem = z.infer<typeof eventSchema>;
 

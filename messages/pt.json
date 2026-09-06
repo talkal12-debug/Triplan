@@ -462,7 +462,9 @@
       "searchMapsVenues": "Procurar no mapa",
       "mapsQuiet": "locais para uma noite tranquila",
       "mapsCulture": "espetáculos e teatro",
-      "mapsNightlife": "bares e discotecas"
+      "mapsNightlife": "bares e discotecas",
+      "buy": "Comprar bilhetes",
+      "price": "desde {price}"
     },
     "seasonal": {
       "title": "O que acontece nas vossas datas",
@@ -481,7 +483,11 @@
       "verify": "Confirmar na bilheteira com documento. Dos sites oficiais; os preços mudam.",
       "source": "(fonte)"
     },
-    "editNoChange": "Nada a mudar: nenhum lugar livre cabe neste dia (a pé, aberto na data e ainda não planeado). Tentem outro dia ou adicionem um lugar da lista."
+    "editNoChange": "Nada a mudar: nenhum lugar livre cabe neste dia (a pé, aberto na data e ainda não planeado). Tentem outro dia ou adicionem um lugar da lista.",
+    "events": {
+      "title": "Eventos e espetáculos nas vossas datas",
+      "source": "Fonte: {source}. Preços e disponibilidade no site do vendedor."
+    }
   },
   "gallery": {
     "title": "Planos prontos",

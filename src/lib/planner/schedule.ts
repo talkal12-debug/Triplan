@@ -88,6 +88,14 @@ function isMuseum(place: PlannerPlace): boolean {
  * Turn a day's candidate places into a timed sequence that respects opening hours,
  * the walking budget, meals and rests. Places that do not fit are returned as leftovers.
  */
+/** A full day has at least this many stops (half days: half of it) and runs into the late afternoon. */
+export const MIN_VISITS_FULL = 4;
+export const MIN_VISITS_HALF = 2;
+const TOP_UP_RADII_KM = [2.5, 4, 6, 10];
+/** How far the walking / time budgets may stretch to fill a light day (validation allows the same). */
+export const RELAX_WALK = 1.5;
+export const RELAX_CAPACITY = 1.3;
+
 export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: ItineraryDay; leftovers: ScoredPlace[] } {
   const { prefs, budget } = ctx;
   const warnings: Warning[] = [];
@@ -203,6 +211,12 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
     return true;
   };
 
+  // Filling a light day may stretch the time budget a little, and the walking budget too, except for
+  // travellers who asked for little walking for a reason (baby, stroller, 65+, accessibility needs).
+  let relax = false;
+  const gentle = prefs.party.infants > 0 || prefs.party.stroller || prefs.party.seniors > 0 || prefs.accessibility.length > 0;
+  const relaxWalk = gentle ? 1 : RELAX_WALK;
+
   const placeVisit = (cand: ScoredPlace, allowDefer: boolean): boolean => {
     const place = cand.place;
     // Lunch is due and the traveller named a restaurant: eat there first, then continue.
@@ -215,9 +229,9 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
     const locked = ctx.locked?.has(place.id) ?? false;
 
     if (!locked) {
-      if (walkAfter > budget.walkKmMax) return false;
-      if (activeMinutes + transit.minutes + place.visitMinutes > capacity) return false;
-      if (isMuseum(place) && museums >= budget.maxMuseums) return false;
+      if (walkAfter > budget.walkKmMax * (relax ? relaxWalk : 1)) return false;
+      if (activeMinutes + transit.minutes + place.visitMinutes > capacity * (relax ? RELAX_CAPACITY : 1)) return false;
+      if (isMuseum(place) && museums >= budget.maxMuseums + (relax ? 1 : 0)) return false;
     }
 
     // Lunch before this visit if the window has opened.
@@ -304,18 +318,32 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
     if (!placeMeal(cand, hadLunch ? "dinner" : "lunch")) leftovers.push(cand);
   }
 
-  // Light day? Top up from the pool with places near the current position.
-  if (activeMinutes < capacity * 0.55 && !ctx.fixedOrder) {
-    const used = new Set(activities.map((a) => a.placeId));
-    const nearby = ctx.pool
-      .filter((c) => !used.has(c.place.id) && haversineKm(here, c.place) <= 2.5 && opensOnDate(c.place, day.date) !== "closed")
-      .sort((a, b) => b.score - a.score);
-    for (const cand of nearby) {
-      if (activeMinutes >= capacity * 0.8) break;
-      if (placeVisit(cand, false)) {
-        const idx = ctx.pool.indexOf(cand);
-        if (idx >= 0) ctx.pool.splice(idx, 1);
+  // A day is full when it has enough stops and runs into the late afternoon. Until then, top up
+  // from the pool: nearest first, then wider and wider, with the limits relaxed a little.
+  // (Arrival / departure days get half the target; a day that starts after it ends stays empty.)
+  if (!ctx.fixedOrder) {
+    const minVisits = day.kind === "full" ? MIN_VISITS_FULL : MIN_VISITS_HALF;
+    const lastEnd = () => Math.max(0, ...activities.filter((a) => a.kind === "visit").map((a) => a.endMin));
+    const isFull = () => activities.filter((a) => a.kind === "visit").length >= minVisits && (lastEnd() >= dayEnd - 90 || activeMinutes >= capacity * 0.85);
+    const startedTooLateForVisits = t >= dayEnd - 45;
+    if (!isFull() && !startedTooLateForVisits) {
+      const used = new Set(activities.map((a) => a.placeId));
+      for (const radiusKm of TOP_UP_RADII_KM) {
+        relax = radiusKm > TOP_UP_RADII_KM[0];
+        const nearby = ctx.pool
+          .filter((c) => !used.has(c.place.id) && haversineKm(here, c.place) <= radiusKm && opensOnDate(c.place, day.date) !== "closed")
+          .sort((a, b) => b.score - a.score || haversineKm(here, a.place) - haversineKm(here, b.place));
+        for (const cand of nearby) {
+          if (isFull()) break;
+          if (placeVisit(cand, false)) {
+            used.add(cand.place.id);
+            const idx = ctx.pool.indexOf(cand);
+            if (idx >= 0) ctx.pool.splice(idx, 1);
+          }
+        }
+        if (isFull()) break;
       }
+      relax = false;
     }
   }
 
