@@ -162,7 +162,8 @@ export function rebalanceDay(it: Itinerary, dayIndex: number, direction: "lighte
     const worst = unlocked
       .map((a) => ({ a, s: scorePlace(places.get(a.placeId!)!, ctx.prefs) }))
       .sort((x, y) => x.s - y.s)[0].a;
-    return replaceDay(it, rescheduleDay(it, day, ids.filter((id) => id !== worst.placeId), ctx, { capacityScale: 0.8 }));
+    // Exactly one visit goes: the rest is pinned, so a day built with the relaxed limits does not lose a second one.
+    return replaceDay(it, rescheduleDay(it, day, ids.filter((id) => id !== worst.placeId), ctx, { keepAll: true }));
   }
   const used = usedPlaceIds(it);
   const places = placeMap(ctx);
