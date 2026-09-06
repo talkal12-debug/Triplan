@@ -49,12 +49,16 @@ function rescheduleDay(
   day: ItineraryDay,
   placeIds: string[],
   ctx: EditContext,
-  opts: { capacityScale?: number } = {},
+  opts: { capacityScale?: number; walkScale?: number; keepAll?: boolean } = {},
 ): ItineraryDay {
   const places = placeMap(ctx);
-  const budget = budgetOf(ctx);
+  const base = budgetOf(ctx);
+  // "Too light" asks for more than the default day, so the walking budget stretches with the capacity.
+  const budget = opts.walkScale ? { ...base, walkKmMax: base.walkKmMax * opts.walkScale } : base;
   const { center, isDayTrip } = baseFor(it, day, ctx);
   const locked = new Set(day.activities.filter((a) => a.locked && a.placeId).map((a) => a.placeId!));
+  // Re-timing (real travel times) must never drop a visit the traveller already has: every id is pinned for scheduling.
+  const pinned = opts.keepAll ? new Set(placeIds) : locked;
   const candidates = placeIds.map((id) => places.get(id)).filter((p): p is PlannerPlace => Boolean(p)).map((p) => scored(p, ctx));
   const kind = day.kind;
   const baseCapacity = Math.round(budget.activeMinutes * (kind === "full" ? 1 : budget.halfDayShare) * (opts.capacityScale ?? 1));
@@ -74,7 +78,7 @@ function rescheduleDay(
     indoorShare: candidates.length ? candidates.filter((c) => c.place.indoor).length / candidates.length : 0,
     plannedWalkKm: 0,
   };
-  const result = scheduleDay(plan, { prefs: ctx.prefs, budget, base: center, pool: [], fixedOrder: true, locked, travel: ctx.travel });
+  const result = scheduleDay(plan, { prefs: ctx.prefs, budget, base: center, pool: [], fixedOrder: true, locked: pinned, travel: ctx.travel });
   // Keep lock flags.
   result.day.activities = result.day.activities.map((a) => ({ ...a, locked: a.placeId ? locked.has(a.placeId) : false }));
   if (result.leftovers.length) {
@@ -173,7 +177,7 @@ export function rebalanceDay(it: Itinerary, dayIndex: number, direction: "lighte
     .sort((a, b) => b.score - a.score)
     .slice(0, 8);
   for (const cand of candidates) {
-    const next = rescheduleDay(it, day, [...ids, cand.place.id], ctx, { capacityScale: 1.25 });
+    const next = rescheduleDay(it, day, [...ids, cand.place.id], ctx, { capacityScale: 1.3, walkScale: 1.35 });
     if (visitIds(next).includes(cand.place.id)) return replaceDay(it, next);
   }
   return it;
@@ -188,13 +192,13 @@ export function removeActivity(it: Itinerary, dayIndex: number, activityId: stri
 }
 
 /** Re-time a day in an explicit order of place ids (after a drag-and-drop). Unknown ids are ignored. */
-export function reorderDay(it: Itinerary, dayIndex: number, placeIds: string[], ctx: EditContext): Itinerary {
+export function reorderDay(it: Itinerary, dayIndex: number, placeIds: string[], ctx: EditContext, opts: { keepAll?: boolean } = {}): Itinerary {
   const day = it.days[dayIndex];
   if (!day) return it;
   const current = new Set(visitIds(day));
   const ids = placeIds.filter((id) => current.has(id));
   for (const id of visitIds(day)) if (!ids.includes(id)) ids.push(id);
-  return replaceDay(it, rescheduleDay(it, day, ids, ctx));
+  return replaceDay(it, rescheduleDay(it, day, ids, ctx, opts));
 }
 
 export function toggleLock(it: Itinerary, dayIndex: number, activityId: string): Itinerary {
