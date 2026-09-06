@@ -7,6 +7,7 @@ import type { Locale } from "@/lib/i18n/locales";
 import { getCountry, countryName } from "@/lib/data/countries";
 import { affiliateIdsFromEnv, eveningLinks } from "@/lib/providers/affiliate";
 import { nearbyVenues, type NearbyRequest } from "@/lib/providers/nearby";
+import { hasLocalVenues, localVenues } from "@/lib/data/venues";
 import { getEvents } from "@/lib/providers/events/ticketmaster";
 import { tryProvider } from "@/lib/providers/http";
 import { styleKinds, type EventItem, type Evening, type Venue } from "@/lib/nearby/schema";
@@ -51,17 +52,23 @@ export async function buildNearby(prefs: TripPreferences, itinerary: Itinerary, 
   for (const day of itinerary.days) {
     const stay = stayById.get(day.stayId);
     const base = stay?.center ?? ctx.cities[0].center;
+    const countryCode = stay?.countryCode ?? ctx.cities[0].countryCode;
     day.activities.forEach((a, i) => {
       if (a.kind !== "meal") return;
       const p = mealPoint(day, i, placeById, base);
-      requests.push({ key: a.id, lat: p.lat, lng: p.lng, radiusM: 500, group: "food" });
+      requests.push({ key: a.id, lat: p.lat, lng: p.lng, radiusM: 500, group: "food", countryCode });
     });
   }
   for (const stay of itinerary.stays) {
-    requests.push({ key: `dinner:${stay.id}`, lat: stay.center.lat, lng: stay.center.lng, radiusM: 900, group: "food" });
-    if (style !== "none") requests.push({ key: `evening:${stay.id}`, lat: stay.center.lat, lng: stay.center.lng, radiusM: 1500, group: "evening" });
+    requests.push({ key: `dinner:${stay.id}`, lat: stay.center.lat, lng: stay.center.lng, radiusM: 900, group: "food", countryCode: stay.countryCode });
+    if (style !== "none") requests.push({ key: `evening:${stay.id}`, lat: stay.center.lat, lng: stay.center.lng, radiusM: 1500, group: "evening", countryCode: stay.countryCode, kinds: styleKinds[style] });
   }
-  const venues = await tryProvider("overpass-nearby", () => nearbyVenues(requests, 6), {} as Record<string, Venue[]>, notes);
+  // Demo destinations ship their venues with the app; everything else asks Overpass (best effort).
+  const local = requests.filter((r) => hasLocalVenues(r.countryCode));
+  const remote = requests.filter((r) => !hasLocalVenues(r.countryCode));
+  const venues: Record<string, Venue[]> = { ...localVenues(local, 6) };
+  if (remote.length) Object.assign(venues, await tryProvider("overpass-nearby", () => nearbyVenues(remote, 6), {} as Record<string, Venue[]>, notes));
+  if (local.length) notes.push("nearby: shipped OpenStreetMap venues (data/venues)");
   const allowFastFood = prefs.budget.level === "budget";
   const food = (list: Venue[] | undefined) => (list ?? []).filter((v) => allowFastFood || v.kind !== "fast_food");
 

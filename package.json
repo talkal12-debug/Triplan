@@ -26,7 +26,8 @@
     "data:templates": "tsx scripts/build-templates.ts",
     "data:flags": "node scripts/fetch-flags.mjs",
     "data:airports": "node scripts/fetch-airports.mjs",
-    "data:summaries": "tsx scripts/fetch-summaries.ts"
+    "data:summaries": "tsx scripts/fetch-summaries.ts",
+    "data:venues": "tsx scripts/fetch-venues.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",
