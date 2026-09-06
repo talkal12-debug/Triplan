@@ -19,17 +19,19 @@ export const OVERPASS_URLS = [
 export async function overpassQuery<T>(query: string, opts: { provider: string; schema: ZodType<T>; cacheKey: string; ttlMs: number; timeoutMs: number }): Promise<T> {
   return Promise.any(
     [...new Set(OVERPASS_URLS)].map((url) =>
-      fetchJson(url, {
+      // GET with the query in the URL: Overpass accepts both, and a plain GET travels through
+      // hosting proxies that were seen to stall the form POST.
+      fetchJson(`${url}?data=${encodeURIComponent(query)}`, {
         provider: opts.provider,
         schema: opts.schema,
         timeoutMs: opts.timeoutMs,
         cacheKey: `${opts.cacheKey}:${url}`,
         ttlMs: opts.ttlMs,
-        init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
       }),
     ),
   ).catch((err: unknown) => {
-    const first = err instanceof AggregateError ? err.errors.find((e) => e instanceof Error) : null;
-    throw first ?? new Error(`${opts.provider}: all Overpass instances failed`);
+    // Say what actually went wrong on each instance (the note ends up in the plan's diagnostics).
+    const details = err instanceof AggregateError ? err.errors.map((e) => (e instanceof Error ? `${e.message}${e.cause instanceof Error ? ` (${e.cause.message})` : ""}` : String(e))) : [String(err)];
+    throw new Error(`${opts.provider}: all Overpass instances failed: ${[...new Set(details)].join("; ")}`);
   });
 }
