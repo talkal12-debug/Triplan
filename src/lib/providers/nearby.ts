@@ -1,7 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { overpassQuery } from "./overpass";
-import { classifyVenue, distanceMeters, venueHints, type Venue, type VenueKind } from "@/lib/nearby/schema";
+import { classifyVenue, distanceMeters, foodVenueKinds, pickVenues, venueCompleteness, venueHints, type Venue, type VenueKind } from "@/lib/nearby/schema";
 
 /**
  * Venues around points, from OpenStreetMap (Overpass). One request per plan:
@@ -17,6 +17,10 @@ export type NearbyRequest = {
   lng: number;
   radiusM: number;
   group: "food" | "evening";
+  /** ISO country, to pick the shipped venue file when there is one. */
+  countryCode: string;
+  /** Only these kinds (e.g. the evening style's), applied before ranking so the best of the wanted kinds win. */
+  kinds?: VenueKind[];
 };
 
 const overpassSchema = z.object({
@@ -36,18 +40,6 @@ const FOOD = `["amenity"~"^(restaurant|cafe|food_court|fast_food|ice_cream)$"]["
 const EVENING = `["amenity"~"^(bar|pub|biergarten|nightclub|theatre|cinema|music_venue|concert_hall|arts_centre|events_venue|casino|ice_cream)$"]["name"]`;
 const VIEWPOINT = `["tourism"="viewpoint"]["name"]`;
 
-const foodKinds: VenueKind[] = ["restaurant", "cafe", "fast_food", "ice_cream"];
-
-/** How complete an OSM entry is: fuller entries are more likely real, open businesses. */
-function completeness(tags: Record<string, string>): number {
-  let s = 0;
-  if (tags.website || tags["contact:website"]) s += 1;
-  if (tags.opening_hours) s += 1;
-  if (tags.cuisine) s += 0.5;
-  if (tags.wikidata) s += 2;
-  if (tags.phone || tags["contact:phone"]) s += 0.5;
-  return s;
-}
 
 function toVenue(el: z.infer<typeof overpassSchema>["elements"][number], origin: { lat: number; lng: number }): Venue | null {
   const tags = el.tags ?? {};
@@ -97,27 +89,15 @@ export async function nearbyVenues(requests: NearbyRequest[], limit = 6): Promis
     for (const r of requests) {
       const v = toVenue(el, r);
       if (!v || v.distanceM > r.radiusM) continue;
-      const isFood = foodKinds.includes(v.kind);
+      const isFood = foodVenueKinds.includes(v.kind);
       if (r.group === "food" && !isFood) continue;
       if (r.group === "evening" && isFood && v.kind !== "ice_cream" && v.kind !== "cafe") continue;
+      if (r.kinds && !r.kinds.includes(v.kind)) continue;
       const list = scored.get(r.key) ?? [];
-      list.push({ venue: v, score: completeness(tags) });
+      list.push({ venue: v, score: venueCompleteness(tags) });
       scored.set(r.key, list);
     }
   }
-  for (const r of requests) {
-    const list = (scored.get(r.key) ?? []).sort((a, b) => b.score - a.score || a.venue.distanceM - b.venue.distanceM);
-    // Keep variety: no more than half the list from one kind when there are alternatives.
-    const picked: Venue[] = [];
-    const perKind = new Map<VenueKind, number>();
-    for (const { venue } of list) {
-      const n = perKind.get(venue.kind) ?? 0;
-      if (n >= Math.max(2, Math.ceil(limit / 2)) && list.length > limit) continue;
-      picked.push(venue);
-      perKind.set(venue.kind, n + 1);
-      if (picked.length >= limit) break;
-    }
-    out[r.key] = picked;
-  }
+  for (const r of requests) out[r.key] = pickVenues(scored.get(r.key) ?? [], limit);
   return out;
 }

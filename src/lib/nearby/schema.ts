@@ -94,6 +94,34 @@ export function venueHints(tags: Record<string, string>): Venue["hints"] {
   return out;
 }
 
+/** How complete an OSM entry is: fuller entries are more likely real, open businesses. */
+export function venueCompleteness(tags: Record<string, string>): number {
+  let s = 0;
+  if (tags.website || tags["contact:website"]) s += 1;
+  if (tags.opening_hours) s += 1;
+  if (tags.cuisine) s += 0.5;
+  if (tags.wikidata) s += 2;
+  if (tags.phone || tags["contact:phone"]) s += 0.5;
+  return s;
+}
+
+export const foodVenueKinds: VenueKind[] = ["restaurant", "cafe", "fast_food", "ice_cream"];
+
+/** Ranked by score then distance, capped, with no kind taking more than half the list when there are alternatives. */
+export function pickVenues(list: { venue: Venue; score: number }[], limit: number): Venue[] {
+  const sorted = [...list].sort((a, b) => b.score - a.score || a.venue.distanceM - b.venue.distanceM);
+  const picked: Venue[] = [];
+  const perKind = new Map<VenueKind, number>();
+  for (const { venue } of sorted) {
+    const n = perKind.get(venue.kind) ?? 0;
+    if (n >= Math.max(2, Math.ceil(limit / 2)) && sorted.length > limit) continue;
+    picked.push(venue);
+    perKind.set(venue.kind, n + 1);
+    if (picked.length >= limit) break;
+  }
+  return picked;
+}
+
 /** Venue kinds that fit each evening style. */
 export const styleKinds: Record<(typeof eveningStyles)[number], VenueKind[]> = {
   quiet: ["viewpoint", "ice_cream", "bar", "pub", "cafe"],
