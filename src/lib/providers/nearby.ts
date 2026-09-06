@@ -1,6 +1,6 @@
 import "server-only";
 import { z } from "zod";
-import { fetchJson } from "./http";
+import { overpassQuery } from "./overpass";
 import { classifyVenue, distanceMeters, venueHints, type Venue, type VenueKind } from "@/lib/nearby/schema";
 
 /**
@@ -9,8 +9,6 @@ import { classifyVenue, distanceMeters, venueHints, type Venue, type VenueKind }
  * assigned to the nearest requesting point. Nothing is invented: name,
  * coordinates, cuisine, opening hours and website are OSM's, unreviewed.
  */
-/** The public Overpass instance is often overloaded (504); a second instance answers the same query. */
-const OVERPASS_URLS = [process.env.OVERPASS_URL || "https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"];
 export const NEARBY_VERSION = 1;
 
 export type NearbyRequest = {
@@ -86,22 +84,8 @@ export async function nearbyVenues(requests: NearbyRequest[], limit = 6): Promis
   });
   const query = `[out:json][timeout:30];\n(\n${parts.join("\n")}\n);\nout center tags 600;`;
   const cacheKey = `nearby:${NEARBY_VERSION}:${requests.map((r) => `${r.group}${r.lat.toFixed(3)},${r.lng.toFixed(3)},${r.radiusM}`).join("|")}`;
-  // Both instances at once, first good answer wins: the public servers are often slow or
-  // overloaded, and a plan request has a fixed time budget on serverless hosting.
-  const data = await Promise.any(
-    [...new Set(OVERPASS_URLS)].map((url) =>
-      fetchJson(url, {
-        provider: "overpass-nearby",
-        schema: overpassSchema,
-        timeoutMs: 15_000,
-        cacheKey: `${cacheKey}:${url}`,
-        ttlMs: 12 * 60 * 60 * 1000,
-        init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
-      }),
-    ),
-  ).catch((err: unknown) => {
-    throw err instanceof AggregateError && err.errors[0] instanceof Error ? err.errors[0] : new Error("overpass-nearby: all instances failed");
-  });
+  // All public instances at once, first good answer wins (a plan request has a fixed time budget).
+  const data = await overpassQuery(query, { provider: "overpass-nearby", schema: overpassSchema, cacheKey, ttlMs: 12 * 60 * 60 * 1000, timeoutMs: 15_000 });
 
   const scored = new Map<string, { venue: Venue; score: number }[]>();
   for (const el of data.elements) {
