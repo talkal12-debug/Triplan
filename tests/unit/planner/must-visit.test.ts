@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { generateItinerary } from "@/lib/planner";
+import { reorderDay } from "@/lib/planner/edit";
 import { exclusionReason, scorePlace } from "@/lib/planner/scoring";
 import { loadMany, prefsFor, visitIds } from "./helpers";
 
@@ -38,5 +39,19 @@ describe("must-visit places", () => {
     expect(visitIds(itinerary)).not.toContain(closed.id);
     const warning = itinerary.warnings.find((w) => w.code === "must_visit_unplaced");
     expect(warning?.params.name).toBe("Closed place");
+  });
+});
+
+describe("re-timing keeps every visit", () => {
+  it("real travel times that push a day late never drop a stop when the day is pinned", () => {
+    const data = loadMany(["PT"]);
+    const prefs = prefsFor({ destinations: [{ countryCode: "PT", cities: ["lisbon"] }], dates: { start: "2026-10-16", days: 4, arrivalTime: null, departureTime: null }, effort: "low" });
+    const { itinerary } = generateItinerary({ prefs, places: data.places, cities: data.cities });
+    const day = itinerary.days[1];
+    const ids = visitIds({ ...itinerary, days: [day] });
+    // Every hop takes 70 minutes and 3 km on foot: without pinning most of the day would fall off.
+    const slow = () => ({ mode: "walk" as const, minutes: 70, meters: 3000, estimated: false });
+    const out = reorderDay(itinerary, 1, ids, { prefs, places: data.places, cities: data.cities, travel: slow }, { keepAll: true });
+    expect(visitIds({ ...out, days: [out.days[1]] })).toEqual(ids);
   });
 });

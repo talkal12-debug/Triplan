@@ -255,12 +255,16 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
 
     const latestStart = dayEnd - place.visitMinutes;
     if (start > latestStart && !locked) return false;
-    const openStart = earliestOpenStart(place, day.date, start, place.visitMinutes, latestStart);
+    let openStart = earliestOpenStart(place, day.date, start, place.visitMinutes, latestStart);
     if (openStart === null) {
       if (!locked) {
         warnings.push({ code: "closed_on_date", severity: "warning", params: { place: place.id }, dayIndex: day.dayIndex, placeId: place.id });
+        return false;
       }
-      return false;
+      // A pinned visit (locked by the traveller, or kept while re-timing with real travel times) is never
+      // dropped: it stays where the timeline puts it, and the day says it runs late.
+      openStart = start;
+      warnings.push({ code: "day_too_full", severity: "warning", params: { late: place.id }, dayIndex: day.dayIndex, placeId: place.id });
     }
     if (openStart > start + 75 && allowDefer && !locked) {
       deferred.push(cand);
