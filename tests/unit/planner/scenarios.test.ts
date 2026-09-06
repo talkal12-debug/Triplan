@@ -250,3 +250,17 @@ describe("determinism and variety", () => {
     }
   });
 });
+
+describe("late arrival", () => {
+  const data = loadMany(["JP"]);
+  it("a flight landing in the evening gives an arrival day with just the check-in, no error and no 'too light' warning", () => {
+    for (const arrivalTime of ["18:00", "21:00"]) {
+      const prefs = prefsFor({ destinations: [{ countryCode: "JP", cities: ["tokyo"] }], dates: { start: "2026-10-17", days: 4, arrivalTime, departureTime: null } });
+      const { itinerary } = generateItinerary({ prefs, places: data.places, cities: data.cities });
+      const day0 = itinerary.days[0];
+      expect(day0.activities.map((a) => a.kind)).toEqual(["hotel_checkin"]);
+      expect(day0.warnings.some((w) => w.code === "day_too_light")).toBe(false);
+      expect(itinerary.days[1].activities.filter((a) => a.kind === "visit").length).toBeGreaterThan(0);
+    }
+  });
+});

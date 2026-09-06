@@ -35,7 +35,8 @@ export function validateItinerary(it: Itinerary, places: Map<string, PlannerPlac
       if (a.startMin < lastEnd) {
         errors.push({ code: "day_too_full", severity: "error", params: { overlap: a.id }, dayIndex: day.index });
       }
-      if (a.endMin > budget.dayEnd + 30) {
+      // Only visits must end within the day: a late flight puts the hotel check-in after it, and that is fine.
+      if (a.kind === "visit" && a.endMin > budget.dayEnd + 30) {
         errors.push({ code: "day_too_full", severity: "error", params: { late: a.id }, dayIndex: day.index });
       }
       lastEnd = a.endMin;
