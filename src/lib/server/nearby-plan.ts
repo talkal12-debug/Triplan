@@ -8,6 +8,7 @@ import { getCountry, countryName } from "@/lib/data/countries";
 import { affiliateIdsFromEnv, eveningLinks } from "@/lib/providers/affiliate";
 import { nearbyVenues, type NearbyRequest } from "@/lib/providers/nearby";
 import { hasLocalVenues, localVenues } from "@/lib/data/venues";
+import { nominatimVenues } from "@/lib/providers/nominatim-pois";
 import { getEvents } from "@/lib/providers/events/ticketmaster";
 import { tryProvider } from "@/lib/providers/http";
 import { styleKinds, type EventItem, type Evening, type Venue } from "@/lib/nearby/schema";
@@ -67,7 +68,13 @@ export async function buildNearby(prefs: TripPreferences, itinerary: Itinerary, 
   const local = requests.filter((r) => hasLocalVenues(r.countryCode));
   const remote = requests.filter((r) => !hasLocalVenues(r.countryCode));
   const venues: Record<string, Venue[]> = { ...localVenues(local, 6) };
-  if (remote.length) Object.assign(venues, await tryProvider("overpass-nearby", () => nearbyVenues(remote, 6), {} as Record<string, Venue[]>, notes));
+  if (remote.length) {
+    const fromOverpass = await tryProvider("overpass-nearby", () => nearbyVenues(remote, 6), null as Record<string, Venue[]> | null, notes);
+    // Overpass unreachable: Nominatim, a few paced queries (meals first, then the evenings).
+    const ordered = [...remote.filter((r) => r.group === "food"), ...remote.filter((r) => r.group !== "food")];
+    Object.assign(venues, fromOverpass ?? (await tryProvider("nominatim-nearby", () => nominatimVenues(ordered, 6, 10), {} as Record<string, Venue[]>, notes)));
+    if (!fromOverpass) notes.push("nearby: Nominatim fallback (Overpass unreachable)");
+  }
   if (local.length) notes.push("nearby: shipped OpenStreetMap venues (data/venues)");
   const allowFastFood = prefs.budget.level === "budget";
   const food = (list: Venue[] | undefined) => (list ?? []).filter((v) => allowFastFood || v.kind !== "fast_food");

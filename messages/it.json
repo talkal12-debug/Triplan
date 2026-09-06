@@ -480,7 +480,8 @@
       "badge": "sconto 65+",
       "verify": "Da confermare in biglietteria con documento. Dai siti ufficiali; i prezzi cambiano.",
       "source": "(fonte)"
-    }
+    },
+    "editNoChange": "Niente da cambiare: nessun luogo libero è adatto a questa giornata (a distanza a piedi, aperto nella data e non già in programma). Provate un altro giorno o aggiungete un luogo dalla lista."
   },
   "gallery": {
     "title": "Piani pronti",

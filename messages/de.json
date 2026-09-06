@@ -480,7 +480,8 @@
       "badge": "Ermäßigung 65+",
       "verify": "An der Kasse mit Ausweis bestätigen. Von den offiziellen Seiten; Preise ändern sich.",
       "source": "(Quelle)"
-    }
+    },
+    "editNoChange": "Nichts zu ändern: kein freier Ort passt zu diesem Tag (in Gehweite, an dem Datum geöffnet und noch nicht geplant). Versuchen Sie einen anderen Tag oder fügen Sie einen Ort aus der Liste hinzu."
   },
   "gallery": {
     "title": "Fertige Pläne",

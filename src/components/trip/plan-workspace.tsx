@@ -72,6 +72,11 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
       try {
         const result = await applyEdit(trip, op);
         if (op.type === "alternatives") return result.alternatives;
+        if (JSON.stringify(result.trip.plan?.itinerary.days) === JSON.stringify(plan.itinerary.days)) {
+          // Nothing fitted (or nothing left to drop): tell the traveller instead of looking stuck.
+          setError(t("editNoChange"));
+          return [];
+        }
         setUndo(plan);
         onTripChange(result.trip);
         setSelectedId(null);
