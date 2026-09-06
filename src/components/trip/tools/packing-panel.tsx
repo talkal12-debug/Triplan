@@ -34,7 +34,7 @@ export function PackingPanel({ trip, ctx, onTripChange }: Props) {
         const list = items.filter((i) => i.group === g);
         if (list.length === 0) return null;
         return (
-          <fieldset key={g} className="rounded-2xl border bg-card p-3">
+          <fieldset key={g} className="rounded-md border bg-card p-3">
             <legend className="px-1 text-sm font-semibold">{t(`groups.${g}`)}</legend>
             <ul className="space-y-1">
               {list.map((i) => (

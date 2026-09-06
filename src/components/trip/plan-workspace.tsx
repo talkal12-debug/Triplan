@@ -136,7 +136,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
     <div className="space-y-4">
       {plan.extras?.seasonal && plan.extras.seasonal.length > 0 && <SeasonalHighlights items={plan.extras.seasonal} />}
       <EventsHighlights plan={plan} />
-      <div className="rounded-2xl border bg-card p-4 text-sm">
+      <div className="rounded-md border bg-card p-4 text-sm">
         <p className="font-medium">
           {t("tripStats", { distance: distance(plan.itinerary.stats.totalWalkKm), places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}
         </p>
@@ -167,7 +167,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
             ) : null;
           })()}
           {plan.extras?.seniors && plan.extras.seniors.countries.length > 0 && (
-            <div className="rounded-xl bg-muted/60 p-3 text-xs" data-testid="seniors">
+            <div className="rounded-md bg-muted/60 p-3 text-xs" data-testid="seniors">
               <p className="font-medium text-foreground">{t("seniors.title")}</p>
               {plan.extras.seniors.countries.map((c) => (
                 <p key={c.countryCode} className="mt-1 text-muted-foreground">
@@ -231,7 +231,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
       </div>
 
       {error && (
-        <p role="alert" className="flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-sm">
+        <p role="alert" className="flex items-start gap-2 rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden />
           {error}
         </p>

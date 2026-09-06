@@ -57,7 +57,7 @@ export function BudgetPanel({ trip }: { trip: GuestTrip }) {
 
 function Stat({ label, value, big }: { label: string; value: string; big?: boolean }) {
   return (
-    <div className="rounded-2xl border bg-card p-4">
+    <div className="rounded-md border bg-card p-4">
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className={big ? "mt-1 text-2xl font-bold tabular-nums" : "mt-1 text-lg font-semibold tabular-nums"}>{value}</p>
     </div>

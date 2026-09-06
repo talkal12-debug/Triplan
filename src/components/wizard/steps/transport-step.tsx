@@ -42,14 +42,14 @@ export function TransportStep({ prefs, set, ctx, errors }: StepProps) {
           <div
             key={mode}
             className={cn(
-              "rounded-2xl border-2 bg-card p-4 transition-colors",
+              "rounded-md border-2 bg-card p-4 transition-colors",
               on ? "border-primary/60" : "border-border",
             )}
           >
             <div className="flex items-center gap-3">
               <span
                 className={cn(
-                  "grid size-10 shrink-0 place-items-center rounded-xl",
+                  "grid size-10 shrink-0 place-items-center rounded-md",
                   on ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
                 )}
               >
@@ -79,7 +79,7 @@ export function TransportStep({ prefs, set, ctx, errors }: StepProps) {
               <div
                 role="radiogroup"
                 aria-label={t("weightLabel", { mode: t(`modes.${mode}`) })}
-                className="mt-3 grid grid-cols-3 gap-1 rounded-xl bg-muted p-1"
+                className="mt-3 grid grid-cols-3 gap-1 rounded-md bg-muted p-1"
               >
                 {weights.map((w) => (
                   <button
@@ -109,7 +109,7 @@ export function TransportStep({ prefs, set, ctx, errors }: StepProps) {
       )}
 
       {transport.car > 0 && (
-        <fieldset className="space-y-3 rounded-2xl border border-dashed p-4">
+        <fieldset className="space-y-3 rounded-md border border-dashed p-4">
           <legend className="px-1 font-medium">{t("carTitle")}</legend>
           {destinationCountries.map((c) => (
             <p key={c.code} className="text-sm text-muted-foreground">

@@ -17,7 +17,7 @@ export default function OfflinePage() {
       <p className="mt-6 text-sm text-muted-foreground" dir="ltr" lang="en">
         You are offline. Saved plans are available under &quot;My trips&quot;.
       </p>
-      <Link href="/he/trips" className="mt-6 inline-block rounded-xl bg-primary px-5 py-3 font-medium text-primary-foreground">
+      <Link href="/he/trips" className="mt-6 inline-block rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground">
         הטיולים שלי · My trips
       </Link>
     </main>

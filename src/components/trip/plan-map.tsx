@@ -14,7 +14,7 @@ function MapLoading() {
   const t = useTranslations("plan");
   return (
     <div className="relative h-[60vh] min-h-80 w-full" aria-busy>
-      <Skeleton className="h-full w-full rounded-2xl" />
+      <Skeleton className="h-full w-full rounded-md" />
       <p className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">{t("map.loading")}</p>
     </div>
   );

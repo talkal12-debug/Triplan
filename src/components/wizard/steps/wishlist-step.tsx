@@ -101,7 +101,7 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
           {t("hint")}
         </p>
         {(suggestions.length > 0 || searching) && (
-          <ul className="divide-y rounded-2xl border bg-card" aria-label={t("suggestions")}>
+          <ul className="divide-y rounded-md border bg-card" aria-label={t("suggestions")}>
             {searching && suggestions.length === 0 && <li className="px-3 py-2 text-sm text-muted-foreground">{t("searching")}</li>}
             {suggestions.map((s) => (
               <li key={`${s.placeId ?? "free"}:${s.name}`}>
@@ -122,11 +122,11 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
       </div>
 
       {list.length === 0 ? (
-        <p className="rounded-2xl border border-dashed p-4 text-center text-sm text-muted-foreground">{t("empty")}</p>
+        <p className="rounded-md border border-dashed p-4 text-center text-sm text-muted-foreground">{t("empty")}</p>
       ) : (
         <ol className="space-y-2" aria-label={t("listLabel")}>
           {list.map((m, i) => (
-            <li key={`${m.placeId ?? "free"}:${m.name}`} className="flex items-center gap-2 rounded-2xl border bg-card px-3 py-2">
+            <li key={`${m.placeId ?? "free"}:${m.name}`} className="flex items-center gap-2 rounded-md border bg-card px-3 py-2">
               <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">{i + 1}</span>
               <span className="flex-1 text-sm">
                 {m.name}

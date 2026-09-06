@@ -39,7 +39,7 @@ export default async function GalleryPage({ params }: Props) {
         ) : (
           <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {templates.map((tpl) => (
-              <li key={tpl.id} className="flex flex-col gap-3 rounded-2xl border bg-card p-5">
+              <li key={tpl.id} className="flex flex-col gap-3 rounded-md border bg-card p-5">
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-1 rtl:space-x-reverse">
                     {tpl.countries.map((code) => (

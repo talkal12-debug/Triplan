@@ -102,7 +102,7 @@ export function InterestsStep({ prefs, set, errors }: StepProps) {
             {rest.map((i, k) => {
               const index = RANKED + k;
               return (
-                <li key={i} className="flex items-center gap-2 rounded-xl border bg-card px-3 py-2">
+                <li key={i} className="flex items-center gap-2 rounded-md border bg-card px-3 py-2">
                   <span className="flex-1">{t(`options.${i}`)}</span>
                   <button
                     type="button"
@@ -154,7 +154,7 @@ function RankedItem({
       ref={setNodeRef}
       style={style}
       className={cn(
-        "flex items-center gap-2 rounded-xl border-2 bg-card px-2 py-2",
+        "flex items-center gap-2 rounded-md border-2 bg-card px-2 py-2",
         isDragging ? "z-10 border-primary shadow-lg" : "border-primary/40",
       )}
     >

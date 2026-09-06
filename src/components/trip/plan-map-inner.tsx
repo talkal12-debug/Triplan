@@ -194,7 +194,7 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute
 
   return (
     <div className="relative">
-      <div ref={containerRef} className="h-[60vh] min-h-80 w-full overflow-hidden rounded-2xl border" role="region" aria-label={t("map.showing", { n: dayIndex + 1 })} />
+      <div ref={containerRef} className="h-[60vh] min-h-80 w-full overflow-hidden rounded-md border" role="region" aria-label={t("map.showing", { n: dayIndex + 1 })} />
       <p className="mt-2 text-xs text-muted-foreground">{realRoute ? t("map.legendReal") : t("map.legend")}</p>
     </div>
   );

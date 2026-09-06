@@ -38,7 +38,7 @@ export function NowView({ id }: Props) {
     return (
       <div className="mx-auto w-full max-w-md space-y-3 px-4 py-10" aria-busy>
         <Skeleton className="h-10 w-2/3" />
-        <Skeleton className="h-40 w-full rounded-2xl" />
+        <Skeleton className="h-40 w-full rounded-md" />
       </div>
     );
   }
@@ -118,7 +118,7 @@ function NowContent({
             {format.dateTime(localDateOf(day.date), { weekday: "long", day: "numeric", month: "long" })} · {city(day.citySlug)}
           </p>
 
-          {finished && <p className="rounded-2xl border border-dashed p-6 text-center">{t("now.done")}</p>}
+          {finished && <p className="rounded-md border border-dashed p-6 text-center">{t("now.done")}</p>}
 
           {current && <BigCard label={t("now.current")} activity={current} name={name(current.placeId) || t(`activity.${current.kind}` as never)} sub={t("now.endsAt", { time: hhmm(current.endMin) })} place={place(current)} primary reasonText={reasonText} />}
 
@@ -184,7 +184,7 @@ function BigCard({
   const summary = placeSummary(place, locale);
   const t = useTranslations("plan");
   return (
-    <section className={cn("rounded-3xl border-2 p-5", primary ? "border-primary bg-primary/5" : "border-border bg-card")}>
+    <section className={cn("rounded-lg border-2 p-5", primary ? "border-primary bg-primary/5" : "border-border bg-card")}>
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</p>
       <p className="mt-1 text-2xl font-bold leading-tight">{name}</p>
       <p className="mt-1 text-sm text-muted-foreground" dir="auto">

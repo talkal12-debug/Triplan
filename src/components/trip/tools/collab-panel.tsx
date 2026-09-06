@@ -55,7 +55,7 @@ export function CollabPanel({ trip }: Props) {
   if (status === "loading") return null;
   if (!signedIn) {
     return (
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border bg-card p-4 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border bg-card p-4 text-sm">
         <span>{t("needAccount")}</span>
         <Button asChild size="sm" variant="outline">
           <Link href={{ pathname: "/signin", query: { callbackUrl: `/${locale}/trip/${trip.id}` } }}>
@@ -98,7 +98,7 @@ export function CollabPanel({ trip }: Props) {
         <h3 className="font-semibold">{t("members")}</h3>
         <ul className="mt-2 space-y-1">
           {state.members.map((m) => (
-            <li key={m.userId} className="flex items-center gap-3 rounded-xl border bg-card px-3 py-2 text-sm">
+            <li key={m.userId} className="flex items-center gap-3 rounded-md border bg-card px-3 py-2 text-sm">
               <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
                 {memberLabel(m, "?").charAt(0).toUpperCase()}
               </span>
@@ -165,7 +165,7 @@ export function CollabPanel({ trip }: Props) {
         ) : (
           <ul className="mt-2 space-y-2">
             {state.comments.map((c) => (
-              <li key={c.id} className="rounded-xl border bg-card px-3 py-2 text-sm">
+              <li key={c.id} className="rounded-md border bg-card px-3 py-2 text-sm">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="font-medium text-foreground" dir="auto">
                     {memberLabel(byId.get(c.userId), t("formerMember"))}

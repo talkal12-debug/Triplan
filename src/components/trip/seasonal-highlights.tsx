@@ -23,7 +23,7 @@ export function SeasonalHighlights({ items, className, compact = false }: { item
     return i.from === i.to ? f : `${f} – ${to}`;
   };
   return (
-    <section className={cn("rounded-2xl border bg-card p-4", className)} data-testid="seasonal" aria-label={t("title")}>
+    <section className={cn("rounded-md border bg-card p-4", className)} data-testid="seasonal" aria-label={t("title")}>
       <h3 className="font-medium">{t("title")}</h3>
       <ul className={cn("mt-2 space-y-2", compact && "space-y-1")}>
         {items.map((i) => {

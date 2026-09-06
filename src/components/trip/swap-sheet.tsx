@@ -30,15 +30,15 @@ export function SwapSheet({ open, onOpenChange, currentName, alternatives, onPic
         <div className="space-y-3 px-4 pb-6">
           {alternatives === null ? (
             <>
-              <Skeleton className="h-20 w-full rounded-2xl" />
-              <Skeleton className="h-20 w-full rounded-2xl" />
-              <Skeleton className="h-20 w-full rounded-2xl" />
+              <Skeleton className="h-20 w-full rounded-md" />
+              <Skeleton className="h-20 w-full rounded-md" />
+              <Skeleton className="h-20 w-full rounded-md" />
             </>
           ) : alternatives.length === 0 ? (
             <p className="text-sm text-muted-foreground">{t("swap.none")}</p>
           ) : (
             alternatives.map((p) => (
-              <div key={p.id} className="flex items-center gap-3 rounded-2xl border bg-card p-3">
+              <div key={p.id} className="flex items-center gap-3 rounded-md border bg-card p-3">
                 <div className="min-w-0 flex-1">
                   <p className="font-medium">{placeLabel(p, locale)}</p>
                   <p className="mt-1 flex flex-wrap gap-1 text-xs text-muted-foreground">

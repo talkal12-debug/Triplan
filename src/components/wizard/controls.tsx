@@ -22,15 +22,15 @@ export function OptionCard({
   return (
     <label
       className={cn(
-        "flex cursor-pointer items-start gap-3 rounded-2xl border-2 bg-card p-4 transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50",
-        selected ? "border-primary bg-primary/5" : "border-border hover:border-primary/40",
+        "flex cursor-pointer items-start gap-3 rounded-md border bg-card p-4 transition-colors has-focus-visible:ring-3 has-focus-visible:ring-ring/50",
+        selected ? "border-primary ring-1 ring-primary" : "border-foreground/15 hover:border-foreground/40",
       )}
     >
       <input type="radio" name={name} checked={selected} onChange={onSelect} className="sr-only" />
       {icon && (
         <span
           className={cn(
-            "grid size-10 shrink-0 place-items-center rounded-xl",
+            "grid size-10 shrink-0 place-items-center rounded-md",
             selected ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
           )}
         >
@@ -79,10 +79,10 @@ export function Chip({
       disabled={disabled}
       onClick={onToggle}
       className={cn(
-        "inline-flex min-h-11 items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-50",
+        "inline-flex min-h-11 items-center gap-2 rounded-sm border px-4 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-50",
         selected
           ? "border-primary bg-primary text-primary-foreground"
-          : "border-border bg-card hover:border-primary/40",
+          : "border-foreground/20 bg-card hover:border-foreground/50",
       )}
     >
       {icon}
@@ -112,7 +112,7 @@ export function Stepper({
   decreaseLabel: string;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl border bg-card p-4">
+    <div className="flex items-center justify-between gap-4 rounded-md border bg-card p-4">
       <div>
         <div className="font-medium">{label}</div>
         {hint && <div className="text-sm text-muted-foreground">{hint}</div>}
@@ -157,7 +157,7 @@ export function SwitchRow({
   hint?: string;
 }) {
   return (
-    <label className="flex min-h-14 cursor-pointer items-center justify-between gap-4 rounded-2xl border bg-card px-4 py-3">
+    <label className="flex min-h-14 cursor-pointer items-center justify-between gap-4 rounded-md border bg-card px-4 py-3">
       <span>
         <span className="block font-medium">{label}</span>
         {hint && <span className="block text-sm text-muted-foreground">{hint}</span>}
@@ -199,4 +199,4 @@ export function FieldLabel({ children, htmlFor, hint }: { children: React.ReactN
 }
 
 export const inputClass =
-  "h-12 w-full rounded-xl border border-input bg-card px-4 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+  "h-12 w-full rounded-md border border-input bg-card px-4 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";

@@ -29,7 +29,7 @@ export function BudgetStep({ prefs, set }: StepProps) {
           );
         })}
       </div>
-      <div className="grid gap-3 rounded-2xl border bg-card p-4 sm:grid-cols-[1fr_auto]">
+      <div className="grid gap-3 rounded-md border bg-card p-4 sm:grid-cols-[1fr_auto]">
         <div>
           <FieldLabel htmlFor="daily-cap" hint={t("perPerson")}>
             {t("dailyCap")}

@@ -9,7 +9,7 @@ export async function DemoBanner() {
   return (
     <div
       role="status"
-      className="flex items-center justify-center gap-2 bg-sunset/15 px-4 py-1.5 text-center text-xs text-foreground"
+      className="flex items-center justify-center gap-2 border-b border-foreground/10 bg-muted px-4 py-1.5 text-center text-[11px] tracking-wide text-muted-foreground"
     >
       <FlaskConical className="size-3.5 shrink-0" aria-hidden />
       <span>{t("demoBanner")}</span>

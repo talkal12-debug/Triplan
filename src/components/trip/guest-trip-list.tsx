@@ -47,8 +47,8 @@ export function GuestTripList({ countries }: Props) {
 
       {trips === undefined ? (
         <div className="mt-6 space-y-3" aria-busy>
-          <Skeleton className="h-20 w-full rounded-2xl" />
-          <Skeleton className="h-20 w-full rounded-2xl" />
+          <Skeleton className="h-20 w-full rounded-md" />
+          <Skeleton className="h-20 w-full rounded-md" />
         </div>
       ) : trips.length === 0 ? (
         <p className="mt-10 text-center text-muted-foreground">{t("noTrips")}</p>
@@ -57,7 +57,7 @@ export function GuestTripList({ countries }: Props) {
           {trips.map((trip) => {
             const start = new Date(`${trip.preferences.dates.start}T00:00:00`);
             return (
-              <li key={trip.id} className="flex items-center gap-3 rounded-2xl border bg-card p-4">
+              <li key={trip.id} className="flex items-center gap-3 rounded-md border bg-card p-4">
                 <div className="flex -space-x-1 rtl:space-x-reverse">
                   {trip.preferences.destinations.map((d) => (
                     <CountryFlag key={d.countryCode} code={d.countryCode} size={24} />

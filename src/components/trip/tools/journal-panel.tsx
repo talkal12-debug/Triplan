@@ -55,7 +55,7 @@ function JournalEntries({ trip, onTripChange }: { trip: GuestTrip & { plan: NonN
           const entry = journal.days[String(day.index)] ?? { text: "", rating: null };
           const id = `journal-day-${day.index}`;
           return (
-            <li key={day.index} className="rounded-2xl border bg-card p-4">
+            <li key={day.index} className="rounded-md border bg-card p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <label htmlFor={id} className="font-medium">
                   {tp("dayTitle", { n: day.index + 1 })}

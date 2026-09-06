@@ -51,7 +51,7 @@ export function PartyStep({ prefs, set, errors }: StepProps) {
         decreaseLabel={t("decrease", { what: t("children") })}
       />
       {party.childrenAges.length > 0 && (
-        <div className="grid gap-3 rounded-2xl border bg-card p-4 sm:grid-cols-2">
+        <div className="grid gap-3 rounded-md border bg-card p-4 sm:grid-cols-2">
           {party.childrenAges.map((age, i) => (
             <div key={i}>
               <FieldLabel htmlFor={`child-age-${i}`}>{t("childAge", { n: i + 1 })}</FieldLabel>

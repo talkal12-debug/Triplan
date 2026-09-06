@@ -35,7 +35,7 @@ export function AffiliateLinks({ links, label, className, size = "sm", about = f
             target="_blank"
             rel="noopener noreferrer sponsored"
             className={cn(
-              "inline-flex items-center gap-1 rounded-full border bg-card px-2.5 py-1 font-medium transition-colors hover:border-primary/40 hover:bg-muted",
+              "inline-flex items-center gap-1 rounded-sm border bg-card px-2.5 py-1 font-medium transition-colors hover:border-primary/40 hover:bg-muted",
               size === "xs" ? "text-[11px]" : "text-xs",
             )}
             title={`${t(`about.${l.provider}`)} · ${l.affiliate ? `${tc("affiliate")} · ` : ""}${t("opens")}`}
@@ -62,7 +62,7 @@ export function AffiliateAbout({ links, className }: { links: AffiliateLink[]; c
   if (providers.length === 0) return null;
   return (
     <details className={cn("text-xs text-muted-foreground", className)} onClick={(e) => e.stopPropagation()}>
-      <summary className="inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-full border border-dashed bg-card px-3 py-1 text-xs font-medium text-foreground hover:bg-muted [&::-webkit-details-marker]:hidden">
+      <summary className="inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-sm border border-dashed bg-card px-3 py-1 text-xs font-medium text-foreground hover:bg-muted [&::-webkit-details-marker]:hidden">
         <Info className="size-3.5 text-primary" aria-hidden />
         {t("aboutTitle")}
       </summary>
