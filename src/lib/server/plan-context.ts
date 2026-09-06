@@ -119,18 +119,21 @@ export async function enrichPlan(
 ): Promise<{ itinerary: Itinerary; extras: PlanExtras }> {
   const notes = [...ctx.notes];
   const routing = getRouting();
-  const refined = await refineTravel(itinerary, { prefs, places: ctx.places, cities: ctx.cities }, (points, mode) => routing.matrix(points, mode), dayIndexes);
-  if (refined.refinedDays.length === 0 && routing.name !== "estimate") notes.push("routing: no day could be refined, times are estimates");
-
   const currencyProvider = getCurrency();
   const destCurrency = getCountry(prefs.destinations[0].countryCode)?.currencies[0]?.code ?? "EUR";
-  const rates =
-    destCurrency === prefs.budget.currency
-      ? null
-      : await tryProvider("currency", () => currencyProvider.rates(destCurrency, [prefs.budget.currency]), null, notes);
+  const started = Date.now();
+  // Independent network work runs side by side: the plan request has a fixed time budget on
+  // serverless hosting, and each of these can take several seconds on public servers.
+  const [refined, rates, nearby] = await Promise.all([
+    refineTravel(itinerary, { prefs, places: ctx.places, cities: ctx.cities }, (points, mode) => routing.matrix(points, mode), dayIndexes),
+    destCurrency === prefs.budget.currency ? Promise.resolve(null) : tryProvider("currency", () => currencyProvider.rates(destCurrency, [prefs.budget.currency]), null, notes),
+    // Venues depend on which places are visited, not on the refined times.
+    buildNearby(prefs, itinerary, ctx, locale, notes),
+  ]);
+  if (refined.refinedDays.length === 0 && routing.name !== "estimate") notes.push("routing: no day could be refined, times are estimates");
+  notes.push(`timing: enrich ${((Date.now() - started) / 1000).toFixed(1)}s`);
 
   const links = buildPlanLinks(prefs, refined.itinerary, ctx, locale);
-  const nearby = await buildNearby(prefs, refined.itinerary, ctx, locale, notes);
 
   return {
     itinerary: refined.itinerary,

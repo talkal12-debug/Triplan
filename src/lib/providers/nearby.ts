@@ -86,24 +86,22 @@ export async function nearbyVenues(requests: NearbyRequest[], limit = 6): Promis
   });
   const query = `[out:json][timeout:30];\n(\n${parts.join("\n")}\n);\nout center tags 600;`;
   const cacheKey = `nearby:${NEARBY_VERSION}:${requests.map((r) => `${r.group}${r.lat.toFixed(3)},${r.lng.toFixed(3)},${r.radiusM}`).join("|")}`;
-  let data: z.infer<typeof overpassSchema> | null = null;
-  let lastError: unknown = null;
-  for (const url of [...new Set(OVERPASS_URLS)]) {
-    try {
-      data = await fetchJson(url, {
+  // Both instances at once, first good answer wins: the public servers are often slow or
+  // overloaded, and a plan request has a fixed time budget on serverless hosting.
+  const data = await Promise.any(
+    [...new Set(OVERPASS_URLS)].map((url) =>
+      fetchJson(url, {
         provider: "overpass-nearby",
         schema: overpassSchema,
-        timeoutMs: 40_000,
-        cacheKey,
+        timeoutMs: 15_000,
+        cacheKey: `${cacheKey}:${url}`,
         ttlMs: 12 * 60 * 60 * 1000,
         init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
-      });
-      break;
-    } catch (err) {
-      lastError = err;
-    }
-  }
-  if (!data) throw lastError instanceof Error ? lastError : new Error("overpass-nearby: all instances failed");
+      }),
+    ),
+  ).catch((err: unknown) => {
+    throw err instanceof AggregateError && err.errors[0] instanceof Error ? err.errors[0] : new Error("overpass-nearby: all instances failed");
+  });
 
   const scored = new Map<string, { venue: Venue; score: number }[]>();
   for (const el of data.elements) {
