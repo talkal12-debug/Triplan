@@ -119,15 +119,18 @@ async function summariesFromEntity(entity: Entity, locales: string[]): Promise<R
  * Wikidata id and the locales still missing for that place. Sequential and
  * paced, so a plan with 40 places takes a few seconds and never a 429.
  */
-export async function fetchSummariesBatch(items: { id: string; wikidata: string; locales: string[] }[]): Promise<Map<string, Record<string, Summary>>> {
+export async function fetchSummariesBatch(items: { id: string; wikidata: string; locales: string[] }[], deadlineMs?: number): Promise<Map<string, Record<string, Summary>>> {
   const out = new Map<string, Record<string, Summary>>();
   if (items.length === 0) return out;
+  const deadline = deadlineMs ? Date.now() + deadlineMs : Infinity;
   const allLocales = [...new Set(items.flatMap((i) => i.locales))];
   const entities = await fetchEntities(
     items.map((i) => i.wikidata),
     allLocales,
   );
   for (const item of items) {
+    // Out of time: the rest is fetched on demand later (the caller never waits forever).
+    if (Date.now() > deadline) break;
     const entity = entities.get(item.wikidata);
     if (!entity) continue;
     const got = await summariesFromEntity(entity, item.locales);

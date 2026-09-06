@@ -19,7 +19,7 @@ import { withSummaries } from "@/lib/providers/summaries";
 import { isLocale } from "@/lib/i18n/locales";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 const requestSchema = z.object({
   preferences: tripPreferencesSchema,

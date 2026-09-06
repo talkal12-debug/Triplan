@@ -29,14 +29,14 @@ export async function translateMissing(byId: Map<string, Record<string, Summary>
  * remember them in the Place table when the place is stored there.
  * Never throws: a place without a source simply stays without a summary.
  */
-export async function withSummaries(places: PlaceSeed[], locales: string[]): Promise<PlaceSeed[]> {
+export async function withSummaries(places: PlaceSeed[], locales: string[], opts: { deadlineMs?: number } = {}): Promise<PlaceSeed[]> {
   const items = places
     .filter((p) => p.wikidata && locales.some((l) => !p.summary?.[l]))
     .map((p) => ({ id: p.id, wikidata: p.wikidata!, locales: locales.filter((l) => !p.summary?.[l]) }));
   if (items.length === 0) return places;
   let results: Awaited<ReturnType<typeof fetchSummariesBatch>>;
   try {
-    results = await fetchSummariesBatch(items);
+    results = await fetchSummariesBatch(items, opts.deadlineMs);
   } catch {
     return places;
   }

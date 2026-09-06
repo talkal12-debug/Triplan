@@ -7,7 +7,7 @@ import { withSummaries } from "@/lib/providers/summaries";
 import { resolveMustVisit } from "@/lib/server/must-visit";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 const requestSchema = z.object({ preferences: tripPreferencesSchema, locale: z.string().optional() });
 
@@ -23,7 +23,10 @@ export async function POST(req: Request) {
   }
   const locale = parsed.data.locale && isLocale(parsed.data.locale) ? parsed.data.locale : "he";
 
+  const t0 = Date.now();
+  const lap = (label: string) => `${label} ${((Date.now() - t0) / 1000).toFixed(1)}s`;
   const ctx = await loadPlanContext(parsed.data.preferences);
+  ctx.notes.push(`timing: ${lap("context")}`);
   if (ctx.cities.length === 0) {
     return NextResponse.json({ error: "no_cities", notes: ctx.notes }, { status: 422 });
   }
@@ -35,7 +38,9 @@ export async function POST(req: Request) {
   const prefs = wish.prefs;
   ctx.places.push(...wish.added);
 
+  ctx.notes.push(`timing: ${lap("wishlist")}`);
   const signals = await loadSignals(prefs, ctx.cities, ctx.notes);
+  ctx.notes.push(`timing: ${lap("signals")}`);
   const weatherForEngine = Object.fromEntries(Object.entries(signals.weather).map(([d, w]) => [d, { precipProbability: w.precipProbability, tempMax: w.tempMax }]));
 
   try {
@@ -48,13 +53,19 @@ export async function POST(req: Request) {
     });
     for (const name of wish.unresolved) itinerary.warnings.push({ code: "must_visit_unresolved", severity: "warning", params: { name } });
     const enriched = await enrichPlan(prefs, itinerary, ctx, signals, locale);
+    enriched.extras.notes.push(`timing: ${lap("enriched")}`);
     const usedIds = new Set(enriched.itinerary.days.flatMap((d) => [...d.activities.map((a) => a.placeId), ...d.rainPlan]));
     const unusedTop = diagnostics.unused.slice(0, 40);
-    // One-paragraph descriptions (Wikipedia / Wikidata) for the places that made it into the plan.
-    const keep = await withSummaries(
-      ctx.places.filter((p) => usedIds.has(p.id) || unusedTop.includes(p.id)),
+    // One-paragraph descriptions (Wikipedia / Wikidata) for the places that made it into the plan,
+    // within a time budget; whatever is missing (and the alternatives) is fetched when the trip is opened.
+    const visited = await withSummaries(
+      ctx.places.filter((p) => usedIds.has(p.id)),
       locale === "en" ? ["en"] : [locale, "en"],
+      { deadlineMs: 12_000 },
     );
+    const keep = [...visited, ...ctx.places.filter((p) => !usedIds.has(p.id) && unusedTop.includes(p.id))];
+    enriched.extras.notes.push(`timing: ${lap("summaries")}`);
+    console.log(`[plan] ${enriched.extras.notes.filter((n) => n.startsWith("timing")).join(" | ")}`);
     return NextResponse.json({
       itinerary: enriched.itinerary,
       places: Object.fromEntries(keep.map((p) => [p.id, p])),

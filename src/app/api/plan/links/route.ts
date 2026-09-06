@@ -6,6 +6,7 @@ import { loadPlanContext, buildPlanLinks, buildHighlights } from "@/lib/server/p
 import { buildNearby } from "@/lib/server/nearby-plan";
 
 export const runtime = "nodejs";
+export const maxDuration = 120;
 
 const requestSchema = z.object({ preferences: tripPreferencesSchema, itinerary: itinerarySchema, locale: z.string().optional() });
 
