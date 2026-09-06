@@ -72,7 +72,8 @@ export async function refineTravel(
   const refinedDays: number[] = [];
   for (const job of jobs) {
     if (!fetched.has(job.dayIndex)) continue;
-    out = reorderDay(out, job.dayIndex, job.visitIds, { ...ctx, travel: lookup });
+    // Real travel times re-time the day; they never take a visit away (an edit the traveller just made would vanish).
+    out = reorderDay(out, job.dayIndex, job.visitIds, { ...ctx, travel: lookup }, { keepAll: true });
     refinedDays.push(job.dayIndex);
   }
   return { itinerary: out, refinedDays };
