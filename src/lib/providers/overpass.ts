@@ -19,13 +19,14 @@ export const OVERPASS_URLS = [
 export async function overpassQuery<T>(query: string, opts: { provider: string; schema: ZodType<T>; cacheKey: string; ttlMs: number; timeoutMs: number }): Promise<T> {
   return Promise.any(
     [...new Set(OVERPASS_URLS)].map((url) =>
-      fetchJson(url, {
+      // GET with the query in the URL: Overpass accepts both, and a plain GET travels through
+      // hosting proxies that were seen to stall the form POST.
+      fetchJson(`${url}?data=${encodeURIComponent(query)}`, {
         provider: opts.provider,
         schema: opts.schema,
         timeoutMs: opts.timeoutMs,
         cacheKey: `${opts.cacheKey}:${url}`,
         ttlMs: opts.ttlMs,
-        init: { method: "POST", body: `data=${encodeURIComponent(query)}`, headers: { "Content-Type": "application/x-www-form-urlencoded" } },
       }),
     ),
   ).catch((err: unknown) => {
