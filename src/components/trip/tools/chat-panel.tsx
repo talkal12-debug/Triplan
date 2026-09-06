@@ -98,7 +98,7 @@ export function ChatPanel({ trip, onTripChange, readOnly }: Props) {
   if (!status) return null;
   if (!status.enabled) {
     return (
-      <div className="rounded-2xl border bg-card p-4 text-sm">
+      <div className="rounded-md border bg-card p-4 text-sm">
         <p className="flex items-center gap-2 font-medium">
           <KeyRound className="size-4" aria-hidden />
           {t("needsKey")}
@@ -113,10 +113,10 @@ export function ChatPanel({ trip, onTripChange, readOnly }: Props) {
   return (
     <div className="space-y-3">
       <p className="text-sm text-muted-foreground">{t("intro", { model: status.model ?? "" })}</p>
-      <div className="max-h-96 space-y-2 overflow-y-auto rounded-2xl border bg-card p-3" aria-live="polite">
+      <div className="max-h-96 space-y-2 overflow-y-auto rounded-md border bg-card p-3" aria-live="polite">
         {messages.length === 0 && <p className="text-sm text-muted-foreground">{t("examples")}</p>}
         {messages.map((m, i) => (
-          <div key={i} className={cn("max-w-[90%] rounded-xl px-3 py-2 text-sm", m.role === "user" ? "ms-auto bg-primary text-primary-foreground" : "bg-muted")} dir="auto">
+          <div key={i} className={cn("max-w-[90%] rounded-md px-3 py-2 text-sm", m.role === "user" ? "ms-auto bg-primary text-primary-foreground" : "bg-muted")} dir="auto">
             {m.role === "assistant" && <Bot className="mb-1 size-4 text-muted-foreground" aria-hidden />}
             <p className="whitespace-pre-wrap">{m.content}</p>
             {m.ops && m.ops.length > 0 && (

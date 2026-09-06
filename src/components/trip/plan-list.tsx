@@ -76,7 +76,7 @@ export function PlanList({ plan, selectedId, onSelect, actions }: Props) {
             </h3>
             <SortableContext items={visitsByDay[di]} strategy={verticalListSortingStrategy}>
               {visitsByDay[di].length === 0 ? (
-                <p className="rounded-xl border border-dashed p-4 text-center text-xs text-muted-foreground">{t("list.empty")}</p>
+                <p className="rounded-md border border-dashed p-4 text-center text-xs text-muted-foreground">{t("list.empty")}</p>
               ) : (
                 <ol className="space-y-2">
                   {day.activities
@@ -99,7 +99,7 @@ export function PlanList({ plan, selectedId, onSelect, actions }: Props) {
 function DayContainer({ id, empty, children }: { id: string; empty: boolean; children: React.ReactNode }) {
   const { setNodeRef, isOver } = useDroppable({ id });
   return (
-    <section ref={setNodeRef} className={cn("rounded-2xl border bg-card p-3 transition-colors", isOver && empty && "border-primary bg-primary/5")}>
+    <section ref={setNodeRef} className={cn("rounded-md border bg-card p-3 transition-colors", isOver && empty && "border-primary bg-primary/5")}>
       {children}
     </section>
   );

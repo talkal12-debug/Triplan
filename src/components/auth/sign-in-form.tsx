@@ -52,7 +52,7 @@ export function SignInForm({ google, demoLink, callbackUrl, hadError }: Props) {
   return (
     <div className="space-y-6">
       {state === "sent" ? (
-        <div className="rounded-2xl border bg-card p-5" role="status">
+        <div className="rounded-md border bg-card p-5" role="status">
           <p className="font-medium">{t("sent")}</p>
           <p className="mt-1 text-sm text-muted-foreground">{demoUrl ? t("demoNote") : t("sentBody", { email })}</p>
           {demoUrl && (

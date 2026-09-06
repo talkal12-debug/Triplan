@@ -19,7 +19,7 @@ export function EventsHighlights({ plan }: { plan: GuestPlan }) {
     .sort((a, b) => a.start.localeCompare(b.start));
   if (events.length === 0) return null;
   return (
-    <section className="rounded-2xl border bg-card p-4" data-testid="events" aria-label={t("title")}>
+    <section className="rounded-md border bg-card p-4" data-testid="events" aria-label={t("title")}>
       <h3 className="font-medium">{t("title")}</h3>
       <ul className="mt-2 space-y-2">
         {events.slice(0, 12).map((e) => (

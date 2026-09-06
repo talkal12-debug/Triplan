@@ -116,7 +116,7 @@ export default async function CountryPage({ params }: Props) {
         </h2>
         <dl className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {facts.map(({ key, icon: Icon, value }) => (
-            <div key={key} className="flex gap-3 rounded-xl border bg-card p-4">
+            <div key={key} className="flex gap-3 rounded-md border bg-card p-4">
               <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
                 <Icon className="size-5" aria-hidden />
               </span>
@@ -200,7 +200,7 @@ export default async function CountryPage({ params }: Props) {
 
 function Fact({ icon: Icon, label, children }: { icon: typeof Coins; label: string; children: React.ReactNode }) {
   return (
-    <div className="flex gap-3 rounded-xl border bg-card p-4">
+    <div className="flex gap-3 rounded-md border bg-card p-4">
       <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-sunset/15 text-sunset">
         <Icon className="size-5" aria-hidden />
       </span>

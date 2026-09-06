@@ -56,7 +56,7 @@ export function HotelStep({ prefs, set }: StepProps) {
           })}
         </div>
         {hotel.baseMode === "auto" && prefs.destinations.length > 0 && (
-          <p className="mt-3 rounded-xl bg-primary/10 p-3 text-sm">
+          <p className="mt-3 rounded-md bg-primary/10 p-3 text-sm">
             <span className="font-medium">{t("recommendation", { mode: t(`baseModes.${rec.mode}.title`) })}</span>{" "}
             {t(`reasons.${rec.reason}`)}
           </p>

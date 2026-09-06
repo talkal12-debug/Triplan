@@ -19,7 +19,7 @@ export function EveningPanel({ evening, date, cityLabel }: { evening: Evening; d
   const style = evening.style;
   const mapsQuery = style === "nightlife" ? t("mapsNightlife") : style === "culture" ? t("mapsCulture") : t("mapsQuiet");
   return (
-    <section className="space-y-3 rounded-2xl border border-dashed bg-card/60 p-4" data-testid="evening" aria-label={t("title")}>
+    <section className="space-y-3 rounded-md border border-dashed bg-card/60 p-4" data-testid="evening" aria-label={t("title")}>
       <div className="flex flex-wrap items-center gap-2">
         <Moon className="size-4 text-primary" aria-hidden />
         <h3 className="font-medium">{t("title")}</h3>

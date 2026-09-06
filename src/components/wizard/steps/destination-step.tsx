@@ -81,7 +81,7 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
             if (!c) return null;
             const cities = ctx.cities[d.countryCode] ?? [];
             return (
-              <div key={d.countryCode} className="rounded-2xl border bg-card p-4">
+              <div key={d.countryCode} className="rounded-md border bg-card p-4">
                 <div className="flex items-center gap-3">
                   <CountryFlag code={c.code} size={24} />
                   <span className="flex-1 font-semibold">
@@ -161,7 +161,7 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
                   disabled={disabled}
                   onClick={() => toggleCountry(c.code)}
                   className={cn(
-                    "flex min-h-14 w-full items-center gap-3 rounded-xl border-2 px-3 py-2 text-start transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+                    "flex min-h-14 w-full items-center gap-3 rounded-md border-2 px-3 py-2 text-start transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
                     selected ? "border-primary bg-primary/5" : "border-border bg-card",
                     disabled ? "cursor-not-allowed opacity-60" : "hover:border-primary/40",
                   )}

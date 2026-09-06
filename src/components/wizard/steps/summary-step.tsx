@@ -16,7 +16,7 @@ export function SummaryStep({ prefs, ctx }: StepProps) {
   return (
     <div className="space-y-6">
       {failing.length > 0 && (
-        <div role="alert" className="rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm">
+        <div role="alert" className="rounded-md border border-destructive/40 bg-destructive/10 p-4 text-sm">
           <p className="flex items-center gap-2 font-medium">
             <AlertTriangle className="size-4" aria-hidden />
             {t("summary.errors")}

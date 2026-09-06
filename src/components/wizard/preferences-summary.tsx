@@ -136,7 +136,7 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
   return (
     <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {sections.map(({ step, content }) => (
-        <div key={step} className="rounded-2xl border bg-card p-4">
+        <div key={step} className="rounded-md border bg-card p-4">
           <div className="flex items-center justify-between gap-2">
             <dt className="text-sm text-muted-foreground">{t(`steps.${step}`)}</dt>
             {editable && (

@@ -10,7 +10,7 @@ export async function ComingSoon({ title, description }: Props) {
   const t = await getTranslations("common");
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col items-center px-4 py-20 text-center sm:px-6">
-      <span className="grid size-16 place-items-center rounded-2xl bg-sunset/15 text-sunset">
+      <span className="grid size-16 place-items-center rounded-md bg-sunset/15 text-sunset">
         <Construction className="size-8" aria-hidden />
       </span>
       <h1 className="mt-6 text-3xl font-bold">{title}</h1>

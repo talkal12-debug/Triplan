@@ -117,7 +117,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
       )}
 
       {dayWarnings.length > 0 && (
-        <ul className="space-y-1 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
+        <ul className="space-y-1 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
           {dayWarnings.map((w, i) => (
             <li key={i} className="flex items-start gap-2">
               <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
@@ -131,7 +131,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
       )}
 
       {visits.length === 0 ? (
-        <p className="rounded-2xl border border-dashed p-6 text-center text-sm text-muted-foreground">{t("emptyDay")}</p>
+        <p className="rounded-md border border-dashed p-6 text-center text-sm text-muted-foreground">{t("emptyDay")}</p>
       ) : (
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
           <SortableContext items={visitIds} strategy={verticalListSortingStrategy}>
@@ -164,7 +164,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
       )}
 
       {day.rainPlan.length > 0 && (
-        <p className="flex items-start gap-2 rounded-xl border border-dashed p-3 text-sm text-muted-foreground">
+        <p className="flex items-start gap-2 rounded-md border border-dashed p-3 text-sm text-muted-foreground">
           <CloudRain className="mt-0.5 size-4 shrink-0" aria-hidden />
           <span>
             <span className="font-medium text-foreground">{t("rainPlan")}: </span>

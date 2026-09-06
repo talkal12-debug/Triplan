@@ -25,7 +25,8 @@ export async function POST(req: Request) {
   if (locales.length === 0) return NextResponse.json({ error: "invalid_request" }, { status: 400 });
 
   const summaries: Record<string, Record<string, Summary>> = {};
-  const rows = await prisma.place.findMany({ where: { id: { in: parsed.data.places.map((p) => p.id) } }, select: { id: true, summary: true } });
+  // The database is a cache here: without one (local dev before the connection string is set) we go straight to the sources.
+  const rows = await prisma.place.findMany({ where: { id: { in: parsed.data.places.map((p) => p.id) } }, select: { id: true, summary: true } }).catch(() => []);
   for (const r of rows) {
     if (!r.summary) continue;
     const s = JSON.parse(r.summary) as Record<string, Summary>;

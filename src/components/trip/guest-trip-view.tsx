@@ -155,8 +155,8 @@ export function GuestTripView({ id, ctx }: Props) {
     return (
       <div className="mx-auto w-full max-w-3xl space-y-3 px-4 py-10 sm:px-6" aria-busy>
         <Skeleton className="h-10 w-1/2" />
-        <Skeleton className="h-24 w-full rounded-2xl" />
-        <Skeleton className="h-24 w-full rounded-2xl" />
+        <Skeleton className="h-24 w-full rounded-md" />
+        <Skeleton className="h-24 w-full rounded-md" />
       </div>
     );
   }
@@ -164,7 +164,7 @@ export function GuestTripView({ id, ctx }: Props) {
   if (trip === null) {
     return (
       <div className="mx-auto flex w-full max-w-2xl flex-col items-center px-4 py-20 text-center sm:px-6">
-        <span className="grid size-16 place-items-center rounded-2xl bg-muted text-muted-foreground">
+        <span className="grid size-16 place-items-center rounded-md bg-muted text-muted-foreground">
           <MapPinOff className="size-8" aria-hidden />
         </span>
         <h1 className="mt-6 text-3xl font-bold">{t("notFound")}</h1>
@@ -215,7 +215,7 @@ export function GuestTripView({ id, ctx }: Props) {
       </div>
 
       {error && (
-        <p role="alert" className="mt-4 flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-sm">
+        <p role="alert" className="mt-4 flex items-start gap-2 rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden />
           {error}
         </p>
@@ -226,7 +226,7 @@ export function GuestTripView({ id, ctx }: Props) {
           <PlanWorkspace trip={trip as GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }} onTripChange={setTrip} readOnly={readOnly} nowHref={`/trip/${trip.id}/now`} />
         </section>
       ) : (
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-dashed bg-sunset/10 p-4 text-sm">
+        <div className="mt-6 flex items-start gap-3 rounded-md border border-dashed bg-sunset/10 p-4 text-sm">
           <Sparkles className="mt-0.5 size-5 shrink-0 text-sunset" aria-hidden />
           <p>{t("engineSoon")}</p>
         </div>
@@ -241,7 +241,7 @@ export function GuestTripView({ id, ctx }: Props) {
           type="button"
           onClick={() => setShowPrefs((v) => !v)}
           aria-expanded={showPrefs || !trip.plan}
-          className="flex w-full items-center justify-between rounded-xl px-1 py-2 text-start font-semibold hover:bg-muted"
+          className="flex w-full items-center justify-between rounded-md px-1 py-2 text-start font-semibold hover:bg-muted"
         >
           {t("prefsLabel")}
           <ChevronDown className={`size-4 transition-transform ${showPrefs || !trip.plan ? "rotate-180" : ""}`} aria-hidden />

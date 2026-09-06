@@ -154,7 +154,7 @@ export function SharePanel({ trip, ctx, onTripChange }: Props) {
           <div className="mt-3 space-y-2">
             <p className="text-sm font-medium">{t("linkReady")}</p>
             <div className="flex flex-wrap items-center gap-2">
-              <input readOnly value={shareUrl ?? ""} dir="ltr" className="h-11 min-w-0 flex-1 rounded-xl border bg-muted px-3 text-sm" onFocus={(e) => e.currentTarget.select()} />
+              <input readOnly value={shareUrl ?? ""} dir="ltr" className="h-11 min-w-0 flex-1 rounded-md border bg-muted px-3 text-sm" onFocus={(e) => e.currentTarget.select()} />
               <Button type="button" variant="outline" onClick={copy}>
                 {copied ? <Check aria-hidden /> : <Copy aria-hidden />}
                 {copied ? t("copied") : t("copy")}
@@ -189,7 +189,7 @@ export function SharePanel({ trip, ctx, onTripChange }: Props) {
       </section>
 
       {error && (
-        <p role="alert" className="rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-sm">
+        <p role="alert" className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm">
           {error}
         </p>
       )}

@@ -199,6 +199,10 @@ All data ships with the repo, so the app runs fully offline and without keys.
 
 Rebuilding the data needs the network (`npm run data:countries`, `npm run data:pois`) but the app itself never does.
 
+## Design language (2026-09-07)
+
+Ink on linen, one strong colour (deep pine; sage in dark mode), brass hairlines for rules and small marks, a Hebrew/Latin serif (Frank Ruhl Libre) for headings and numerals with Heebo for body copy, 6 px corners, no gradients or glows. Tokens live in `src/app/globals.css` (`:root` / `.dark`); utilities `eyebrow`, `eyebrow-rule`, `rule-brass`, `numeral`, `font-display`.
+
 ## Stack
 
 Next.js 15 (App Router), TypeScript strict, Tailwind CSS v4, shadcn/ui (Radix, RTL), Framer Motion,

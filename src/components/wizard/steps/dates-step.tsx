@@ -58,7 +58,7 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
       />
 
       {season && (
-        <div className="flex items-start gap-3 rounded-2xl border border-dashed bg-muted/40 p-4 text-sm">
+        <div className="flex items-start gap-3 rounded-md border border-dashed bg-muted/40 p-4 text-sm">
           <CloudSun className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
           <div>
             <p className="font-medium">{t("season", { season: t(`seasons.${season}`) })}</p>
@@ -70,7 +70,7 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
       {validStart && seasonal.length > 0 && <SeasonalHighlights items={seasonal} compact />}
 
 
-      <fieldset className="rounded-2xl border bg-card p-4">
+      <fieldset className="rounded-md border bg-card p-4">
         <legend className="px-1 font-medium">{t("flights")}</legend>
         <p className="mb-3 text-sm text-muted-foreground">{t("flightsHint")}</p>
         <div className="mb-3">

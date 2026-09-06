@@ -84,7 +84,7 @@ export function ProfileForm({ ctx }: Props) {
       </div>
 
       {!signedIn && (
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border bg-card p-4 text-sm">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-md border bg-card p-4 text-sm">
           <span>{t("guestNote")}</span>
           <Button asChild size="sm" variant="outline">
             <Link href="/signin">
@@ -113,7 +113,7 @@ export function ProfileForm({ ctx }: Props) {
         <HotelStep {...stepProps} />
       </section>
 
-      <div className="sticky bottom-20 z-10 mt-8 flex items-center gap-3 rounded-2xl border bg-background/95 p-3 shadow-lg backdrop-blur md:bottom-4">
+      <div className="sticky bottom-20 z-10 mt-8 flex items-center gap-3 rounded-md border bg-background/95 p-3 shadow-lg backdrop-blur md:bottom-4">
         <Button type="button" onClick={save} disabled={state === "saving"}>
           {state === "saved" ? <Check aria-hidden /> : <Save aria-hidden />}
           {state === "saving" ? t("saving") : state === "saved" ? t("saved") : t("save")}
@@ -133,7 +133,7 @@ export function ProfileForm({ ctx }: Props) {
         ) : (
           <ul className="mt-4 space-y-2">
             {cache.visited.map((v) => (
-              <li key={v.placeId} className="flex items-center gap-3 rounded-xl border bg-card px-3 py-2">
+              <li key={v.placeId} className="flex items-center gap-3 rounded-md border bg-card px-3 py-2">
                 <CountryFlag code={v.countryCode} size={20} />
                 <span className="min-w-0 flex-1 truncate">{v.name}</span>
                 <Button type="button" variant="ghost" size="icon" className="size-9" aria-label={t("visitedRemove", { name: v.name })} onClick={() => forget(v.placeId)}>

@@ -20,7 +20,7 @@ import { DestinationStep } from "./steps/destination-step";
 // drag-and-drop code of the interests step or the summary's formatting.
 // The destination step is the landing page of the wizard: imported statically so it is part of the
 // first server-rendered HTML instead of a streamed Suspense boundary (better LCP, no layout shift).
-const stepLoading = () => <Skeleton className="h-40 w-full rounded-2xl" />;
+const stepLoading = () => <Skeleton className="h-40 w-full rounded-md" />;
 const stepComponents: Record<WizardStep, React.ComponentType<StepProps>> = {
   destination: DestinationStep,
   wishlist: dynamic(() => import("./steps/wishlist-step").then((m) => m.WishlistStep), { loading: stepLoading }),
@@ -168,7 +168,7 @@ export function WizardShell({ step, ctx }: Props) {
         </div>
       </div>
 
-      <footer className="sticky bottom-16 z-30 mt-8 rounded-2xl border bg-background/95 p-3 shadow-lg backdrop-blur md:bottom-4">
+      <footer className="sticky bottom-16 z-30 mt-8 rounded-md border bg-background/95 p-3 shadow-lg backdrop-blur md:bottom-4">
         <div className="flex items-center gap-2">
           {prev ? (
             <Button asChild variant="ghost" className="h-11">

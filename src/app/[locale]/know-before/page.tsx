@@ -58,7 +58,7 @@ export default async function KnowBeforeIndexPage({ params }: Props) {
   const rowHtml = (c: Row, hidden: boolean) => {
     const cc = c.code.toLowerCase();
     return (
-      `<li data-search="${escapeHtml(c.search)}"${hidden ? " data-more hidden" : ""}><a href="/${uiLocale}/know-before/${cc}" class="flex min-h-14 items-center gap-3 rounded-xl border bg-card px-3 py-2 transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 outline-none">` +
+      `<li data-search="${escapeHtml(c.search)}"${hidden ? " data-more hidden" : ""}><a href="/${uiLocale}/know-before/${cc}" class="flex min-h-14 items-center gap-3 rounded-md border bg-card px-3 py-2 transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 outline-none">` +
       `<img src="/flags/h24/${cc}.png" width="32" height="24" alt="" loading="lazy" decoding="async" class="shrink-0 rounded-sm object-contain drop-shadow-xs" style="width:32px;height:24px">` +
       `<span class="min-w-0 flex-1"><span class="block truncate font-medium">${escapeHtml(c.name)}</span>` +
       (c.local ? `<span class="block truncate text-xs text-muted-foreground" dir="auto">${escapeHtml(c.local)}</span>` : "") +

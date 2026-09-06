@@ -72,7 +72,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
       <div
         onClick={() => isVisit && onSelect(selected ? null : a.id)}
         className={cn(
-          "flex gap-2 rounded-2xl border-2 bg-card p-3 transition-colors",
+          "flex gap-2 rounded-md border-2 bg-card p-3 transition-colors",
           isVisit && "cursor-pointer hover:border-primary/40",
           selected ? "border-primary bg-primary/5" : "border-border",
           !isVisit && "border-dashed bg-muted/30",

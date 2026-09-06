@@ -49,7 +49,7 @@ export function JoinTrip({ token }: Props) {
 
   return (
     <div className="mx-auto w-full max-w-md px-4 py-12 text-center sm:px-6">
-      <span className="mx-auto grid size-16 place-items-center rounded-2xl bg-muted text-muted-foreground">
+      <span className="mx-auto grid size-16 place-items-center rounded-md bg-muted text-muted-foreground">
         <Users className="size-8" aria-hidden />
       </span>
       <h1 className="mt-6 text-3xl font-bold">{t("joinTitle")}</h1>

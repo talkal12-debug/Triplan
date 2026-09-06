@@ -43,7 +43,7 @@ export function ChecklistPanel({ trip, onTripChange }: Props) {
           if (typeof params.until === "string") params.until = format.dateTime(localDateOf(params.until), { dateStyle: "medium" });
           return (
             <li key={k}>
-              <label className={cn("flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border bg-card px-3 py-2 hover:bg-muted", isDone && "opacity-60")}>
+              <label className={cn("flex min-h-11 cursor-pointer items-start gap-3 rounded-md border bg-card px-3 py-2 hover:bg-muted", isDone && "opacity-60")}>
                 <input type="checkbox" checked={isDone} onChange={() => toggle(k)} className="mt-1 size-5 accent-primary" />
                 <span className="min-w-0 flex-1">
                   <span className={cn("block", isDone && "line-through")}>{tItem(`items.${i.id}`, params)}</span>

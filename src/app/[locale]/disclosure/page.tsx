@@ -58,7 +58,7 @@ export default async function DisclosurePage({ params }: Props) {
         <p>{t("affiliate")}</p>
         <p>{t("marking")}</p>
         <p>{t("data")}</p>
-        {active.size === 0 && <p className="rounded-xl border border-dashed p-4 text-sm">{t("noKeys")}</p>}
+        {active.size === 0 && <p className="rounded-md border border-dashed p-4 text-sm">{t("noKeys")}</p>}
       </div>
 
       <section className="mt-10" aria-labelledby="partners-title">
@@ -73,7 +73,7 @@ export default async function DisclosurePage({ params }: Props) {
               {affiliateProviders
                 .filter((p) => kinds[p] === kind)
                 .map((p) => (
-                  <li key={p} className="rounded-xl border bg-card p-3 text-sm">
+                  <li key={p} className="rounded-md border bg-card p-3 text-sm">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <span className="font-semibold">{tl(p)}</span>
                       <span className="text-xs text-muted-foreground">{active.has(p) ? t("statusAffiliate") : t("statusPlain")}</span>

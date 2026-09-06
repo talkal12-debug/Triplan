@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Compass, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,19 +25,17 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-lg text-lg font-semibold outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="flex items-baseline gap-2 rounded-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
         >
-          <span className="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-            <Compass className="size-5" aria-hidden />
-          </span>
-          <span>{tc("appName")}</span>
+          <span aria-hidden className="mb-1 inline-block size-2 self-center bg-sunset" />
+          <span className="font-display text-[1.6rem] leading-none tracking-tight">{tc("appName")}</span>
         </Link>
 
-        <nav aria-label={t("mainNav")} className="hidden items-center gap-1 md:flex">
+        <nav aria-label={t("mainNav")} className="hidden items-center gap-6 md:flex">
           {navItems.map(({ href, key }) => {
             const active = isActivePath(pathname, href);
             return (
@@ -47,8 +45,8 @@ export function Header() {
                 prefetch={false}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
-                  active ? "bg-muted text-foreground" : "text-muted-foreground",
+                  "border-b-2 px-1 py-2 text-sm tracking-wide transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 outline-none",
+                  active ? "border-sunset text-foreground" : "border-transparent text-muted-foreground",
                 )}
               >
                 {t(key)}

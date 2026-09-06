@@ -51,7 +51,7 @@ export function DayRail({ plan, dayIndex, onSelect }: Props) {
             data-day={day.index}
             onClick={() => onSelect(day.index)}
             className={cn(
-              "flex min-w-32 shrink-0 snap-center flex-col items-start rounded-2xl border-2 px-3 py-2 text-start transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+              "flex min-w-32 shrink-0 snap-center flex-col items-start rounded-md border-2 px-3 py-2 text-start transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
               selected ? "border-primary bg-primary/5" : "border-border bg-card hover:border-primary/40",
             )}
           >

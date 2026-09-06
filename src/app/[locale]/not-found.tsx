@@ -8,7 +8,7 @@ export default function NotFoundPage() {
   const tc = useTranslations("common");
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col items-center px-4 py-20 text-center sm:px-6">
-      <span className="grid size-16 place-items-center rounded-2xl bg-muted text-muted-foreground">
+      <span className="grid size-16 place-items-center rounded-md bg-muted text-muted-foreground">
         <MapPinOff className="size-8" aria-hidden />
       </span>
       <h1 className="mt-6 text-3xl font-bold">{t("title")}</h1>
