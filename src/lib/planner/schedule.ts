@@ -321,7 +321,9 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
 
   activities.sort((a, b) => a.startMin - b.startMin);
   const visits = activities.filter((a) => a.kind === "visit").length;
-  if (visits === 0 && capacity > 0) {
+  // A day that starts after it ends (late arrival) is not "too light": there was no time.
+  const startedTooLate = activities.length > 0 && Math.min(...activities.map((a) => a.startMin)) >= dayEnd - 60;
+  if (visits === 0 && capacity > 0 && !startedTooLate) {
     warnings.push({ code: "day_too_light", severity: "warning", params: {}, dayIndex: day.dayIndex });
   }
 
