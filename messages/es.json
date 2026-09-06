@@ -480,7 +480,8 @@
       "badge": "descuento 65+",
       "verify": "Confirmad en taquilla con documento. De las webs oficiales; los precios cambian.",
       "source": "(fuente)"
-    }
+    },
+    "editNoChange": "Nada que cambiar: ningún lugar libre encaja en este día (a distancia a pie, abierto en la fecha y aún no planificado). Probad otro día o añadid un lugar de la lista."
   },
   "gallery": {
     "title": "Planes listos",

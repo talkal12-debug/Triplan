@@ -480,7 +480,8 @@
       "badge": "réduction 65+",
       "verify": "À confirmer à la billetterie avec une pièce d'identité. D'après les sites officiels ; les prix changent.",
       "source": "(source)"
-    }
+    },
+    "editNoChange": "Rien à changer : aucun lieu libre ne convient à cette journée (à distance de marche, ouvert à cette date et pas déjà prévu). Essayez un autre jour ou ajoutez un lieu de la liste."
   },
   "gallery": {
     "title": "Plans prêts",

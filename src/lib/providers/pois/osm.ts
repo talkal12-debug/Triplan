@@ -2,6 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { fetchJson, USER_AGENT } from "../http";
 import { overpassQuery } from "../overpass";
+import { nominatimPlacesForCity } from "../nominatim-pois";
 import type { PoiProvider } from "../types";
 import { citySeedSchema, placeSeedSchema, type CitySeed, type PlaceCategory, type PlaceSeed, type PlaceTag } from "@/lib/data/schemas";
 
@@ -278,12 +279,20 @@ out center tags 400;`;
       overpassQuery(query, {
         provider: "overpass",
         schema: overpassSchema,
-        timeoutMs: 45_000,
+        // Short enough that the Nominatim fallback still fits in a serverless request when Overpass is unreachable.
+        timeoutMs: 25_000,
         cacheKey: `overpass:${city.slug}:${tier}:${OSM_PROVIDER_VERSION}`,
         ttlMs: 6 * 60 * 60 * 1000,
       });
-    const [a, b] = await Promise.all([run(tier1, 1), run(tier2, 2).catch(() => ({ elements: [] }))]);
-    const raw = [...a.elements, ...b.elements].map((el) => toPlace(el, city)).filter((p): p is PlaceSeed => p !== null);
+    let raw: PlaceSeed[];
+    try {
+      const [a, b] = await Promise.all([run(tier1, 1), run(tier2, 2).catch(() => ({ elements: [] }))]);
+      raw = [...a.elements, ...b.elements].map((el) => toPlace(el, city)).filter((p): p is PlaceSeed => p !== null);
+    } catch {
+      // Overpass unreachable (it refuses cloud hosting): Nominatim's category search returns the same objects, slower.
+      raw = await nominatimPlacesForCity(city);
+      if (raw.length === 0) throw new Error("overpass unreachable and nominatim found nothing");
+    }
 
     // Wikidata: notability (sitelinks) and Hebrew names. Failure just keeps the tag-based scores.
     let places = raw;

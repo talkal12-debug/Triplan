@@ -480,7 +480,8 @@
       "badge": "65+ discount",
       "verify": "Confirm at the ticket office with ID. From the official sites; prices change.",
       "source": "(source)"
-    }
+    },
+    "editNoChange": "Nothing to change: no free place fits this day (within walking range, open on the date and not already planned). Try another day or add a place from the list."
   },
   "gallery": {
     "title": "Ready plans",

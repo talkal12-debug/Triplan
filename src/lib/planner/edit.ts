@@ -165,12 +165,18 @@ export function rebalanceDay(it: Itinerary, dayIndex: number, direction: "lighte
   const last = places.get(ids[ids.length - 1] ?? "");
   const { center } = baseFor(it, day, ctx);
   const anchor = last ?? center;
-  const best = ctx.places
-    .filter((p) => !used.has(p.id) && p.city === day.citySlug && exclusionReason(p, ctx.prefs) === null && haversineKm(anchor, p) <= 3 && opensOnDate(p, day.date) !== "closed")
+  // Candidates near the day's last stop or its base, best first; the first one that survives scheduling wins
+  // (a place that does not fit the remaining walking budget or closes early would otherwise leave the day unchanged).
+  const candidates = ctx.places
+    .filter((p) => !used.has(p.id) && p.city === day.citySlug && exclusionReason(p, ctx.prefs) === null && Math.min(haversineKm(anchor, p), haversineKm(center, p)) <= 4 && opensOnDate(p, day.date) !== "closed")
     .map((p) => scored(p, ctx))
-    .sort((a, b) => b.score - a.score)[0];
-  if (!best) return it;
-  return replaceDay(it, rescheduleDay(it, day, [...ids, best.place.id], ctx, { capacityScale: 1.25 }));
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+  for (const cand of candidates) {
+    const next = rescheduleDay(it, day, [...ids, cand.place.id], ctx, { capacityScale: 1.25 });
+    if (visitIds(next).includes(cand.place.id)) return replaceDay(it, next);
+  }
+  return it;
 }
 
 /** Drop a visit from a day and re-time the rest. */

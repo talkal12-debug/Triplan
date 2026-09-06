@@ -480,7 +480,8 @@
       "badge": "desconto 65+",
       "verify": "Confirmar na bilheteira com documento. Dos sites oficiais; os preços mudam.",
       "source": "(fonte)"
-    }
+    },
+    "editNoChange": "Nada a mudar: nenhum lugar livre cabe neste dia (a pé, aberto na data e ainda não planeado). Tentem outro dia ou adicionem um lugar da lista."
   },
   "gallery": {
     "title": "Planos prontos",
