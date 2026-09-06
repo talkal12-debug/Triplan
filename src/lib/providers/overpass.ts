@@ -29,7 +29,8 @@ export async function overpassQuery<T>(query: string, opts: { provider: string; 
       }),
     ),
   ).catch((err: unknown) => {
-    const first = err instanceof AggregateError ? err.errors.find((e) => e instanceof Error) : null;
-    throw first ?? new Error(`${opts.provider}: all Overpass instances failed`);
+    // Say what actually went wrong on each instance (the note ends up in the plan's diagnostics).
+    const details = err instanceof AggregateError ? err.errors.map((e) => (e instanceof Error ? `${e.message}${e.cause instanceof Error ? ` (${e.cause.message})` : ""}` : String(e))) : [String(err)];
+    throw new Error(`${opts.provider}: all Overpass instances failed: ${[...new Set(details)].join("; ")}`);
   });
 }
