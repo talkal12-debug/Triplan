@@ -80,14 +80,15 @@ async function getJson<T>(url: string, schema: z.ZodType<T>, timeoutMs = 8_000, 
 export const wikiLang = (locale: string) => (locale === "zh-CN" ? "zh" : locale);
 
 /** Wikidata items 50 per request: sitelinks + descriptions in the given locales. */
-async function fetchEntities(ids: string[], locales: string[]): Promise<Map<string, Entity>> {
+async function fetchEntities(ids: string[], locales: string[], deadline = Infinity): Promise<Map<string, Entity>> {
   const out = new Map<string, Entity>();
   const langs = [...new Set(locales.map(wikiLang))];
   const unique = [...new Set(ids)];
   for (let i = 0; i < unique.length; i += 50) {
     const batch = unique.slice(i, i + 50);
     const url = `${WIKIDATA}?action=wbgetentities&ids=${batch.join("|")}&props=sitelinks|descriptions&languages=${langs.join("|")}&sitefilter=${langs.map((l) => `${l}wiki`).join("|")}&format=json`;
-    const data = await getJson(url, entitySchema);
+    if (Date.now() > deadline) break;
+    const data = await getJson(url, entitySchema, 8_000, deadline);
     for (const [id, e] of Object.entries(data?.entities ?? {})) out.set(id, e);
     if (i + 50 < unique.length) await sleep(PAUSE_MS);
   }
@@ -130,6 +131,7 @@ export async function fetchSummariesBatch(items: { id: string; wikidata: string;
   const entities = await fetchEntities(
     items.map((i) => i.wikidata),
     allLocales,
+    deadline,
   );
   for (const item of items) {
     // Out of time: the rest is fetched on demand later (the caller never waits forever).
