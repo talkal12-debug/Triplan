@@ -50,9 +50,11 @@ export function trimExtract(text: string): string {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-async function getJson<T>(url: string, schema: z.ZodType<T>, timeoutMs = 8_000): Promise<T | null> {
-  // Wikimedia answers 429 when asked too quickly: back off and retry a few times (Retry-After when given).
+async function getJson<T>(url: string, schema: z.ZodType<T>, timeoutMs = 8_000, deadline = Infinity): Promise<T | null> {
+  // Wikimedia answers 429 when asked too quickly: back off and retry a few times (Retry-After when given),
+  // unless the caller's deadline has passed.
   for (let attempt = 0; attempt < 4; attempt++) {
+    if (Date.now() > deadline) return null;
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
@@ -92,13 +94,14 @@ async function fetchEntities(ids: string[], locales: string[]): Promise<Map<stri
   return out;
 }
 
-async function summariesFromEntity(entity: Entity, locales: string[]): Promise<Record<string, Summary>> {
+async function summariesFromEntity(entity: Entity, locales: string[], deadline = Infinity): Promise<Record<string, Summary>> {
   const out: Record<string, Summary> = {};
   for (const locale of locales) {
+    if (Date.now() > deadline) break;
     const lang = wikiLang(locale);
     const title = entity.sitelinks?.[`${lang}wiki`]?.title;
     if (title) {
-      const page = await getJson(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`, summarySchema);
+      const page = await getJson(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`, summarySchema, 8_000, deadline);
       await sleep(PAUSE_MS);
       if (page?.extract && page.type !== "disambiguation") {
         out[locale] = { text: trimExtract(page.extract), url: page.content_urls?.desktop.page ?? null };
@@ -133,7 +136,7 @@ export async function fetchSummariesBatch(items: { id: string; wikidata: string;
     if (Date.now() > deadline) break;
     const entity = entities.get(item.wikidata);
     if (!entity) continue;
-    const got = await summariesFromEntity(entity, item.locales);
+    const got = await summariesFromEntity(entity, item.locales, deadline);
     if (Object.keys(got).length) out.set(item.id, got);
   }
   return out;

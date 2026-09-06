@@ -6,7 +6,7 @@ import { prisma } from "@/lib/db";
 import { isLocale } from "@/lib/i18n/locales";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+export const maxDuration = 180;
 
 const requestSchema = z.object({
   places: z.array(z.object({ id: z.string(), wikidata: z.string().regex(/^Q\d+$/) })).max(60),

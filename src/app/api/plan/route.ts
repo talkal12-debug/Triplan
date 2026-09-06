@@ -7,7 +7,7 @@ import { withSummaries } from "@/lib/providers/summaries";
 import { resolveMustVisit } from "@/lib/server/must-visit";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+export const maxDuration = 180;
 
 const requestSchema = z.object({ preferences: tripPreferencesSchema, locale: z.string().optional() });
 

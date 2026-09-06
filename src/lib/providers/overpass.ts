@@ -16,7 +16,11 @@ export const OVERPASS_URLS = [
   "https://overpass.osm.jp/api/interpreter",
 ];
 
+/** The public instances refuse connections from Vercel; without a private OVERPASS_URL there is no point waiting for them. */
+export const overpassReachable = !process.env.VERCEL || Boolean(process.env.OVERPASS_URL);
+
 export async function overpassQuery<T>(query: string, opts: { provider: string; schema: ZodType<T>; cacheKey: string; ttlMs: number; timeoutMs: number }): Promise<T> {
+  if (!overpassReachable) throw new Error(`${opts.provider}: Overpass is not reachable from this host (set OVERPASS_URL to a private instance)`);
   return Promise.any(
     [...new Set(OVERPASS_URLS)].map((url) =>
       // GET with the query in the URL: Overpass accepts both, and a plain GET travels through
