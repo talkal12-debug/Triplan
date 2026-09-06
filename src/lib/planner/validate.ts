@@ -1,3 +1,4 @@
+import { RELAX_CAPACITY, RELAX_WALK } from "./schedule";
 import type { DayBudget } from "./budgets";
 import { haversineKm } from "./geo";
 import type { Itinerary, PlannerPlace, Warning } from "./itinerary";
@@ -21,10 +22,13 @@ export function validateItinerary(it: Itinerary, places: Map<string, PlannerPlac
     let lastEnd = -1;
     let lastPlace: PlannerPlace | null = null;
 
-    if (day.stats.walkKm > budget.walkKmMax + 0.05) {
+    // Filling a day may stretch the walking and time budgets (RELAX_*); beyond that it is an error.
+    if (day.stats.walkKm > budget.walkKmMax * RELAX_WALK + 0.05) {
       errors.push({ code: "day_too_full", severity: "error", params: { walkKm: day.stats.walkKm, max: budget.walkKmMax }, dayIndex: day.index });
+    } else if (day.stats.walkKm > budget.walkKmMax + 0.05) {
+      warnings.push({ code: "walk_budget_tight", severity: "info", params: { walkKm: day.stats.walkKm, max: budget.walkKmMax }, dayIndex: day.index });
     }
-    if (day.stats.load > 1.001) {
+    if (day.stats.load > RELAX_CAPACITY + 0.05) {
       errors.push({ code: "day_too_full", severity: "error", params: { load: day.stats.load }, dayIndex: day.index });
     }
     if (day.stats.museums > budget.maxMuseums) {

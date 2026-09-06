@@ -462,7 +462,9 @@
       "searchMapsVenues": "在地图上搜索",
       "mapsQuiet": "适合轻松夜晚的地方",
       "mapsCulture": "演出和剧院",
-      "mapsNightlife": "酒吧和夜店"
+      "mapsNightlife": "酒吧和夜店",
+      "buy": "购票",
+      "price": "{price} 起"
     },
     "seasonal": {
       "title": "您的日期期间有什么活动",
@@ -481,7 +483,11 @@
       "verify": "请在售票处凭证件确认。来自官方网站；价格可能变动。",
       "source": "（来源）"
     },
-    "editNoChange": "无需更改：没有适合这一天的空闲地点（步行范围内、当日开放且尚未安排）。请尝试其他日期或从列表中添加地点。"
+    "editNoChange": "无需更改：没有适合这一天的空闲地点（步行范围内、当日开放且尚未安排）。请尝试其他日期或从列表中添加地点。",
+    "events": {
+      "title": "您行程日期内的活动与演出",
+      "source": "来源：{source}。价格和余票以售票网站为准。"
+    }
   },
   "gallery": {
     "title": "现成计划",

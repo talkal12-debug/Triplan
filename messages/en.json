@@ -462,7 +462,9 @@
       "searchMapsVenues": "Search on the map",
       "mapsQuiet": "places for a relaxed evening",
       "mapsCulture": "shows and theatre",
-      "mapsNightlife": "bars and clubs"
+      "mapsNightlife": "bars and clubs",
+      "buy": "Buy tickets",
+      "price": "from {price}"
     },
     "seasonal": {
       "title": "What is on during your dates",
@@ -481,7 +483,11 @@
       "verify": "Confirm at the ticket office with ID. From the official sites; prices change.",
       "source": "(source)"
     },
-    "editNoChange": "Nothing to change: no free place fits this day (within walking range, open on the date and not already planned). Try another day or add a place from the list."
+    "editNoChange": "Nothing to change: no free place fits this day (within walking range, open on the date and not already planned). Try another day or add a place from the list.",
+    "events": {
+      "title": "Events and shows on your dates",
+      "source": "Source: {source}. Prices and availability on the seller's site."
+    }
   },
   "gallery": {
     "title": "Ready plans",

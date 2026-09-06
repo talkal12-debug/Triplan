@@ -20,6 +20,7 @@ import { SwapSheet } from "./swap-sheet";
 import { usePlanText } from "./use-plan-text";
 import { AffiliateAbout, AffiliateLinks } from "./affiliate-links";
 import { SeasonalHighlights } from "./seasonal-highlights";
+import { EventsHighlights } from "./events-highlights";
 import { seniorText } from "@/lib/data/senior-discounts";
 import { useDistance } from "@/lib/units/use-distance";
 import { useSession } from "next-auth/react";
@@ -134,6 +135,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
   return (
     <div className="space-y-4">
       {plan.extras?.seasonal && plan.extras.seasonal.length > 0 && <SeasonalHighlights items={plan.extras.seasonal} />}
+      <EventsHighlights plan={plan} />
       <div className="rounded-2xl border bg-card p-4 text-sm">
         <p className="font-medium">
           {t("tripStats", { distance: distance(plan.itinerary.stats.totalWalkKm), places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}

@@ -57,6 +57,18 @@
 2. פותחים במחשב את הקובץ `triplan\.env` (ב-Notepad), מוחקים את השורה `DATABASE_URL="file:./dev.db"` ומדביקים את השורות שהועתקו. שומרים.
 3. אומרים ל-Claude "עדכנתי את .env" והוא מפעיל את השרת מחדש.
 
+## אירועים והופעות אמיתיים (Ticketmaster, חינם, 5 דקות)
+
+בלי מפתח, בלוק הערב מציע קישורי חיפוש. עם מפתח חינמי של Ticketmaster הוא מציג אירועים אמיתיים בתאריכי הטיול, עם מחיר וכפתור "לרכישת כרטיסים":
+
+1. נכנסים ל-https://developer.ticketmaster.com ולוחצים **Get Your API Key** (למעלה מימין). נרשמים עם מייל וסיסמה ומאשרים את המייל.
+2. אחרי הכניסה: **My Apps** → **Add a New App**. שם: `Triplan`, תיאור קצר, ולוחצים **Create App**.
+3. בדף האפליקציה מופיע **Consumer Key**. זה המפתח (מחרוזת של ~32 תווים). מעתיקים אותו.
+4. ב-Vercel: הפרויקט → **Settings** → **Environment Variables** → **Add**. Key: `TICKETMASTER_API_KEY`, Value: המפתח שהעתקתם. **Save**.
+5. **Deployments** → על הפריסה האחרונה **⋯** → **Redeploy**.
+
+מגבלת החינם: 5,000 קריאות ביום, מספיק. הכיסוי הטוב ביותר בצפון אמריקה ובמערב אירופה; באסיה חלקי. כדי לקבל עמלה על כרטיסים (Ticketmaster affiliate דרך Impact) מוסיפים גם `AFFILIATE_QUERY_TICKETMASTER`, ראו `docs/affiliates.md`.
+
 ## מה עוד אפשר להוסיף אחר כך (משתני סביבה ב-Vercel → Settings → Environment Variables)
 
 | משתנה | מה נותן | איפה מקבלים |

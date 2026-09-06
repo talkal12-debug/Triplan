@@ -462,7 +462,9 @@
       "searchMapsVenues": "Chercher sur la carte",
       "mapsQuiet": "adresses pour une soirée tranquille",
       "mapsCulture": "spectacles et théâtre",
-      "mapsNightlife": "bars et clubs"
+      "mapsNightlife": "bars et clubs",
+      "buy": "Acheter des billets",
+      "price": "dès {price}"
     },
     "seasonal": {
       "title": "Ce qui se passe à vos dates",
@@ -481,7 +483,11 @@
       "verify": "À confirmer à la billetterie avec une pièce d'identité. D'après les sites officiels ; les prix changent.",
       "source": "(source)"
     },
-    "editNoChange": "Rien à changer : aucun lieu libre ne convient à cette journée (à distance de marche, ouvert à cette date et pas déjà prévu). Essayez un autre jour ou ajoutez un lieu de la liste."
+    "editNoChange": "Rien à changer : aucun lieu libre ne convient à cette journée (à distance de marche, ouvert à cette date et pas déjà prévu). Essayez un autre jour ou ajoutez un lieu de la liste.",
+    "events": {
+      "title": "Événements et spectacles à vos dates",
+      "source": "Source : {source}. Prix et disponibilité sur le site du vendeur."
+    }
   },
   "gallery": {
     "title": "Plans prêts",

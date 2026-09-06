@@ -462,7 +462,9 @@
       "searchMapsVenues": "Auf der Karte suchen",
       "mapsQuiet": "Orte für einen ruhigen Abend",
       "mapsCulture": "Shows und Theater",
-      "mapsNightlife": "Bars und Clubs"
+      "mapsNightlife": "Bars und Clubs",
+      "buy": "Tickets kaufen",
+      "price": "ab {price}"
     },
     "seasonal": {
       "title": "Was an Ihren Terminen los ist",
@@ -481,7 +483,11 @@
       "verify": "An der Kasse mit Ausweis bestätigen. Von den offiziellen Seiten; Preise ändern sich.",
       "source": "(Quelle)"
     },
-    "editNoChange": "Nichts zu ändern: kein freier Ort passt zu diesem Tag (in Gehweite, an dem Datum geöffnet und noch nicht geplant). Versuchen Sie einen anderen Tag oder fügen Sie einen Ort aus der Liste hinzu."
+    "editNoChange": "Nichts zu ändern: kein freier Ort passt zu diesem Tag (in Gehweite, an dem Datum geöffnet und noch nicht geplant). Versuchen Sie einen anderen Tag oder fügen Sie einen Ort aus der Liste hinzu.",
+    "events": {
+      "title": "Veranstaltungen und Shows an Ihren Terminen",
+      "source": "Quelle: {source}. Preise und Verfügbarkeit auf der Seite des Anbieters."
+    }
   },
   "gallery": {
     "title": "Fertige Pläne",

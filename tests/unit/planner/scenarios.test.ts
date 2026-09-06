@@ -251,6 +251,25 @@ describe("determinism and variety", () => {
   });
 });
 
+describe("full days", () => {
+  it("every full day has at least four stops and runs into the late afternoon, at every effort level", () => {
+    for (const cc of ["PT", "IT", "JP"]) {
+      const data = loadMany([cc]);
+      for (const effort of ["low", "medium", "high"] as const) {
+        const prefs = prefsFor({ destinations: [{ countryCode: cc, cities: [data.cities[0].slug] }], dates: { start: "2026-10-17", days: 5, arrivalTime: null, departureTime: null }, effort });
+        const { itinerary } = generateItinerary({ prefs, places: data.places, cities: data.cities });
+        assertInvariants(itinerary, prefs, data.places);
+        for (const day of itinerary.days.filter((d) => d.kind === "full")) {
+          const visits = day.activities.filter((a) => a.kind === "visit");
+          expect(visits.length, `${cc} ${effort} day ${day.index}`).toBeGreaterThanOrEqual(4);
+          // "Little walking" days are shorter by design; the others run into the late afternoon.
+          expect(visits[visits.length - 1].endMin, `${cc} ${effort} day ${day.index} ends early`).toBeGreaterThanOrEqual(effort === "low" ? 14 * 60 + 30 : 15 * 60 + 30);
+        }
+      }
+    }
+  });
+});
+
 describe("late arrival", () => {
   const data = loadMany(["JP"]);
   it("a flight landing in the evening gives an arrival day with just the check-in, no error and no 'too light' warning", () => {

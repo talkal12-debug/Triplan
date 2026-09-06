@@ -1,3 +1,4 @@
+import { RELAX_CAPACITY, RELAX_WALK } from "@/lib/planner/schedule";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { poisFileSchema, type PoisFile } from "@/lib/data/schemas";
@@ -47,8 +48,9 @@ export function assertInvariants(it: Itinerary, prefs: TripPreferences, places: 
   if (it.days.length !== prefs.dates.days) throw new Error(`expected ${prefs.dates.days} days, got ${it.days.length}`);
   it.days.forEach((day, i) => {
     if (day.index !== i) throw new Error("day index mismatch");
-    if (day.stats.walkKm > budget.walkKmMax + 0.05) throw new Error(`day ${i} walks ${day.stats.walkKm} > ${budget.walkKmMax}`);
-    if (day.stats.load > 1.001) throw new Error(`day ${i} overloaded ${day.stats.load}`);
+    // Filling a day may stretch the budgets by the same factors the validator allows.
+    if (day.stats.walkKm > budget.walkKmMax * RELAX_WALK + 0.05) throw new Error(`day ${i} walks ${day.stats.walkKm} > ${budget.walkKmMax}`);
+    if (day.stats.load > RELAX_CAPACITY + 0.05) throw new Error(`day ${i} overloaded ${day.stats.load}`);
     let last = -1;
     for (const a of day.activities) {
       if (a.startMin < last) throw new Error(`day ${i} overlapping activities`);
