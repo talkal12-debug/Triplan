@@ -362,12 +362,20 @@
         "ticketmaster": "Tickets for concerts, sports and theatre; search by city.",
         "eventbrite": "Local events, workshops and parties, many of them free.",
         "songkick": "Concert listings by city and date.",
-        "residentadvisor": "The main listing for clubs and electronic music nights worldwide."
+        "residentadvisor": "The main listing for clubs and electronic music nights worldwide.",
+        "googleflights": "Google's flight search: fast, every airline, flexible dates. No affiliate program.",
+        "kayak": "Long-standing comparison site of the Booking group, with a price graph by day. Opens with the adults; add children on the site.",
+        "momondo": "European comparison engine from the same group as Kayak, good for cheap flights within Europe.",
+        "tripcom": "Large online agency from China, often low fares to Asia and for domestic flights in Japan."
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "Destination currency: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(approximate rate)",

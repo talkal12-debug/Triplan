@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { metroCode } from "@/lib/data/metro-codes";
 
 /**
  * Every outbound booking link is built here and only here, so affiliate ids,
@@ -20,6 +21,10 @@ export const affiliateProviders = [
   "klook",
   "kiwi",
   "skyscanner",
+  "googleflights",
+  "kayak",
+  "momondo",
+  "tripcom",
   "rentalcars",
   "discovercars",
   "ticketmaster",
@@ -190,6 +195,27 @@ export function flightLinks(q: FlightQuery, ids: AffiliateIds = {}): AffiliateLi
       ids,
     );
     links.push({ provider: "skyscanner", kind: "flight", ...skyscanner });
+  }
+  // Google Flights takes a sentence; codes when we have them, else the city names. No affiliate program.
+  const google = withTracking(
+    `https://www.google.com/travel/flights?q=${enc(`Flights ${q.originIata || q.originCity ? `from ${q.originIata || q.originCity} ` : ""}to ${q.destinationIata ?? q.destinationCity} on ${q.departDate} through ${q.returnDate}`)}`,
+    "googleflights",
+    ids,
+  );
+  links.push({ provider: "googleflights", kind: "flight", ...google });
+  if (q.originIata && q.destinationIata) {
+    // Kayak and Momondo share one URL form (/ORIG-DEST/date/date/<n>adults) and take city codes, so every
+    // airport of the city is searched; children are added on the site.
+    const pair = `${metroCode(q.originIata)}-${metroCode(q.destinationIata)}`;
+    const kayak = withTracking(`https://www.kayak.com/flights/${pair}/${q.departDate}/${q.returnDate}/${q.adults}adults?sort=bestflight_a`, "kayak", ids);
+    const momondo = withTracking(`https://www.momondo.com/flight-search/${pair}/${q.departDate}/${q.returnDate}/${q.adults}adults?sort=bestflight_a`, "momondo", ids);
+    // Trip.com searches by city code (LON, not LHR) and, in English, lowercase.
+    const tripcom = withTracking(
+      `https://www.trip.com/flights/showfarefirst?dcity=${metroCode(q.originIata).toLowerCase()}&acity=${metroCode(q.destinationIata).toLowerCase()}&ddate=${q.departDate}&rdate=${q.returnDate}&triptype=rt&class=y&quantity=${q.adults}`,
+      "tripcom",
+      ids,
+    );
+    links.push({ provider: "kayak", kind: "flight", ...kayak }, { provider: "momondo", kind: "flight", ...momondo }, { provider: "tripcom", kind: "flight", ...tripcom });
   }
   return links;
 }

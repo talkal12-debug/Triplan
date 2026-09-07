@@ -362,12 +362,20 @@
         "ticketmaster": "音乐会、体育和戏剧票务；按城市搜索。",
         "eventbrite": "本地活动、工作坊和派对，很多免费。",
         "songkick": "按城市和日期的音乐会信息。",
-        "residentadvisor": "全球夜店和电子音乐之夜的主要指南。"
+        "residentadvisor": "全球夜店和电子音乐之夜的主要指南。",
+        "googleflights": "Google 航班搜索：快速、覆盖所有航司、日期灵活。无联盟计划。",
+        "kayak": "Booking 集团旗下的老牌比价网站，按日期显示价格图。链接按成人人数打开，儿童请在网站上添加。",
+        "momondo": "与 Kayak 同集团的欧洲比价引擎，适合欧洲内的廉价航班。",
+        "tripcom": "来自中国的大型在线旅行社，飞亚洲和日本国内航线常有低价。"
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "目的地货币：1 {base} ≈ {value} {quote}",
     "ratesDemo": "（近似汇率）",

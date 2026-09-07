@@ -10,7 +10,8 @@ import type { DailyWeather, PublicHoliday, Rates } from "@/lib/providers/types";
 import { affiliateIdsFromEnv, carLinks, flightLinks, hotelLinks, ticketLinks, type AffiliateLink } from "@/lib/providers/affiliate";
 import { tripEndDate } from "@/lib/planner/types";
 import type { Locale } from "@/lib/i18n/locales";
-import { airportForCityName, nearestAirport } from "@/lib/data/airports";
+import { nearestAirport } from "@/lib/data/airports";
+import { originAirport } from "@/lib/server/origin-airport";
 import { LINKS_VERSION } from "@/lib/links-version";
 import { buildNearby } from "./nearby-plan";
 import type { Evening, Venue } from "@/lib/nearby/schema";
@@ -133,7 +134,7 @@ export async function enrichPlan(
   if (refined.refinedDays.length === 0 && routing.name !== "estimate") notes.push("routing: no day could be refined, times are estimates");
   notes.push(`timing: enrich ${((Date.now() - started) / 1000).toFixed(1)}s`);
 
-  const links = buildPlanLinks(prefs, refined.itinerary, ctx, locale);
+  const links = await buildPlanLinks(prefs, refined.itinerary, ctx, locale);
 
   return {
     itinerary: refined.itinerary,
@@ -153,7 +154,7 @@ export async function enrichPlan(
 }
 
 /** Booking deep links for a plan: hotels per stay, tickets for paid/booked places, flights, car rental. */
-export function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerary, ctx: Pick<PlanContext, "places" | "cities">, locale: Locale): PlanExtras["links"] {
+export async function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerary, ctx: Pick<PlanContext, "places" | "cities">, locale: Locale): Promise<PlanExtras["links"]> {
   const ids = affiliateIdsFromEnv();
   const endDate = tripEndDate(prefs.dates);
   // Partner sites get English city names: their search understands "Rome", not every UI language.
@@ -191,11 +192,12 @@ export function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerary, ctx
   const countryEn = (code: string) => (getCountry(code) ? countryName(getCountry(code)!, "en") : undefined);
   // Flights: from the traveller's city when they told us, else a locale default (Israelis fly from Tel Aviv).
   const origin = (prefs.dates.origin ?? "").trim() || (locale === "he" ? "Tel Aviv" : "");
+  const originAp = origin ? await originAirport(origin) : null;
   const flights = first
     ? flightLinks(
         {
-          originCity: origin,
-          originIata: origin ? airportForCityName(origin)?.iata ?? null : null,
+          originCity: originAp?.city ?? origin,
+          originIata: originAp?.iata ?? null,
           destinationCity: first.names.en,
           destinationCountryName: countryEn(first.countryCode),
           destinationIata: nearestAirport(first.center)?.iata ?? null,

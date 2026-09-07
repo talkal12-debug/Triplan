@@ -24,5 +24,5 @@ export async function POST(req: Request) {
   const ctx = await loadPlanContext(preferences);
   const notes: string[] = [];
   const nearby = await buildNearby(preferences, itinerary, ctx, locale, notes);
-  return NextResponse.json({ links: buildPlanLinks(preferences, itinerary, ctx, locale), dining: nearby.dining, evenings: nearby.evenings, ...buildHighlights(preferences, itinerary), notes });
+  return NextResponse.json({ links: await buildPlanLinks(preferences, itinerary, ctx, locale), dining: nearby.dining, evenings: nearby.evenings, ...buildHighlights(preferences, itinerary), notes });
 }

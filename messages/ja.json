@@ -362,12 +362,20 @@
         "ticketmaster": "コンサート、スポーツ、演劇のチケット。都市で検索。",
         "eventbrite": "地元のイベント、ワークショップ、パーティー。無料も多数。",
         "songkick": "都市と日付ごとのコンサート情報。",
-        "residentadvisor": "世界のクラブとエレクトロニック・ナイトの主要ガイド。"
+        "residentadvisor": "世界のクラブとエレクトロニック・ナイトの主要ガイド。",
+        "googleflights": "Googleのフライト検索。速く、全航空会社、柔軟な日程。アフィリエイトなし。",
+        "kayak": "Bookingグループの老舗比較サイト。日別の価格グラフ付き。大人の人数で開くので、子供はサイトで追加してください。",
+        "momondo": "Kayakと同じグループの欧州系比較エンジン。欧州内の格安便に強い。",
+        "tripcom": "中国発の大手オンライン旅行会社。アジア方面や日本国内線が安いことが多い。"
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "現地通貨：1 {base} ≈ {value} {quote}",
     "ratesDemo": "（概算レート）",
