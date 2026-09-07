@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { Calendar, Check, Copy, Download, ExternalLink, FileDown, Link2, Printer, WifiOff } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,7 @@ import { buildIcs } from "@/lib/export/ics";
 import { buildGpx, buildKml } from "@/lib/export/geo";
 import { downloadText, safeFilename } from "@/lib/export/download";
 import { canCacheOffline, precacheMap } from "@/lib/offline/tiles";
-import { localDateOf, placeLabel } from "@/lib/guest/plan-helpers";
+import { placeLabel } from "@/lib/guest/plan-helpers";
 import type { Locale } from "@/lib/i18n/locales";
 import type { WizardContext } from "@/components/wizard/step-props";
 
@@ -20,7 +21,7 @@ type Props = { trip: GuestTrip; ctx: WizardContext; onTripChange: (trip: GuestTr
 export function SharePanel({ trip, ctx, onTripChange }: Props) {
   const t = useTranslations("tools.share");
   const tp = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const locale = useLocale() as Locale;
   const [canEdit, setCanEdit] = useState(trip.share?.canEdit ?? false);
   const [busy, setBusy] = useState<"share" | "update" | "offline" | null>(null);
@@ -40,7 +41,7 @@ export function SharePanel({ trip, ctx, onTripChange }: Props) {
     title: `Triplan · ${title}`,
     placeName: (id: string) => placeLabel(plan?.places[id], locale, id),
     kindLabel: (kind: string) => tp(`activity.${kind}` as never),
-    dayLabel: (i: number) => `${tp("dayTitle", { n: i + 1 })} · ${format.dateTime(localDateOf(plan!.itinerary.days[i].date), { day: "numeric", month: "short" })}`,
+    dayLabel: (i: number) => `${tp("dayTitle", { n: i + 1 })} · ${fmtDate(plan!.itinerary.days[i].date, { day: "numeric", month: "short" })}`,
   };
   const file = safeFilename(`triplan-${title}`);
   const shareUrl = trip.share ? `${typeof window !== "undefined" ? window.location.origin : ""}/${locale}/share/${trip.share.token}` : null;

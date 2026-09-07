@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { CalendarDays, ExternalLink, Moon, Ticket, Utensils } from "lucide-react";
 import type { Evening } from "@/lib/nearby/schema";
 import { placeSearchUrl } from "@/lib/trip/google-maps";
@@ -16,6 +17,7 @@ export function EveningPanel({ evening, date, cityLabel }: { evening: Evening; d
   const t = useTranslations("plan.evening");
   const tn = useTranslations("plan.nearby");
   const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const style = evening.style;
   const mapsQuery = style === "nightlife" ? t("mapsNightlife") : style === "culture" ? t("mapsCulture") : t("mapsQuiet");
   return (
@@ -63,7 +65,7 @@ export function EveningPanel({ evening, date, cityLabel }: { evening: Evening; d
         <div>
           <p className="flex items-center gap-1 text-xs font-medium">
             <CalendarDays className="size-3.5" aria-hidden />
-            {t("events", { date: format.dateTime(new Date(`${date}T12:00:00`), { day: "numeric", month: "short" }) })}
+            {t("events", { date: fmtDate(date, { day: "numeric", month: "short" }) })}
           </p>
           {evening.events.length > 0 ? (
             <ul className="mt-1 space-y-1">
@@ -71,7 +73,7 @@ export function EveningPanel({ evening, date, cityLabel }: { evening: Evening; d
                 <li key={e.id} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                   <span className="font-medium">{e.name}</span>
                   <span className="text-xs text-muted-foreground">
-                    {e.start.length > 10 && `${format.dateTime(new Date(e.start), { hour: "2-digit", minute: "2-digit" })} · `}
+                    {e.start.length > 10 && `${e.start.slice(11, 16)} · `}
                     {e.venue && `${e.venue} · `}
                     {e.category}
                     {e.priceMin != null && e.currency && ` · ${t("price", { price: format.number(e.priceMin, { style: "currency", currency: e.currency, maximumFractionDigits: 0 }) })}`}

@@ -62,9 +62,9 @@
 בלי מפתח, בלוק הערב מציע קישורי חיפוש. עם מפתח חינמי של Ticketmaster הוא מציג אירועים אמיתיים בתאריכי הטיול, עם מחיר וכפתור "לרכישת כרטיסים":
 
 1. נכנסים ל-https://developer.ticketmaster.com ולוחצים **Get Your API Key** (למעלה מימין). נרשמים עם מייל וסיסמה ומאשרים את המייל.
-2. אחרי הכניסה: **My Apps** → **Add a New App**. שם: `Triplan`, תיאור קצר, ולוחצים **Create App**.
-3. בדף האפליקציה מופיע **Consumer Key**. זה המפתח (מחרוזת של ~32 תווים). מעתיקים אותו.
-4. ב-Vercel: הפרויקט → **Settings** → **Environment Variables** → **Add**. Key: `TICKETMASTER_API_KEY`, Value: המפתח שהעתקתם. **Save**.
+2. אחרי הכניסה: **My Apps**. ההרשמה יוצרת אפליקציה אוטומטית (למשל `talkal12-App`, במצב Approved), אפשר להשתמש בה; אחרת **Add a New App** → שם `Triplan` → **Create App**.
+3. לוחצים על שם האפליקציה → לשונית **Credentials** → בשורה **Consumer Key** לוחצים על סמל ההעתקה. זה המפתח (~32 תווים). את ה-Consumer Secret לא צריך.
+4. ב-Vercel: הפרויקט **triplan** (לא רמת ה-Team) → **Settings** → **Environment Variables** → **Add Environment Variable**. Type: Secret, Key: `TICKETMASTER_API_KEY`, Value: המפתח שהעתקתם. **Save**. (נעשה 2026-09-07.)
 5. **Deployments** → על הפריסה האחרונה **⋯** → **Redeploy**.
 
 מגבלת החינם: 5,000 קריאות ביום, מספיק. הכיסוי הטוב ביותר בצפון אמריקה ובמערב אירופה; באסיה חלקי. כדי לקבל עמלה על כרטיסים (Ticketmaster affiliate דרך Impact) מוסיפים גם `AFFILIATE_QUERY_TICKETMASTER`, ראו `docs/affiliates.md`.

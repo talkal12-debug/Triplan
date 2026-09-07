@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import type { Itinerary } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import type { Locale } from "@/lib/i18n/locales";
-import { cityLabel, localDateOf } from "@/lib/guest/plan-helpers";
+import { cityLabel } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
 import { WeatherBadge } from "./weather-badge";
 
@@ -24,7 +25,7 @@ const intensityDot: Record<Itinerary["days"][number]["stats"]["intensity"], stri
 /** Horizontally scrolling day chips (the "day cards" on a phone). */
 export function DayRail({ plan, dayIndex, onSelect }: Props) {
   const t = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const locale = useLocale() as Locale;
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -62,7 +63,7 @@ export function DayRail({ plan, dayIndex, onSelect }: Props) {
                 <span className={cn("size-2 rounded-full", intensityDot[day.stats.intensity])} aria-label={t(`intensity.${day.stats.intensity}`)} />
               </span>
             </span>
-            <span className="font-semibold">{format.dateTime(localDateOf(day.date), { weekday: "short", day: "numeric", month: "short" })}</span>
+            <span className="font-semibold">{fmtDate(day.date, { weekday: "short", day: "numeric", month: "short" })}</span>
             <span className="truncate text-xs text-muted-foreground">{cityLabel(plan, day.citySlug, locale)}</span>
           </button>
         );

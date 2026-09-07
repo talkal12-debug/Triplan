@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, History, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +18,7 @@ import {
 import type { Activity, Reason } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import type { Locale } from "@/lib/i18n/locales";
-import { hhmm, localDateOf, placeLabel, googleTranslateUrl, placeSummary } from "@/lib/guest/plan-helpers";
+import { hhmm, placeLabel, googleTranslateUrl, placeSummary } from "@/lib/guest/plan-helpers";
 import { cn } from "@/lib/utils";
 import { AffiliateLinks } from "./affiliate-links";
 import { VoteBar } from "./vote-bar";
@@ -53,7 +54,7 @@ type Props = {
 
 export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onSelect, actions, reasonText, dragHandle, compact }: Props) {
   const t = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const locale = useLocale() as Locale;
   const place = a.placeId ? plan.places[a.placeId] : undefined;
   const isVisit = a.kind === "visit";
@@ -198,7 +199,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
                       .filter((d) => d.index !== dayIndex)
                       .map((d) => (
                         <DropdownMenuItem key={d.index} onSelect={() => actions.onMove(a.id, d.index)}>
-                          {t("actions.moveToDay", { n: d.index + 1, date: format.dateTime(localDateOf(d.date), { day: "numeric", month: "short" }) })}
+                          {t("actions.moveToDay", { n: d.index + 1, date: fmtDate(d.date, { day: "numeric", month: "short" }) })}
                         </DropdownMenuItem>
                       ))}
                   </DropdownMenuSubContent>

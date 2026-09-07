@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { CloudSun } from "lucide-react";
 import { seasonFor, tripEndDate } from "@/lib/planner/types";
 import { seasonalFor } from "@/lib/data/seasonal";
@@ -10,7 +11,7 @@ import type { StepProps } from "../step-props";
 
 export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
   const t = useTranslations("wizard.dates");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const today = new Date().toISOString().slice(0, 10);
   const { dates } = prefs;
 
@@ -48,7 +49,7 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
 
       <Stepper
         label={t("days")}
-        hint={end ? t("end", { date: format.dateTime(new Date(`${end}T00:00:00`), { dateStyle: "medium" }) }) : undefined}
+        hint={end ? t("end", { date: fmtDate(end, { dateStyle: "medium" }) }) : undefined}
         value={dates.days}
         min={1}
         max={30}

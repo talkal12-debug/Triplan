@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { Pencil } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { CountryFlag } from "@/components/country-flag";
@@ -19,6 +20,7 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
   const t = useTranslations("wizard");
   const ts = useTranslations("wizard.summary");
   const format = useFormatter();
+  const fmtDate = useCalendarFormat();
 
   const countryByCode = new Map(ctx.countries.map((c) => [c.code, c]));
   const listFormat = new Intl.ListFormat(ctx.locale, { style: "long", type: "conjunction" });
@@ -39,8 +41,6 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
   ].filter((p): p is string => Boolean(p));
 
   const baseMode = prefs.hotel.baseMode === "auto" ? recommendBaseMode(prefs).mode : prefs.hotel.baseMode;
-  const start = new Date(`${prefs.dates.start}T00:00:00`);
-  const end = new Date(`${tripEndDate(prefs.dates)}T00:00:00`);
 
   const sections: { step: WizardStep; content: React.ReactNode }[] = [
     {
@@ -68,8 +68,8 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
       step: "dates",
       content: (
         <>
-          {ts("days", { count: prefs.dates.days, date: format.dateTime(start, { dateStyle: "medium" }) })}
-          <span className="text-muted-foreground"> · {format.dateTime(end, { dateStyle: "medium" })}</span>
+          {ts("days", { count: prefs.dates.days, date: fmtDate(prefs.dates.start, { dateStyle: "medium" }) })}
+          <span className="text-muted-foreground"> · {fmtDate(tripEndDate(prefs.dates), { dateStyle: "medium" })}</span>
         </>
       ),
     },

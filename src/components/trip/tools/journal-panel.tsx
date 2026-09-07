@@ -1,9 +1,9 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { Star } from "lucide-react";
 import { updateGuestTrip, type GuestTrip, type Journal } from "@/lib/guest/trips";
-import { localDateOf } from "@/lib/guest/plan-helpers";
 import { inputClass } from "@/components/wizard/controls";
 import { usePlanText } from "../use-plan-text";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ function JournalEntries({ trip, onTripChange }: { trip: GuestTrip & { plan: NonN
   const t = useTranslations("journal");
   const tp = useTranslations("plan");
   const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const journal = trip.journal ?? emptyJournal();
   const days = trip.plan.itinerary.days;
   const { city } = usePlanText(trip.plan);
@@ -60,7 +61,7 @@ function JournalEntries({ trip, onTripChange }: { trip: GuestTrip & { plan: NonN
                 <label htmlFor={id} className="font-medium">
                   {tp("dayTitle", { n: day.index + 1 })}
                   <span className="ms-2 text-sm font-normal text-muted-foreground">
-                    {format.dateTime(localDateOf(day.date), { weekday: "short", day: "numeric", month: "short" })} · {city(day.citySlug)}
+                    {fmtDate(day.date, { weekday: "short", day: "numeric", month: "short" })} · {city(day.citySlug)}
                   </span>
                 </label>
                 <div role="radiogroup" aria-label={t("rating")} className="flex gap-0.5">

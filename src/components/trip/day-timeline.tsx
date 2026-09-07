@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { DndContext, KeyboardSensor, PointerSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -9,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Activity } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
-import { localDateOf } from "@/lib/guest/plan-helpers";
 import { useDistance } from "@/lib/units/use-distance";
 import { dayDirectionsUrl } from "@/lib/trip/google-maps";
 import { ActivityCard, type ActivityActions } from "./activity-card";
@@ -32,7 +32,7 @@ type Props = {
 
 export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, busy }: Props) {
   const t = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const distance = useDistance();
   const { reasonText, warningText, name, city } = usePlanText(plan);
   const day = plan.itinerary.days[dayIndex];
@@ -70,7 +70,7 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
           <h2 className="text-xl font-semibold">
             {t("dayTitle", { n: day.index + 1 })}
             <span className="ms-2 text-base font-normal text-muted-foreground">
-              {format.dateTime(localDateOf(day.date), { weekday: "long", day: "numeric", month: "long" })}
+              {fmtDate(day.date, { weekday: "long", day: "numeric", month: "long" })}
             </span>
           </h2>
           <p className="text-sm text-muted-foreground">
