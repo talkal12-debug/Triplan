@@ -10,6 +10,8 @@ import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import type { Activity } from "@/lib/planner/itinerary";
 import { googleMapsDirections, hhmm, localDateOf, googleTranslateUrl, placeSummary, todayIso } from "@/lib/guest/plan-helpers";
 import { usePlanText } from "./use-plan-text";
+import { placeImage } from "@/lib/images";
+import { Photo } from "@/components/photo";
 import { cn } from "@/lib/utils";
 
 type Props = { id: string };
@@ -182,9 +184,13 @@ function BigCard({
 }) {
   const locale = useLocale();
   const summary = placeSummary(place, locale);
+  const photo = placeImage(place, locale);
   const t = useTranslations("plan");
+  const tc = useTranslations("common");
   return (
-    <section className={cn("rounded-lg border-2 p-5", primary ? "border-primary bg-primary/5" : "border-border bg-card")}>
+    <section className={cn("overflow-hidden rounded-lg border-2", primary ? "border-primary" : "border-border bg-card")}>
+      {photo && <Photo image={photo} alt={name} width={960} className="aspect-[16/9] w-full" credit={tc("photoCredit")} sizes="(max-width: 640px) 100vw, 640px" />}
+      <div className={cn("p-5", primary && "bg-primary/5")}>
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</p>
       <p className="mt-1 text-2xl font-bold leading-tight">{name}</p>
       <p className="mt-1 text-sm text-muted-foreground" dir="auto">
@@ -217,6 +223,7 @@ function BigCard({
           </Button>
         </div>
       )}
+      </div>
     </section>
   );
 }

@@ -91,10 +91,12 @@ export function GuestTripView({ id, ctx }: Props) {
   useEffect(() => {
     const plan = trip?.plan;
     const key = `${trip?.id}:${ctx.locale}`;
-    if (!trip || !plan || summariesChecked.current === key || plan.summariesFor?.includes(ctx.locale)) return;
+    // The marker carries a version: plans that fetched descriptions before photos existed ask once more.
+    const marker = `${ctx.locale}@2`;
+    if (!trip || !plan || summariesChecked.current === key || plan.summariesFor?.includes(marker)) return;
     const wanted = ctx.locale === "en" ? ["en"] : [ctx.locale, "en"];
     const missing = Object.values(plan.places)
-      .filter((p) => p.wikidata && !p.summary?.[ctx.locale])
+      .filter((p) => p.wikidata && (!p.summary?.[ctx.locale] || !Object.values(p.summary).some((s) => s.image)))
       .map((p) => ({ id: p.id, wikidata: p.wikidata as string }));
     summariesChecked.current = key;
     if (missing.length === 0) return;
@@ -110,7 +112,7 @@ export function GuestTripView({ id, ctx }: Props) {
         const places = Object.fromEntries(
           Object.entries(current.plan.places).map(([id, p]) => [id, summaries[id] ? { ...p, summary: { ...(p.summary ?? {}), ...summaries[id] } } : p]),
         );
-        const summariesFor = [...new Set([...(current.plan.summariesFor ?? []), ctx.locale])];
+        const summariesFor = [...new Set([...(current.plan.summariesFor ?? []), marker])];
         const updated = updateGuestTrip(trip.id, { plan: { ...current.plan, places, summariesFor } });
         if (updated) setTrip(updated);
       })

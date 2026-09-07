@@ -9,7 +9,8 @@
     "demoBanner": "Modalità demo: percorsi, meteo e festività arrivano da fonti gratuite senza chiave API. I dati stimati sono contrassegnati.",
     "affiliate": "Link di affiliazione",
     "opensInNewTab": "Si apre in una nuova scheda",
-    "offline": "Nessuna connessione internet. I piani salvati sono disponibili in \"I miei viaggi\"."
+    "offline": "Nessuna connessione internet. I piani salvati sono disponibili in \"I miei viaggi\".",
+    "photoCredit": "Foto: Wikipedia"
   },
   "nav": {
     "home": "Home",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "Stato di sviluppo",
-    "statusBody": "Triplan è costruito a fasi. Già funzionanti: questionario, motore di pianificazione, quattro viste, mappa, esportazione, offline, 12 lingue, account e pianificazione insieme. L'assistente IA richiede una chiave Anthropic."
+    "statusBody": "Triplan è costruito a fasi. Già funzionanti: questionario, motore di pianificazione, quattro viste, mappa, esportazione, offline, 12 lingue, account e pianificazione insieme. L'assistente IA richiede una chiave Anthropic.",
+    "photosLabel": "Foto delle destinazioni demo"
   },
   "plan": {
     "build": "Crea il piano",

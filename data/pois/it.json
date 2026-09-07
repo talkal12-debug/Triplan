@@ -19,7 +19,11 @@
         12.22,
         41.99,
         12.62
-      ]
+      ],
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Trevi_Fountain%2C_Rome%2C_Italy_2_-_May_2007.jpg/330px-Trevi_Fountain%2C_Rome%2C_Italy_2_-_May_2007.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        "page": "https://en.wikipedia.org/wiki/Rome"
+      }
     },
     {
       "slug": "tivoli",
@@ -38,7 +42,11 @@
         12.7,
         42.02,
         12.86
-      ]
+      ],
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tivoli_montage.jpg/330px-Tivoli_montage.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        "page": "https://en.wikipedia.org/wiki/Tivoli%2C_Lazio"
+      }
     }
   ],
   "places": [
@@ -79,11 +87,19 @@
       "summary": {
         "he": {
           "text": "הקוֹלוֹסֵיאוּם הוא אמפיתיאטרון אליפטי, הבנוי מבטון ומאבן, שנמצא במרכז רומא, שבאיטליה. הקולוסיאום הוא האמפיתיאטרון הגדול ביותר שנבנה אי פעם, ונחשב בימיו וגם כיום לאחת מהיצירות הגדולות של ההנדסה והאדריכלות הרומית.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95%D7%9C%D7%95%D7%A1%D7%99%D7%90%D7%95%D7%9D"
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%95%D7%9C%D7%95%D7%A1%D7%99%D7%90%D7%95%D7%9D",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/330px-Colosseo_2020.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A7%D7%95%D7%9C%D7%95%D7%A1%D7%99%D7%90%D7%95%D7%9D"
+          }
         },
         "en": {
           "text": "The Colosseum is an elliptical amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built, and is the largest standing amphitheatre in the world.",
-          "url": "https://en.wikipedia.org/wiki/Colosseum"
+          "url": "https://en.wikipedia.org/wiki/Colosseum",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/330px-Colosseo_2020.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Colosseum"
+          }
         }
       },
       "dataQuality": "verified",
@@ -126,11 +142,19 @@
       "summary": {
         "he": {
           "text": "הפורום הרומאי אשר שרידיו נמצאים ברומא היווה את מרכז רומא העתיקה ומרכז האימפריה הרומית. הפורום נקרא בתקופה הרומית \"הפורום הגדול\" - פורום מאגנום או פשוט הפורום.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A8%D7%95%D7%9D_%D7%A8%D7%95%D7%9E%D7%90%D7%A0%D7%95%D7%9D"
+          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A8%D7%95%D7%9D_%D7%A8%D7%95%D7%9E%D7%90%D7%A0%D7%95%D7%9D",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Foro_Romano_Musei_Capitolini_Roma.jpg/330px-Foro_Romano_Musei_Capitolini_Roma.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A4%D7%95%D7%A8%D7%95%D7%9D_%D7%A8%D7%95%D7%9E%D7%90%D7%A0%D7%95%D7%9D"
+          }
         },
         "en": {
           "text": "The Roman Forum, also known by its Latin name Forum Romanum, is a rectangular forum surrounded by the ruins of several important ancient government buildings at the centre of the city of Rome.",
-          "url": "https://en.wikipedia.org/wiki/Roman_Forum"
+          "url": "https://en.wikipedia.org/wiki/Roman_Forum",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Foro_Romano_Musei_Capitolini_Roma.jpg/330px-Foro_Romano_Musei_Capitolini_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Roman_Forum"
+          }
         }
       },
       "dataQuality": "partial",
@@ -173,11 +197,19 @@
       "summary": {
         "he": {
           "text": "גבעת הפאלאטיום, הגבעה הפאלאטינית, או גבעת פאלאטינו, היא הגבעה המרכזית בין שבע גבעות רומא והיא בין האזורים העתיקים ביותר שהייתה קיימת עליהם התיישבות קבע בעיר רומא שבאיטליה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%92%D7%91%D7%A2%D7%AA_%D7%94%D7%A4%D7%90%D7%9C%D7%90%D7%98%D7%99%D7%95%D7%9D"
+          "url": "https://he.wikipedia.org/wiki/%D7%92%D7%91%D7%A2%D7%AA_%D7%94%D7%A4%D7%90%D7%9C%D7%90%D7%98%D7%99%D7%95%D7%9D",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg/330px-Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%92%D7%91%D7%A2%D7%AA_%D7%94%D7%A4%D7%90%D7%9C%D7%90%D7%98%D7%99%D7%95%D7%9D"
+          }
         },
         "en": {
           "text": "The Palatine Hill, which is the centremost of the seven hills of Rome, is one of the most ancient parts of the city; it has been called \"the first nucleus of the Roman Empire\".",
-          "url": "https://en.wikipedia.org/wiki/Palatine_Hill"
+          "url": "https://en.wikipedia.org/wiki/Palatine_Hill",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg/330px-Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Palatine_Hill"
+          }
         }
       },
       "dataQuality": "verified",
@@ -221,11 +253,19 @@
       "summary": {
         "he": {
           "text": "הפנתאון הוא מבנה מתקופת רומא העתיקה, הנמצא בעיר רומא, בירת איטליה. מקור השם \"פנתאון\" במילה היוונית Πάνθεον, שפירושה \"מקום סגידה לכל האלים\".",
-          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%A4%D7%A0%D7%AA%D7%90%D7%95%D7%9F_%D7%91%D7%A8%D7%95%D7%9E%D7%90"
+          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%A4%D7%A0%D7%AA%D7%90%D7%95%D7%9F_%D7%91%D7%A8%D7%95%D7%9E%D7%90",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Rome_Pantheon_front.jpg/330px-Rome_Pantheon_front.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%94%D7%A4%D7%A0%D7%AA%D7%90%D7%95%D7%9F_%D7%91%D7%A8%D7%95%D7%9E%D7%90"
+          }
         },
         "en": {
           "text": "The Pantheon is an ancient temple in Rome, Italy, originally built under emperor Augustus and reconstructed under Hadrian; since AD 609, it is a Catholic church called the Basilica of St. Mary and the Martyrs.",
-          "url": "https://en.wikipedia.org/wiki/Pantheon%2C_Rome"
+          "url": "https://en.wikipedia.org/wiki/Pantheon%2C_Rome",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Pantheon_%28Rome%29_-_Right_side_and_front.jpg/330px-Pantheon_%28Rome%29_-_Right_side_and_front.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Pantheon%2C_Rome"
+          }
         }
       },
       "dataQuality": "verified",
@@ -268,11 +308,19 @@
       "summary": {
         "he": {
           "text": "מזרקת טרווי היא הגדולה שבמזרקות מתקופת הבארוק ברומא ומאתרי התיירות הבולטים ברומא. במשך שעות היום והלילה גודשים תיירים רבים את המדרגות היורדות לכיוון המזרקה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%96%D7%A8%D7%A7%D7%AA_%D7%98%D7%A8%D7%95%D7%95%D7%99"
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%96%D7%A8%D7%A7%D7%AA_%D7%98%D7%A8%D7%95%D7%95%D7%99",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Trevi_Fountain_-_Roma.jpg/330px-Trevi_Fountain_-_Roma.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%9E%D7%96%D7%A8%D7%A7%D7%AA_%D7%98%D7%A8%D7%95%D7%95%D7%99"
+          }
         },
         "en": {
           "text": "The Trevi Fountain is an 18th-century fountain in the Trevi district in Rome, Italy, designed by Italian architect Nicola Salvi and completed by Giuseppe Pannini in 1762. Standing 26.",
-          "url": "https://en.wikipedia.org/wiki/Trevi_Fountain"
+          "url": "https://en.wikipedia.org/wiki/Trevi_Fountain",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Trevi_Fountain_-_Roma.jpg/330px-Trevi_Fountain_-_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Trevi_Fountain"
+          }
         }
       },
       "dataQuality": "partial",
@@ -316,11 +364,19 @@
       "summary": {
         "he": {
           "text": "פיאצה נאבונה היא כיכר מרכזית עם יצירות ובניינים בסגנון הבארוק, בליבו של האזור התיירותי של רומא. את הכיכר תכנן ברניני, מהאדריכלים המובילים בתקופתו, עבור משפחת האפיפיור אינוקנטיוס העשירי.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%90%D7%A6%D7%94_%D7%A0%D7%90%D7%91%D7%95%D7%A0%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%90%D7%A6%D7%94_%D7%A0%D7%90%D7%91%D7%95%D7%A0%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Paolo_Monti_-_Servizio_fotografico_%28Roma%2C_1966%29_-_BEIC_6329173.jpg/330px-Paolo_Monti_-_Servizio_fotografico_%28Roma%2C_1966%29_-_BEIC_6329173.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%90%D7%A6%D7%94_%D7%A0%D7%90%D7%91%D7%95%D7%A0%D7%94"
+          }
         },
         "en": {
           "text": "Piazza Navona is a public open space in Rome, Italy. It is built on the site of the 1st century AD Stadium of Domitian and follows the form of the open space of the stadium in an elongated oval.",
-          "url": "https://en.wikipedia.org/wiki/Piazza_Navona"
+          "url": "https://en.wikipedia.org/wiki/Piazza_Navona",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Piazza_Navona_%28Rome%29_at_night.jpg/330px-Piazza_Navona_%28Rome%29_at_night.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Piazza_Navona"
+          }
         }
       },
       "dataQuality": "partial",
@@ -364,12 +420,20 @@
       "summary": {
         "en": {
           "text": "The Piazza di Spagna is a square in the centre of Rome, the capital of Italy. It lies at the foot of the Spanish Steps and owes its name to the Palazzo di Spagna, the seat of the Embassy of Spain to the Holy See.",
-          "url": "https://en.wikipedia.org/wiki/Piazza_di_Spagna"
+          "url": "https://en.wikipedia.org/wiki/Piazza_di_Spagna",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Piazza_di_Spagna.jpg/330px-Piazza_di_Spagna.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Piazza_di_Spagna"
+          }
         },
         "he": {
           "text": "פיאצה די ספאניה היא כיכר במרכז רומא, בירת איטליה. היא שוכנת למרגלות המדרגות הספרדיות וקרויה על שם פלאצו די ספאניה, מושב שגרירות ספרד בכס הקדוש.",
           "url": "https://en.wikipedia.org/wiki/Piazza_di_Spagna",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Piazza_di_Spagna.jpg/330px-Piazza_di_Spagna.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Piazza_di_Spagna"
+          }
         }
       },
       "dataQuality": "partial",
@@ -488,11 +552,19 @@
       "summary": {
         "he": {
           "text": "מוזיאוני הוותיקן הם מתחם של מספר מוזיאוני אמנות וארכאולוגיה בוותיקן, המציגים את אוספי הכנסייה הקתולית. המוזיאון הוקם במאה ה-16 על ידי האפיפיור יוליוס השני.",
-          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%A0%D7%99_%D7%94%D7%95%D7%95%D7%AA%D7%99%D7%A7%D7%9F"
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%A0%D7%99_%D7%94%D7%95%D7%95%D7%AA%D7%99%D7%A7%D7%9F",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Mura_vaticane_-_ingresso_ai_Musei_00410.JPG/330px-Mura_vaticane_-_ingresso_ai_Musei_00410.JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%A0%D7%99_%D7%94%D7%95%D7%95%D7%AA%D7%99%D7%A7%D7%9F"
+          }
         },
         "en": {
           "text": "The Vatican Museums are the public museums of the Vatican City.",
-          "url": "https://en.wikipedia.org/wiki/Vatican_Museums"
+          "url": "https://en.wikipedia.org/wiki/Vatican_Museums",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Musei_vaticani_Coat_of_Arms.svg/330px-Musei_vaticani_Coat_of_Arms.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Vatican_Museums"
+          }
         }
       },
       "dataQuality": "verified",
@@ -537,11 +609,19 @@
       "summary": {
         "he": {
           "text": "הבזיליקה האפיפיורית של פטרוס הקדוש בוותיקן היא המבנה המרכזי של קריית הוותיקן. בזיליקת פטרוס הקדוש היא מבנה הדת הנוצרי הגדול בעולם, ויכול להכיל בתוכו עד כ-60,000 איש.",
-          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A4%D7%98%D7%A8%D7%95%D7%A1_%D7%94%D7%A7%D7%93%D7%95%D7%A9"
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A4%D7%98%D7%A8%D7%95%D7%A1_%D7%94%D7%A7%D7%93%D7%95%D7%A9",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Petersdom_von_Engelsburg_gesehen.jpg/330px-Petersdom_von_Engelsburg_gesehen.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A4%D7%98%D7%A8%D7%95%D7%A1_%D7%94%D7%A7%D7%93%D7%95%D7%A9"
+          }
         },
         "en": {
           "text": "The Papal Basilica of Saint Peter in the Vatican, or simply St. Peter's Basilica, is a church of the Italian Renaissance located in Vatican City, an independent microstate enclaved within the city of Rome, Italy.",
-          "url": "https://en.wikipedia.org/wiki/St._Peter's_Basilica"
+          "url": "https://en.wikipedia.org/wiki/St._Peter's_Basilica",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg/330px-Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/St._Peter's_Basilica"
+          }
         }
       },
       "dataQuality": "verified",
@@ -584,11 +664,19 @@
       "summary": {
         "he": {
           "text": "טירת סנטאנג'לו היא מבנה מעגלי גבוה הנמצא ברומא שבאיטליה. במקור היה המבנה מאוזולאום שבנה הקיסר הרומי אדריאנוס עבור עצמו.",
-          "url": "https://he.wikipedia.org/wiki/%D7%98%D7%99%D7%A8%D7%AA_%D7%A1%D7%A0%D7%98%D7%90%D7%A0%D7%92'%D7%9C%D7%95"
+          "url": "https://he.wikipedia.org/wiki/%D7%98%D7%99%D7%A8%D7%AA_%D7%A1%D7%A0%D7%98%D7%90%D7%A0%D7%92'%D7%9C%D7%95",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Castel_Sant%27Angelo_at_Night.jpg/330px-Castel_Sant%27Angelo_at_Night.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%98%D7%99%D7%A8%D7%AA_%D7%A1%D7%A0%D7%98%D7%90%D7%A0%D7%92'%D7%9C%D7%95"
+          }
         },
         "en": {
           "text": "Castel Sant'Angelo, also known as Mausoleum of Hadrian, is a towering rotunda in Parco Adriano, Rome, Italy. It was initially commissioned by the Roman Emperor Hadrian as a mausoleum for himself and his family.",
-          "url": "https://en.wikipedia.org/wiki/Castel_Sant'Angelo"
+          "url": "https://en.wikipedia.org/wiki/Castel_Sant'Angelo",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Castel_Sant%27Angelo_at_Night.jpg/330px-Castel_Sant%27Angelo_at_Night.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Castel_Sant'Angelo"
+          }
         }
       },
       "dataQuality": "verified",
@@ -631,11 +719,19 @@
       "summary": {
         "he": {
           "text": "פיאצה דל פופולו היא כיכר בעיר רומא.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%90%D7%A6%D7%94_%D7%93%D7%9C_%D7%A4%D7%95%D7%A4%D7%95%D7%9C%D7%95"
+          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%90%D7%A6%D7%94_%D7%93%D7%9C_%D7%A4%D7%95%D7%A4%D7%95%D7%9C%D7%95",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/PIAZZA_DEL_POPOLO_VISTA_AEREA.jpg/330px-PIAZZA_DEL_POPOLO_VISTA_AEREA.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%90%D7%A6%D7%94_%D7%93%D7%9C_%D7%A4%D7%95%D7%A4%D7%95%D7%9C%D7%95"
+          }
         },
         "en": {
           "text": "Piazza del Popolo is a large urban square in Rome. The name in modern Italian literally means \"People's Square\", but historically it derives from the poplars after which the church of Santa Maria del Popolo, in the northeast corner of the piazza, takes its name.",
-          "url": "https://en.wikipedia.org/wiki/Piazza_del_Popolo"
+          "url": "https://en.wikipedia.org/wiki/Piazza_del_Popolo",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Piazza_del_Popolo%2C_Roma_%28Rome%29.jpg/330px-Piazza_del_Popolo%2C_Roma_%28Rome%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Piazza_del_Popolo"
+          }
         }
       },
       "dataQuality": "partial",
@@ -678,12 +774,20 @@
       "summary": {
         "en": {
           "text": "The Museum of the Ara Pacis belongs to the Sistema dei Musei in Comune of Rome; it houses the Ara Pacis of Augustus, an ancient monument that was initially inaugurated on 30 January 9 B.C.",
-          "url": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis"
+          "url": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Campo_Marzio_-_Piazza_Augusto_Imperatore_Ara_Pacis_1000133.JPG/330px-Campo_Marzio_-_Piazza_Augusto_Imperatore_Ara_Pacis_1000133.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis"
+          }
         },
         "he": {
           "text": "מוזיאון ארה פאקיס שייך למערכת המוזיאונים העירוניים של רומא; הוא מאכלס את ארה פאקיס של אוגוסטוס, מונומנט עתיק שנחנך ב-30 בינואר 9 לפנה\"ס.",
           "url": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Campo_Marzio_-_Piazza_Augusto_Imperatore_Ara_Pacis_1000133.JPG/330px-Campo_Marzio_-_Piazza_Augusto_Imperatore_Ara_Pacis_1000133.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis"
+          }
         }
       },
       "dataQuality": "verified",
@@ -727,11 +831,19 @@
       "summary": {
         "he": {
           "text": "וילה בורגזה היא גן בסגנון אנגלי המצוי ברומא שבאיטליה. בגן מצויים מספר מבנים המשמשים כיום כמוזיאונים, והוא הגן הציבורי השני בגודלו ברומא.",
-          "url": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%91%D7%95%D7%A8%D7%92%D7%96%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%91%D7%95%D7%A8%D7%92%D7%96%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Villa_Borghese_-_entrata_2669.JPG/330px-Villa_Borghese_-_entrata_2669.JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%91%D7%95%D7%A8%D7%92%D7%96%D7%94"
+          }
         },
         "en": {
           "text": "Villa Borghese is a landscape garden in Rome, containing a number of buildings, museums and attractions. It is the third-largest public park in Rome, after the ones of the Villa Doria Pamphili and Villa Ada.",
-          "url": "https://en.wikipedia.org/wiki/Villa_Borghese_gardens"
+          "url": "https://en.wikipedia.org/wiki/Villa_Borghese_gardens",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ingresso_monumentale_di_Villa_Borghese_a_Roma_su_piazzale_Flaminio_2018-02.jpg/330px-Ingresso_monumentale_di_Villa_Borghese_a_Roma_su_piazzale_Flaminio_2018-02.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Villa_Borghese_gardens"
+          }
         }
       },
       "dataQuality": "partial",
@@ -774,11 +886,19 @@
       "summary": {
         "he": {
           "text": "גלריה בורגזה הממוקמת בווילה בורגזה פינצ'אנה - וילה המצויה בגני וילה בורגזה, מציגה אוסף של אמנות ופסלים שנאסף על ידי הקרדינל שיפיונה בורגזה, אחיינו האהוב של האפיפיור פאולוס החמישי.",
-          "url": "https://he.wikipedia.org/wiki/%D7%92%D7%9C%D7%A8%D7%99%D7%94_%D7%91%D7%95%D7%A8%D7%92%D7%96%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%92%D7%9C%D7%A8%D7%99%D7%94_%D7%91%D7%95%D7%A8%D7%92%D7%96%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Roma_Museo_Borghese.jpg/330px-Roma_Museo_Borghese.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%92%D7%9C%D7%A8%D7%99%D7%94_%D7%91%D7%95%D7%A8%D7%92%D7%96%D7%94"
+          }
         },
         "en": {
           "text": "The Galleria Borghese or Borghese Gallery is an art gallery in Rome, Italy, housed in the former Villa Borghese Pinciana. At the outset, the gallery building was integrated with its gardens, but nowadays the Villa Borghese gardens are considered a separate tourist attraction.",
-          "url": "https://en.wikipedia.org/wiki/Galleria_Borghese"
+          "url": "https://en.wikipedia.org/wiki/Galleria_Borghese",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Galleria_Borghese_-_logo_%28Italy%2C_2022-%29.svg/330px-Galleria_Borghese_-_logo_%28Italy%2C_2022-%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Galleria_Borghese"
+          }
         }
       },
       "dataQuality": "verified",
@@ -863,7 +983,8 @@
         "he": {
           "text": "מוזיאון ילדים ברומא, איטליה",
           "url": null,
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": null
         }
       },
       "dataQuality": "partial",
@@ -906,11 +1027,19 @@
       "summary": {
         "he": {
           "text": "המוזיאון הלאומי לאמנויות מהמאה ה-21 או MAXXI הוא מוזיאון לאומי לאמנות עכשווית ולאדריכלות בשכונת פלמיניו ברומא, איטליה.",
-          "url": "https://he.wikipedia.org/wiki/MAXXI"
+          "url": "https://he.wikipedia.org/wiki/MAXXI",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/MAXXI_Museum_interior_05.JPG/330px-MAXXI_Museum_interior_05.JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/MAXXI"
+          }
         },
         "en": {
           "text": "MAXXI is a national museum of contemporary art and architecture in the Flaminio neighborhood of Rome, Italy. The museum is managed by a foundation created by the Italian Ministry of Culture.",
-          "url": "https://en.wikipedia.org/wiki/MAXXI"
+          "url": "https://en.wikipedia.org/wiki/MAXXI",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/MAXXI_%2827483747665%29.jpg/330px-MAXXI_%2827483747665%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/MAXXI"
+          }
         }
       },
       "dataQuality": "verified",
@@ -993,11 +1122,19 @@
       "summary": {
         "he": {
           "text": "טְרַסְטֶ֫וֶורֵה הוא הרובע ה-13 מבין רובעי העיר רומא בירת איטליה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%98%D7%A8%D7%A1%D7%98%D7%95%D7%95%D7%A8%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%98%D7%A8%D7%A1%D7%98%D7%95%D7%95%D7%A8%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Santa_Maria_in_Trastevere_fountain.jpg/330px-Santa_Maria_in_Trastevere_fountain.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%98%D7%A8%D7%A1%D7%98%D7%95%D7%95%D7%A8%D7%94"
+          }
         },
         "en": {
           "text": "Trastevere is the 13th rione of Rome, Italy. It is identified by the initials R.",
-          "url": "https://en.wikipedia.org/wiki/Trastevere"
+          "url": "https://en.wikipedia.org/wiki/Trastevere",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Santa_Maria_in_Trastevere_fountain.jpg/330px-Santa_Maria_in_Trastevere_fountain.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Trastevere"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1040,11 +1177,19 @@
       "summary": {
         "he": {
           "text": "סנטה מריה אין טרסטוורה היא בזיליקה הנמצאת ברובע טרסטוורה של העיר רומא, בירת איטליה. הכנסייה, שנבנתה בשנת 340, היא אחת העתיקות בכנסיות רומא, וככל הנראה הכנסייה הראשונה בה נערכו טקסים דתיים נוצריים ובהם טקס המיסה בגלוי.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%90%D7%99%D7%9F_%D7%98%D7%A8%D7%A1%D7%98%D7%95%D7%95%D7%A8%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%90%D7%99%D7%9F_%D7%98%D7%A8%D7%A1%D7%98%D7%95%D7%95%D7%A8%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Roma_-_Basilica_di_Santa_Maria_in_Trastevere_20231228-02.jpg/330px-Roma_-_Basilica_di_Santa_Maria_in_Trastevere_20231228-02.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%90%D7%99%D7%9F_%D7%98%D7%A8%D7%A1%D7%98%D7%95%D7%95%D7%A8%D7%94"
+          }
         },
         "en": {
           "text": "Santa Maria in Trastevere is a titular church and minor basilica located in Trastevere, Rome. Traditionally considered one of the oldest churches in the city dedicated to the Virgin Mary, it has served as a cardinal titular church since the 3rd century.",
-          "url": "https://en.wikipedia.org/wiki/Santa_Maria_in_Trastevere"
+          "url": "https://en.wikipedia.org/wiki/Santa_Maria_in_Trastevere",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/01_Santa_Maria_in_Trastevere_Facade.jpg/330px-01_Santa_Maria_in_Trastevere_Facade.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Santa_Maria_in_Trastevere"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1125,12 +1270,20 @@
       "summary": {
         "en": {
           "text": "The Villa Doria Pamphili is a seventeenth-century villa with what is today the largest landscaped public park in Rome, Italy.",
-          "url": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili"
+          "url": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Villa_Doria_Pamphilj_in_Rom.jpg/330px-Villa_Doria_Pamphilj_in_Rom.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili"
+          }
         },
         "he": {
           "text": "וילה דוריה פמפילי היא וילה מהמאה ה-17 שבשטחה הפארק הציבורי המעוצב הגדול ביותר ברומא.",
           "url": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Villa_Doria_Pamphilj_in_Rom.jpg/330px-Villa_Doria_Pamphilj_in_Rom.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Villa_Doria_Pamphili"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1173,11 +1326,19 @@
       "summary": {
         "he": {
           "text": "קמפו די פיורי היא כיכר מלבנית בקרבת פיאצה נאבונה במרכז רומא שבאיטליה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%9E%D7%A4%D7%95_%D7%93%D7%99_%D7%A4%D7%99%D7%95%D7%A8%D7%99"
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%9E%D7%A4%D7%95_%D7%93%D7%99_%D7%A4%D7%99%D7%95%D7%A8%D7%99",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Il_Valle_delle_Rose_....JPG/330px-Il_Valle_delle_Rose_....JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A7%D7%9E%D7%A4%D7%95_%D7%93%D7%99_%D7%A4%D7%99%D7%95%D7%A8%D7%99"
+          }
         },
         "en": {
           "text": "Campo de' Fiori is a rectangular square south of Piazza Navona in Rome, Italy, at the border between the rioni Parione and Regola. It is diagonally southeast of the Palazzo della Cancelleria and one block northeast of the Palazzo Farnese.",
-          "url": "https://en.wikipedia.org/wiki/Campo_de'_Fiori"
+          "url": "https://en.wikipedia.org/wiki/Campo_de'_Fiori",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Campo_dei_Fiori.jpg/330px-Campo_dei_Fiori.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Campo_de'_Fiori"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1220,12 +1381,20 @@
       "summary": {
         "en": {
           "text": "Largo di Torre Argentina is a large open space in Rome, Italy, with four Roman Republican temples and the remains of Pompey's Theatre. It is in the ancient Campus Martius.",
-          "url": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina"
+          "url": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Curia_of_Pompey.jpg/330px-Curia_of_Pompey.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina"
+          }
         },
         "he": {
           "text": "לארגו די טורה ארג'נטינה הוא מרחב פתוח גדול ברומא ובו ארבעה מקדשים מהתקופה הרפובליקנית ושרידי תיאטרון פומפיוס. הוא שוכן בשדה מארס העתיק.",
           "url": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Curia_of_Pompey.jpg/330px-Curia_of_Pompey.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Largo_di_Torre_Argentina"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1272,7 +1441,11 @@
         },
         "en": {
           "text": "The Church of the Gesù, officially named Chiesa del Santissimo Nome di Gesù, is a church located at Piazza del Gesù in the Pigna rione of Rome, Italy. It is the mother church of the Society of Jesus.",
-          "url": "https://en.wikipedia.org/wiki/Church_of_the_Ges%C3%B9"
+          "url": "https://en.wikipedia.org/wiki/Church_of_the_Ges%C3%B9",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Jesus_Church.jpg/330px-Jesus_Church.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Church_of_the_Ges%C3%B9"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1352,12 +1525,20 @@
       "summary": {
         "en": {
           "text": "The Galleria Doria Pamphilj is a large private art collection housed in the Palazzo Doria Pamphilj in Rome, Italy, between Via del Corso and Via della Gatta. The principal entrance is on the Via del Corso.",
-          "url": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj"
+          "url": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Palazzo_Doria_Pamphilj.jpg/330px-Palazzo_Doria_Pamphilj.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj"
+          }
         },
         "he": {
           "text": "גלריה דוריה פמפילי היא אוסף אמנות פרטי גדול השוכן בפלאצו דוריה פמפילי ברומא, בין ויה דל קורסו לוויה דלה גאטה. הכניסה הראשית היא מוויה דל קורסו.",
           "url": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Palazzo_Doria_Pamphilj.jpg/330px-Palazzo_Doria_Pamphilj.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Galleria_Doria_Pamphilj"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1400,11 +1581,19 @@
       "summary": {
         "he": {
           "text": "האנדרטה הלאומית לוויטוריו אמנואלה השני המכונה גם מזבח המולדת או \"הוויטוריאנו\" היא אנדרטה הממוקמת במרכז העיר רומא בירת איטליה לכבודו של מלכה הראשון של איטליה המאוחדת - ויטוריו אמנואלה השני.",
-          "url": "https://he.wikipedia.org/wiki/%D7%90%D7%A0%D7%93%D7%A8%D7%98%D7%AA_%D7%95%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%95_%D7%90%D7%9E%D7%A0%D7%95%D7%90%D7%9C%D7%94_%D7%94%D7%A9%D7%A0%D7%99"
+          "url": "https://he.wikipedia.org/wiki/%D7%90%D7%A0%D7%93%D7%A8%D7%98%D7%AA_%D7%95%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%95_%D7%90%D7%9E%D7%A0%D7%95%D7%90%D7%9C%D7%94_%D7%94%D7%A9%D7%A0%D7%99",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Altare_della_Patria_%28Roma%29.jpg/330px-Altare_della_Patria_%28Roma%29.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%90%D7%A0%D7%93%D7%A8%D7%98%D7%AA_%D7%95%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%95_%D7%90%D7%9E%D7%A0%D7%95%D7%90%D7%9C%D7%94_%D7%94%D7%A9%D7%A0%D7%99"
+          }
         },
         "en": {
           "text": "The Victor Emmanuel II National Monument, also known as the Vittoriano or for synecdoche Altare della Patria, is a large national monument built between 1885 and 1935 to honour Victor Emmanuel II, the first king of a unified Italy, in Rome, Italy.",
-          "url": "https://en.wikipedia.org/wiki/Victor_Emmanuel_II_Monument"
+          "url": "https://en.wikipedia.org/wiki/Victor_Emmanuel_II_Monument",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Vittoriano_Altare_della_Patria_2013-09-16.jpg/330px-Vittoriano_Altare_della_Patria_2013-09-16.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Victor_Emmanuel_II_Monument"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1447,11 +1636,19 @@
       "summary": {
         "he": {
           "text": "המוזיאונים הקפיטוליניים הם מכלול של מוזיאונים לאמנות וארכאולוגיה הממוקמים סביב כיכר שעיצב מיכלאנג'לו על גבעת הקפיטולין ברומא החל ב-1536. ההיסטוריה של האוסף המוצג במוזיאונים התחילה ביוזמה של האפיפיור סיקסטוס הרביעי בראשית כהונתו, שתרם לעיר רומא פסלי ארד עתיקים.",
-          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%A0%D7%99%D7%9D_%D7%94%D7%A7%D7%A4%D7%99%D7%98%D7%95%D7%9C%D7%99%D7%A0%D7%99%D7%99%D7%9D"
+          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%A0%D7%99%D7%9D_%D7%94%D7%A7%D7%A4%D7%99%D7%98%D7%95%D7%9C%D7%99%D7%A0%D7%99%D7%99%D7%9D",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Facade_Palazzo_Nuovo_Roma.jpg/330px-Facade_Palazzo_Nuovo_Roma.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%A0%D7%99%D7%9D_%D7%94%D7%A7%D7%A4%D7%99%D7%98%D7%95%D7%9C%D7%99%D7%A0%D7%99%D7%99%D7%9D"
+          }
         },
         "en": {
           "text": "The Capitoline Museums are a group of art and archaeological museums located on the Capitoline Hill in Rome, Italy, and constitute the main civic museum complex of the city.",
-          "url": "https://en.wikipedia.org/wiki/Capitoline_Museums"
+          "url": "https://en.wikipedia.org/wiki/Capitoline_Museums",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/0_Cordonata_-_Dioscuri_-_Palazzo_Senatorio.JPG/330px-0_Cordonata_-_Dioscuri_-_Palazzo_Senatorio.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Capitoline_Museums"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1493,12 +1690,20 @@
       "summary": {
         "en": {
           "text": "Trajan's Market is a large complex of ruins in the city of Rome, Italy, located on the Via dei Fori Imperiali, at the opposite end to the Colosseum.",
-          "url": "https://en.wikipedia.org/wiki/Trajan's_Market"
+          "url": "https://en.wikipedia.org/wiki/Trajan's_Market",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mercati_di_Traiano_-_Roma.jpg/330px-Mercati_di_Traiano_-_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Trajan's_Market"
+          }
         },
         "he": {
           "text": "שוקי טראיאנוס הם מתחם חורבות גדול ברומא, על ויה דיי פורי אימפריאלי, בקצה הנגדי לקולוסאום.",
           "url": "https://en.wikipedia.org/wiki/Trajan's_Market",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mercati_di_Traiano_-_Roma.jpg/330px-Mercati_di_Traiano_-_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Trajan's_Market"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1579,12 +1784,20 @@
       "summary": {
         "en": {
           "text": "The Domus Aurea was a vast landscaped complex built by the Emperor Nero largely on the Oppian Hill in the heart of ancient Rome after the great fire in 64 AD had destroyed a large part of the city.",
-          "url": "https://en.wikipedia.org/wiki/Domus_Aurea"
+          "url": "https://en.wikipedia.org/wiki/Domus_Aurea",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Domus_Aurea_pianta_generale.png/330px-Domus_Aurea_pianta_generale.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Domus_Aurea"
+          }
         },
         "he": {
           "text": "דומוס אאוריה (\"בית הזהב\") היה מתחם ארמונות עצום שבנה הקיסר נירון, בעיקר על גבעת אופיוס בלב רומא העתיקה, לאחר שהשרפה הגדולה של שנת 64 החריבה חלק גדול מהעיר.",
           "url": "https://en.wikipedia.org/wiki/Domus_Aurea",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Domus_Aurea_pianta_generale.png/330px-Domus_Aurea_pianta_generale.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Domus_Aurea"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1664,11 +1877,19 @@
       "summary": {
         "he": {
           "text": "הארכיבזיליקה האפיפיורית של יוחנן הקדוש בלטראנו ברובע לטראנו שבעיר רומא, היא הקתדרלה של הדיוקסיה של רומא ומקום מושבו הרשמי של בישוף רומא, הוא האפיפיור. הבזיליקה היא העתיקה ביותר מבין ארבע הבזיליקות הפטריארכליות בעיר, והיא הכנסייה הראשית של הכנסייה הקתולית.",
-          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%99%D7%95%D7%97%D7%A0%D7%9F_%D7%94%D7%A7%D7%93%D7%95%D7%A9_%D7%91%D7%9C%D7%98%D7%A8%D7%90%D7%A0%D7%95"
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%99%D7%95%D7%97%D7%A0%D7%9F_%D7%94%D7%A7%D7%93%D7%95%D7%A9_%D7%91%D7%9C%D7%98%D7%A8%D7%90%D7%A0%D7%95",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/San_Giovanni_in_Laterano_2021.jpg/330px-San_Giovanni_in_Laterano_2021.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%99%D7%95%D7%97%D7%A0%D7%9F_%D7%94%D7%A7%D7%93%D7%95%D7%A9_%D7%91%D7%9C%D7%98%D7%A8%D7%90%D7%A0%D7%95"
+          }
         },
         "en": {
           "text": "The Archbasilica of Saint John Lateran, commonly known as the Lateran Basilica or Saint John Lateran, is the Catholic cathedral of the Diocese of Rome in the city of Rome, Italy. It serves as the seat of the bishop of Rome and head of the worldwide Catholic Church: the pope.",
-          "url": "https://en.wikipedia.org/wiki/Archbasilica_of_Saint_John_Lateran"
+          "url": "https://en.wikipedia.org/wiki/Archbasilica_of_Saint_John_Lateran",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/San_Giovanni_in_Laterano_2021.jpg/330px-San_Giovanni_in_Laterano_2021.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Archbasilica_of_Saint_John_Lateran"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1711,11 +1932,19 @@
       "summary": {
         "he": {
           "text": "בזיליקת סנטה מריה מג'ורה שבעיר רומא, היא הכנסייה הראשונה והגדולה ביותר שקרויה על שם מריה הבתולה, אחת מארבע הבזיליקות הפטריארכליות ומייצגת את פטריארכיית אנטיוכיה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%9E%D7%92'%D7%95%D7%A8%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%9E%D7%92'%D7%95%D7%A8%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg/330px-Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%9E%D7%92'%D7%95%D7%A8%D7%94"
+          }
         },
         "en": {
           "text": "The Papal Basilica of Saint Mary the Great, also informally known as the Basilica of Saint Mary Major, is a Roman Catholic Papal Basilica and one of the Seven Pilgrim Churches of Rome.",
-          "url": "https://en.wikipedia.org/wiki/Santa_Maria_Maggiore"
+          "url": "https://en.wikipedia.org/wiki/Santa_Maria_Maggiore",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg/330px-Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Santa_Maria_Maggiore"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1758,11 +1987,19 @@
       "summary": {
         "he": {
           "text": "סנטה מריה דלה ויטוריה היא כנסייה קתולית שנמצאת בצפון העיר העתיקה של רומא.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%93%D7%9C%D7%94_%D7%95%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%93%D7%9C%D7%94_%D7%95%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Santa_Maria_della_Vittoria_in_Rome_-_Front.jpg/330px-Santa_Maria_della_Vittoria_in_Rome_-_Front.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A1%D7%A0%D7%98%D7%94_%D7%9E%D7%A8%D7%99%D7%94_%D7%93%D7%9C%D7%94_%D7%95%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%94"
+          }
         },
         "en": {
           "text": "Santa Maria della Vittoria is a Catholic titular minor basilica and Discalced Carmelite conventual church dedicated to Our Lady of Victories in Rome, Italy, famously the home of Gian Lorenzo Bernini‘s masterpiece the Ecstasy of Saint Teresa.",
-          "url": "https://en.wikipedia.org/wiki/Santa_Maria_della_Vittoria%2C_Rome"
+          "url": "https://en.wikipedia.org/wiki/Santa_Maria_della_Vittoria%2C_Rome",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Santa_Maria_della_Vittoria_in_Rome_-_Front.jpg/330px-Santa_Maria_della_Vittoria_in_Rome_-_Front.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Santa_Maria_della_Vittoria%2C_Rome"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1804,11 +2041,19 @@
       "summary": {
         "he": {
           "text": "ארמון ברבריני הוא ארמון הממוקם בעיר רומא, ליד פיאצה ברבריני.",
-          "url": "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%9E%D7%95%D7%9F_%D7%91%D7%A8%D7%91%D7%A8%D7%99%D7%A0%D7%99"
+          "url": "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%9E%D7%95%D7%9F_%D7%91%D7%A8%D7%91%D7%A8%D7%99%D7%A0%D7%99",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/PalaisBarberini-Facade_avant_du_palais.JPG/330px-PalaisBarberini-Facade_avant_du_palais.JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%9E%D7%95%D7%9F_%D7%91%D7%A8%D7%91%D7%A8%D7%99%D7%A0%D7%99"
+          }
         },
         "en": {
           "text": "The Palazzo Barberini is a 17th-century palace in Rome, facing the Piazza Barberini in Rione Trevi. Today, it houses the Galleria Nazionale d'Arte Antica, the main national collection of older paintings in Rome.",
-          "url": "https://en.wikipedia.org/wiki/Palazzo_Barberini"
+          "url": "https://en.wikipedia.org/wiki/Palazzo_Barberini",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Palazzo_Barberini_-_esterno.jpg/330px-Palazzo_Barberini_-_esterno.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Palazzo_Barberini"
+          }
         }
       },
       "dataQuality": "partial",
@@ -1891,11 +2136,19 @@
       "summary": {
         "he": {
           "text": "המוזיאון היהודי של רומא כולל אוסף יודאיקה ותשמישי קדושה, שהועברו אליו מבתי כנסת ישנים באיטליה. המוזיאון משמש מעין \"מחסן מרכזי\" לתשמישי קדושה לקהילות היהודיות באיטליה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%94%D7%99%D7%94%D7%95%D7%93%D7%99_%D7%A9%D7%9C_%D7%A8%D7%95%D7%9E%D7%90"
+          "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%94%D7%99%D7%94%D7%95%D7%93%D7%99_%D7%A9%D7%9C_%D7%A8%D7%95%D7%9E%D7%90",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/S_Angelo_-_sinagoga_1070970.JPG/330px-S_Angelo_-_sinagoga_1070970.JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%95%D7%96%D7%99%D7%90%D7%95%D7%9F_%D7%94%D7%99%D7%94%D7%95%D7%93%D7%99_%D7%A9%D7%9C_%D7%A8%D7%95%D7%9E%D7%90"
+          }
         },
         "en": {
           "text": "The Jewish Museum of Rome is situated in the basement of the Great Synagogue of Rome and offers both information on the Jewish presence in Rome since the second century BCE and a large collection of works of art produced by the Jewish community.",
-          "url": "https://en.wikipedia.org/wiki/Jewish_Museum_of_Rome"
+          "url": "https://en.wikipedia.org/wiki/Jewish_Museum_of_Rome",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Great_Synagogue_of_Rome.jpg/330px-Great_Synagogue_of_Rome.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Jewish_Museum_of_Rome"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1938,11 +2191,19 @@
       "summary": {
         "he": {
           "text": "פי האמת הוא פסל הנמצא ברומא. ככל הנראה הפסל היווה חלק ממזרקה מהתקופה הרומית או מכסה ביוב.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%99_%D7%94%D7%90%D7%9E%D7%AA"
+          "url": "https://he.wikipedia.org/wiki/%D7%A4%D7%99_%D7%94%D7%90%D7%9E%D7%AA",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Et%C3%A0_imperiale%2C_chiusino_a_forma_di_mascherone_di_divinit%C3%A0_fluviale%2C_detta_bocca_della_verit%C3%A0%2C_collocata_qui_nel_1632.jpg/330px-Et%C3%A0_imperiale%2C_chiusino_a_forma_di_mascherone_di_divinit%C3%A0_fluviale%2C_detta_bocca_della_verit%C3%A0%2C_collocata_qui_nel_1632.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A4%D7%99_%D7%94%D7%90%D7%9E%D7%AA"
+          }
         },
         "en": {
           "text": "The Mouth of Truth is an ancient Roman marble mask in Rome, Italy, which stands against the left wall of the portico of the Santa Maria in Cosmedin church, at the Piazza della Bocca della Verità, the site of the ancient Forum Boarium.",
-          "url": "https://en.wikipedia.org/wiki/Bocca_della_Verit%C3%A0"
+          "url": "https://en.wikipedia.org/wiki/Bocca_della_Verit%C3%A0",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Et%C3%A0_imperiale%2C_chiusino_a_forma_di_mascherone_di_divinit%C3%A0_fluviale%2C_detta_bocca_della_verit%C3%A0%2C_collocata_qui_nel_1632.jpg/330px-Et%C3%A0_imperiale%2C_chiusino_a_forma_di_mascherone_di_divinit%C3%A0_fluviale%2C_detta_bocca_della_verit%C3%A0%2C_collocata_qui_nel_1632.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Bocca_della_Verit%C3%A0"
+          }
         }
       },
       "dataQuality": "verified",
@@ -1985,11 +2246,19 @@
       "summary": {
         "he": {
           "text": "הקירקוס מקסימוס, שמשמעותו \"הזירה הגדולה ביותר\", הוא קירקוס שהיה מיועד לבידור ההמונים ולמרוצי מרכבות וסוסים והיווה מקום מפגש המוני ברומא העתיקה.",
-          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%99%D7%A8%D7%A7%D7%95%D7%A1_%D7%9E%D7%A7%D7%A1%D7%99%D7%9E%D7%95%D7%A1"
+          "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%99%D7%A8%D7%A7%D7%95%D7%A1_%D7%9E%D7%A7%D7%A1%D7%99%D7%9E%D7%95%D7%A1",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Plan_Rome_Caen_Circus_Maximus_Colis%C3%A9e.jpg/330px-Plan_Rome_Caen_Circus_Maximus_Colis%C3%A9e.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%A7%D7%99%D7%A8%D7%A7%D7%95%D7%A1_%D7%9E%D7%A7%D7%A1%D7%99%D7%9E%D7%95%D7%A1"
+          }
         },
         "en": {
           "text": "The Circus Maximus is an ancient Roman chariot-racing stadium and mass entertainment venue in Rome, Italy. In the valley between the Aventine and Palatine hills, it was the first and largest stadium in ancient Rome and its later Empire.",
-          "url": "https://en.wikipedia.org/wiki/Circus_Maximus"
+          "url": "https://en.wikipedia.org/wiki/Circus_Maximus",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/CircusMaximusSO.jpg/330px-CircusMaximusSO.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Circus_Maximus"
+          }
         }
       },
       "dataQuality": "partial",
@@ -2033,12 +2302,20 @@
       "summary": {
         "en": {
           "text": "The Orange Trees Garden is the name used in Rome to describe the Parco Savello. It is about 7,800 square meters and is located on the Aventine Hill.",
-          "url": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome"
+          "url": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ripa_-_giardino_degli_aranci_01.JPG/330px-Ripa_-_giardino_degli_aranci_01.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome"
+          }
         },
         "he": {
           "text": "גן התפוזים הוא השם שבו מכנים ברומא את פארקו סאבלו. שטחו כ-7,800 מ\"ר והוא שוכן על גבעת האוונטין.",
           "url": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ripa_-_giardino_degli_aranci_01.JPG/330px-Ripa_-_giardino_degli_aranci_01.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Orange_Garden%2C_Rome"
+          }
         }
       },
       "dataQuality": "partial",
@@ -2078,9 +2355,6 @@
       "requiresAdvanceBooking": false,
       "indoor": false,
       "kidFriendly": true,
-      "dataQuality": "partial",
-      "source": "seed",
-      "wikidata": "Q123752976",
       "summary": {
         "en": {
           "text": "Tourist attraction in Rome, Italy",
@@ -2089,9 +2363,13 @@
         "he": {
           "text": "אתר תיירות ברומא, איטליה",
           "url": null,
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": null
         }
-      }
+      },
+      "dataQuality": "partial",
+      "source": "seed",
+      "wikidata": "Q123752976"
     },
     {
       "id": "it-rome-terme-di-caracalla",
@@ -2128,11 +2406,19 @@
       "summary": {
         "he": {
           "text": "מרחצאות קרקלה הם מרחצאות ציבוריים שנבנו על ידי הקיסר הרומי קרקלה ברומא בין השנים 212–216 לספירה. שרידי מרחצאות אלה מהווים כיום אתר תיירות פופולרי.",
-          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A8%D7%97%D7%A6%D7%90%D7%95%D7%AA_%D7%A7%D7%A8%D7%A7%D7%9C%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A8%D7%97%D7%A6%D7%90%D7%95%D7%AA_%D7%A7%D7%A8%D7%A7%D7%9C%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Baths_of_Caracalla%2C_facing_Caldarium.jpg/330px-Baths_of_Caracalla%2C_facing_Caldarium.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%9E%D7%A8%D7%97%D7%A6%D7%90%D7%95%D7%AA_%D7%A7%D7%A8%D7%A7%D7%9C%D7%94"
+          }
         },
         "en": {
           "text": "The Baths of Caracalla in Rome, Italy, were the city's second largest Roman public bath complex, or thermae, after the Baths of Diocletian. The baths were likely built between AD 212 and 216/217, during the reigns of emperors Septimius Severus and Caracalla.",
-          "url": "https://en.wikipedia.org/wiki/Baths_of_Caracalla"
+          "url": "https://en.wikipedia.org/wiki/Baths_of_Caracalla",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Baths_of_Caracalla%2C_facing_Caldarium.jpg/330px-Baths_of_Caracalla%2C_facing_Caldarium.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Baths_of_Caracalla"
+          }
         }
       },
       "dataQuality": "verified",
@@ -2249,11 +2535,19 @@
       "summary": {
         "he": {
           "text": "בית הקברות הפרוטסטנטי או בית הקברות הלא-קתולי או בית הקברות האנגלי הוא בית קברות פרטי הממוקם ברובע טסטאצ'יו של רומא. בית הקברות ממוקם בצמוד לפירמידת קסטיוס ששולבה בחומת אורליאנוס וגובלת בבית הקברות.",
-          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%A7%D7%91%D7%A8%D7%95%D7%AA_%D7%94%D7%A4%D7%A8%D7%95%D7%98%D7%A1%D7%98%D7%A0%D7%98%D7%99_%D7%A9%D7%9C_%D7%A8%D7%95%D7%9E%D7%90"
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%A7%D7%91%D7%A8%D7%95%D7%AA_%D7%94%D7%A4%D7%A8%D7%95%D7%98%D7%A1%D7%98%D7%A0%D7%98%D7%99_%D7%A9%D7%9C_%D7%A8%D7%95%D7%9E%D7%90",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Cimitero_Acattolico_Roma.jpg/330px-Cimitero_Acattolico_Roma.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%A7%D7%91%D7%A8%D7%95%D7%AA_%D7%94%D7%A4%D7%A8%D7%95%D7%98%D7%A1%D7%98%D7%A0%D7%98%D7%99_%D7%A9%D7%9C_%D7%A8%D7%95%D7%9E%D7%90"
+          }
         },
         "en": {
           "text": "The Non-Catholic Cemetery, also referred to as the Protestant Cemetery or the English Cemetery, is a private cemetery in the rione of Testaccio in Rome.",
-          "url": "https://en.wikipedia.org/wiki/Protestant_Cemetery%2C_Rome"
+          "url": "https://en.wikipedia.org/wiki/Protestant_Cemetery%2C_Rome",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cimitero_Acattolico_Roma.jpg/330px-Cimitero_Acattolico_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Protestant_Cemetery%2C_Rome"
+          }
         }
       },
       "dataQuality": "verified",
@@ -2333,11 +2627,19 @@
       "summary": {
         "he": {
           "text": "בזיליקת פאולוס הקדוש מחוץ לחומות היא אחת מארבע הבזיליקות הפטריארכליות של רומא, אשר שוכנת מחוץ לחומותיה של רומא הקדומה, ומכאן שמה. הבזיליקה הייתה מקום מושבו של הפטריארך הלטיני של אלכסנדריה בין 1215 ל-1964, ועל כן זכתה למעמדה כבזיליקה פטריארכלית.",
-          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A4%D7%90%D7%95%D7%9C%D7%95%D7%A1_%D7%94%D7%A7%D7%93%D7%95%D7%A9_%D7%9E%D7%97%D7%95%D7%A5_%D7%9C%D7%97%D7%95%D7%9E%D7%95%D7%AA"
+          "url": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A4%D7%90%D7%95%D7%9C%D7%95%D7%A1_%D7%94%D7%A7%D7%93%D7%95%D7%A9_%D7%9E%D7%97%D7%95%D7%A5_%D7%9C%D7%97%D7%95%D7%9E%D7%95%D7%AA",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Roma_San_Paolo_fuori_le_mura_BW_2021-09-29_14-02-11_v2.jpg/330px-Roma_San_Paolo_fuori_le_mura_BW_2021-09-29_14-02-11_v2.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%91%D7%96%D7%99%D7%9C%D7%99%D7%A7%D7%AA_%D7%A4%D7%90%D7%95%D7%9C%D7%95%D7%A1_%D7%94%D7%A7%D7%93%D7%95%D7%A9_%D7%9E%D7%97%D7%95%D7%A5_%D7%9C%D7%97%D7%95%D7%9E%D7%95%D7%AA"
+          }
         },
         "en": {
           "text": "The Papal Basilica of Saint Paul Outside the Walls is one of Rome's four major papal basilicas, along with the basilicas of Saint John in the Lateran, Saint Peter's, and Saint Mary Major, as well as one of the city's Seven Pilgrim Churches.",
-          "url": "https://en.wikipedia.org/wiki/Basilica_of_Saint_Paul_Outside_the_Walls"
+          "url": "https://en.wikipedia.org/wiki/Basilica_of_Saint_Paul_Outside_the_Walls",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/StPaul.jpg/330px-StPaul.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Basilica_of_Saint_Paul_Outside_the_Walls"
+          }
         }
       },
       "dataQuality": "verified",
@@ -2418,12 +2720,20 @@
       "summary": {
         "en": {
           "text": "The Catacomb of Callixtus is one of the Catacombs of Rome on the Appian Way, notable for containing the Crypt of the Popes, which once contained the tombs of several popes from the 2nd to 4th centuries.",
-          "url": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus"
+          "url": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rom%2C_Calixtus-Katakombe%2C_Eingangstor_zum_Park_der_Katakombe.jpg/330px-Rom%2C_Calixtus-Katakombe%2C_Eingangstor_zum_Park_der_Katakombe.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus"
+          }
         },
         "he": {
           "text": "קטקומבות קליסטוס הן מהקטקומבות של רומא על הוויה אפיה, וידועות בזכות \"קריפטת האפיפיורים\" שבה נקברו כמה אפיפיורים מהמאה ה-2 עד ה-4.",
           "url": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus",
-          "translatedFrom": "en"
+          "translatedFrom": "en",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rom%2C_Calixtus-Katakombe%2C_Eingangstor_zum_Park_der_Katakombe.jpg/330px-Rom%2C_Calixtus-Katakombe%2C_Eingangstor_zum_Park_der_Katakombe.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Catacomb_of_Callixtus"
+          }
         }
       },
       "dataQuality": "verified",
@@ -2472,7 +2782,11 @@
         },
         "en": {
           "text": "The Parco degli Acquedotti is a public park to the southeast of Rome, Italy. It is part of the Appian Way Regional Park and is of approximately 240 ha.",
-          "url": "https://en.wikipedia.org/wiki/Parco_degli_Acquedotti"
+          "url": "https://en.wikipedia.org/wiki/Parco_degli_Acquedotti",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Parco_degli_Acquedotti_Roma.jpg/330px-Parco_degli_Acquedotti_Roma.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Parco_degli_Acquedotti"
+          }
         }
       },
       "dataQuality": "partial",
@@ -2554,11 +2868,19 @@
       "summary": {
         "he": {
           "text": "וילה דֵ'אֵסְטֶה הוא ארמון בטיבולי שבאיטליה, הידוע בגנים המיוחדים ובמזרקות הרבות ויוצאות הדופן שבשטחו.",
-          "url": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%93'%D7%90%D7%A1%D7%98%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%93'%D7%90%D7%A1%D7%98%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/010609_28_villadesteacque.JPG/330px-010609_28_villadesteacque.JPG?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%93'%D7%90%D7%A1%D7%98%D7%94"
+          }
         },
         "en": {
           "text": "The Villa d'Este is a 16th-century villa in Tivoli, near Rome.",
-          "url": "https://en.wikipedia.org/wiki/Villa_d'Este"
+          "url": "https://en.wikipedia.org/wiki/Villa_d'Este",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Villa_Deste_park_Rometta_2011_2.jpg/330px-Villa_Deste_park_Rometta_2011_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Villa_d'Este"
+          }
         }
       },
       "dataQuality": "partial",
@@ -2601,11 +2923,19 @@
       "summary": {
         "he": {
           "text": "וילה אדריאנה, חווילתו המפוארת של הקיסר הרומאי אדריאנוס, בטיבולי, איטליה, הייתה אחת מהחווילות המפוארות ביותר בעולם העתיק. הווילה שכנה בטיבור, כיום העיר טיבולי, ונבנתה במהלך המאה ה-2 כאתר מגורים לקיסר אדריאנוס ולבני לווייתו.",
-          "url": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%90%D7%93%D7%A8%D7%99%D7%90%D7%A0%D7%94"
+          "url": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%90%D7%93%D7%A8%D7%99%D7%90%D7%A0%D7%94",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Villa_adriana.jpg/330px-Villa_adriana.jpg?utm_source=he.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%9C%D7%94_%D7%90%D7%93%D7%A8%D7%99%D7%90%D7%A0%D7%94"
+          }
         },
         "en": {
           "text": "Hadrian's Villa was a monumental villa or palace complex built around AD 120 by emperor Hadrian near Tivoli, about 20 km from Rome. Its remains are now included in a UNESCO World Heritage Site.",
-          "url": "https://en.wikipedia.org/wiki/Hadrian's_Villa"
+          "url": "https://en.wikipedia.org/wiki/Hadrian's_Villa",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Villa_Hadriana_%28Villa_Adriana_Tivoli%29_1000_03.jpg/330px-Villa_Hadriana_%28Villa_Adriana_Tivoli%29_1000_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "page": "https://en.wikipedia.org/wiki/Hadrian's_Villa"
+          }
         }
       },
       "dataQuality": "partial",

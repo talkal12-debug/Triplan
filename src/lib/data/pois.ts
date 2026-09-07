@@ -29,6 +29,12 @@ export function getSeedCities(countryCode: string): CitySeed[] {
   return loadAll().get(countryCode.toUpperCase())?.cities ?? [];
 }
 
+/** One curated place by id (ids are prefixed with the country code, e.g. pt-lisbon-torre-de-belem). */
+export function getSeedPlace(id: string): PlaceSeed | undefined {
+  const code = id.slice(0, 2).toUpperCase();
+  return loadAll().get(code)?.places.find((p) => p.id === id);
+}
+
 export function getSeedPlaces(countryCode: string, city?: string): PlaceSeed[] {
   const places = loadAll().get(countryCode.toUpperCase())?.places ?? [];
   return city ? places.filter((p) => p.city === city) : places;

@@ -201,7 +201,7 @@ Rebuilding the data needs the network (`npm run data:countries`, `npm run data:p
 
 ## Design language (2026-09-07)
 
-Ink on linen, one strong colour (deep pine; sage in dark mode), brass hairlines for rules and small marks, a Hebrew/Latin serif (Frank Ruhl Libre) for headings and numerals with Heebo for body copy, 6 px corners, no gradients or glows. Tokens live in `src/app/globals.css` (`:root` / `.dark`); utilities `eyebrow`, `eyebrow-rule`, `rule-brass`, `numeral`, `font-display`.
+White, ink text, one strong colour (deep blue; light blue in dark mode), brass hairlines for rules and small marks, one typeface (Heebo, heavier and tighter for headings), 6 px corners, no gradients or glows. Photos are Wikipedia lead images (Wikimedia Commons, credited and linked): every curated place and demo city carries one (`npm run data:summaries --images`), places found at plan time get theirs with their description. Wikimedia only renders fixed thumbnail widths (250/330/500/960/1280/1920); `wikiThumb` rounds up to them. Tokens live in `src/app/globals.css` (`:root` / `.dark`); utilities `eyebrow`, `eyebrow-rule`, `rule-brass`, `numeral`, `font-display`.
 
 ## Stack
 

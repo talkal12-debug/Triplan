@@ -23,6 +23,8 @@ import { AffiliateLinks } from "./affiliate-links";
 import { VoteBar } from "./vote-bar";
 import { DiningSuggestions } from "./dining-suggestions";
 import { seniorText } from "@/lib/data/senior-discounts";
+import { placeImage } from "@/lib/images";
+import { Photo } from "@/components/photo";
 
 const transitIcons = { walk: Footprints, transit: Bus, car: Car, bike: Bike } as const;
 
@@ -59,6 +61,8 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
   const Transit = a.transitFromPrev ? transitIcons[a.transitFromPrev.mode] : null;
   const Icon = a.kind === "meal" ? Utensils : a.kind === "rest" ? Coffee : Hotel;
   const summary = placeSummary(place, locale);
+  const photo = isVisit && !compact ? placeImage(place, locale) : null;
+  const tc = useTranslations("common");
 
   return (
     <li className="relative">
@@ -95,6 +99,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
           </span>
         )}
         {!isVisit && <Icon className="mt-0.5 size-5 shrink-0 text-muted-foreground" aria-hidden />}
+        {photo && <Photo image={photo} alt={name} width={240} className="hidden size-24 shrink-0 self-start rounded-sm sm:block" credit={tc("photoCredit")} />}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
             <time className="text-sm tabular-nums text-muted-foreground" dir="ltr">

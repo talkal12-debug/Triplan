@@ -9,7 +9,8 @@
     "demoBanner": "Demomodus: Routen, Wetter und Feiertage stammen aus kostenlosen Quellen ohne API-Schlüssel. Geschätzte Daten sind gekennzeichnet.",
     "affiliate": "Affiliate-Link",
     "opensInNewTab": "Öffnet in neuem Tab",
-    "offline": "Keine Internetverbindung. Gespeicherte Pläne finden Sie unter „Meine Reisen“."
+    "offline": "Keine Internetverbindung. Gespeicherte Pläne finden Sie unter „Meine Reisen“.",
+    "photoCredit": "Foto: Wikipedia"
   },
   "nav": {
     "home": "Start",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "Entwicklungsstand",
-    "statusBody": "Triplan entsteht in Phasen. Heute funktionieren: Fragebogen, Planungsmodul, vier Ansichten, Karte, Export, Offline, 12 Sprachen, Konten und gemeinsames Planen. Der KI-Assistent braucht einen Anthropic-Schlüssel."
+    "statusBody": "Triplan entsteht in Phasen. Heute funktionieren: Fragebogen, Planungsmodul, vier Ansichten, Karte, Export, Offline, 12 Sprachen, Konten und gemeinsames Planen. Der KI-Assistent braucht einen Anthropic-Schlüssel.",
+    "photosLabel": "Fotos der Demo-Ziele"
   },
   "plan": {
     "build": "Plan erstellen",

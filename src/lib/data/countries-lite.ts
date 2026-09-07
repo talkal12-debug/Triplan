@@ -15,7 +15,7 @@ export type CountryLite = {
   en: string | null;
 };
 
-export type CityLite = { slug: string; name: string; local: string | null };
+export type CityLite = { slug: string; name: string; local: string | null; image?: { url: string; page: string | null } | null };
 
 export function getCountriesLite(locale: Locale): CountryLite[] {
   const collator = new Intl.Collator(locale);
@@ -42,7 +42,7 @@ export function getDemoCitiesLite(locale: Locale): Record<string, CityLite[]> {
     if (!isDemoCountry(c.code)) continue;
     out[c.code] = getSeedCities(c.code).map((city) => {
       const name = city.names[locale] ?? city.names.en;
-      return { slug: city.slug, name, local: city.names.local && city.names.local !== name ? city.names.local : null };
+      return { slug: city.slug, name, local: city.names.local && city.names.local !== name ? city.names.local : null, image: city.image ?? null };
     });
   }
   return out;

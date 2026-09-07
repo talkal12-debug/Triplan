@@ -3,6 +3,7 @@ import { z } from "zod";
 import { fetchSummariesBatch, type Summary } from "@/lib/providers/summaries-core";
 import { translateMissing } from "@/lib/providers/summaries";
 import { prisma } from "@/lib/db";
+import { getSeedPlace } from "@/lib/data/pois";
 import { isLocale } from "@/lib/i18n/locales";
 
 export const runtime = "nodejs";
@@ -25,14 +26,25 @@ export async function POST(req: Request) {
   if (locales.length === 0) return NextResponse.json({ error: "invalid_request" }, { status: 400 });
 
   const summaries: Record<string, Record<string, Summary>> = {};
-  // The database is a cache here: without one (local dev before the connection string is set) we go straight to the sources.
-  const rows = await prisma.place.findMany({ where: { id: { in: parsed.data.places.map((p) => p.id) } }, select: { id: true, summary: true } }).catch(() => []);
-  for (const r of rows) {
-    if (!r.summary) continue;
-    const s = JSON.parse(r.summary) as Record<string, Summary>;
-    const hit = Object.fromEntries(Object.entries(s).filter(([l]) => locales.includes(l)));
-    if (Object.keys(hit).length) summaries[r.id] = hit;
+  // Entries cached before photos existed count as missing, so the place gets its photo.
+  // A translation borrows its source article's photo rather than being translated again.
+  const take = (id: string, s: Record<string, Summary>) => {
+    const hit: Record<string, Summary> = { ...(summaries[id] ?? {}) };
+    for (const [l, v] of Object.entries(s)) {
+      if (!locales.includes(l) || hit[l]) continue;
+      if (v.image !== undefined) hit[l] = v;
+      else if (v.translatedFrom && s[v.translatedFrom]?.image !== undefined) hit[l] = { ...v, image: s[v.translatedFrom].image };
+    }
+    if (Object.keys(hit).length) summaries[id] = hit;
+  };
+  // The curated files ship with descriptions, reviewed translations and photos: they answer first, then the
+  // database cache; without either (local dev before the connection string is set) we go straight to the sources.
+  for (const p of parsed.data.places) {
+    const seed = getSeedPlace(p.id);
+    if (seed?.summary) take(p.id, seed.summary as Record<string, Summary>);
   }
+  const rows = await prisma.place.findMany({ where: { id: { in: parsed.data.places.map((p) => p.id) } }, select: { id: true, summary: true } }).catch(() => []);
+  for (const r of rows) if (r.summary) take(r.id, JSON.parse(r.summary) as Record<string, Summary>);
   const todo = parsed.data.places
     .map((p) => ({ id: p.id, wikidata: p.wikidata, locales: locales.filter((l) => !summaries[p.id]?.[l]) }))
     .filter((p) => p.locales.length > 0);

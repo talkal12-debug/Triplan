@@ -10,7 +10,7 @@ import { z } from "zod";
  * Wikimedia rate-limits eager clients (HTTP 429), so Wikidata items are fetched
  * 50 per request and Wikipedia pages one after another with a short pause.
  */
-export type Summary = { text: string; url: string | null; translatedFrom?: string };
+export type Summary = { text: string; url: string | null; translatedFrom?: string; image?: { url: string; page: string | null } | null };
 
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
 const USER_AGENT = "Triplan/1.0 (trip planner; contact via repository)";
@@ -32,6 +32,7 @@ const summarySchema = z.object({
   extract: z.string().optional(),
   content_urls: z.object({ desktop: z.object({ page: z.string() }) }).optional(),
   type: z.string().optional(),
+  thumbnail: z.object({ source: z.string(), width: z.number().optional(), height: z.number().optional() }).optional(),
 });
 
 /** First one or two sentences (parentheticals removed), capped, so a card stays a card. */
@@ -105,7 +106,8 @@ async function summariesFromEntity(entity: Entity, locales: string[], deadline =
       const page = await getJson(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`, summarySchema, 8_000, deadline);
       await sleep(PAUSE_MS);
       if (page?.extract && page.type !== "disambiguation") {
-        out[locale] = { text: trimExtract(page.extract), url: page.content_urls?.desktop.page ?? null };
+        const pageUrl = page.content_urls?.desktop.page ?? null;
+        out[locale] = { text: trimExtract(page.extract), url: pageUrl, image: page.thumbnail ? { url: page.thumbnail.source, page: pageUrl } : null };
         continue;
       }
       // The article exists but could not be fetched now (rate limit, timeout): leave the
@@ -147,4 +149,10 @@ export async function fetchSummariesBatch(items: { id: string; wikidata: string;
 /** Convenience for one item. */
 export async function fetchSummaries(wikidataId: string, locales: string[]): Promise<Record<string, Summary>> {
   return (await fetchSummariesBatch([{ id: wikidataId, wikidata: wikidataId, locales }])).get(wikidataId) ?? {};
+}
+
+/** Lead photo of a Wikipedia article by title (used for city photos). */
+export async function fetchPageImage(lang: string, title: string): Promise<{ url: string; page: string | null } | null> {
+  const page = await getJson(`https://${wikiLang(lang)}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`, summarySchema);
+  return page?.thumbnail ? { url: page.thumbnail.source, page: page.content_urls?.desktop.page ?? null } : null;
 }

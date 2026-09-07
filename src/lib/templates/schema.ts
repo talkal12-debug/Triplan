@@ -28,12 +28,15 @@ export type TemplateSummary = {
   adults: number;
   children: number;
   generatedAt: string;
+  /** City slugs of the first destination, for a cover photo. */
+  cities: string[];
 };
 
 export function summarize(t: TripTemplate): TemplateSummary {
   return {
     id: t.id,
     countries: t.preferences.destinations.map((d) => d.countryCode),
+    cities: t.preferences.destinations.flatMap((d) => d.cities),
     days: t.preferences.dates.days,
     places: t.plan.itinerary.stats.places,
     walkKm: t.plan.itinerary.stats.totalWalkKm,

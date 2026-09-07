@@ -9,7 +9,8 @@
     "demoBanner": "Mode démo : itinéraires, météo et jours fériés proviennent de sources gratuites sans clé. Les données estimées sont signalées.",
     "affiliate": "Lien affilié",
     "opensInNewTab": "S'ouvre dans un nouvel onglet",
-    "offline": "Pas de connexion internet. Les plans enregistrés sont dans « Mes voyages »."
+    "offline": "Pas de connexion internet. Les plans enregistrés sont dans « Mes voyages ».",
+    "photoCredit": "Photo : Wikipédia"
   },
   "nav": {
     "home": "Accueil",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "État du développement",
-    "statusBody": "Triplan est construit par étapes. Déjà en place : questionnaire, moteur de planification, quatre vues, carte, export, hors ligne, 12 langues, comptes et planification à plusieurs. L'assistant IA nécessite une clé Anthropic."
+    "statusBody": "Triplan est construit par étapes. Déjà en place : questionnaire, moteur de planification, quatre vues, carte, export, hors ligne, 12 langues, comptes et planification à plusieurs. L'assistant IA nécessite une clé Anthropic.",
+    "photosLabel": "Photos des destinations de démonstration"
   },
   "plan": {
     "build": "Construire le plan",

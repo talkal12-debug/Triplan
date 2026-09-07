@@ -9,7 +9,8 @@
     "demoBanner": "Modo de demonstração: rotas, meteorologia e feriados vêm de fontes gratuitas sem chave de API. Os dados estimados estão assinalados.",
     "affiliate": "Link de afiliado",
     "opensInNewTab": "Abre num novo separador",
-    "offline": "Sem ligação à internet. Os planos guardados estão disponíveis em \"As minhas viagens\"."
+    "offline": "Sem ligação à internet. Os planos guardados estão disponíveis em \"As minhas viagens\".",
+    "photoCredit": "Foto: Wikipédia"
   },
   "nav": {
     "home": "Início",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "Estado do desenvolvimento",
-    "statusBody": "O Triplan é construído por fases. Já funciona: questionário, motor de planeamento, quatro vistas, mapa, exportação, offline, 12 idiomas, contas e planeamento em conjunto. O assistente de IA precisa de uma chave da Anthropic."
+    "statusBody": "O Triplan é construído por fases. Já funciona: questionário, motor de planeamento, quatro vistas, mapa, exportação, offline, 12 idiomas, contas e planeamento em conjunto. O assistente de IA precisa de uma chave da Anthropic.",
+    "photosLabel": "Fotos dos destinos de demonstração"
   },
   "plan": {
     "build": "Criar o plano",

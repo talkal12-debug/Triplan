@@ -18,7 +18,7 @@ export async function translateMissing(byId: Map<string, Record<string, Summary>
   const translated = await translateTexts(items, "en", locale);
   for (const [id, text] of translated) {
     const s = byId.get(id)!;
-    s[locale] = { text, url: s.en.url, translatedFrom: "en" };
+    s[locale] = { text, url: s.en.url, translatedFrom: "en", image: s.en.image ?? null };
     changed.add(id);
   }
   return changed;
