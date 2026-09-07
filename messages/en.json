@@ -466,7 +466,8 @@
       "mapsCulture": "shows and theatre",
       "mapsNightlife": "bars and clubs",
       "buy": "Buy tickets",
-      "price": "from {price}"
+      "price": "from {price}",
+      "preferred": "Matches your picks"
     },
     "seasonal": {
       "title": "What is on during your dates",
@@ -842,6 +843,20 @@
             "title": "No evenings",
             "body": "Just a dinner suggestion, nothing else."
           }
+        }
+      },
+      "eventTypes": {
+        "title": "Which events interest you in the evening?",
+        "subtitle": "Pick none and we suggest everything. Your picks come first and are marked.",
+        "options": {
+          "concert": "Concerts",
+          "musical": "Musicals",
+          "theatre": "Theatre",
+          "comedy": "Comedy and stand-up",
+          "classical": "Classical and opera",
+          "dance": "Dance and ballet",
+          "sports": "Sports",
+          "family": "Family shows"
         }
       }
     },

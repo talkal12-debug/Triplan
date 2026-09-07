@@ -72,6 +72,7 @@ export function EveningPanel({ evening, date, cityLabel }: { evening: Evening; d
               {evening.events.map((e) => (
                 <li key={e.id} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                   <span className="font-medium">{e.name}</span>
+                  {e.preferred && <span className="rounded-sm border border-sunset/60 px-1.5 py-0.5 text-[11px] leading-none">{t("preferred")}</span>}
                   <span className="text-xs text-muted-foreground">
                     {e.start.length > 10 && `${e.start.slice(11, 16)} · `}
                     {e.venue && `${e.venue} · `}

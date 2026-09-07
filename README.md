@@ -56,7 +56,7 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 | `NEXT_PUBLIC_DEMO_MODE` | Force the demo banner `true`/`false`. | 1 |
 | `GOOGLE_PLACES_API_KEY` | Better POI data than OpenStreetMap. | 6 |
 | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | The AI assistant tab (structured plan edits). Model defaults to `claude-sonnet-5`. | 8c |
-| `TICKETMASTER_API_KEY` | Real events (concerts, shows, sport) on each evening of the trip, Ticketmaster Discovery API (free developer key). Without it the evening block shows date-bound search links. | 11 |
+| `TICKETMASTER_API_KEY` | Real events (concerts, shows, sport) on each evening of the trip, Ticketmaster Discovery API (free developer key). Without it the evening block shows date-bound search links. | 11 | The interests step also asks which kinds of events the traveller wants (concerts, musicals, theatre, comedy, classical and opera, dance, sports, family); those are queried explicitly, shown first and marked, and everything else follows.
 | `ANTHROPIC_TRANSLATE_MODEL` | Model for translating place descriptions into the UI language when Wikipedia has none (needs `ANTHROPIC_API_KEY`). Defaults to `claude-haiku-4-5-20251001`. | 10 |
 | `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
 | `AUTH_SECRET` | Auth.js session signing. Required in production; dev has a fixed fallback. | 8b |

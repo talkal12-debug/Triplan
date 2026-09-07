@@ -466,7 +466,8 @@
       "mapsCulture": "spettacoli e teatro",
       "mapsNightlife": "bar e club",
       "buy": "Acquista i biglietti",
-      "price": "da {price}"
+      "price": "da {price}",
+      "preferred": "In linea con le vostre scelte"
     },
     "seasonal": {
       "title": "Cosa c'è nelle vostre date",
@@ -842,6 +843,20 @@
             "title": "Niente serate",
             "body": "Solo un suggerimento per la cena, nient'altro."
           }
+        }
+      },
+      "eventTypes": {
+        "title": "Quali eventi vi interessano la sera?",
+        "subtitle": "Senza scelta proponiamo di tutto. Le vostre scelte vengono prima e sono segnalate.",
+        "options": {
+          "concert": "Concerti",
+          "musical": "Musical",
+          "theatre": "Teatro",
+          "comedy": "Comicità e stand-up",
+          "classical": "Classica e opera",
+          "dance": "Danza e balletto",
+          "sports": "Sport",
+          "family": "Spettacoli per famiglie"
         }
       }
     },

@@ -9,7 +9,16 @@ import type { EventItem } from "@/lib/nearby/schema";
  * TICKETMASTER_API_KEY no events are fetched and the UI shows search links instead.
  * Coverage is strongest in North America and Western Europe.
  */
-export type EventsQuery = { lat: number; lng: number; radiusKm: number; start: string; end: string; locale: string };
+export type EventsQuery = {
+  lat: number;
+  lng: number;
+  radiusKm: number;
+  start: string;
+  end: string;
+  locale: string;
+  /** Ticketmaster classification names (segment/genre/sub-genre) to restrict to; omitted = everything. */
+  classificationNames?: string[];
+};
 
 export interface EventsProvider {
   readonly name: string;
@@ -25,7 +34,9 @@ const responseSchema = z.object({
           name: z.string(),
           url: z.string().optional(),
           dates: z.object({ start: z.object({ localDate: z.string().optional(), localTime: z.string().optional(), dateTime: z.string().optional() }) }),
-          classifications: z.array(z.object({ segment: z.object({ name: z.string() }).optional(), genre: z.object({ name: z.string() }).optional() })).optional(),
+          classifications: z
+            .array(z.object({ segment: z.object({ name: z.string() }).optional(), genre: z.object({ name: z.string() }).optional(), subGenre: z.object({ name: z.string() }).optional() }))
+            .optional(),
           priceRanges: z.array(z.object({ min: z.number().optional(), max: z.number().optional(), currency: z.string().optional() })).optional(),
           images: z.array(z.object({ url: z.string(), width: z.number().optional(), ratio: z.string().optional() })).optional(),
           _embedded: z.object({ venues: z.array(z.object({ name: z.string().optional() })).optional() }).optional(),
@@ -48,14 +59,15 @@ export const ticketmasterEvents: EventsProvider = {
       startDateTime: `${q.start}T00:00:00Z`,
       endDateTime: `${q.end}T23:59:59Z`,
       sort: "date,asc",
-      size: "40",
+      size: "60",
       locale: q.locale === "he" ? "*" : q.locale,
     });
+    for (const name of q.classificationNames ?? []) params.append("classificationName", name);
     const data = await fetchJson(`https://app.ticketmaster.com/discovery/v2/events.json?${params}`, {
       provider: "ticketmaster",
       schema: responseSchema,
       timeoutMs: 10_000,
-      cacheKey: `tm:${params.get("latlong")}:${q.start}:${q.end}`,
+      cacheKey: `tm:${params.get("latlong")}:${q.start}:${q.end}:${(q.classificationNames ?? []).join(",")}`,
       ttlMs: 6 * 60 * 60 * 1000,
     });
     return (data._embedded?.events ?? [])
@@ -68,6 +80,9 @@ export const ticketmasterEvents: EventsProvider = {
         start: e.dates.start.localDate ? `${e.dates.start.localDate}${e.dates.start.localTime ? `T${e.dates.start.localTime.slice(0, 5)}` : ""}` : (e.dates.start.dateTime ?? q.start),
         venue: e._embedded?.venues?.[0]?.name ?? null,
         category: e.classifications?.[0]?.genre?.name ?? e.classifications?.[0]?.segment?.name ?? null,
+        segment: e.classifications?.[0]?.segment?.name ?? null,
+        genre: e.classifications?.[0]?.genre?.name ?? null,
+        subGenre: e.classifications?.[0]?.subGenre?.name ?? null,
         source: "ticketmaster",
         priceMin: e.priceRanges?.[0]?.min ?? null,
         priceMax: e.priceRanges?.[0]?.max ?? null,

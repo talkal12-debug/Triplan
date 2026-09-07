@@ -93,6 +93,10 @@ export type Interest = (typeof interests)[number];
 export const eveningStyles = ["quiet", "culture", "nightlife", "none"] as const;
 export type EveningStyle = (typeof eveningStyles)[number];
 
+/** Kinds of ticketed events wanted in the evenings (interests step). Empty = anything goes. */
+export const eventTypes = ["concert", "musical", "theatre", "comedy", "classical", "dance", "sports", "family"] as const;
+export type EventType = (typeof eventTypes)[number];
+
 /**
  * A place the traveller insists on. `placeId` is set when picked from our catalogue;
  * a free-text entry is resolved at planning time (catalogue name match, then OpenStreetMap).
@@ -138,6 +142,8 @@ export const tripPreferencesSchema = z.object({
   mustVisit: z.array(mustVisitSchema).max(20).default([]),
   /** Evening style (interests step). Added in milestone 11. */
   evening: z.enum(eveningStyles).default("quiet"),
+  /** Preferred event kinds; preferred ones come first and are marked. Empty = all. Added with the Ticketmaster key. */
+  eventTypes: z.array(z.enum(eventTypes)).max(8).default([]),
   budget: z.object({
     level: z.enum(budgetLevels),
     dailyCap: z.number().int().positive().max(100000).nullable(),
@@ -179,6 +185,7 @@ export function defaultTripPreferences(today = new Date()): TripPreferences {
     interests: ["city", "history", "food"],
     mustVisit: [],
     evening: "quiet",
+    eventTypes: [],
     budget: { level: "mid", dailyCap: null, currency: "ILS" },
     hotel: { type: "4star", locationPref: "center", baseMode: "auto" },
   };

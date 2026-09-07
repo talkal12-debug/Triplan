@@ -106,6 +106,11 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
           <span className="block text-sm text-muted-foreground">
             {t("interests.evening.title")}: {t(`interests.evening.options.${prefs.evening}.title`)}
           </span>
+          {prefs.evening !== "none" && prefs.eventTypes.length > 0 && (
+            <span className="block text-sm text-muted-foreground">
+              {t("interests.eventTypes.title")}: {prefs.eventTypes.map((x) => t(`interests.eventTypes.options.${x}`)).join(", ")}
+            </span>
+          )}
         </>
       ),
     },

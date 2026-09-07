@@ -38,6 +38,12 @@ export const eventSchema = z.object({
   venue: z.string().nullable(),
   category: z.string().nullable(),
   source: z.string(),
+  /** The seller's classification (Ticketmaster segment > genre > sub-genre), for the evening preference. */
+  segment: z.string().nullable().optional(),
+  genre: z.string().nullable().optional(),
+  subGenre: z.string().nullable().optional(),
+  /** Matches one of the traveller's preferred event kinds. */
+  preferred: z.boolean().optional(),
   /** Ticket price range as published by the seller, when it says. */
   priceMin: z.number().nullable().optional(),
   priceMax: z.number().nullable().optional(),

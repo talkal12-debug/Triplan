@@ -466,7 +466,8 @@
       "mapsCulture": "公演と劇場",
       "mapsNightlife": "バーとクラブ",
       "buy": "チケットを購入",
-      "price": "{price}〜"
+      "price": "{price}〜",
+      "preferred": "ご希望に合致"
     },
     "seasonal": {
       "title": "旅行期間中の見どころ",
@@ -842,6 +843,20 @@
             "title": "夜の予定なし",
             "body": "夕食の提案のみ。"
           }
+        }
+      },
+      "eventTypes": {
+        "title": "夜はどんなイベントに興味がありますか？",
+        "subtitle": "未選択ならすべて提案します。選んだ種類は先頭に表示され、印が付きます。",
+        "options": {
+          "concert": "コンサート",
+          "musical": "ミュージカル",
+          "theatre": "演劇",
+          "comedy": "コメディ・お笑い",
+          "classical": "クラシック・オペラ",
+          "dance": "ダンス・バレエ",
+          "sports": "スポーツ",
+          "family": "ファミリー向け"
         }
       }
     },
