@@ -362,12 +362,20 @@
         "ticketmaster": "Biglietti per concerti, sport e teatro; ricerca per città.",
         "eventbrite": "Eventi locali, laboratori e feste, molti gratuiti.",
         "songkick": "Programma dei concerti per città e data.",
-        "residentadvisor": "La guida principale di club e serate elettroniche nel mondo."
+        "residentadvisor": "La guida principale di club e serate elettroniche nel mondo.",
+        "googleflights": "Il motore voli di Google: veloce, tutte le compagnie, date flessibili. Nessun programma di affiliazione.",
+        "kayak": "Comparatore storico del gruppo Booking, con grafico dei prezzi per giorno. Si apre con gli adulti; i bambini si aggiungono sul sito.",
+        "momondo": "Comparatore europeo dello stesso gruppo di Kayak, buono per voli economici in Europa.",
+        "tripcom": "Grande agenzia online cinese, spesso prezzi bassi per l'Asia e per i voli interni in Giappone."
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "Valuta della destinazione: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(cambio approssimativo)",

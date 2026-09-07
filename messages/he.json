@@ -362,12 +362,20 @@
         "ticketmaster": "מכירת כרטיסים להופעות, ספורט ותיאטרון; חיפוש לפי עיר.",
         "eventbrite": "אירועים מקומיים, סדנאות ומסיבות, הרבה מהם חינם.",
         "songkick": "לוח הופעות מוזיקה לפי עיר ותאריך.",
-        "residentadvisor": "הלוח המרכזי למועדונים ולמסיבות אלקטרוניות בעולם."
+        "residentadvisor": "הלוח המרכזי למועדונים ולמסיבות אלקטרוניות בעולם.",
+        "googleflights": "מנוע הטיסות של גוגל: מהיר, כל החברות, תאריכים גמישים. בלי תוכנית שותפים.",
+        "kayak": "השוואת טיסות ותיקה מקבוצת Booking, עם גרף מחירים לפי ימים. הקישור נפתח על המבוגרים; ילדים מוסיפים באתר.",
+        "momondo": "מנוע השוואה אירופי מאותה קבוצה של Kayak, טוב לטיסות זולות בתוך אירופה.",
+        "tripcom": "סוכנות אונליין גדולה מסין, לעיתים מחירים נמוכים לאסיה ולטיסות פנים ביפן."
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "מטבע ביעד: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(שער משוער)",

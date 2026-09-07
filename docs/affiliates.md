@@ -30,6 +30,10 @@ Triplan מקשר מכל תוכנית טיול לאתרי הזמנה חיצוני
 | Klook | כרטיסים, אסיה | https://affiliate.klook.com | `AFFILIATE_KLOOK_AID` |
 | Kiwi.com | טיסות | https://www.travelpayouts.com (רשת Travelpayouts) | `AFFILIATE_KIWI_AFFILID` |
 | Skyscanner | השוואת טיסות | https://www.partners.skyscanner.net (או דרך Travelpayouts / Impact) | `AFFILIATE_QUERY_SKYSCANNER` |
+| Google Flights | השוואת טיסות | אין תוכנית שותפים (הקישור נשאר כי הוא שימושי) | — |
+| Kayak | השוואת טיסות | https://www.kayak.com/affiliates (Kayak Affiliate Network, גם Momondo) | `AFFILIATE_QUERY_KAYAK` |
+| Momondo | השוואת טיסות | אותה רשת של Kayak | `AFFILIATE_QUERY_MOMONDO` |
+| Trip.com | טיסות (סוכנות) | https://www.trip.com/partners/affiliate/ | `AFFILIATE_QUERY_TRIPCOM` |
 | Rentalcars.com | השכרת רכב (Booking) | https://www.rentalcars.com/affiliates | `AFFILIATE_QUERY_RENTALCARS` |
 | Discover Cars | השוואת השכרת רכב | https://www.discovercars.com/affiliate | `AFFILIATE_QUERY_DISCOVERCARS` (למשל `a_aid=...`) |
 | Ticketmaster | כרטיסים להופעות ותיאטרון (בלוק הערב) | https://www.ticketmaster.com/affiliates (רשת Impact) | `AFFILIATE_QUERY_TICKETMASTER` |

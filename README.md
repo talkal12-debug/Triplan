@@ -103,7 +103,7 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
   trip: English city name, dates, adults and children's ages. Flights start from the city entered in the dates step
   (Hebrew UI defaults to Tel Aviv); car rental links (Rentalcars, Discover Cars) appear when the traveller chose a car.
   Verified against the live sites: Agoda gets its city page (its text search redirects home), Skyscanner gets airport
-  codes (nearest large airport from `data/airports.json`; without codes only Kiwi is offered).
+  codes (nearest large airport from `data/airports.json`; without codes only Kiwi is offered). Flights also link to Google Flights (any city, no affiliate program), Kayak and Momondo (city codes) and Trip.com (metropolitan codes such as LON, ROM, TYO); a home city typed in any language is geocoded to its nearest hub airport.
 - Links carry `LINKS_VERSION`; a trip saved with an older version refreshes its links on open via `POST /api/plan/links`.
 - Affiliate tracking: six partners have dedicated env vars, every partner accepts `AFFILIATE_QUERY_<PROVIDER>` with
   the raw tracking query from its link generator. Sign-up links and what to paste: `docs/affiliates.md` (Hebrew).

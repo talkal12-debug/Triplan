@@ -1,6 +1,7 @@
 import "server-only";
 import airportsJson from "../../../data/airports.json";
 import { haversineKm } from "@/lib/planner/geo";
+import { hubFor } from "./metro-codes";
 
 /**
  * Commercial airports with IATA codes (OurAirports, public domain; see
@@ -23,7 +24,11 @@ export function nearestAirport(point: { lat: number; lng: number }): Airport | n
     const score = a.large ? km : km + 60;
     if (!best || score < best.km) best = { a, km: score };
   }
-  return best?.a ?? null;
+  if (!best) return null;
+  // Rome's nearest is Ciampino, London's may be City: flight sites should get the city's main hub instead.
+  const hub = hubFor(best.a.iata);
+  const main = hub && hub !== best.a.iata ? airports.find((a) => a.iata === hub) : undefined;
+  return main && haversineKm(point, main) <= 150 ? main : best.a;
 }
 
 const norm = (s: string) =>

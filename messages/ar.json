@@ -362,12 +362,20 @@
         "ticketmaster": "تذاكر الحفلات والرياضة والمسرح؛ بحث حسب المدينة.",
         "eventbrite": "فعاليات محلية وورش وحفلات، كثير منها مجاني.",
         "songkick": "قوائم الحفلات حسب المدينة والتاريخ.",
-        "residentadvisor": "الدليل الرئيسي للنوادي وليالي الموسيقى الإلكترونية في العالم."
+        "residentadvisor": "الدليل الرئيسي للنوادي وليالي الموسيقى الإلكترونية في العالم.",
+        "googleflights": "محرك رحلات غوغل: سريع، كل شركات الطيران، تواريخ مرنة. بلا برنامج شركاء.",
+        "kayak": "موقع مقارنة عريق من مجموعة Booking مع رسم بياني للأسعار حسب اليوم. يُفتح بالبالغين؛ يُضاف الأطفال في الموقع.",
+        "momondo": "محرك مقارنة أوروبي من مجموعة Kayak نفسها، جيد للرحلات الرخيصة داخل أوروبا.",
+        "tripcom": "وكالة إلكترونية كبيرة من الصين، أسعار منخفضة أحياناً إلى آسيا وللرحلات الداخلية في اليابان."
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "عملة الوجهة: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(سعر تقريبي)",

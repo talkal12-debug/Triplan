@@ -362,12 +362,20 @@
         "ticketmaster": "Entradas para conciertos, deporte y teatro; búsqueda por ciudad.",
         "eventbrite": "Eventos locales, talleres y fiestas, muchos gratis.",
         "songkick": "Cartelera de conciertos por ciudad y fecha.",
-        "residentadvisor": "La guía principal de discotecas y noches de música electrónica en el mundo."
+        "residentadvisor": "La guía principal de discotecas y noches de música electrónica en el mundo.",
+        "googleflights": "El buscador de vuelos de Google: rápido, todas las aerolíneas, fechas flexibles. Sin programa de afiliados.",
+        "kayak": "Comparador veterano del grupo Booking, con gráfico de precios por día. Se abre con los adultos; los niños se añaden en la web.",
+        "momondo": "Comparador europeo del mismo grupo que Kayak, bueno para vuelos baratos dentro de Europa.",
+        "tripcom": "Gran agencia online de China, a menudo con precios bajos a Asia y vuelos internos en Japón."
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "Moneda del destino: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(tipo aproximado)",

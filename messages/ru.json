@@ -362,12 +362,20 @@
         "ticketmaster": "Билеты на концерты, спорт и театр; поиск по городу.",
         "eventbrite": "Местные события, мастер-классы и вечеринки, многие бесплатно.",
         "songkick": "Афиша концертов по городу и дате.",
-        "residentadvisor": "Главный каталог клубов и электронных вечеринок в мире."
+        "residentadvisor": "Главный каталог клубов и электронных вечеринок в мире.",
+        "googleflights": "Поиск рейсов Google: быстро, все авиакомпании, гибкие даты. Без партнёрской программы.",
+        "kayak": "Давний сайт сравнения из группы Booking с графиком цен по дням. Открывается со взрослыми; детей добавьте на сайте.",
+        "momondo": "Европейский поисковик той же группы, что и Kayak, хорош для дешёвых рейсов по Европе.",
+        "tripcom": "Крупное онлайн-агентство из Китая, часто низкие цены в Азию и на внутренние рейсы по Японии."
       },
       "ticketmaster": "Ticketmaster",
       "eventbrite": "Eventbrite",
       "songkick": "Songkick",
-      "residentadvisor": "Resident Advisor"
+      "residentadvisor": "Resident Advisor",
+      "googleflights": "Google Flights",
+      "kayak": "Kayak",
+      "momondo": "Momondo",
+      "tripcom": "Trip.com"
     },
     "rates": "Валюта направления: 1 {base} ≈ {value} {quote}",
     "ratesDemo": "(приблизительный курс)",

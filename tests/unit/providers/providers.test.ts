@@ -50,13 +50,19 @@ describe("affiliate links", () => {
   });
 
   it("builds flight links from the traveller's city with dates and passengers", () => {
-    const [kiwi, skyscanner] = flightLinks({ originCity: "Tel Aviv", originIata: "TLV", destinationCity: "Tokyo", destinationCountryName: "Japan", destinationIata: "HND", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 2, children: 1 });
+    const [kiwi, skyscanner, google, kayak, momondo, tripcom] = flightLinks({ originCity: "Tel Aviv", originIata: "TLV", destinationCity: "Tokyo", destinationCountryName: "Japan", destinationIata: "HND", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 2, children: 1 });
     expect(kiwi.url).toContain("/tel-aviv/tokyo-japan/2026-10-16/2026-10-23");
     expect(kiwi.url).toContain("children=1");
     expect(skyscanner.url).toContain("/tlv/hnd/261016/261023/");
+    expect(google.url).toContain("Flights%20from%20TLV%20to%20HND%20on%202026-10-16%20through%202026-10-23");
+    expect(kayak.url).toBe("https://www.kayak.com/flights/TLV-TYO/2026-10-16/2026-10-23/2adults?sort=bestflight_a");
+    expect(momondo.url).toBe("https://www.momondo.com/flight-search/TLV-TYO/2026-10-16/2026-10-23/2adults?sort=bestflight_a");
+    // Trip.com wants the city code: Haneda is "Tokyo" (TYO), Ben Gurion is its own city code.
+    expect(tripcom.url).toContain("dcity=tlv&acity=tyo&ddate=2026-10-16&rdate=2026-10-23");
     // Skyscanner needs airport codes: without them only Kiwi (which understands names) is offered.
     const noCodes = flightLinks({ originCity: "", destinationCity: "Tokyo", departDate: "2026-10-16", returnDate: "2026-10-23", adults: 1, children: 0 });
-    expect(noCodes.map((l) => l.provider)).toEqual(["kiwi"]);
+    expect(noCodes.map((l) => l.provider)).toEqual(["kiwi", "googleflights"]);
+    expect(noCodes[1].url).toContain("q=Flights%20to%20Tokyo%20on%202026-10-16");
     expect(noCodes[0].url).toContain("/anywhere/tokyo/");
   });
 
