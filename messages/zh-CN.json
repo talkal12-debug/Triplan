@@ -466,7 +466,8 @@
       "mapsCulture": "演出和剧院",
       "mapsNightlife": "酒吧和夜店",
       "buy": "购票",
-      "price": "{price} 起"
+      "price": "{price} 起",
+      "preferred": "符合您的选择"
     },
     "seasonal": {
       "title": "您的日期期间有什么活动",
@@ -842,6 +843,20 @@
             "title": "不安排夜晚",
             "body": "只推荐晚餐，其他不安排。"
           }
+        }
+      },
+      "eventTypes": {
+        "title": "晚上您对哪些活动感兴趣？",
+        "subtitle": "不选则推荐全部。您选择的类型会优先显示并标注。",
+        "options": {
+          "concert": "音乐会",
+          "musical": "音乐剧",
+          "theatre": "戏剧",
+          "comedy": "喜剧与脱口秀",
+          "classical": "古典与歌剧",
+          "dance": "舞蹈与芭蕾",
+          "sports": "体育赛事",
+          "family": "家庭演出"
         }
       }
     },

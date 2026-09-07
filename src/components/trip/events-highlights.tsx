@@ -28,6 +28,7 @@ export function EventsHighlights({ plan }: { plan: GuestPlan }) {
           <li key={`${e.dayIndex}-${e.id}`} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <span className="text-xs text-muted-foreground">{e.date && fmtDate(e.date, { day: "numeric", month: "short" })}</span>
             <span className="font-medium">{e.name}</span>
+            {e.preferred && <span className="rounded-sm border border-sunset/60 px-1.5 py-0.5 text-[11px] leading-none">{te("preferred")}</span>}
             <span className="text-xs text-muted-foreground">
               {e.venue && `${e.venue} · `}
               {e.category}

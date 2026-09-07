@@ -466,7 +466,8 @@
       "mapsCulture": "espetáculos e teatro",
       "mapsNightlife": "bares e discotecas",
       "buy": "Comprar bilhetes",
-      "price": "desde {price}"
+      "price": "desde {price}",
+      "preferred": "De acordo com as vossas escolhas"
     },
     "seasonal": {
       "title": "O que acontece nas vossas datas",
@@ -842,6 +843,20 @@
             "title": "Sem noites",
             "body": "Só uma sugestão de jantar, mais nada."
           }
+        }
+      },
+      "eventTypes": {
+        "title": "Que eventos vos interessam à noite?",
+        "subtitle": "Sem escolha, sugerimos de tudo. As vossas escolhas aparecem primeiro e ficam marcadas.",
+        "options": {
+          "concert": "Concertos",
+          "musical": "Musicais",
+          "theatre": "Teatro",
+          "comedy": "Comédia e stand-up",
+          "classical": "Clássica e ópera",
+          "dance": "Dança e ballet",
+          "sports": "Desporto",
+          "family": "Espetáculos para famílias"
         }
       }
     },

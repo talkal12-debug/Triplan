@@ -12,6 +12,7 @@ import { nominatimVenues } from "@/lib/providers/nominatim-pois";
 import { getEvents } from "@/lib/providers/events/ticketmaster";
 import { tryProvider } from "@/lib/providers/http";
 import { styleKinds, type EventItem, type Evening, type Venue } from "@/lib/nearby/schema";
+import { classificationNamesFor, rankEvents } from "@/lib/nearby/event-types";
 
 export type NearbyPlan = {
   /** Restaurants around each meal, keyed by the meal activity id. */
@@ -82,14 +83,21 @@ export async function buildNearby(prefs: TripPreferences, itinerary: Itinerary, 
   const dining: Record<string, Venue[]> = {};
   for (const r of requests) if (r.group === "food" && !r.key.startsWith("dinner:")) dining[r.key] = food(venues[r.key]);
 
-  // Events: one query per stay for its date range, then split by day.
+  // Events: one query per stay for its date range, then split by day. With preferred kinds, a second
+  // query restricted to them runs alongside, so a busy city cannot crowd them out; they come first.
   const eventsProvider = getEvents();
   const eventsByStay = new Map<string, EventItem[]>();
+  const kinds = prefs.eventTypes;
   if (eventsProvider.name !== "none" && style !== "none") {
     for (const stay of itinerary.stays) {
+      const query = { lat: stay.center.lat, lng: stay.center.lng, radiusKm: 15, start: addDays(prefs.dates.start, stay.fromDay), end: addDays(prefs.dates.start, stay.toDay), locale };
       const list = await tryProvider(
         `events:${stay.id}`,
-        () => eventsProvider.search({ lat: stay.center.lat, lng: stay.center.lng, radiusKm: 15, start: addDays(prefs.dates.start, stay.fromDay), end: addDays(prefs.dates.start, stay.toDay), locale }),
+        async () => {
+          const [wanted, all] = await Promise.all([kinds.length ? eventsProvider.search({ ...query, classificationNames: classificationNamesFor(kinds) }) : [], eventsProvider.search(query)]);
+          const seen = new Set<string>();
+          return [...wanted, ...all].filter((e) => !seen.has(e.id) && seen.add(e.id));
+        },
         [] as EventItem[],
         notes,
       );
@@ -113,7 +121,7 @@ export async function buildNearby(prefs: TripPreferences, itinerary: Itinerary, 
       center: stay.center,
       dinner: food(venues[`dinner:${stay.id}`]).slice(0, 5),
       venues: stayVenues.slice(0, 6),
-      events: (eventsByStay.get(stay.id) ?? []).filter((e) => e.start.slice(0, 10) === day.date).slice(0, 8),
+      events: rankEvents((eventsByStay.get(stay.id) ?? []).filter((e) => e.start.slice(0, 10) === day.date), kinds).slice(0, 8),
       eventsSource: eventsProvider.name === "none" ? null : eventsProvider.name,
       links: style === "none" ? [] : eveningLinks({ city: city?.names.en ?? stay.citySlug, countryCode: stay.countryCode, countryName: country ? countryName(country, "en") : undefined, date: day.date, style }, ids),
     };

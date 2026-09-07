@@ -19,7 +19,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { ArrowDown, ArrowUp, GripVertical } from "lucide-react";
-import { eveningStyles, interests, type Interest } from "@/lib/planner/types";
+import { eveningStyles, eventTypes, interests, type EventType, type Interest } from "@/lib/planner/types";
 import { Chip, OptionCard } from "../controls";
 import type { StepProps } from "../step-props";
 import { cn } from "@/lib/utils";
@@ -36,6 +36,10 @@ export function InterestsStep({ prefs, set, errors }: StepProps) {
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
+
+  function toggleEventType(type: EventType) {
+    set("eventTypes", prefs.eventTypes.includes(type) ? prefs.eventTypes.filter((x) => x !== type) : [...prefs.eventTypes, type]);
+  }
 
   function toggle(i: Interest) {
     set("interests", selected.includes(i) ? selected.filter((x) => x !== i) : [...selected, i]);
@@ -127,6 +131,19 @@ export function InterestsStep({ prefs, set, errors }: StepProps) {
           ))}
         </div>
       </fieldset>
+      {prefs.evening !== "none" && (
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-medium">{t("eventTypes.title")}</legend>
+          <p className="text-sm text-muted-foreground">{t("eventTypes.subtitle")}</p>
+          <div className="flex flex-wrap gap-2">
+            {eventTypes.map((type) => (
+              <Chip key={type} selected={prefs.eventTypes.includes(type)} onToggle={() => toggleEventType(type)}>
+                {t(`eventTypes.options.${type}`)}
+              </Chip>
+            ))}
+          </div>
+        </fieldset>
+      )}
     </div>
   );
 }
