@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { Plus, Trash2 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ type Props = { countries: CountryLite[] };
 export function GuestTripList({ countries }: Props) {
   const t = useTranslations("trip");
   const td = useTranslations("wizard.dates");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const [trips, setTrips] = useState<GuestTrip[] | undefined>(undefined);
   const byCode = new Map(countries.map((c) => [c.code, c]));
 
@@ -55,7 +56,6 @@ export function GuestTripList({ countries }: Props) {
       ) : (
         <ul className="mt-6 space-y-3">
           {trips.map((trip) => {
-            const start = new Date(`${trip.preferences.dates.start}T00:00:00`);
             return (
               <li key={trip.id} className="flex items-center gap-3 rounded-md border bg-card p-4">
                 <div className="flex -space-x-1 rtl:space-x-reverse">
@@ -68,7 +68,7 @@ export function GuestTripList({ countries }: Props) {
                     {trip.preferences.destinations.map((d) => byCode.get(d.countryCode)?.name ?? d.countryCode).join(" · ")}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    {format.dateTime(start, { dateStyle: "medium" })} · {td("daysValue", { count: trip.preferences.dates.days })}
+                    {fmtDate(trip.preferences.dates.start, { dateStyle: "medium" })} · {td("daysValue", { count: trip.preferences.dates.days })}
                   </p>
                 </div>
                 <Button asChild variant="outline" size="sm">

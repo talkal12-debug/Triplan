@@ -1,10 +1,11 @@
 "use client";
 
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { AlertTriangle } from "lucide-react";
 import { updateGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import { buildChecklist } from "@/lib/trip/checklist";
-import { localDateOf, placeLabel, todayIso } from "@/lib/guest/plan-helpers";
+import { placeLabel, todayIso } from "@/lib/guest/plan-helpers";
 import type { Locale } from "@/lib/i18n/locales";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +14,7 @@ type Props = { trip: GuestTrip; onTripChange: (trip: GuestTrip) => void };
 export function ChecklistPanel({ trip, onTripChange }: Props) {
   const t = useTranslations("tools.checklist");
   const tItem = t as unknown as (key: string, values?: Record<string, string | number>) => string;
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const locale = useLocale() as Locale;
   const items = buildChecklist(trip.preferences, trip.plan, (id) => placeLabel(trip.plan?.places[id], locale, id));
   const ticked = trip.checklist ?? {};
@@ -39,8 +40,8 @@ export function ChecklistPanel({ trip, onTripChange }: Props) {
           const isDone = Boolean(ticked[k]);
           const overdue = !isDone && i.due < today;
           const params = { ...(i.params ?? {}) } as Record<string, string | number>;
-          if (typeof params.date === "string") params.date = format.dateTime(localDateOf(params.date), { day: "numeric", month: "short" });
-          if (typeof params.until === "string") params.until = format.dateTime(localDateOf(params.until), { dateStyle: "medium" });
+          if (typeof params.date === "string") params.date = fmtDate(params.date, { day: "numeric", month: "short" });
+          if (typeof params.until === "string") params.until = fmtDate(params.until, { dateStyle: "medium" });
           return (
             <li key={k}>
               <label className={cn("flex min-h-11 cursor-pointer items-start gap-3 rounded-md border bg-card px-3 py-2 hover:bg-muted", isDone && "opacity-60")}>
@@ -49,7 +50,7 @@ export function ChecklistPanel({ trip, onTripChange }: Props) {
                   <span className={cn("block", isDone && "line-through")}>{tItem(`items.${i.id}`, params)}</span>
                   <span className={cn("mt-0.5 flex items-center gap-1 text-xs", overdue ? "text-destructive" : "text-muted-foreground")}>
                     {i.severity === "warning" && !isDone && <AlertTriangle className="size-3" aria-hidden />}
-                    {t("due", { date: format.dateTime(localDateOf(i.due), { day: "numeric", month: "short", year: "numeric" }) })}
+                    {t("due", { date: fmtDate(i.due, { day: "numeric", month: "short", year: "numeric" }) })}
                     {overdue && ` · ${t("overdue")}`}
                   </span>
                 </span>

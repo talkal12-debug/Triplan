@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { Printer } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
-import { hhmm, localDateOf, placeLabel, placeSummary } from "@/lib/guest/plan-helpers";
+import { hhmm, placeLabel, placeSummary } from "@/lib/guest/plan-helpers";
 import type { Locale } from "@/lib/i18n/locales";
 import type { WizardContext } from "@/components/wizard/step-props";
 import { useDistance } from "@/lib/units/use-distance";
@@ -37,7 +38,7 @@ export function PrintView({ id, ctx }: Props) {
 function PrintContent({ trip, ctx }: { trip: GuestTrip & { plan: NonNullable<GuestTrip["plan"]> }; ctx: WizardContext }) {
   const t = useTranslations("print");
   const tp = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const locale = useLocale() as Locale;
   const distance = useDistance();
   const plan = trip.plan;
@@ -74,7 +75,7 @@ function PrintContent({ trip, ctx }: { trip: GuestTrip & { plan: NonNullable<Gue
       {plan.itinerary.days.map((day) => (
         <section key={day.index} className="print-day mt-8 break-inside-avoid">
           <h2 className="text-xl font-semibold">
-            {tp("dayTitle", { n: day.index + 1 })} · {format.dateTime(localDateOf(day.date), { weekday: "long", day: "numeric", month: "long" })}
+            {tp("dayTitle", { n: day.index + 1 })} · {fmtDate(day.date, { weekday: "long", day: "numeric", month: "long" })}
             <span className="ms-2 text-base font-normal text-muted-foreground">
               {city(day.citySlug)} · {tp("walk", { distance: distance(day.stats.walkKm) })}
             </span>

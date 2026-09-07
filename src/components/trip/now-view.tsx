@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { ArrowLeft, MapPinOff, Navigation } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getGuestTrip, type GuestTrip } from "@/lib/guest/trips";
 import type { Activity } from "@/lib/planner/itinerary";
-import { googleMapsDirections, hhmm, localDateOf, googleTranslateUrl, placeSummary, todayIso } from "@/lib/guest/plan-helpers";
+import { googleMapsDirections, hhmm, googleTranslateUrl, placeSummary, todayIso } from "@/lib/guest/plan-helpers";
 import { usePlanText } from "./use-plan-text";
 import { placeImage } from "@/lib/images";
 import { Photo } from "@/components/photo";
@@ -71,7 +72,7 @@ function NowContent({
   nowMin: number;
 }) {
   const t = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const plan = trip.plan;
   const { name, city, reasonText } = usePlanText(plan);
   const day = dayIndex !== null ? plan.itinerary.days[dayIndex] : null;
@@ -107,7 +108,7 @@ function NowContent({
           <div className="mt-3 grid grid-cols-2 gap-2">
             {plan.itinerary.days.map((d) => (
               <Button key={d.index} type="button" variant="outline" className="h-12 justify-start" onClick={() => setDayIndex(d.index)}>
-                {t("dayShort", { n: d.index + 1 })} · {format.dateTime(localDateOf(d.date), { day: "numeric", month: "short" })}
+                {t("dayShort", { n: d.index + 1 })} · {fmtDate(d.date, { day: "numeric", month: "short" })}
               </Button>
             ))}
           </div>
@@ -117,7 +118,7 @@ function NowContent({
       {day && (
         <div className="mt-4 space-y-4">
           <p className="text-sm text-muted-foreground">
-            {format.dateTime(localDateOf(day.date), { weekday: "long", day: "numeric", month: "long" })} · {city(day.citySlug)}
+            {fmtDate(day.date, { weekday: "long", day: "numeric", month: "long" })} · {city(day.citySlug)}
           </p>
 
           {finished && <p className="rounded-md border border-dashed p-6 text-center">{t("now.done")}</p>}

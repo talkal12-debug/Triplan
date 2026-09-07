@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { CalendarHeart, ExternalLink, Flower2, Sparkles, TriangleAlert } from "lucide-react";
 import { seasonalText, type SeasonalItem } from "@/lib/data/seasonal";
 import { cn } from "@/lib/utils";
@@ -14,12 +15,12 @@ const icons = { festival: Sparkles, nature: Flower2, market: CalendarHeart, caut
 export function SeasonalHighlights({ items, className, compact = false }: { items: (SeasonalItem & { firstDate?: string })[]; className?: string; compact?: boolean }) {
   const t = useTranslations("plan.seasonal");
   const locale = useLocale();
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   if (items.length === 0) return null;
   const window = (i: SeasonalItem) => {
     const year = new Date().getFullYear();
-    const f = format.dateTime(new Date(`${year}-${i.from}T12:00:00`), { day: "numeric", month: "short" });
-    const to = format.dateTime(new Date(`${year}-${i.to}T12:00:00`), { day: "numeric", month: "short" });
+    const f = fmtDate(`${year}-${i.from}`, { day: "numeric", month: "short" });
+    const to = fmtDate(`${year}-${i.to}`, { day: "numeric", month: "short" });
     return i.from === i.to ? f : `${f} – ${to}`;
   };
   return (

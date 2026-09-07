@@ -1,13 +1,13 @@
 "use client";
 
 import { cloneElement } from "react";
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { DndContext, KeyboardSensor, PointerSensor, closestCorners, useDroppable, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import type { Activity } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
-import { localDateOf } from "@/lib/guest/plan-helpers";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
 import { cn } from "@/lib/utils";
@@ -25,7 +25,7 @@ type Props = {
 /** All days at once, with drag-and-drop within and between days. */
 export function PlanList({ plan, selectedId, onSelect, actions }: Props) {
   const t = useTranslations("plan");
-  const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const { reasonText, city } = usePlanText(plan);
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -71,7 +71,7 @@ export function PlanList({ plan, selectedId, onSelect, actions }: Props) {
             <h3 className="mb-2 font-semibold">
               {t("dayTitle", { n: day.index + 1 })}
               <span className="ms-2 text-sm font-normal text-muted-foreground">
-                {format.dateTime(localDateOf(day.date), { weekday: "short", day: "numeric", month: "short" })} · {city(day.citySlug)}
+                {fmtDate(day.date, { weekday: "short", day: "numeric", month: "short" })} · {city(day.citySlug)}
               </span>
             </h3>
             <SortableContext items={visitsByDay[di]} strategy={verticalListSortingStrategy}>

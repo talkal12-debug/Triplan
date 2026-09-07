@@ -64,7 +64,8 @@ export const ticketmasterEvents: EventsProvider = {
         id: e.id,
         name: e.name,
         url: e.url!,
-        start: e.dates.start.dateTime ?? `${e.dates.start.localDate ?? q.start}${e.dates.start.localTime ? `T${e.dates.start.localTime}` : ""}`,
+        // Venue-local date and time, as printed on the ticket; the UTC dateTime only when nothing else is given.
+        start: e.dates.start.localDate ? `${e.dates.start.localDate}${e.dates.start.localTime ? `T${e.dates.start.localTime.slice(0, 5)}` : ""}` : (e.dates.start.dateTime ?? q.start),
         venue: e._embedded?.venues?.[0]?.name ?? null,
         category: e.classifications?.[0]?.genre?.name ?? e.classifications?.[0]?.segment?.name ?? null,
         source: "ticketmaster",

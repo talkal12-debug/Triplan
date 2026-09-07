@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
+import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
 import { Ticket } from "lucide-react";
 import type { GuestPlan } from "@/lib/guest/trips";
 
@@ -13,6 +14,7 @@ export function EventsHighlights({ plan }: { plan: GuestPlan }) {
   const t = useTranslations("plan.events");
   const te = useTranslations("plan.evening");
   const format = useFormatter();
+  const fmtDate = useCalendarFormat();
   const evenings = plan.extras?.evenings ?? {};
   const events = Object.entries(evenings)
     .flatMap(([dayIndex, e]) => e.events.map((ev) => ({ ...ev, dayIndex: Number(dayIndex), date: plan.itinerary.days[Number(dayIndex)]?.date })))
@@ -24,7 +26,7 @@ export function EventsHighlights({ plan }: { plan: GuestPlan }) {
       <ul className="mt-2 space-y-2">
         {events.slice(0, 12).map((e) => (
           <li key={`${e.dayIndex}-${e.id}`} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-            <span className="text-xs text-muted-foreground">{e.date && format.dateTime(new Date(`${e.date}T12:00:00`), { day: "numeric", month: "short" })}</span>
+            <span className="text-xs text-muted-foreground">{e.date && fmtDate(e.date, { day: "numeric", month: "short" })}</span>
             <span className="font-medium">{e.name}</span>
             <span className="text-xs text-muted-foreground">
               {e.venue && `${e.venue} · `}
