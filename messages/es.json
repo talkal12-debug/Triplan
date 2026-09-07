@@ -9,7 +9,8 @@
     "demoBanner": "Modo demo: rutas, tiempo y festivos vienen de fuentes gratuitas sin claves. Los datos estimados están marcados.",
     "affiliate": "Enlace de afiliado",
     "opensInNewTab": "Se abre en una pestaña nueva",
-    "offline": "Sin conexión a internet. Los planes guardados están en \"Mis viajes\"."
+    "offline": "Sin conexión a internet. Los planes guardados están en \"Mis viajes\".",
+    "photoCredit": "Foto: Wikipedia"
   },
   "nav": {
     "home": "Inicio",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "Estado del desarrollo",
-    "statusBody": "Triplan se construye por fases. Ya funciona: cuestionario, motor de planificación, cuatro vistas, mapa, exportación, modo sin conexión, 12 idiomas, cuentas y planificación en grupo. El asistente de IA necesita una clave de Anthropic."
+    "statusBody": "Triplan se construye por fases. Ya funciona: cuestionario, motor de planificación, cuatro vistas, mapa, exportación, modo sin conexión, 12 idiomas, cuentas y planificación en grupo. El asistente de IA necesita una clave de Anthropic.",
+    "photosLabel": "Fotos de los destinos de demostración"
   },
   "plan": {
     "build": "Crear el plan",

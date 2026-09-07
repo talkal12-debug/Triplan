@@ -133,7 +133,18 @@ export const placeSeedSchema = z.object({
   kidFriendly: z.boolean(),
   /** One-paragraph description per language (Wikipedia extract or Wikidata description) with its source URL. */
   /** Per-language description: Wikipedia lead (with url) or Wikidata description; `translatedFrom` marks a machine translation of that language's text. */
-  summary: z.record(z.string(), z.object({ text: z.string(), url: z.string().url().nullable(), translatedFrom: z.string().optional() })).optional(),
+  summary: z
+    .record(
+      z.string(),
+      z.object({
+        text: z.string(),
+        url: z.string().url().nullable(),
+        translatedFrom: z.string().optional(),
+        /** The article's lead photo (Wikimedia Commons), 320 px thumbnail URL + the article as credit. */
+        image: z.object({ url: z.string().url(), page: z.string().url().nullable() }).nullable().optional(),
+      }),
+    )
+    .optional(),
   dataQuality: z.enum(dataQualities),
   source: z.enum(["seed", "osm", "google", "user"]),
   wikidata: z.string().regex(/^Q\d+$/).nullable(),
@@ -147,6 +158,8 @@ export const citySeedSchema = z.object({
   center: z.object({ lat: z.number(), lng: z.number() }),
   /** [south, west, north, east] */
   bbox: z.tuple([z.number(), z.number(), z.number(), z.number()]),
+  /** The city's Wikipedia lead photo, when fetched (`npm run data:summaries --images`). */
+  image: z.object({ url: z.string().url(), page: z.string().url().nullable() }).nullable().optional(),
 });
 export type CitySeed = z.infer<typeof citySeedSchema>;
 

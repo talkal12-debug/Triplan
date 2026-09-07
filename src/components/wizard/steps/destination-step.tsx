@@ -6,6 +6,7 @@ import { Check, Globe, Search, X } from "lucide-react";
 import { CountryFlag } from "@/components/country-flag";
 import { Badge } from "@/components/ui/badge";
 import { Chip, inputClass } from "../controls";
+import { Photo } from "@/components/photo";
 import type { StepProps } from "../step-props";
 import type { CustomCity, Destination } from "@/lib/planner/types";
 import { cn } from "@/lib/utils";
@@ -102,13 +103,35 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
                     <div className="mt-3">
                       <p className="text-sm font-medium">{t("cities", { country: c.name })}</p>
                       <p className="text-xs text-muted-foreground">{t("citiesHint")}</p>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {cities.map((city) => (
-                          <Chip key={city.slug} selected={d.cities.includes(city.slug)} onToggle={() => toggleCity(d.countryCode, city.slug)}>
-                            {city.name}
-                            {city.local && <span className="text-xs opacity-70" dir="auto">{city.local}</span>}
-                          </Chip>
-                        ))}
+                      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                        {cities.map((city) => {
+                          const selected = d.cities.includes(city.slug);
+                          return city.image ? (
+                            <button
+                              key={city.slug}
+                              type="button"
+                              role="checkbox"
+                              aria-checked={selected}
+                              onClick={() => toggleCity(d.countryCode, city.slug)}
+                              className={cn(
+                                "group relative overflow-hidden rounded-md border text-start outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50",
+                                selected ? "border-primary ring-2 ring-primary" : "border-foreground/15 hover:border-foreground/40",
+                              )}
+                            >
+                              <Photo image={city.image} alt={city.name} width={480} className="aspect-[4/3] w-full" sizes="(max-width: 640px) 100vw, 240px" />
+                              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2 pt-8 text-white">
+                                <span className="block font-semibold leading-tight">{city.name}</span>
+                                {city.local && <span className="block text-xs opacity-80" dir="auto">{city.local}</span>}
+                              </span>
+                              {selected && <Check className="absolute end-2 top-2 size-5 rounded-full bg-primary p-0.5 text-primary-foreground" aria-hidden />}
+                            </button>
+                          ) : (
+                            <Chip key={city.slug} selected={selected} onToggle={() => toggleCity(d.countryCode, city.slug)}>
+                              {city.name}
+                              {city.local && <span className="text-xs opacity-70" dir="auto">{city.local}</span>}
+                            </Chip>
+                          );
+                        })}
                       </div>
                     </div>
                   )

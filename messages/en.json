@@ -9,7 +9,8 @@
     "demoBanner": "Demo mode: routing, weather and holidays come from free, key-less sources. Estimated data is labelled.",
     "affiliate": "Affiliate link",
     "opensInNewTab": "Opens in a new tab",
-    "offline": "No internet connection. Saved plans are available under \"My trips\"."
+    "offline": "No internet connection. Saved plans are available under \"My trips\".",
+    "photoCredit": "Photo: Wikipedia"
   },
   "nav": {
     "home": "Home",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "Development status",
-    "statusBody": "Triplan is built in phases. Working today: questionnaire, planning engine, four views, map, export, offline, 12 languages, accounts and planning together. The AI assistant needs an Anthropic key."
+    "statusBody": "Triplan is built in phases. Working today: questionnaire, planning engine, four views, map, export, offline, 12 languages, accounts and planning together. The AI assistant needs an Anthropic key.",
+    "photosLabel": "Photos of the demo destinations"
   },
   "plan": {
     "build": "Build the plan",

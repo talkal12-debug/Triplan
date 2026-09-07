@@ -3,6 +3,11 @@ import { ArrowRight, CloudOff, Eye, Users } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
+import { Photo } from "@/components/photo";
+import { getSeedCities } from "@/lib/data/pois";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -23,6 +28,13 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("home");
+  const uiLocale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
+  // Real photos of the demo cities (Wikipedia lead images), one per city, largest cities first.
+  const photos = ["PT", "IT", "JP"]
+    .flatMap((code) => getSeedCities(code))
+    .filter((c) => c.image)
+    .slice(0, 5)
+    .map((c) => ({ image: c.image!, name: c.names[uiLocale] ?? c.names.en, slug: c.slug }));
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
@@ -30,7 +42,7 @@ export default async function HomePage({ params }: Props) {
       <section className="grid gap-12 pt-14 pb-16 sm:pt-20 lg:grid-cols-12 lg:items-end lg:gap-8">
         <div className="lg:col-span-8">
           <p className="eyebrow eyebrow-rule">{t("eyebrow")}</p>
-          <h1 className="mt-6 max-w-3xl text-balance font-display text-5xl leading-[1.04] tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl md:text-7xl">
             {t("heroTitle")}
           </h1>
           <p className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">{t("heroSubtitle")}</p>
@@ -66,6 +78,18 @@ export default async function HomePage({ params }: Props) {
           ))}
         </ol>
       </section>
+
+      {/* Photo strip: where the demo plans go */}
+      {photos.length > 0 && (
+        <section className="grid grid-cols-2 gap-2 pb-16 sm:grid-cols-4" aria-label={t("photosLabel")}>
+          {photos.map((p, i) => (
+            <FadeIn key={p.slug} delay={i * 0.05} className={cn("relative", i === 0 && "col-span-2 row-span-2")}>
+              <Photo image={p.image} alt={p.name} width={i === 0 ? 960 : 500} className="aspect-[4/3] w-full rounded-md" sizes={i === 0 ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"} />
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-md bg-gradient-to-t from-black/60 to-transparent px-3 pb-2 pt-8 text-sm font-medium text-white">{p.name}</span>
+            </FadeIn>
+          ))}
+        </section>
+      )}
 
       {/* Features */}
       <section className="rule-brass py-16" aria-labelledby="features-title">

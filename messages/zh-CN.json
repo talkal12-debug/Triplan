@@ -9,7 +9,8 @@
     "demoBanner": "演示模式：路线、天气和节假日来自无需 API 密钥的免费数据源。估算数据已标注。",
     "affiliate": "联盟链接",
     "opensInNewTab": "在新标签页中打开",
-    "offline": "没有网络连接。已保存的计划可在“我的旅行”中查看。"
+    "offline": "没有网络连接。已保存的计划可在“我的旅行”中查看。",
+    "photoCredit": "图片：维基百科"
   },
   "nav": {
     "home": "首页",
@@ -128,7 +129,8 @@
       }
     },
     "statusTitle": "开发状态",
-    "statusBody": "Triplan 分阶段构建。目前可用：问卷、规划引擎、四种视图、地图、导出、离线、12 种语言、账户和共同规划。AI 助手需要 Anthropic 密钥。"
+    "statusBody": "Triplan 分阶段构建。目前可用：问卷、规划引擎、四种视图、地图、导出、离线、12 种语言、账户和共同规划。AI 助手需要 Anthropic 密钥。",
+    "photosLabel": "演示目的地的照片"
   },
   "plan": {
     "build": "生成计划",

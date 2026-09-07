@@ -17,9 +17,9 @@
   /* Rubik has no CJK / Devanagari glyphs: name the common system fonts so zh-CN, ja and hi render cleanly. */
   --font-sans: var(--font-heebo), ui-sans-serif, system-ui, "Segoe UI", "Noto Sans", "Noto Sans CJK SC", "Noto Sans CJK JP", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", "Yu Gothic UI", "Meiryo", "Noto Sans Devanagari", "Nirmala UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  /* Display face for headings and numerals: a Hebrew + Latin serif; other scripts fall back to their system serif. */
-  --font-display: var(--font-frank), "Frank Ruhl Libre", "Times New Roman", "Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK JP", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif Devanagari", serif;
-  --font-heading: var(--font-display);
+  /* One typeface: headings are the same sans, heavier and tighter. */
+  --font-display: var(--font-sans);
+  --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -61,78 +61,78 @@
 }
 
 :root {
-  /* Linen paper, ink text, deep pine as the one strong colour, brass for hairlines and small marks. */
-  --background: oklch(0.972 0.008 85);
-  --foreground: oklch(0.21 0.02 250);
-  --card: oklch(0.99 0.004 85);
-  --card-foreground: oklch(0.21 0.02 250);
-  --popover: oklch(0.99 0.004 85);
-  --popover-foreground: oklch(0.21 0.02 250);
-  --primary: oklch(0.34 0.055 165);
-  --primary-foreground: oklch(0.975 0.01 85);
-  --secondary: oklch(0.93 0.012 85);
-  --secondary-foreground: oklch(0.21 0.02 250);
-  --muted: oklch(0.94 0.01 85);
-  --muted-foreground: oklch(0.46 0.02 250);
-  --accent: oklch(0.92 0.02 85);
-  --accent-foreground: oklch(0.21 0.02 250);
+  /* White, ink text, deep blue as the one strong colour, brass for hairlines and small marks. */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2 0.03 262);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.03 262);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.03 262);
+  --primary: oklch(0.32 0.11 262);
+  --primary-foreground: oklch(0.99 0.005 262);
+  --secondary: oklch(0.96 0.006 262);
+  --secondary-foreground: oklch(0.2 0.03 262);
+  --muted: oklch(0.965 0.005 262);
+  --muted-foreground: oklch(0.47 0.02 262);
+  --accent: oklch(0.95 0.01 262);
+  --accent-foreground: oklch(0.2 0.03 262);
   --destructive: oklch(0.5 0.18 27);
-  --border: oklch(0.85 0.015 80);
-  --input: oklch(0.85 0.015 80);
-  --ring: oklch(0.34 0.055 165);
+  --border: oklch(0.89 0.008 262);
+  --input: oklch(0.89 0.008 262);
+  --ring: oklch(0.32 0.11 262);
   --sunset: oklch(0.66 0.11 78);
   --sunset-foreground: oklch(0.2 0.03 78);
-  --chart-1: oklch(0.34 0.055 165);
+  --chart-1: oklch(0.32 0.11 262);
   --chart-2: oklch(0.66 0.11 78);
   --chart-3: oklch(0.55 0.08 250);
   --chart-4: oklch(0.6 0.1 20);
   --chart-5: oklch(0.46 0.02 250);
   --radius: 0.375rem;
-  --sidebar: oklch(0.96 0.008 85);
-  --sidebar-foreground: oklch(0.21 0.02 250);
-  --sidebar-primary: oklch(0.34 0.055 165);
-  --sidebar-primary-foreground: oklch(0.975 0.01 85);
-  --sidebar-accent: oklch(0.92 0.02 85);
-  --sidebar-accent-foreground: oklch(0.21 0.02 250);
-  --sidebar-border: oklch(0.85 0.015 80);
-  --sidebar-ring: oklch(0.34 0.055 165);
+  --sidebar: oklch(0.98 0.004 262);
+  --sidebar-foreground: oklch(0.2 0.03 262);
+  --sidebar-primary: oklch(0.32 0.11 262);
+  --sidebar-primary-foreground: oklch(0.99 0.005 262);
+  --sidebar-accent: oklch(0.95 0.01 262);
+  --sidebar-accent-foreground: oklch(0.2 0.03 262);
+  --sidebar-border: oklch(0.89 0.008 262);
+  --sidebar-ring: oklch(0.32 0.11 262);
 }
 
 .dark {
   /* Warm charcoal, the same ink-and-brass logic; pine turns to sage so it reads on dark. */
-  --background: oklch(0.19 0.012 60);
-  --foreground: oklch(0.94 0.012 85);
-  --card: oklch(0.23 0.012 60);
-  --card-foreground: oklch(0.94 0.012 85);
-  --popover: oklch(0.23 0.012 60);
-  --popover-foreground: oklch(0.94 0.012 85);
-  --primary: oklch(0.74 0.08 165);
-  --primary-foreground: oklch(0.15 0.02 165);
-  --secondary: oklch(0.27 0.012 60);
-  --secondary-foreground: oklch(0.94 0.012 85);
-  --muted: oklch(0.27 0.012 60);
-  --muted-foreground: oklch(0.7 0.012 85);
-  --accent: oklch(0.3 0.015 60);
-  --accent-foreground: oklch(0.94 0.012 85);
+  --background: oklch(0.17 0.02 262);
+  --foreground: oklch(0.95 0.008 262);
+  --card: oklch(0.21 0.02 262);
+  --card-foreground: oklch(0.95 0.008 262);
+  --popover: oklch(0.21 0.02 262);
+  --popover-foreground: oklch(0.95 0.008 262);
+  --primary: oklch(0.76 0.09 255);
+  --primary-foreground: oklch(0.15 0.03 262);
+  --secondary: oklch(0.26 0.02 262);
+  --secondary-foreground: oklch(0.95 0.008 262);
+  --muted: oklch(0.26 0.02 262);
+  --muted-foreground: oklch(0.72 0.01 262);
+  --accent: oklch(0.29 0.025 262);
+  --accent-foreground: oklch(0.95 0.008 262);
   --destructive: oklch(0.7 0.16 27);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.74 0.08 165);
+  --ring: oklch(0.76 0.09 255);
   --sunset: oklch(0.74 0.11 78);
   --sunset-foreground: oklch(0.18 0.03 78);
-  --chart-1: oklch(0.74 0.08 165);
+  --chart-1: oklch(0.76 0.09 255);
   --chart-2: oklch(0.74 0.11 78);
   --chart-3: oklch(0.7 0.08 250);
   --chart-4: oklch(0.7 0.1 20);
   --chart-5: oklch(0.7 0.012 85);
-  --sidebar: oklch(0.23 0.012 60);
-  --sidebar-foreground: oklch(0.94 0.012 85);
-  --sidebar-primary: oklch(0.74 0.08 165);
-  --sidebar-primary-foreground: oklch(0.15 0.02 165);
-  --sidebar-accent: oklch(0.3 0.015 60);
-  --sidebar-accent-foreground: oklch(0.94 0.012 85);
+  --sidebar: oklch(0.21 0.02 262);
+  --sidebar-foreground: oklch(0.95 0.008 262);
+  --sidebar-primary: oklch(0.76 0.09 255);
+  --sidebar-primary-foreground: oklch(0.15 0.03 262);
+  --sidebar-accent: oklch(0.29 0.025 262);
+  --sidebar-accent-foreground: oklch(0.95 0.008 262);
   --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.74 0.08 165);
+  --sidebar-ring: oklch(0.76 0.09 255);
 }
 
 /* Small tracked label with a brass hairline in front: the "eyebrow" of an editorial layout. */
@@ -159,9 +159,9 @@
 }
 /* Serif numerals for indexes and step numbers. */
 @utility numeral {
-  font-family: var(--font-display);
+  font-weight: 600;
   font-variant-numeric: lining-nums tabular-nums;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
 }
 
 /* Wizard step transition (replaces Framer Motion): slides in from --wizard-slide, direction-aware. */

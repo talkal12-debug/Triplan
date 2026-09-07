@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
+import { Heebo } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { baseNamespaces, pickMessages } from "@/i18n/page-messages";
@@ -13,23 +13,16 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 import { DemoBanner } from "@/components/layout/demo-banner";
 import "../globals.css";
 
-// Heebo (body) and Frank Ruhl Libre (headings) both cover Hebrew and Latin; Arabic, Cyrillic,
-// CJK and Devanagari fall through to the system fonts listed in globals.css.
+// Heebo covers Hebrew and Latin; Arabic, Cyrillic, CJK and Devanagari fall through to the
+// system fonts listed in globals.css.
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-heebo",
   // "optional": if the font is not ready within ~100 ms the system font stays for this page view,
   // so text never reflows (no layout shift). The file is cached, so the next page gets Heebo.
   display: "optional",
   preload: false,
-});
-const frank = Frank_Ruhl_Libre({
-  subsets: ["hebrew", "latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-frank",
-  display: "swap",
-  preload: true,
 });
 
 type Props = {
@@ -88,7 +81,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html
       lang={locale}
       dir={dir}
-      className={`${heebo.variable} ${frank.variable}`}
+      className={heebo.variable}
       suppressHydrationWarning
     >
       <body className="flex min-h-dvh flex-col bg-background text-foreground antialiased">

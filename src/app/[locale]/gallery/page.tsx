@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { CloneTemplateButton } from "@/components/gallery/clone-template-button";
 import { getCountriesLite } from "@/lib/data/countries-lite";
 import { listTemplateSummaries } from "@/lib/templates/server";
+import { getSeedCities } from "@/lib/data/pois";
+import { Photo } from "@/components/photo";
 import { PageMessages } from "@/i18n/page-messages";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -28,6 +30,16 @@ export default async function GalleryPage({ params }: Props) {
   const tt = (key: string) => (t.has(key as never) ? t(key as never) : key);
   const countries = new Map(getCountriesLite(uiLocale).map((c) => [c.code, c.name]));
   const templates = listTemplateSummaries();
+  const tc = await getTranslations("common");
+  // Cover photo: the template's first city that has one (its own order, so "Porto and Lisbon" shows Porto).
+  const cover = (tpl: (typeof templates)[number]) => {
+    const seed = tpl.countries.flatMap((code) => getSeedCities(code));
+    for (const slug of tpl.cities) {
+      const city = seed.find((c) => c.slug === slug);
+      if (city?.image) return { image: city.image, name: city.names[uiLocale] ?? city.names.en };
+    }
+    return null;
+  };
 
   return (
     <PageMessages namespaces={["gallery"]}>
@@ -39,7 +51,11 @@ export default async function GalleryPage({ params }: Props) {
         ) : (
           <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {templates.map((tpl) => (
-              <li key={tpl.id} className="flex flex-col gap-3 rounded-md border bg-card p-5">
+              <li key={tpl.id} className="flex flex-col gap-3 overflow-hidden rounded-md border bg-card p-5">
+                {(() => {
+                  const c = cover(tpl);
+                  return c ? <Photo image={c.image} alt={c.name} width={800} className="-mx-5 -mt-5 mb-1 aspect-[16/7]" credit={tc("photoCredit")} sizes="(max-width: 640px) 100vw, 480px" /> : null;
+                })()}
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-1 rtl:space-x-reverse">
                     {tpl.countries.map((code) => (
