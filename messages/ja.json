@@ -195,7 +195,12 @@
       "half_day_departure": "半日、出発",
       "day_trip": "日帰り旅行",
       "hotel_transfer": "ホテル移動",
-      "must_visit": "必ず行くリストの場所"
+      "must_visit": "必ず行くリストの場所",
+      "closes_early": "朝一番に：{time} に閉まります",
+      "opens_late": "午後に：{time} からの開館",
+      "closed_other_days": "この日に：{weekdays} は休み",
+      "sunset_last": "締めくくりに：夕日の展望スポット",
+      "top_interest": "一番の興味：{interest}"
     },
     "weekdays": {
       "sunday": "日曜日",
@@ -498,6 +503,43 @@
     "events": {
       "title": "旅行日程中のイベントと公演",
       "source": "出典：{source}。料金と空席は販売サイトをご確認ください。"
+    },
+    "why": {
+      "title": "なぜこれ？",
+      "toggle": "なぜ？",
+      "dayTitle": "この日がこうなっている理由",
+      "compact": "各スポットは前の場所から {minutes} 分以内",
+      "timed": "{count, plural, other {# か所が営業時間の都合でこの日・この時間に固定}}",
+      "rain": "雨の予報：屋内スポット {count} か所",
+      "wishes": "{count, plural, other {# か所が必ず行きたいリストから}}"
+    },
+    "sleep": {
+      "title": "どこに泊まるか",
+      "subtitle": "プランの立ち寄り先から見て、滞在中のどの日にも近いエリア。特定のホテルではなくエリアです。",
+      "zone": "エリア {n}",
+      "near": "{place} の近く",
+      "stats": "各日の中心から平均 {distance} · {days} 日中 {near} 日が徒歩圏",
+      "showMap": "宿泊エリアを地図に表示",
+      "hideMap": "宿泊エリアを隠す",
+      "mapLegend": "円：おすすめの宿泊エリア（順位順）。"
+    },
+    "fit": {
+      "label": "この日が向く人",
+      "all": "全員に向いています",
+      "heavyFor": "{name} には負担が大きい",
+      "kinds": {
+        "adult": "大人",
+        "senior": "65歳以上",
+        "child": "子供",
+        "infant": "乳児"
+      },
+      "issues": {
+        "walk": "歩きが多い",
+        "heavy": "ハードな一日",
+        "rest": "休憩なし",
+        "access": "バリアフリーでない場所あり",
+        "accessLimited": "一部バリアフリー"
+      }
     }
   },
   "gallery": {
@@ -719,7 +761,7 @@
     },
     "party": {
       "title": "誰が旅行しますか？",
-      "subtitle": "年齢はペースと観光スポットの選定に直接影響します。",
+      "subtitle": "誰が行きますか？名前（任意）、子供の年齢、それぞれ大事なこと。これでペースを決め、各日が誰に向くかを表示します。",
       "adults": "大人",
       "children": "子ども（2〜17歳）",
       "childAge": "子ども{n}の年齢",
@@ -729,7 +771,35 @@
       "seniorsHint": "大人に含めて数えます",
       "increase": "{what}を増やす",
       "decrease": "{what}を減らす",
-      "seniorsTooMany": "65歳以上の人数は大人の人数を超えられません"
+      "seniorsTooMany": "65歳以上の人数は大人の人数を超えられません",
+      "listLabel": "旅行者",
+      "kinds": {
+        "adult": "大人",
+        "senior": "65歳以上",
+        "child": "子供",
+        "infant": "乳児"
+      },
+      "name": "名前",
+      "namePlaceholder": "任意",
+      "addAdult": "大人を追加",
+      "addSenior": "65歳以上を追加",
+      "addChild": "子供を追加（2〜17歳）",
+      "addInfant": "乳児を追加",
+      "remove": "{name} を削除",
+      "needs": {
+        "label": "{name} に大事なこと",
+        "lowWalking": "歩きは少なめ",
+        "wheelchair": "車椅子",
+        "stroller": "ベビーカー",
+        "stairs": "階段が苦手",
+        "altitude": "高地に弱い",
+        "naps": "昼に休憩が必要"
+      },
+      "noAdult": "大人が最低1人必要です",
+      "saveFamily": "この端末に旅行者を保存",
+      "loadFamily": "保存した旅行者を読み込む（{count}）",
+      "saved": "この端末に保存しました。",
+      "saveHint": "次の旅行では入力し直す必要がありません。"
     },
     "visit": {
       "title": "初めての訪問ですか？",
@@ -775,7 +845,8 @@
         "stroller": "ベビーカー",
         "stairs": "階段が苦手",
         "altitude": "高所に敏感"
-      }
+      },
+      "accessibilityFromTravelers": "バリアフリーの条件は「誰が行きますか？」で設定した旅行者から取得します。"
     },
     "transport": {
       "title": "移動手段は？",

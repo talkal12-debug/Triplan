@@ -33,7 +33,7 @@ test("guest can complete the wizard and land on a saved trip", async ({ page }) 
 
   // Step 3: travellers: add a child.
   await expect(page).toHaveURL(/\/plan\/party$/);
-  await page.getByRole("button", { name: "הוסף ילדים (2–17)" }).click();
+  await page.getByRole("button", { name: "הוסף ילד/ה (2–17)" }).click();
   await expect(page.getByLabel("גיל ילד/ה 1")).toBeVisible();
   await next.click();
 

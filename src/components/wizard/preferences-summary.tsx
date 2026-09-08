@@ -19,6 +19,7 @@ type Props = {
 export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
   const t = useTranslations("wizard");
   const ts = useTranslations("wizard.summary");
+  const tp = useTranslations("wizard.party");
   const format = useFormatter();
   const fmtDate = useCalendarFormat();
 
@@ -30,6 +31,11 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
     .sort((a, b) => b[1] - a[1])
     .map(([m]) => t(`transport.modes.${m}`));
 
+  const travelerParts = prefs.travelers.map((tr) => {
+    const label = tr.name || tp(`kinds.${tr.kind}`);
+    const details = [tr.kind === "child" && tr.age != null ? String(tr.age) : null, ...tr.needs.map((n) => tp(`needs.${n}`))].filter(Boolean);
+    return details.length ? `${label} (${details.join(", ")})` : label;
+  });
   const partyParts = [
     ts("people", { count: prefs.party.adults }),
     prefs.party.seniors > 0 ? ts("seniorsCount", { count: prefs.party.seniors }) : null,
@@ -73,7 +79,7 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
         </>
       ),
     },
-    { step: "party", content: listFormat.format(partyParts) },
+    { step: "party", content: travelerParts.length ? `${listFormat.format(travelerParts)} · ${listFormat.format(partyParts)}` : listFormat.format(partyParts) },
     { step: "visit", content: ts(`visit.${prefs.visitNumber}`) },
     {
       step: "pace",

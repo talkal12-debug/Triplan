@@ -32,6 +32,15 @@ export const planExtrasSchema = z.object({
     flights: z.array(affiliateLinkSchema),
     /** Added in milestone 9; older saved plans have none. */
     cars: z.array(affiliateLinkSchema).optional(),
+    /** "Where to sleep": areas per stay ranked by distance to every day, with hotel search links. Older plans get them on refresh. */
+    sleepZones: z
+      .array(
+        z.object({
+          stayId: z.string(),
+          zones: z.array(z.object({ lat: z.number(), lng: z.number(), anchorPlaceId: z.string(), avgKm: z.number(), daysNear: z.number().int(), days: z.number().int(), links: z.array(affiliateLinkSchema) })),
+        }),
+      )
+      .optional(),
     /** Link format version; the trip view refreshes links whose version is older (see LINKS_VERSION). */
     version: z.number().int().optional(),
   }),

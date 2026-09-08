@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
-import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, History, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown } from "lucide-react";
+import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, History, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -58,6 +59,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
   const locale = useLocale() as Locale;
   const place = a.placeId ? plan.places[a.placeId] : undefined;
   const isVisit = a.kind === "visit";
+  const [why, setWhy] = useState(false);
   const name = isVisit ? placeLabel(place, locale, a.placeId ?? "") : t(`activity.${a.kind}` as never);
   const Transit = a.transitFromPrev ? transitIcons[a.transitFromPrev.mode] : null;
   const Icon = a.kind === "meal" ? Utensils : a.kind === "rest" ? Coffee : Hotel;
@@ -151,14 +153,38 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
             <p className="mt-1 text-sm text-muted-foreground">{t(`categories.${place.category}`)}</p>
           )}
           {isVisit && !compact && a.reasons.length > 0 && (
-            <ul className="mt-1 flex flex-wrap gap-1">
+            <ul className="mt-1 flex flex-wrap items-center gap-1">
               {a.reasons.slice(0, 3).map((r, i) => (
                 <li key={i} className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
                   {reasonText(r)}
                 </li>
               ))}
               {place?.source === "osm" && <li className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">{t("unverifiedPlace")}</li>}
+              <li>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setWhy((v) => !v);
+                  }}
+                  aria-expanded={why}
+                  className="inline-flex items-center gap-0.5 text-xs text-primary underline-offset-2 hover:underline"
+                >
+                  <HelpCircle className="size-3" aria-hidden />
+                  {t("why.toggle")}
+                </button>
+              </li>
             </ul>
+          )}
+          {isVisit && !compact && why && (
+            <div className="mt-2 rounded-md border border-sunset/40 bg-muted/40 p-2 text-xs" aria-label={t("why.title")}>
+              <p className="font-medium">{t("why.title")}</p>
+              <ul className="mt-1 list-disc space-y-0.5 ps-4 text-muted-foreground">
+                {a.reasons.map((r, i) => (
+                  <li key={i}>{reasonText(r)}</li>
+                ))}
+              </ul>
+            </div>
           )}
           {isVisit && !compact && a.placeId && plan.extras?.links.tickets[a.placeId] && (
             <AffiliateLinks links={plan.extras.links.tickets[a.placeId]} label={t("links.tickets")} size="xs" className="mt-1.5" about />

@@ -2,8 +2,8 @@ import type { DayBudget } from "./budgets";
 import { hasChildren } from "./budgets";
 import { estimateTravel, haversineKm, tourOrder, walkedKm, type LatLng } from "./geo";
 import type { Activity, DayStats, ItineraryDay, PlannerPlace, Reason, Transit, Warning } from "./itinerary";
-import { earliestOpenStart, opensOnDate } from "./opening";
-import type { DayPlan } from "./assign";
+import { closesAt, earliestOpenStart, opensAt, opensOnDate } from "./opening";
+import { addDays, type DayPlan } from "./assign";
 import type { ScoredPlace } from "./scoring";
 import type { TripPreferences } from "./types";
 
@@ -43,21 +43,45 @@ function weekdayOf(date: string): string {
   return weekdayNames[d.getUTCDay()];
 }
 
+const hhmm = (m: number) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+
+/**
+ * "Why this, why now": the reasons that come from the clock. A place that shuts
+ * at lunchtime goes first and says so; one that opens late goes after; one that
+ * is closed on other days of the trip explains why it landed on this one; a
+ * viewpoint at the end of the day is there for the sunset.
+ */
+export function timingReasons(place: PlannerPlace, date: string, startMin: number, visitIndex: number, tripDates: string[]): Reason[] {
+  const reasons: Reason[] = [];
+  const closes = closesAt(place, date, startMin);
+  if (closes !== null && closes <= 16 * 60 && visitIndex <= 1) reasons.push({ code: "closes_early", params: { time: hhmm(closes) } });
+  const opens = opensAt(place, date);
+  if (opens !== null && opens >= 11 * 60 + 30 && startMin >= opens) reasons.push({ code: "opens_late", params: { time: hhmm(opens) } });
+  const closedDays = tripDates.filter((d) => d !== date && opensOnDate(place, d) === "closed").map(weekdayOf);
+  if (closedDays.length > 0) reasons.push({ code: "closed_other_days", params: { weekdays: [...new Set(closedDays)].join(",") } });
+  if (place.category === "viewpoint" && startMin >= 16 * 60 + 30) reasons.push({ code: "sunset_last", params: {} });
+  return reasons;
+}
+
 function reasonsFor(
   place: PlannerPlace,
   transit: Transit | null,
   isFirst: boolean,
   day: DayPlan,
   prefs: TripPreferences,
+  startMin: number,
+  visitIndex: number,
 ): Reason[] {
   const reasons: Reason[] = [];
   if (prefs.mustVisit.some((m) => m.placeId === place.id)) reasons.push({ code: "must_visit", params: {} });
+  const tripDates = Array.from({ length: prefs.dates.days }, (_, i) => addDays(prefs.dates.start, i));
+  reasons.push(...timingReasons(place, day.date, startMin, visitIndex, tripDates));
   if (transit) {
     if (isFirst && transit.minutes <= 25) reasons.push({ code: "near_base", params: { minutes: transit.minutes, mode: transit.mode } });
     else if (!isFirst) reasons.push({ code: "near_previous", params: { minutes: transit.minutes, mode: transit.mode } });
   }
   const matched = prefs.interests.find((i) => place.tags.includes(i));
-  if (matched) reasons.push({ code: "interest_match", params: { interest: matched } });
+  if (matched) reasons.push({ code: matched === prefs.interests[0] ? "top_interest" : "interest_match", params: { interest: matched } });
   if (prefs.visitNumber === 1 && place.iconicity >= 0.85) reasons.push({ code: "iconic_first_visit", params: {} });
   if (prefs.visitNumber === 3 && (place.tags.includes("hidden") || place.tags.includes("local"))) {
     reasons.push({ code: "hidden_gem_returning", params: {} });
@@ -214,7 +238,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   // Filling a light day may stretch the time budget a little, and the walking budget too, except for
   // travellers who asked for little walking for a reason (baby, stroller, 65+, accessibility needs).
   let relax = false;
-  const gentle = prefs.party.infants > 0 || prefs.party.stroller || prefs.party.seniors > 0 || prefs.accessibility.length > 0;
+  const gentle = prefs.party.infants > 0 || prefs.party.stroller || prefs.party.seniors > 0 || prefs.accessibility.length > 0 || prefs.travelers.some((t) => t.needs.includes("lowWalking"));
   const relaxWalk = gentle ? 1 : RELAX_WALK;
 
   const placeVisit = (cand: ScoredPlace, allowDefer: boolean): boolean => {
@@ -290,7 +314,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
       startMin: start,
       endMin: start + place.visitMinutes,
       locked,
-      reasons: reasonsFor(place, transit, isFirstVisit, day, prefs),
+      reasons: reasonsFor(place, transit, isFirstVisit, day, prefs, start, activities.filter((a) => a.kind === "visit").length),
       transitFromPrev: transit,
       dataQuality: place.dataQuality,
     });

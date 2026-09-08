@@ -195,7 +195,12 @@
       "half_day_departure": "Half day, departure",
       "day_trip": "Day trip",
       "hotel_transfer": "Hotel change",
-      "must_visit": "On your must-see list"
+      "must_visit": "On your must-see list",
+      "closes_early": "First thing: closes at {time}",
+      "opens_late": "Afternoon: opens only at {time}",
+      "closed_other_days": "Today because it is closed on {weekdays}",
+      "sunset_last": "Last stop: a viewpoint for the sunset",
+      "top_interest": "Your top interest: {interest}"
     },
     "weekdays": {
       "sunday": "Sunday",
@@ -498,6 +503,43 @@
     "events": {
       "title": "Events and shows on your dates",
       "source": "Source: {source}. Prices and availability on the seller's site."
+    },
+    "why": {
+      "title": "Why this?",
+      "toggle": "Why?",
+      "dayTitle": "Why the day looks like this",
+      "compact": "Every stop within {minutes} min of the previous one",
+      "timed": "{count, plural, one {One stop fixed to this day or hour by its opening times} other {# stops fixed to this day or hour by their opening times}}",
+      "rain": "Rain expected: {count} stops are indoors",
+      "wishes": "{count, plural, one {One stop from your must-visit list} other {# stops from your must-visit list}}"
+    },
+    "sleep": {
+      "title": "Where to sleep",
+      "subtitle": "The areas closest to every day of the stay, from the stops in your plan. An area, not a specific hotel.",
+      "zone": "Area {n}",
+      "near": "Near {place}",
+      "stats": "{distance} on average from each day's centre · walking distance on {near} of {days} days",
+      "showMap": "Show sleeping areas on the map",
+      "hideMap": "Hide sleeping areas",
+      "mapLegend": "Circles: recommended areas to stay, ranked."
+    },
+    "fit": {
+      "label": "Whom the day suits",
+      "all": "Suits everyone",
+      "heavyFor": "Heavy for {name}",
+      "kinds": {
+        "adult": "adult",
+        "senior": "65+",
+        "child": "child",
+        "infant": "infant"
+      },
+      "issues": {
+        "walk": "a lot of walking",
+        "heavy": "strenuous day",
+        "rest": "no break",
+        "access": "a stop is not accessible",
+        "accessLimited": "partly accessible"
+      }
     }
   },
   "gallery": {
@@ -719,7 +761,7 @@
     },
     "party": {
       "title": "Who is travelling?",
-      "subtitle": "Ages directly affect the pace and the choice of attractions.",
+      "subtitle": "Who is travelling? A name (optional), ages for children, and what matters to each. That sets the pace, and every day says whom it suits.",
       "adults": "Adults",
       "children": "Children (2–17)",
       "childAge": "Age of child {n}",
@@ -729,7 +771,35 @@
       "seniorsHint": "Counted within adults",
       "increase": "Add {what}",
       "decrease": "Remove {what}",
-      "seniorsTooMany": "Travellers aged 65+ cannot exceed the number of adults"
+      "seniorsTooMany": "Travellers aged 65+ cannot exceed the number of adults",
+      "listLabel": "Travellers",
+      "kinds": {
+        "adult": "Adult",
+        "senior": "65+",
+        "child": "Child",
+        "infant": "Infant"
+      },
+      "name": "Name",
+      "namePlaceholder": "Optional",
+      "addAdult": "Add adult",
+      "addSenior": "Add 65+",
+      "addChild": "Add child (2-17)",
+      "addInfant": "Add infant",
+      "remove": "Remove {name}",
+      "needs": {
+        "label": "What matters to {name}",
+        "lowWalking": "Little walking",
+        "wheelchair": "Wheelchair",
+        "stroller": "Stroller",
+        "stairs": "Stairs are hard",
+        "altitude": "Altitude sensitive",
+        "naps": "Needs a midday rest"
+      },
+      "noAdult": "At least one adult is needed",
+      "saveFamily": "Save travellers on this device",
+      "loadFamily": "Load saved travellers ({count})",
+      "saved": "Saved on this device.",
+      "saveHint": "Next trip, no retyping."
     },
     "visit": {
       "title": "First time there?",
@@ -775,7 +845,8 @@
         "stroller": "Baby stroller",
         "stairs": "Difficulty with stairs",
         "altitude": "Altitude sensitivity"
-      }
+      },
+      "accessibilityFromTravelers": "Accessibility needs come from the travellers you set in \"Who is travelling?\"."
     },
     "transport": {
       "title": "How do you get around?",

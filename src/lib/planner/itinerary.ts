@@ -27,6 +27,11 @@ export type Transit = z.infer<typeof transitSchema>;
 export const reasonSchema = z.object({
   code: z.enum([
     "near_base",
+    "closes_early",
+    "opens_late",
+    "closed_other_days",
+    "sunset_last",
+    "top_interest",
     "near_previous",
     "interest_match",
     "iconic_first_visit",

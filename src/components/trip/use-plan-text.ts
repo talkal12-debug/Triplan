@@ -16,6 +16,8 @@ export function usePlanText(plan: GuestPlan) {
     const params = { ...r.params } as Record<string, string | number>;
     if (r.code === "interest_match" && typeof params.interest === "string") params.interest = ti(params.interest as never);
     if (r.code === "open_on_day" && typeof params.weekday === "string") params.weekday = t(`weekdays.${params.weekday}` as never);
+    if (r.code === "closed_other_days" && typeof params.weekdays === "string") params.weekdays = params.weekdays.split(",").map((w) => t(`weekdays.${w}` as never)).join(", ");
+    if (r.code === "top_interest" && typeof params.interest === "string") params.interest = ti(params.interest as never);
     if (r.code === "day_trip" && typeof params.city === "string") params.city = cityLabel(plan, params.city, locale);
     return t(`reasons.${r.code}`, params);
   };

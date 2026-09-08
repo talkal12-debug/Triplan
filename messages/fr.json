@@ -195,7 +195,12 @@
       "half_day_departure": "Demi-journée, départ",
       "day_trip": "Excursion d'une journée",
       "hotel_transfer": "Changement d'hôtel",
-      "must_visit": "Dans votre liste d'incontournables"
+      "must_visit": "Dans votre liste d'incontournables",
+      "closes_early": "En premier : ferme à {time}",
+      "opens_late": "L'après-midi : n'ouvre qu'à {time}",
+      "closed_other_days": "Aujourd'hui car fermé le {weekdays}",
+      "sunset_last": "Dernière étape : un point de vue pour le coucher du soleil",
+      "top_interest": "Votre premier centre d'intérêt : {interest}"
     },
     "weekdays": {
       "sunday": "dimanche",
@@ -498,6 +503,43 @@
     "events": {
       "title": "Événements et spectacles à vos dates",
       "source": "Source : {source}. Prix et disponibilité sur le site du vendeur."
+    },
+    "why": {
+      "title": "Pourquoi ceci ?",
+      "toggle": "Pourquoi ?",
+      "dayTitle": "Pourquoi la journée ressemble à ça",
+      "compact": "Chaque étape à moins de {minutes} min de la précédente",
+      "timed": "{count, plural, one {Une étape fixée à ce jour ou cette heure par ses horaires} other {# étapes fixées à ce jour ou cette heure par leurs horaires}}",
+      "rain": "Pluie prévue : {count} étapes à l'intérieur",
+      "wishes": "{count, plural, one {Une étape de votre liste incontournable} other {# étapes de votre liste incontournable}}"
+    },
+    "sleep": {
+      "title": "Où dormir",
+      "subtitle": "Les quartiers les plus proches de chaque jour du séjour, d'après les étapes de votre plan. Un quartier, pas un hôtel précis.",
+      "zone": "Zone {n}",
+      "near": "Près de {place}",
+      "stats": "{distance} en moyenne du centre de chaque journée · à pied pour {near} jours sur {days}",
+      "showMap": "Afficher les zones où dormir sur la carte",
+      "hideMap": "Masquer les zones où dormir",
+      "mapLegend": "Cercles : zones recommandées pour loger, par rang."
+    },
+    "fit": {
+      "label": "À qui convient la journée",
+      "all": "Convient à tous",
+      "heavyFor": "Lourd pour {name}",
+      "kinds": {
+        "adult": "adulte",
+        "senior": "65+",
+        "child": "enfant",
+        "infant": "bébé"
+      },
+      "issues": {
+        "walk": "beaucoup de marche",
+        "heavy": "journée intense",
+        "rest": "sans pause",
+        "access": "une étape n'est pas accessible",
+        "accessLimited": "accessibilité partielle"
+      }
     }
   },
   "gallery": {
@@ -719,7 +761,7 @@
     },
     "party": {
       "title": "Qui voyage ?",
-      "subtitle": "Les âges influencent directement le rythme et le choix des attractions.",
+      "subtitle": "Qui voyage ? Un prénom (facultatif), l'âge des enfants et ce qui compte pour chacun. Cela fixe le rythme, et chaque journée dit à qui elle convient.",
       "adults": "Adultes",
       "children": "Enfants (2–17)",
       "childAge": "Âge de l'enfant {n}",
@@ -729,7 +771,35 @@
       "seniorsHint": "Comptés parmi les adultes",
       "increase": "Ajouter : {what}",
       "decrease": "Retirer : {what}",
-      "seniorsTooMany": "Les voyageurs de 65 ans et plus ne peuvent pas dépasser le nombre d'adultes"
+      "seniorsTooMany": "Les voyageurs de 65 ans et plus ne peuvent pas dépasser le nombre d'adultes",
+      "listLabel": "Voyageurs",
+      "kinds": {
+        "adult": "Adulte",
+        "senior": "65+",
+        "child": "Enfant",
+        "infant": "Bébé"
+      },
+      "name": "Prénom",
+      "namePlaceholder": "Facultatif",
+      "addAdult": "Ajouter un adulte",
+      "addSenior": "Ajouter un 65+",
+      "addChild": "Ajouter un enfant (2-17)",
+      "addInfant": "Ajouter un bébé",
+      "remove": "Retirer {name}",
+      "needs": {
+        "label": "Ce qui compte pour {name}",
+        "lowWalking": "Peu de marche",
+        "wheelchair": "Fauteuil roulant",
+        "stroller": "Poussette",
+        "stairs": "Escaliers difficiles",
+        "altitude": "Sensible à l'altitude",
+        "naps": "Repos à midi"
+      },
+      "noAdult": "Il faut au moins un adulte",
+      "saveFamily": "Enregistrer les voyageurs sur cet appareil",
+      "loadFamily": "Charger les voyageurs enregistrés ({count})",
+      "saved": "Enregistré sur cet appareil.",
+      "saveHint": "Au prochain voyage, rien à ressaisir."
     },
     "visit": {
       "title": "Première fois là-bas ?",
@@ -775,7 +845,8 @@
         "stroller": "Poussette",
         "stairs": "Difficulté avec les escaliers",
         "altitude": "Sensibilité à l'altitude"
-      }
+      },
+      "accessibilityFromTravelers": "Les besoins d'accessibilité viennent des voyageurs définis dans « Qui voyage ? »."
     },
     "transport": {
       "title": "Comment vous déplacez-vous ?",

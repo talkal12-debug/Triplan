@@ -14,10 +14,15 @@ import { useDistance } from "@/lib/units/use-distance";
 import { dayDirectionsUrl } from "@/lib/trip/google-maps";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
+import { dayWhyLines } from "@/lib/trip/day-why";
+import { dayFit } from "@/lib/trip/day-fit";
+import type { Traveler } from "@/lib/planner/types";
 import { WeatherBadge } from "./weather-badge";
 import { EveningPanel } from "./evening-panel";
 
 type Props = {
+  /** Named travellers, for the "fits everyone / heavy for X" line. */
+  travelers?: Traveler[];
   plan: GuestPlan;
   dayIndex: number;
   selectedId: string | null;
@@ -30,13 +35,20 @@ type Props = {
   busy: boolean;
 };
 
-export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, busy }: Props) {
+export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, busy, travelers = [] }: Props) {
   const t = useTranslations("plan");
   const fmtDate = useCalendarFormat();
   const distance = useDistance();
   const { reasonText, warningText, name, city } = usePlanText(plan);
   const day = plan.itinerary.days[dayIndex];
   const directions = dayDirectionsUrl(plan, dayIndex);
+  const fit = dayFit(day, plan.places, travelers);
+  const dayWhy = dayWhyLines(plan, day, {
+    compact: (max) => t("why.compact", { minutes: max }),
+    timed: (count) => t("why.timed", { count }),
+    rain: (count) => t("why.rain", { count }),
+    wishes: (count) => t("why.wishes", { count }),
+  });
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
@@ -86,6 +98,30 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
           <span className="text-muted-foreground">{t("placesCount", { count: visits.length })}</span>
         </div>
       </header>
+
+      {travelers.length > 0 && visits.length > 0 && (
+        <ul className="flex flex-wrap gap-1.5 text-xs" aria-label={t("fit.label")}>
+          {fit.length === 0 ? (
+            <li className="rounded-sm border border-emerald-600/40 px-2 py-0.5 text-emerald-800 dark:text-emerald-300">{t("fit.all")}</li>
+          ) : (
+            fit.map((f) => (
+              <li key={f.traveler.id} className="rounded-sm border border-amber-600/50 px-2 py-0.5 text-amber-800 dark:text-amber-300" title={f.issues.map((i) => t(`fit.issues.${i}`)).join(" · ")}>
+                {t("fit.heavyFor", { name: f.traveler.name || t(`fit.kinds.${f.traveler.kind}`) })}: {f.issues.map((i) => t(`fit.issues.${i}`)).join(", ")}
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+
+      {dayWhy.length > 0 && (
+        <ul className="flex flex-wrap gap-1.5 text-xs" aria-label={t("why.dayTitle")}>
+          {dayWhy.map((w, i) => (
+            <li key={i} className="rounded-sm border border-sunset/50 px-2 py-0.5 text-muted-foreground">
+              {w}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {directions && (
         <div className="flex flex-wrap items-center gap-2">

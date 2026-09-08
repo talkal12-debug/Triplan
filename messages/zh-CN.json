@@ -195,7 +195,12 @@
       "half_day_departure": "半天，离开",
       "day_trip": "一日游",
       "hotel_transfer": "更换酒店",
-      "must_visit": "在您的必去清单中"
+      "must_visit": "在您的必去清单中",
+      "closes_early": "排在最前：{time} 关门",
+      "opens_late": "安排在下午：{time} 才开门",
+      "closed_other_days": "选在今天：{weekdays} 闭馆",
+      "sunset_last": "最后一站：看日落的观景点",
+      "top_interest": "您的首选兴趣：{interest}"
     },
     "weekdays": {
       "sunday": "周日",
@@ -498,6 +503,43 @@
     "events": {
       "title": "您行程日期内的活动与演出",
       "source": "来源：{source}。价格和余票以售票网站为准。"
+    },
+    "why": {
+      "title": "为什么是这个？",
+      "toggle": "为什么？",
+      "dayTitle": "这一天为何这样安排",
+      "compact": "每站距上一站不超过 {minutes} 分钟",
+      "timed": "{count, plural, other {# 个地点因开放时间固定在今天或此时段}}",
+      "rain": "预计有雨：{count} 个室内地点",
+      "wishes": "{count, plural, other {# 个来自您的必去清单}}"
+    },
+    "sleep": {
+      "title": "住在哪里",
+      "subtitle": "根据您计划中的行程点，离每一天都最近的区域。是区域，不是具体酒店。",
+      "zone": "区域 {n}",
+      "near": "{place} 附近",
+      "stats": "距每天行程中心平均 {distance} · {days} 天中有 {near} 天步行可达",
+      "showMap": "在地图上显示住宿区域",
+      "hideMap": "隐藏住宿区域",
+      "mapLegend": "圆圈：推荐住宿区域，按排名。"
+    },
+    "fit": {
+      "label": "这一天适合谁",
+      "all": "适合所有人",
+      "heavyFor": "对 {name} 较重",
+      "kinds": {
+        "adult": "成人",
+        "senior": "65岁以上",
+        "child": "儿童",
+        "infant": "婴儿"
+      },
+      "issues": {
+        "walk": "步行较多",
+        "heavy": "强度大",
+        "rest": "没有休息",
+        "access": "有地点不可无障碍进入",
+        "accessLimited": "部分无障碍"
+      }
     }
   },
   "gallery": {
@@ -719,7 +761,7 @@
     },
     "party": {
       "title": "谁出行？",
-      "subtitle": "年龄直接影响节奏和景点选择。",
+      "subtitle": "谁出行？姓名（可选）、儿童年龄，以及每个人在意的事。据此安排节奏，并在每一天标注适合谁。",
       "adults": "成人",
       "children": "儿童（2–17 岁）",
       "childAge": "第 {n} 位儿童的年龄",
@@ -729,7 +771,35 @@
       "seniorsHint": "计入成人",
       "increase": "添加{what}",
       "decrease": "减少{what}",
-      "seniorsTooMany": "65 岁以上的出行者不能超过成人数量"
+      "seniorsTooMany": "65 岁以上的出行者不能超过成人数量",
+      "listLabel": "出行人",
+      "kinds": {
+        "adult": "成人",
+        "senior": "65岁以上",
+        "child": "儿童",
+        "infant": "婴儿"
+      },
+      "name": "姓名",
+      "namePlaceholder": "可选",
+      "addAdult": "添加成人",
+      "addSenior": "添加65岁以上",
+      "addChild": "添加儿童（2–17）",
+      "addInfant": "添加婴儿",
+      "remove": "移除 {name}",
+      "needs": {
+        "label": "{name} 在意的事",
+        "lowWalking": "少走路",
+        "wheelchair": "轮椅",
+        "stroller": "婴儿车",
+        "stairs": "爬楼梯困难",
+        "altitude": "对海拔敏感",
+        "naps": "中午需要休息"
+      },
+      "noAdult": "至少需要一名成人",
+      "saveFamily": "把出行人保存到此设备",
+      "loadFamily": "载入已保存的出行人（{count}）",
+      "saved": "已保存到此设备。",
+      "saveHint": "下次旅行无需重新输入。"
     },
     "visit": {
       "title": "第一次去那里？",
@@ -775,7 +845,8 @@
         "stroller": "婴儿车",
         "stairs": "上下楼梯困难",
         "altitude": "对高海拔敏感"
-      }
+      },
+      "accessibilityFromTravelers": "无障碍需求来自“谁出行？”中设置的出行人。"
     },
     "transport": {
       "title": "如何出行？",
