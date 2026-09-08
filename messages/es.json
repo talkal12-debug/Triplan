@@ -195,7 +195,12 @@
       "half_day_departure": "Medio día, salida",
       "day_trip": "Excursión de un día",
       "hotel_transfer": "Cambio de hotel",
-      "must_visit": "En vuestra lista de imprescindibles"
+      "must_visit": "En vuestra lista de imprescindibles",
+      "closes_early": "A primera hora: cierra a las {time}",
+      "opens_late": "Por la tarde: abre solo a las {time}",
+      "closed_other_days": "Hoy porque cierra el {weekdays}",
+      "sunset_last": "Última parada: mirador para el atardecer",
+      "top_interest": "Vuestro interés principal: {interest}"
     },
     "weekdays": {
       "sunday": "domingo",
@@ -498,6 +503,43 @@
     "events": {
       "title": "Eventos y espectáculos en vuestras fechas",
       "source": "Fuente: {source}. Precios y disponibilidad en la web del vendedor."
+    },
+    "why": {
+      "title": "¿Por qué esto?",
+      "toggle": "¿Por qué?",
+      "dayTitle": "Por qué el día es así",
+      "compact": "Cada parada a menos de {minutes} min de la anterior",
+      "timed": "{count, plural, one {Una parada fijada a este día u hora por sus horarios} other {# paradas fijadas a este día u hora por sus horarios}}",
+      "rain": "Se espera lluvia: {count} paradas cubiertas",
+      "wishes": "{count, plural, one {Una parada de vuestra lista imprescindible} other {# paradas de vuestra lista imprescindible}}"
+    },
+    "sleep": {
+      "title": "Dónde dormir",
+      "subtitle": "Las zonas más cercanas a todos los días de la estancia, según las paradas de vuestro plan. Una zona, no un hotel concreto.",
+      "zone": "Zona {n}",
+      "near": "Cerca de {place}",
+      "stats": "{distance} de media del centro de cada día · a pie en {near} de {days} días",
+      "showMap": "Mostrar zonas para dormir en el mapa",
+      "hideMap": "Ocultar zonas para dormir",
+      "mapLegend": "Círculos: zonas recomendadas para alojarse, por orden."
+    },
+    "fit": {
+      "label": "A quién le conviene el día",
+      "all": "Conviene a todos",
+      "heavyFor": "Pesado para {name}",
+      "kinds": {
+        "adult": "adulto",
+        "senior": "65+",
+        "child": "niño/a",
+        "infant": "bebé"
+      },
+      "issues": {
+        "walk": "mucho caminar",
+        "heavy": "día exigente",
+        "rest": "sin pausa",
+        "access": "una parada no es accesible",
+        "accessLimited": "accesibilidad parcial"
+      }
     }
   },
   "gallery": {
@@ -719,7 +761,7 @@
     },
     "party": {
       "title": "¿Quién viaja?",
-      "subtitle": "Las edades influyen directamente en el ritmo y en la elección de atracciones.",
+      "subtitle": "¿Quién viaja? Nombre (opcional), edad de los niños y qué importa a cada uno. Con eso fijamos el ritmo y cada día dice a quién le conviene.",
       "adults": "Adultos",
       "children": "Niños (2–17)",
       "childAge": "Edad del niño {n}",
@@ -729,7 +771,35 @@
       "seniorsHint": "Se cuentan entre los adultos",
       "increase": "Añadir {what}",
       "decrease": "Quitar {what}",
-      "seniorsTooMany": "Los viajeros mayores de 65 no pueden superar el número de adultos"
+      "seniorsTooMany": "Los viajeros mayores de 65 no pueden superar el número de adultos",
+      "listLabel": "Viajeros",
+      "kinds": {
+        "adult": "Adulto",
+        "senior": "65+",
+        "child": "Niño/a",
+        "infant": "Bebé"
+      },
+      "name": "Nombre",
+      "namePlaceholder": "Opcional",
+      "addAdult": "Añadir adulto",
+      "addSenior": "Añadir 65+",
+      "addChild": "Añadir niño/a (2-17)",
+      "addInfant": "Añadir bebé",
+      "remove": "Quitar a {name}",
+      "needs": {
+        "label": "Qué importa a {name}",
+        "lowWalking": "Poco caminar",
+        "wheelchair": "Silla de ruedas",
+        "stroller": "Carrito",
+        "stairs": "Escaleras difíciles",
+        "altitude": "Sensible a la altitud",
+        "naps": "Necesita descanso al mediodía"
+      },
+      "noAdult": "Hace falta al menos un adulto",
+      "saveFamily": "Guardar viajeros en este dispositivo",
+      "loadFamily": "Cargar viajeros guardados ({count})",
+      "saved": "Guardado en este dispositivo.",
+      "saveHint": "En el próximo viaje no habrá que escribirlo de nuevo."
     },
     "visit": {
       "title": "¿Primera vez allí?",
@@ -775,7 +845,8 @@
         "stroller": "Cochecito de bebé",
         "stairs": "Dificultad con escaleras",
         "altitude": "Sensibilidad a la altitud"
-      }
+      },
+      "accessibilityFromTravelers": "Las necesidades de accesibilidad vienen de los viajeros definidos en \"¿Quién viaja?\"."
     },
     "transport": {
       "title": "¿Cómo os movéis?",

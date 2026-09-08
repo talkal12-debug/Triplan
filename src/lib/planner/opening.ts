@@ -61,6 +61,34 @@ export function opensOnDate(place: PlannerPlace, date: string): OpenState {
   }
 }
 
+/** Minute of the day the place first opens on `date`; null when unknown or closed all day. */
+export function opensAt(place: PlannerPlace, date: string): number | null {
+  const oh = parser(place);
+  if (!oh || place.closedDates.includes(date)) return null;
+  try {
+    const from = localDate(date, 0);
+    if (oh.getState(from)) return 0;
+    const next = oh.getNextChange(from, localDate(date, 24 * 60 - 1));
+    return next ? next.getHours() * 60 + next.getMinutes() : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Minute of the day the place next closes after `fromMinutes` on `date`; null when unknown or not open then. */
+export function closesAt(place: PlannerPlace, date: string, fromMinutes: number): number | null {
+  const oh = parser(place);
+  if (!oh || place.closedDates.includes(date)) return null;
+  try {
+    const at = localDate(date, fromMinutes);
+    if (!oh.getState(at)) return null;
+    const next = oh.getNextChange(at, localDate(date, 24 * 60 - 1));
+    return next ? next.getHours() * 60 + next.getMinutes() : 24 * 60;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Earliest minute >= `fromMinutes` on `date` at which the place is open for at least
  * `visitMinutes` (approximately: open at start and still open near the end).

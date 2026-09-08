@@ -53,6 +53,67 @@ export const partySchema = z
   })
   .refine((p) => p.seniors <= p.adults, { message: "seniors are counted within adults", path: ["seniors"] });
 
+/**
+ * Named travellers (family profiles). The planner still reads `party` and
+ * `accessibility`; both are derived from these rows whenever they exist, so old
+ * drafts with counts only keep working and the plan view can say which day is
+ * heavy for whom.
+ */
+export const travelerKinds = ["adult", "senior", "child", "infant"] as const;
+export type TravelerKind = (typeof travelerKinds)[number];
+export const travelerNeeds = ["lowWalking", "wheelchair", "stroller", "stairs", "altitude", "naps"] as const;
+export type TravelerNeed = (typeof travelerNeeds)[number];
+export const travelerSchema = z.object({
+  id: z.string().min(1).max(60),
+  name: z.string().max(40).default(""),
+  kind: z.enum(travelerKinds),
+  /** Children only (2-17); null for the others. */
+  age: z.number().int().min(0).max(120).nullable().default(null),
+  needs: z.array(z.enum(travelerNeeds)).max(6).default([]),
+});
+export type Traveler = z.infer<typeof travelerSchema>;
+
+/** Which needs make sense to ask for a given traveller. */
+export function needsFor(tr: Pick<Traveler, "kind" | "age">): TravelerNeed[] {
+  switch (tr.kind) {
+    case "infant":
+      return ["stroller"];
+    case "child":
+      return (tr.age ?? 8) < 6 ? ["stroller", "naps", "lowWalking", "stairs"] : ["lowWalking", "stairs", "altitude"];
+    case "senior":
+      return ["lowWalking", "wheelchair", "stairs", "altitude"];
+    default:
+      return ["lowWalking", "wheelchair", "stairs", "altitude"];
+  }
+}
+
+export function partyFromTravelers(travelers: Traveler[]): z.infer<typeof partySchema> {
+  const adults = travelers.filter((t) => t.kind === "adult" || t.kind === "senior").length;
+  return {
+    adults: Math.max(1, Math.min(20, adults)),
+    seniors: Math.min(travelers.filter((t) => t.kind === "senior").length, Math.max(1, adults)),
+    childrenAges: travelers.filter((t) => t.kind === "child").map((t) => Math.min(17, Math.max(2, t.age ?? 8))).slice(0, 10),
+    infants: Math.min(5, travelers.filter((t) => t.kind === "infant").length),
+    stroller: travelers.some((t) => t.needs.includes("stroller")),
+  };
+}
+
+export function accessibilityFromTravelers(travelers: Traveler[]): AccessibilityNeed[] {
+  const out = new Set<AccessibilityNeed>();
+  for (const t of travelers) for (const n of t.needs) if ((accessibilityNeeds as readonly string[]).includes(n)) out.add(n as AccessibilityNeed);
+  return [...out];
+}
+
+/** Rows for a draft that only has counts (made before family profiles existed). */
+export function travelersFromParty(party: z.infer<typeof partySchema>): Traveler[] {
+  const rows: Traveler[] = [];
+  for (let i = 0; i < party.seniors; i++) rows.push({ id: `senior-${i}`, name: "", kind: "senior", age: null, needs: [] });
+  for (let i = 0; i < party.adults - party.seniors; i++) rows.push({ id: `adult-${i}`, name: "", kind: "adult", age: null, needs: [] });
+  party.childrenAges.forEach((age, i) => rows.push({ id: `child-${i}`, name: "", kind: "child", age, needs: party.stroller && age < 5 ? ["stroller"] : [] }));
+  for (let i = 0; i < party.infants; i++) rows.push({ id: `infant-${i}`, name: "", kind: "infant", age: null, needs: party.stroller ? ["stroller"] : [] });
+  return rows;
+}
+
 export const visitNumbers = [1, 2, 3] as const; // 3 = third time or more
 export const efforts = ["low", "medium", "high"] as const;
 export type Effort = (typeof efforts)[number];
@@ -117,6 +178,8 @@ export const tripPreferencesSchema = z.object({
   destinations: z.array(destinationSchema).min(1).max(3),
   dates: datesSchema,
   party: partySchema,
+  /** Named travellers; `party` and `accessibility` are derived from them when present. */
+  travelers: z.array(travelerSchema).max(20).default([]),
   visitNumber: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   /** Free text from returning visitors: "saw the Colosseum and the Vatican". */
   alreadySeenNotes: z.string().max(2000),
@@ -175,6 +238,7 @@ export function defaultTripPreferences(today = new Date()): TripPreferences {
     destinations: [],
     dates: { start: defaultStartDate(today), days: 7, arrivalTime: null, departureTime: null, origin: "" },
     party: { adults: 2, childrenAges: [], infants: 0, stroller: false, seniors: 0 },
+    travelers: [],
     visitNumber: 1,
     alreadySeenNotes: "",
     alreadySeen: [],

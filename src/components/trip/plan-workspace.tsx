@@ -21,6 +21,7 @@ import { usePlanText } from "./use-plan-text";
 import { AffiliateAbout, AffiliateLinks } from "./affiliate-links";
 import { SeasonalHighlights } from "./seasonal-highlights";
 import { EventsHighlights } from "./events-highlights";
+import { SleepZones } from "./sleep-zones";
 import { seniorText } from "@/lib/data/senior-discounts";
 import { useDistance } from "@/lib/units/use-distance";
 import { useSession } from "next-auth/react";
@@ -56,6 +57,7 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
   const locale = useLocale() as Locale;
   const [view, setView] = useState<View>("timeline");
   const [dayIndex, setDayIndex] = useState(0);
+  const [zonesOnMap, setZonesOnMap] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -136,6 +138,18 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
     <div className="space-y-4">
       {plan.extras?.seasonal && plan.extras.seasonal.length > 0 && <SeasonalHighlights items={plan.extras.seasonal} />}
       <EventsHighlights plan={plan} />
+      {!readOnly && (
+        <SleepZones
+          plan={plan}
+          cityName={city}
+          onShowMap={(stayId) => {
+            const first = plan.itinerary.days.find((d) => d.stayId === stayId);
+            if (first) setDayIndex(first.index);
+            setZonesOnMap(true);
+            setView("map");
+          }}
+        />
+      )}
       <div className="rounded-md border bg-card p-4 text-sm">
         <p className="font-medium">
           {t("tripStats", { distance: distance(plan.itinerary.stats.totalWalkKm), places: plan.itinerary.stats.places, verified: Math.round(plan.itinerary.stats.verifiedShare * 100) })}
@@ -239,12 +253,22 @@ export function PlanWorkspace({ trip, onTripChange, readOnly = false, nowHref }:
 
       {(view === "timeline" || view === "map") && <DayRail plan={plan} dayIndex={dayIndex} onSelect={(i) => { setDayIndex(i); setSelectedId(null); }} />}
 
-      {view === "timeline" && <DayTimeline plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} actions={actions} busy={busy} />}
+      {view === "timeline" && <DayTimeline plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} actions={actions} busy={busy} travelers={trip.preferences.travelers} />}
       {view === "map" && (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[3fr_2fr]">
-          <PlanMap plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} />
+          <div className="space-y-2">
+            <PlanMap plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} zones={zonesOnMap ? (plan.extras?.links.sleepZones?.find((z) => z.stayId === plan.itinerary.days[dayIndex]?.stayId)?.zones ?? []) : []} />
+            {(plan.extras?.links.sleepZones?.some((z) => z.zones.length > 0) ?? false) && (
+              <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                <Button type="button" size="sm" variant={zonesOnMap ? "default" : "secondary"} onClick={() => setZonesOnMap((v) => !v)} aria-pressed={zonesOnMap}>
+                  {zonesOnMap ? t("sleep.hideMap") : t("sleep.showMap")}
+                </Button>
+                {zonesOnMap && <span>{t("sleep.mapLegend")}</span>}
+              </div>
+            )}
+          </div>
           <div className="max-h-[60vh] overflow-y-auto">
-            <DayTimeline plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} actions={actions} busy={busy} />
+            <DayTimeline plan={plan} dayIndex={dayIndex} selectedId={selectedId} onSelect={setSelectedId} actions={actions} busy={busy} travelers={trip.preferences.travelers} />
           </div>
         </div>
       )}

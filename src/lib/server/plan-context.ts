@@ -12,6 +12,7 @@ import { tripEndDate } from "@/lib/planner/types";
 import type { Locale } from "@/lib/i18n/locales";
 import { nearestAirport } from "@/lib/data/airports";
 import { originAirport } from "@/lib/server/origin-airport";
+import { sleepZones as sleepZonesFor, type SleepZone } from "@/lib/planner/sleep-zones";
 import { LINKS_VERSION } from "@/lib/links-version";
 import { buildNearby } from "./nearby-plan";
 import type { Evening, Venue } from "@/lib/nearby/schema";
@@ -59,6 +60,8 @@ export type PlanExtras = {
     tickets: Record<string, AffiliateLink[]>;
     flights: AffiliateLink[];
     cars: AffiliateLink[];
+    /** "Where to sleep": areas per stay, ranked, each with hotel searches around its anchor place. */
+    sleepZones: { stayId: string; zones: (SleepZone & { links: AffiliateLink[] })[] }[];
     version: number;
   };
   providers: Record<string, string>;
@@ -178,6 +181,30 @@ export async function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerar
       ids,
     ),
   }));
+  // "Where to sleep": the areas closest to every day of the stay, each with hotel searches around its anchor place.
+  const placePoints = Object.fromEntries(ctx.places.map((p) => [p.id, { lat: p.lat, lng: p.lng }]));
+  const sleepZones = itinerary.stays.map((s) => ({
+    stayId: s.id,
+    zones: sleepZonesFor(itinerary, placePoints, s.id).map((z) => {
+      const anchor = ctx.places.find((p) => p.id === z.anchorPlaceId);
+      return {
+        ...z,
+        links: hotelLinks(
+          {
+            city: anchor ? `${anchor.names.en}, ${cityName(s.citySlug)}` : cityName(s.citySlug),
+            countryName: getCountry(s.countryCode) ? countryName(getCountry(s.countryCode)!, "en") : undefined,
+            countryCode: s.countryCode,
+            checkIn: addDays(prefs.dates.start, s.fromDay),
+            checkOut: addDays(prefs.dates.start, s.toDay + 1),
+            adults: prefs.party.adults,
+            childrenAges: prefs.party.childrenAges,
+            type: prefs.hotel.type,
+          },
+          ids,
+        ),
+      };
+    }),
+  }));
   const tickets: Record<string, AffiliateLink[]> = {};
   const placeById = new Map(ctx.places.map((p) => [p.id, p]));
   for (const day of itinerary.days) {
@@ -224,5 +251,5 @@ export async function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerar
         )
       : [];
 
-  return { hotels, tickets, flights, cars, version: LINKS_VERSION };
+  return { hotels, sleepZones, tickets, flights, cars, version: LINKS_VERSION };
 }

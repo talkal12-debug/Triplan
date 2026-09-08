@@ -16,7 +16,21 @@ type Props = {
   onSelect: (id: string | null) => void;
   /** Called with true once the street route replaced the straight lines (false when a new day starts loading). */
   onRealRoute?: (real: boolean) => void;
+  /** "Where to sleep" areas to draw as circles (600 m) with their rank; empty = none. */
+  zones?: { lat: number; lng: number; anchorPlaceId: string }[];
 };
+
+/** A circle of `km` radius around a point as a GeoJSON polygon (64 segments). */
+function circlePolygon(center: { lat: number; lng: number }, km: number): [number, number][] {
+  const ring: [number, number][] = [];
+  const dLat = km / 110.574;
+  const dLng = km / (111.32 * Math.cos((center.lat * Math.PI) / 180));
+  for (let i = 0; i <= 64; i++) {
+    const a = (i / 64) * 2 * Math.PI;
+    ring.push([center.lng + dLng * Math.cos(a), center.lat + dLat * Math.sin(a)]);
+  }
+  return ring;
+}
 
 type RouteResult = { coordinates: [number, number][]; meters: number; minutes: number } | null;
 const routeCache = new Map<string, Promise<RouteResult>>();
@@ -45,7 +59,7 @@ const STYLE_DARK = "https://tiles.openfreemap.org/styles/fiord";
 maplibregl.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
 /** MapLibre map of one day's route. Loaded lazily (see plan-map.tsx). */
-export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute }: Props) {
+export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute, zones = [] }: Props) {
   const t = useTranslations("plan");
   const locale = useLocale() as Locale;
   const { resolvedTheme } = useTheme();
@@ -112,10 +126,29 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute
       const routeId = "triplan-route";
       if (map.getLayer(routeId)) map.removeLayer(routeId);
       if (map.getSource(routeId)) map.removeSource(routeId);
+      const zonesId = "triplan-zones";
+      for (const id of [`${zonesId}-fill`, `${zonesId}-line`]) if (map.getLayer(id)) map.removeLayer(id);
+      if (map.getSource(zonesId)) map.removeSource(zonesId);
+      if (zones.length > 0) {
+        map.addSource(zonesId, {
+          type: "geojson",
+          data: { type: "FeatureCollection", features: zones.map((z, i) => ({ type: "Feature", properties: { rank: i + 1 }, geometry: { type: "Polygon", coordinates: [circlePolygon(z, 0.6)] } })) },
+        });
+        map.addLayer({ id: `${zonesId}-fill`, type: "fill", source: zonesId, paint: { "fill-color": "#b08d57", "fill-opacity": 0.18 } });
+        map.addLayer({ id: `${zonesId}-line`, type: "line", source: zonesId, paint: { "line-color": "#b08d57", "line-width": 2 } });
+        zones.forEach((z, i) => {
+          const el = document.createElement("div");
+          el.className = "grid size-7 place-items-center rounded-sm border border-white bg-sunset text-xs font-semibold text-sunset-foreground shadow";
+          el.textContent = String(i + 1);
+          el.setAttribute("aria-label", `${t("sleep.title")} ${i + 1}`);
+          markersRef.current.push(new maplibregl.Marker({ element: el }).setLngLat([z.lng, z.lat]).addTo(map));
+        });
+      }
 
       const coords: [number, number][] = [];
       if (stay) coords.push([stay.center.lng, stay.center.lat]);
       for (const p of points) coords.push([p.place.lng, p.place.lat]);
+      const extent: [number, number][] = [...coords, ...zones.map((z) => [z.lng, z.lat] as [number, number])];
       if (coords.length >= 2) {
         // Straight dashed lines first (instant, offline); replaced by the street route when it arrives.
         map.addSource(routeId, { type: "geojson", data: { type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: coords } } });
@@ -167,11 +200,11 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute
         markersRef.current.push(new maplibregl.Marker({ element: el }).setLngLat([p.place.lng, p.place.lat]).setPopup(popup).addTo(map));
       });
 
-      if (coords.length >= 2) {
-        const bounds = coords.reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds(coords[0], coords[0]));
+      if (extent.length >= 2) {
+        const bounds = extent.reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds(extent[0], extent[0]));
         map.fitBounds(bounds, { padding: 48, maxZoom: 15, duration: 0 });
-      } else if (coords.length === 1) {
-        map.jumpTo({ center: coords[0], zoom: 13 });
+      } else if (extent.length === 1) {
+        map.jumpTo({ center: extent[0], zoom: 13 });
       }
     };
 
@@ -181,7 +214,7 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute
     return () => {
       map.off("style.load", draw);
     };
-  }, [plan, dayIndex, selectedId, locale, t]);
+  }, [plan, dayIndex, selectedId, locale, t, zones]);
 
   // Fly to the selected marker.
   useEffect(() => {

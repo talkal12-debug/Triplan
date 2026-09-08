@@ -195,7 +195,12 @@
       "half_day_departure": "Halber Tag, Abreise",
       "day_trip": "Tagesausflug",
       "hotel_transfer": "Hotelwechsel",
-      "must_visit": "Auf Ihrer Pflichtliste"
+      "must_visit": "Auf Ihrer Pflichtliste",
+      "closes_early": "Als Erstes: schließt um {time}",
+      "opens_late": "Nachmittags: öffnet erst um {time}",
+      "closed_other_days": "Gerade heute: am {weekdays} geschlossen",
+      "sunset_last": "Zum Schluss: Aussichtspunkt zum Sonnenuntergang",
+      "top_interest": "Ihr wichtigstes Interesse: {interest}"
     },
     "weekdays": {
       "sunday": "Sonntag",
@@ -498,6 +503,43 @@
     "events": {
       "title": "Veranstaltungen und Shows an Ihren Terminen",
       "source": "Quelle: {source}. Preise und Verfügbarkeit auf der Seite des Anbieters."
+    },
+    "why": {
+      "title": "Warum das?",
+      "toggle": "Warum?",
+      "dayTitle": "Warum der Tag so aussieht",
+      "compact": "Jeder Halt höchstens {minutes} Min. vom vorigen",
+      "timed": "{count, plural, one {Ein Halt ist durch Öffnungszeiten an diesen Tag oder diese Stunde gebunden} other {# Halte sind durch Öffnungszeiten an diesen Tag oder diese Stunde gebunden}}",
+      "rain": "Regen erwartet: {count} Halte sind drinnen",
+      "wishes": "{count, plural, one {Ein Halt von Ihrer Wunschliste} other {# Halte von Ihrer Wunschliste}}"
+    },
+    "sleep": {
+      "title": "Wo übernachten",
+      "subtitle": "Die Gegenden, die allen Tagen des Aufenthalts am nächsten liegen, nach den Stopps Ihres Plans. Eine Gegend, kein bestimmtes Hotel.",
+      "zone": "Gegend {n}",
+      "near": "Nahe {place}",
+      "stats": "{distance} im Schnitt vom Mittelpunkt jedes Tages · zu Fuß an {near} von {days} Tagen",
+      "showMap": "Übernachtungsgegenden auf der Karte zeigen",
+      "hideMap": "Übernachtungsgegenden ausblenden",
+      "mapLegend": "Kreise: empfohlene Gegenden zum Übernachten, nach Rang."
+    },
+    "fit": {
+      "label": "Für wen der Tag passt",
+      "all": "Passt für alle",
+      "heavyFor": "Anstrengend für {name}",
+      "kinds": {
+        "adult": "Erwachsene/r",
+        "senior": "65+",
+        "child": "Kind",
+        "infant": "Baby"
+      },
+      "issues": {
+        "walk": "viel Laufen",
+        "heavy": "anstrengender Tag",
+        "rest": "keine Pause",
+        "access": "ein Halt ist nicht barrierefrei",
+        "accessLimited": "teilweise barrierefrei"
+      }
     }
   },
   "gallery": {
@@ -719,7 +761,7 @@
     },
     "party": {
       "title": "Wer reist?",
-      "subtitle": "Das Alter beeinflusst direkt das Tempo und die Auswahl der Sehenswürdigkeiten.",
+      "subtitle": "Wer reist mit? Name (optional), Alter der Kinder und was jedem wichtig ist. Daraus entsteht das Tempo, und jeder Tag sagt, für wen er passt.",
       "adults": "Erwachsene",
       "children": "Kinder (2–17)",
       "childAge": "Alter von Kind {n}",
@@ -729,7 +771,35 @@
       "seniorsHint": "Zählen zu den Erwachsenen",
       "increase": "{what} hinzufügen",
       "decrease": "{what} entfernen",
-      "seniorsTooMany": "Reisende über 65 können nicht mehr als die Erwachsenen sein"
+      "seniorsTooMany": "Reisende über 65 können nicht mehr als die Erwachsenen sein",
+      "listLabel": "Reisende",
+      "kinds": {
+        "adult": "Erwachsene/r",
+        "senior": "65+",
+        "child": "Kind",
+        "infant": "Baby"
+      },
+      "name": "Name",
+      "namePlaceholder": "Optional",
+      "addAdult": "Erwachsene/n hinzufügen",
+      "addSenior": "65+ hinzufügen",
+      "addChild": "Kind hinzufügen (2-17)",
+      "addInfant": "Baby hinzufügen",
+      "remove": "{name} entfernen",
+      "needs": {
+        "label": "Was {name} wichtig ist",
+        "lowWalking": "Wenig laufen",
+        "wheelchair": "Rollstuhl",
+        "stroller": "Kinderwagen",
+        "stairs": "Treppen fallen schwer",
+        "altitude": "Höhenempfindlich",
+        "naps": "Braucht Mittagsruhe"
+      },
+      "noAdult": "Mindestens ein Erwachsener wird gebraucht",
+      "saveFamily": "Reisende auf diesem Gerät speichern",
+      "loadFamily": "Gespeicherte Reisende laden ({count})",
+      "saved": "Auf diesem Gerät gespeichert.",
+      "saveHint": "Bei der nächsten Reise nichts neu eingeben."
     },
     "visit": {
       "title": "Zum ersten Mal dort?",
@@ -775,7 +845,8 @@
         "stroller": "Kinderwagen",
         "stairs": "Probleme mit Treppen",
         "altitude": "Höhenempfindlichkeit"
-      }
+      },
+      "accessibilityFromTravelers": "Barrierefreiheit ergibt sich aus den Reisenden aus \"Wer reist mit?\"."
     },
     "transport": {
       "title": "Wie kommen Sie herum?",

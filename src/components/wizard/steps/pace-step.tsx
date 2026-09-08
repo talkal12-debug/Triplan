@@ -38,6 +38,9 @@ export function PaceStep({ prefs, set }: StepProps) {
           );
         })}
       </div>
+      {prefs.travelers.length > 0 ? (
+        <p className="text-sm text-muted-foreground">{t("accessibilityFromTravelers")}</p>
+      ) : (
       <fieldset>
         <legend className="mb-2 font-medium">{t("accessibility")}</legend>
         <div className="flex flex-wrap gap-2">
@@ -48,6 +51,7 @@ export function PaceStep({ prefs, set }: StepProps) {
           ))}
         </div>
       </fieldset>
+      )}
     </div>
   );
 }

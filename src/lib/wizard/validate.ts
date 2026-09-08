@@ -11,6 +11,7 @@ export type WizardError =
   | "dates.pastDate"
   | "dates.invalidDate"
   | "party.seniorsTooMany"
+  | "party.noAdult"
   | "transport.atLeastOne"
   | "interests.atLeastOne";
 
@@ -29,7 +30,11 @@ export function stepErrors(step: WizardStep, prefs: TripPreferences, today = new
       return start < todayMidnight ? ["dates.pastDate"] : [];
     }
     case "party":
-      return prefs.party.seniors > prefs.party.adults ? ["party.seniorsTooMany"] : [];
+      return prefs.travelers.length > 0 && !prefs.travelers.some((t) => t.kind === "adult" || t.kind === "senior")
+        ? ["party.noAdult"]
+        : prefs.party.seniors > prefs.party.adults
+          ? ["party.seniorsTooMany"]
+          : [];
     case "transport":
       return Object.values(prefs.transport).every((w) => w === 0) ? ["transport.atLeastOne"] : [];
     case "interests":
