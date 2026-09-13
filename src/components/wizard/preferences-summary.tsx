@@ -85,6 +85,7 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
       step: "pace",
       content: (
         <>
+          {prefs.tripStyle === "relax" && <span className="block font-medium">{t("pace.style.options.relax.title")}</span>}
           {t(`pace.options.${prefs.effort}.title`)}
           {prefs.accessibility.length > 0 && (
             <span className="text-muted-foreground">

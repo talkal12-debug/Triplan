@@ -162,14 +162,17 @@
       "city": "City",
       "shopping": "Shopping",
       "kids": "Kids",
-      "nightlife": "Nightlife"
+      "nightlife": "Nightlife",
+      "relax": "Beach holiday"
     },
     "activity": {
       "meal": "Lunch",
       "rest": "Break",
       "hotel_checkin": "Hotel check-in",
       "hotel_checkout": "Check-out and transfer to the next hotel",
-      "free": "Free time"
+      "free": "Free time",
+      "leisure": "Beach and rest time",
+      "leisureAt": "Beach: {place}"
     },
     "transit": {
       "walk": "Walk {minutes} min",
@@ -200,7 +203,10 @@
       "opens_late": "Afternoon: opens only at {time}",
       "closed_other_days": "Today because it is closed on {weekdays}",
       "sunset_last": "Last stop: a viewpoint for the sunset",
-      "top_interest": "Your top interest: {interest}"
+      "top_interest": "Your top interest: {interest}",
+      "beach_time": "Beach holiday: the beach until mid-afternoon",
+      "relax_hotel": "Beach holiday: rest at the hotel and pool",
+      "excursion_day": "An outing day within the holiday"
     },
     "weekdays": {
       "sunday": "Sunday",
@@ -571,6 +577,14 @@
       "porto-lisbon-relaxed-6": {
         "title": "Porto and Lisbon, unhurried",
         "body": "6 days for a couple aged 65+: little walking, wine and food, guided tours, boutique hotels."
+      },
+      "milan-weekend-3": {
+        "title": "A weekend in Milan",
+        "body": "3 days for a couple: the Duomo, Brera, the Navigli, fashion and food, hotel in the centre."
+      },
+      "lisbon-beach-7": {
+        "title": "Beach holiday in Lisbon",
+        "body": "7 days of beach: Carcavelos and Guincho until mid-afternoon, a stop or two before the evening, and one outing in three."
       }
     }
   },
@@ -846,7 +860,21 @@
         "stairs": "Difficulty with stairs",
         "altitude": "Altitude sensitivity"
       },
-      "accessibilityFromTravelers": "Accessibility needs come from the travellers you set in \"Who is travelling?\"."
+      "accessibilityFromTravelers": "Accessibility needs come from the travellers you set in \"Who is travelling?\".",
+      "style": {
+        "title": "What kind of holiday?",
+        "subtitle": "Sightseeing: full days of places. Beach holiday: beach or pool until mid-afternoon, a stop or two before the evening, and an outing every third day.",
+        "options": {
+          "explore": {
+            "title": "Sightseeing",
+            "body": "A full route from morning to evening, at least 4 places a day."
+          },
+          "relax": {
+            "title": "Beach holiday",
+            "body": "Rest: beaches, hotel and pool, evenings out, and a little sightseeing."
+          }
+        }
+      }
     },
     "transport": {
       "title": "How do you get around?",

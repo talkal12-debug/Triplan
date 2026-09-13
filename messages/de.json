@@ -162,14 +162,17 @@
       "city": "Stadt",
       "shopping": "Einkaufen",
       "kids": "Kinder",
-      "nightlife": "Nachtleben"
+      "nightlife": "Nachtleben",
+      "relax": "Strandurlaub"
     },
     "activity": {
       "meal": "Mittagessen",
       "rest": "Pause",
       "hotel_checkin": "Hotel-Check-in",
       "hotel_checkout": "Check-out und Transfer zum nächsten Hotel",
-      "free": "Freie Zeit"
+      "free": "Freie Zeit",
+      "leisure": "Strand und Ruhe",
+      "leisureAt": "Strand: {place}"
     },
     "transit": {
       "walk": "{minutes} Min. zu Fuß",
@@ -200,7 +203,10 @@
       "opens_late": "Nachmittags: öffnet erst um {time}",
       "closed_other_days": "Gerade heute: am {weekdays} geschlossen",
       "sunset_last": "Zum Schluss: Aussichtspunkt zum Sonnenuntergang",
-      "top_interest": "Ihr wichtigstes Interesse: {interest}"
+      "top_interest": "Ihr wichtigstes Interesse: {interest}",
+      "beach_time": "Strandurlaub: Strand bis zum Nachmittag",
+      "relax_hotel": "Strandurlaub: Ruhe im Hotel und am Pool",
+      "excursion_day": "Ausflugstag im Urlaub"
     },
     "weekdays": {
       "sunday": "Sonntag",
@@ -571,6 +577,14 @@
       "porto-lisbon-relaxed-6": {
         "title": "Porto und Lissabon in Ruhe",
         "body": "6 Tage für ein Paar über 65: wenig laufen, Wein und Essen, geführte Touren, Boutique-Hotels."
+      },
+      "milan-weekend-3": {
+        "title": "Ein Wochenende in Mailand",
+        "body": "3 Tage zu zweit: Dom, Brera, Navigli, Mode und Essen, Hotel im Zentrum."
+      },
+      "lisbon-beach-7": {
+        "title": "Strandurlaub in Lissabon",
+        "body": "7 Tage Strand: Carcavelos und Guincho bis zum Nachmittag, ein bis zwei Stopps vor dem Abend, jeden dritten Tag ein Ausflug."
       }
     }
   },
@@ -846,7 +860,21 @@
         "stairs": "Probleme mit Treppen",
         "altitude": "Höhenempfindlichkeit"
       },
-      "accessibilityFromTravelers": "Barrierefreiheit ergibt sich aus den Reisenden aus \"Wer reist mit?\"."
+      "accessibilityFromTravelers": "Barrierefreiheit ergibt sich aus den Reisenden aus \"Wer reist mit?\".",
+      "style": {
+        "title": "Welche Art Urlaub?",
+        "subtitle": "Besichtigung: volle Tage mit Orten. Strandurlaub: Strand oder Pool bis zum Nachmittag, ein bis zwei Stopps vor dem Abend, jeden dritten Tag ein Ausflug.",
+        "options": {
+          "explore": {
+            "title": "Besichtigung",
+            "body": "Volle Route von morgens bis abends, mindestens 4 Orte pro Tag."
+          },
+          "relax": {
+            "title": "Strandurlaub",
+            "body": "Ausruhen: Strände, Hotel und Pool, Abende, ein wenig Besichtigung."
+          }
+        }
+      }
     },
     "transport": {
       "title": "Wie kommen Sie herum?",

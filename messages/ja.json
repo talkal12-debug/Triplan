@@ -162,14 +162,17 @@
       "city": "街歩き",
       "shopping": "ショッピング",
       "kids": "子ども",
-      "nightlife": "ナイトライフ"
+      "nightlife": "ナイトライフ",
+      "relax": "ビーチ休暇"
     },
     "activity": {
       "meal": "昼食",
       "rest": "休憩",
       "hotel_checkin": "ホテルチェックイン",
       "hotel_checkout": "チェックアウトと次のホテルへの移動",
-      "free": "自由時間"
+      "free": "自由時間",
+      "leisure": "ビーチと休息",
+      "leisureAt": "ビーチ：{place}"
     },
     "transit": {
       "walk": "徒歩 {minutes}分",
@@ -200,7 +203,10 @@
       "opens_late": "午後に：{time} からの開館",
       "closed_other_days": "この日に：{weekdays} は休み",
       "sunset_last": "締めくくりに：夕日の展望スポット",
-      "top_interest": "一番の興味：{interest}"
+      "top_interest": "一番の興味：{interest}",
+      "beach_time": "ビーチ休暇：午後3時までビーチ",
+      "relax_hotel": "ビーチ休暇：ホテルとプールで休息",
+      "excursion_day": "休暇中の遠出の日"
     },
     "weekdays": {
       "sunday": "日曜日",
@@ -571,6 +577,14 @@
       "porto-lisbon-relaxed-6": {
         "title": "ゆったりポルトとリスボン",
         "body": "65歳以上のカップル向け6日間：徒歩少なめ、ワインとグルメ、ガイドツアー、ブティックホテル。"
+      },
+      "milan-weekend-3": {
+        "title": "ミラノで週末",
+        "body": "カップルで3日間：ドゥオーモ、ブレラ、ナヴィリ、ファッションと食、中心部のホテル。"
+      },
+      "lisbon-beach-7": {
+        "title": "リスボンでビーチ休暇",
+        "body": "ビーチ7日間：カルカヴェロスとギンショで午後3時まで、夕方前に1〜2か所、3日に一度の遠出。"
       }
     }
   },
@@ -846,7 +860,21 @@
         "stairs": "階段が苦手",
         "altitude": "高所に敏感"
       },
-      "accessibilityFromTravelers": "バリアフリーの条件は「誰が行きますか？」で設定した旅行者から取得します。"
+      "accessibilityFromTravelers": "バリアフリーの条件は「誰が行きますか？」で設定した旅行者から取得します。",
+      "style": {
+        "title": "どんな休暇？",
+        "subtitle": "観光：見どころで一日を埋めます。ビーチ休暇：午後3時までビーチかプール、夕方前に1〜2か所、3日に一度は遠出。",
+        "options": {
+          "explore": {
+            "title": "観光",
+            "body": "朝から夜までのフルコース、1日4か所以上。"
+          },
+          "relax": {
+            "title": "ビーチ休暇",
+            "body": "休む：ビーチ、ホテルとプール、夜のお出かけ、少しの観光。"
+          }
+        }
+      }
     },
     "transport": {
       "title": "移動手段は？",

@@ -59,6 +59,8 @@ All optional. Without any key the app runs in **demo mode** (banner shown).
 | `TICKETMASTER_API_KEY` | Real events (concerts, shows, sport) on each evening of the trip, Ticketmaster Discovery API (free developer key). Without it the evening block shows date-bound search links. | 11 | The interests step also asks which kinds of events the traveller wants (concerts, musicals, theatre, comedy, classical and opera, dance, sports, family); those are queried explicitly, shown first and marked, and everything else follows.
 
 Every stop explains itself ("first thing: closes at 14:00", "today because it is closed on Monday") behind a "Why?" toggle, and each day summarises why it looks the way it does. "Where to sleep" ranks up to three areas per stay by distance to every day's stops (server-side, with hotel searches around the anchor place) and draws them on the map. Travellers are named rows with needs (little walking, wheelchair, stroller, naps); the planner's counts derive from them, and every day says whom it suits.
+
+A trip can be a beach holiday instead of a sightseeing trip: relax days are a beach (or hotel and pool) block until mid-afternoon plus at most two stops, every third day is a light outing; beaches within 45 km are borrowed from neighbouring demo cities. Demo cities: Lisbon, Sintra, Porto, Rome, Tivoli, Milan, Tokyo, Kamakura-Hakone.
 | `ANTHROPIC_TRANSLATE_MODEL` | Model for translating place descriptions into the UI language when Wikipedia has none (needs `ANTHROPIC_API_KEY`). Defaults to `claude-haiku-4-5-20251001`. | 10 |
 | `AFFILIATE_BOOKING_AID`, `AFFILIATE_GETYOURGUIDE_PARTNER_ID` | Affiliate deep links. | 6 |
 | `AUTH_SECRET` | Auth.js session signing. Required in production; dev has a fixed fallback. | 8b |

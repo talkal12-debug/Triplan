@@ -1,5 +1,5 @@
 import "server-only";
-import { getSeedCities } from "@/lib/data/pois";
+import { getSeedCities, getSeedPlaces } from "@/lib/data/pois";
 import { isDemoCountry, getCountry, countryName } from "@/lib/data/countries";
 import type { CitySeed, PlaceSeed } from "@/lib/data/schemas";
 import type { TripPreferences } from "@/lib/planner/types";
@@ -12,6 +12,7 @@ import { tripEndDate } from "@/lib/planner/types";
 import type { Locale } from "@/lib/i18n/locales";
 import { nearestAirport } from "@/lib/data/airports";
 import { originAirport } from "@/lib/server/origin-airport";
+import { borrowBeaches } from "@/lib/planner/beaches";
 import { sleepZones as sleepZonesFor, type SleepZone } from "@/lib/planner/sleep-zones";
 import { LINKS_VERSION } from "@/lib/links-version";
 import { buildNearby } from "./nearby-plan";
@@ -45,6 +46,14 @@ export async function loadPlanContext(prefs: TripPreferences): Promise<PlanConte
     for (const city of destCities) {
       cities.push(city);
       places.push(...(await placesForCity(city, notes)));
+    }
+    // Beach holiday: the coast is often filed under another demo city (Lisbon's beaches under Sintra).
+    if (prefs.tripStyle === "relax" && isDemoCountry(code)) {
+      const have = new Set(places.map((p) => p.id));
+      const others = getSeedCities(code).filter((c) => !destCities.some((d) => d.slug === c.slug));
+      const borrowed = borrowBeaches(others.flatMap((c) => getSeedPlaces(code, c.slug)), destCities).filter((p) => !have.has(p.id));
+      places.push(...borrowed);
+      if (borrowed.length) notes.push(`relax: borrowed ${borrowed.length} beaches from nearby cities`);
     }
   }
   return { places, cities, notes };

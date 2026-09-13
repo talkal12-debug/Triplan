@@ -1,3 +1,4 @@
+import { beachesNear, isBeach } from "./beaches";
 import { addDays, alignWithWeather, assignClusters, type DayPlan } from "./assign";
 import { computeBudgets, type DayBudget } from "./budgets";
 import { clusterEpsKm, clusterPlaces, type Cluster } from "./clustering";
@@ -45,8 +46,9 @@ export function generateItinerary(input: PlannerInput): PlannerResult {
   const budget = computeBudgets(prefs);
   const placesById = new Map(input.places.map((p) => [p.id, p]));
 
-  // 1-3. Filter, score, cluster per city.
-  const { scored, excluded } = filterAndScore(input.places, prefs);
+  // 1-3. Filter, score, cluster per city. On a beach holiday the beaches are the leisure blocks, not stops.
+  const sightseeing = prefs.tripStyle === "relax" ? input.places.filter((p) => !isBeach(p)) : input.places;
+  const { scored, excluded } = filterAndScore(sightseeing, prefs);
   const byCity = new Map<string, ScoredPlace[]>();
   for (const s of scored) byCity.set(s.place.city, [...(byCity.get(s.place.city) ?? []), s]);
   const clustersByCity = new Map<string, Cluster[]>();
@@ -79,7 +81,8 @@ export function generateItinerary(input: PlannerInput): PlannerResult {
       for (const c of mustPending) cityPool.splice(cityPool.indexOf(c), 1);
       current = { ...current, candidates: [...mustPending, ...current.candidates] };
     }
-    let result = scheduleDay(current, { prefs, budget, base, pool: cityPool });
+    const beaches = prefs.tripStyle === "relax" ? beachesNear(input.places, base) : undefined;
+    let result = scheduleDay(current, { prefs, budget, base, pool: cityPool, beaches });
     let attempts = 0;
     while (attempts++ < MAX_REPAIRS) {
       const check = validateItinerary(
@@ -95,7 +98,7 @@ export function generateItinerary(input: PlannerInput): PlannerResult {
         .map((a) => ({ a, s: current.candidates.find((c) => c.place.id === a.placeId)?.score ?? 0 }))
         .sort((x, y) => x.s - y.s)[0].a;
       current = { ...current, candidates: current.candidates.filter((c) => c.place.id !== worst.placeId) };
-      result = scheduleDay(current, { prefs, budget, base, pool: cityPool });
+      result = scheduleDay(current, { prefs, budget, base, pool: cityPool, beaches });
     }
     // Leftovers go back to the pool for later days in the same city.
     cityPool.push(...result.leftovers.filter((l) => !cityPool.includes(l)));

@@ -162,14 +162,17 @@
       "city": "Ville",
       "shopping": "Shopping",
       "kids": "Enfants",
-      "nightlife": "Vie nocturne"
+      "nightlife": "Vie nocturne",
+      "relax": "Plage"
     },
     "activity": {
       "meal": "Déjeuner",
       "rest": "Pause",
       "hotel_checkin": "Arrivée à l'hôtel",
       "hotel_checkout": "Départ et transfert vers l'hôtel suivant",
-      "free": "Temps libre"
+      "free": "Temps libre",
+      "leisure": "Plage et repos",
+      "leisureAt": "Plage : {place}"
     },
     "transit": {
       "walk": "À pied {minutes} min",
@@ -200,7 +203,10 @@
       "opens_late": "L'après-midi : n'ouvre qu'à {time}",
       "closed_other_days": "Aujourd'hui car fermé le {weekdays}",
       "sunset_last": "Dernière étape : un point de vue pour le coucher du soleil",
-      "top_interest": "Votre premier centre d'intérêt : {interest}"
+      "top_interest": "Votre premier centre d'intérêt : {interest}",
+      "beach_time": "Vacances plage : la plage jusqu'au milieu de l'après-midi",
+      "relax_hotel": "Vacances plage : repos à l'hôtel et à la piscine",
+      "excursion_day": "Journée de sortie pendant les vacances"
     },
     "weekdays": {
       "sunday": "dimanche",
@@ -571,6 +577,14 @@
       "porto-lisbon-relaxed-6": {
         "title": "Porto et Lisbonne en douceur",
         "body": "6 jours pour un couple de 65 ans et plus : peu de marche, vin et cuisine, visites guidées, hôtels boutique."
+      },
+      "milan-weekend-3": {
+        "title": "Un week-end à Milan",
+        "body": "3 jours en couple : le Duomo, Brera, les Navigli, mode et gastronomie, hôtel au centre."
+      },
+      "lisbon-beach-7": {
+        "title": "Vacances plage à Lisbonne",
+        "body": "7 jours de plage : Carcavelos et Guincho jusqu'au milieu de l'après-midi, une ou deux étapes avant le soir, une sortie tous les trois jours."
       }
     }
   },
@@ -846,7 +860,21 @@
         "stairs": "Difficulté avec les escaliers",
         "altitude": "Sensibilité à l'altitude"
       },
-      "accessibilityFromTravelers": "Les besoins d'accessibilité viennent des voyageurs définis dans « Qui voyage ? »."
+      "accessibilityFromTravelers": "Les besoins d'accessibilité viennent des voyageurs définis dans « Qui voyage ? ».",
+      "style": {
+        "title": "Quel genre de vacances ?",
+        "subtitle": "Visites : des journées pleines de lieux. Plage : plage ou piscine jusqu'au milieu de l'après-midi, une ou deux étapes avant le soir, et une sortie tous les trois jours.",
+        "options": {
+          "explore": {
+            "title": "Visites",
+            "body": "Un parcours complet du matin au soir, au moins 4 lieux par jour."
+          },
+          "relax": {
+            "title": "Vacances plage",
+            "body": "Se reposer : plages, hôtel et piscine, soirées, et un peu de visites."
+          }
+        }
+      }
     },
     "transport": {
       "title": "Comment vous déplacez-vous ?",

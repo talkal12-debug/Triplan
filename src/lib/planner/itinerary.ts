@@ -27,6 +27,9 @@ export type Transit = z.infer<typeof transitSchema>;
 export const reasonSchema = z.object({
   code: z.enum([
     "near_base",
+    "beach_time",
+    "relax_hotel",
+    "excursion_day",
     "closes_early",
     "opens_late",
     "closed_other_days",
@@ -78,7 +81,7 @@ export const warningSchema = z.object({
 });
 export type Warning = z.infer<typeof warningSchema>;
 
-export const activityKinds = ["visit", "meal", "rest", "hotel_checkin", "hotel_checkout", "free"] as const;
+export const activityKinds = ["visit", "meal", "rest", "hotel_checkin", "hotel_checkout", "free", "leisure"] as const;
 
 export const activitySchema = z.object({
   id: z.string(),

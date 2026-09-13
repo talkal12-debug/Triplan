@@ -162,14 +162,17 @@
       "city": "城市",
       "shopping": "购物",
       "kids": "儿童",
-      "nightlife": "夜生活"
+      "nightlife": "夜生活",
+      "relax": "海滩度假"
     },
     "activity": {
       "meal": "午餐",
       "rest": "休息",
       "hotel_checkin": "酒店入住",
       "hotel_checkout": "退房并前往下一家酒店",
-      "free": "自由活动"
+      "free": "自由活动",
+      "leisure": "海滩与休息时间",
+      "leisureAt": "海滩：{place}"
     },
     "transit": {
       "walk": "步行 {minutes} 分钟",
@@ -200,7 +203,10 @@
       "opens_late": "安排在下午：{time} 才开门",
       "closed_other_days": "选在今天：{weekdays} 闭馆",
       "sunset_last": "最后一站：看日落的观景点",
-      "top_interest": "您的首选兴趣：{interest}"
+      "top_interest": "您的首选兴趣：{interest}",
+      "beach_time": "海滩度假：海滩到下午三点",
+      "relax_hotel": "海滩度假：在酒店和泳池休息",
+      "excursion_day": "假期中的出游日"
     },
     "weekdays": {
       "sunday": "周日",
@@ -571,6 +577,14 @@
       "porto-lisbon-relaxed-6": {
         "title": "悠闲波尔图与里斯本",
         "body": "65 岁以上夫妇 6 天：少量步行，美酒美食，导游团，精品酒店。"
+      },
+      "milan-weekend-3": {
+        "title": "米兰周末",
+        "body": "情侣 3 天：大教堂、布雷拉、运河区、时尚与美食，市中心酒店。"
+      },
+      "lisbon-beach-7": {
+        "title": "里斯本海滩度假",
+        "body": "7 天海滩：卡尔卡韦洛斯与金舒海滩到下午三点，傍晚前一两个地点，每三天一次出游。"
       }
     }
   },
@@ -846,7 +860,21 @@
         "stairs": "上下楼梯困难",
         "altitude": "对高海拔敏感"
       },
-      "accessibilityFromTravelers": "无障碍需求来自“谁出行？”中设置的出行人。"
+      "accessibilityFromTravelers": "无障碍需求来自“谁出行？”中设置的出行人。",
+      "style": {
+        "title": "哪种假期？",
+        "subtitle": "观光：每天排满景点。海滩度假：海滩或泳池到下午三点，傍晚前一两个地点，每三天一次出游。",
+        "options": {
+          "explore": {
+            "title": "观光",
+            "body": "从早到晚的完整路线，每天至少 4 个地点。"
+          },
+          "relax": {
+            "title": "海滩度假",
+            "body": "休息：海滩、酒店和泳池、夜生活，外加少量观光。"
+          }
+        }
+      }
     },
     "transport": {
       "title": "如何出行？",

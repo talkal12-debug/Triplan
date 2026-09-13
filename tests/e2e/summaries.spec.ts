@@ -9,7 +9,7 @@ test("attraction cards show a description line, also for older plans from the ga
   test.setTimeout(180_000);
   // Gallery templates were generated before milestone 10: their places have no summaries.
   await page.goto("/he/gallery");
-  await page.getByRole("listitem").filter({ hasText: "ליסבון" }).first().getByRole("button", { name: "העתק לטיולים שלי" }).click();
+  await page.getByRole("listitem").filter({ hasText: "ליסבון וסינטרה" }).first().getByRole("button", { name: "העתק לטיולים שלי" }).click();
   await expect(page).toHaveURL(/\/he\/trip\/g_/, { timeout: 90_000 });
   await expect(page.getByRole("tab", { name: "ציר זמן" })).toBeVisible({ timeout: 90_000 });
 
