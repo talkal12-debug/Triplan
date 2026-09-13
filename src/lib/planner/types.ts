@@ -114,6 +114,10 @@ export function travelersFromParty(party: z.infer<typeof partySchema>): Traveler
   return rows;
 }
 
+/** Trip style: sightseeing days ("explore") or a beach-and-hotel holiday with a few outings ("relax"). */
+export const tripStyles = ["explore", "relax"] as const;
+export type TripStyle = (typeof tripStyles)[number];
+
 export const visitNumbers = [1, 2, 3] as const; // 3 = third time or more
 export const efforts = ["low", "medium", "high"] as const;
 export type Effort = (typeof efforts)[number];
@@ -186,6 +190,8 @@ export const tripPreferencesSchema = z.object({
   /** Place ids marked as already seen (filled in from the plan view later). */
   alreadySeen: z.array(z.string()),
   effort: z.enum(efforts),
+  /** Added with the beach holiday mode; older drafts are sightseeing trips. */
+  tripStyle: z.enum(tripStyles).default("explore"),
   accessibility: z.array(z.enum(accessibilityNeeds)),
   transport: z.object({
     walk: transportWeight,
@@ -243,6 +249,7 @@ export function defaultTripPreferences(today = new Date()): TripPreferences {
     alreadySeenNotes: "",
     alreadySeen: [],
     effort: "medium",
+    tripStyle: "explore",
     accessibility: [],
     transport: { walk: 3, bike: 0, car: 0, transit: 2, tours: 1 },
     carOptions: { oppositeSideOk: true, avoidMountainRoads: false, avoidCityDriving: false },

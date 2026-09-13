@@ -117,7 +117,7 @@ export function PlanMapInner({ plan, dayIndex, selectedId, onSelect, onRealRoute
     if (!map || !day) return;
 
     const stay = plan.itinerary.stays.find((s) => s.id === day.stayId);
-    const visits = day.activities.filter((a) => a.kind === "visit" && a.placeId && plan.places[a.placeId]);
+    const visits = day.activities.filter((a) => (a.kind === "visit" || a.kind === "leisure") && a.placeId && plan.places[a.placeId]);
     const points = visits.map((a) => ({ id: a.id, place: plan.places[a.placeId!] }));
 
     const draw = () => {

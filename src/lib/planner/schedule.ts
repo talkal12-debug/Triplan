@@ -20,7 +20,24 @@ export type ScheduleContext = {
   locked?: Set<string>;
   /** Real routing (milestone 6). Returns null when a pair/mode is unknown -> estimate. */
   travel?: (a: LatLng, b: LatLng, mode: Transit["mode"]) => Transit | null;
+  /** Beaches within reach of the base (relax trip style), nearest first; the day's beach block uses them. */
+  beaches?: PlannerPlace[];
 };
+
+/**
+ * Relax trips ("beach holiday"): most days are a beach or hotel block until mid-afternoon
+ * followed by at most two stops; every third full day is an outing with a normal, lighter
+ * sightseeing schedule. Arrival and departure days are relax days.
+ */
+export function isRelaxDay(prefs: Pick<TripPreferences, "tripStyle">, day: Pick<DayPlan, "kind" | "dayIndex" | "isDayTrip">): boolean {
+  if (prefs.tripStyle !== "relax") return false;
+  if (day.isDayTrip) return false;
+  return !(day.kind === "full" && day.dayIndex % 3 === 2);
+}
+const LEISURE_END = 15 * 60;
+const RELAX_MAX_VISITS = 2;
+/** An outing inside a beach holiday is a lighter day: "a little sightseeing", not a full route. */
+const RELAX_OUTING_MAX_VISITS = 4;
 
 /** Best transit between two points: real numbers when the lookup has them, else the estimate. */
 export function travelBetween(a: LatLng, b: LatLng, prefs: TripPreferences, lookup?: ScheduleContext["travel"]): Transit {
@@ -198,6 +215,37 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   const capacity = day.capacity;
   const deferred: ScoredPlace[] = [];
 
+  // Relax day: the morning and early afternoon belong to the beach (or the hotel pool), lunch included.
+  const relaxDay = isRelaxDay(prefs, day);
+  if (relaxDay) {
+    const leisureEnd = Math.min(LEISURE_END, dayEnd - 45);
+    if (t + 60 <= leisureEnd) {
+      const beaches = ctx.beaches ?? [];
+      const beach = beaches.length ? beaches[day.dayIndex % beaches.length] : null;
+      const transit = beach ? travelBetween(here, beach, prefs, ctx.travel) : null;
+      const start = t + (transit?.minutes ?? 0);
+      activities.push({
+        id: nextId(),
+        kind: "leisure",
+        placeId: beach?.id ?? null,
+        startMin: start,
+        endMin: Math.max(start + 60, leisureEnd),
+        locked: false,
+        reasons: [{ code: beach ? "beach_time" : "relax_hotel", params: {} }],
+        transitFromPrev: transit,
+        dataQuality: beach?.dataQuality ?? null,
+      });
+      if (beach && transit) {
+        here = beach;
+        walkKm += walkedKm(transit);
+        transitMinutes += transit.minutes;
+      }
+      t = Math.max(start + 60, leisureEnd) + 30;
+      hadLunch = true;
+      sinceRest = 0;
+    }
+  }
+
   /** Visit a wished restaurant as the meal: at lunch (when `slot` is lunch) or in the evening. */
   const placeMeal = (cand: ScoredPlace, slot: "lunch" | "dinner"): boolean => {
     const place = cand.place;
@@ -253,6 +301,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
     const locked = ctx.locked?.has(place.id) ?? false;
 
     if (!locked) {
+      if (prefs.tripStyle === "relax" && activities.filter((a) => a.kind === "visit").length >= (relaxDay ? RELAX_MAX_VISITS : RELAX_OUTING_MAX_VISITS)) return false;
       if (walkAfter > budget.walkKmMax * (relax ? relaxWalk : 1)) return false;
       if (activeMinutes + transit.minutes + place.visitMinutes > capacity * (relax ? RELAX_CAPACITY : 1)) return false;
       if (isMuseum(place) && museums >= budget.maxMuseums + (relax ? 1 : 0)) return false;
@@ -350,7 +399,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   // from the pool: nearest first, then wider and wider, with the limits relaxed a little.
   // (Arrival / departure days get half the target; a day that starts after it ends stays empty.)
   if (!ctx.fixedOrder) {
-    const minVisits = day.kind === "full" ? MIN_VISITS_FULL : MIN_VISITS_HALF;
+    const minVisits = relaxDay ? (day.kind === "full" ? 1 : 0) : prefs.tripStyle === "relax" ? 3 : day.kind === "full" ? MIN_VISITS_FULL : MIN_VISITS_HALF;
     const lastEnd = () => Math.max(0, ...activities.filter((a) => a.kind === "visit").map((a) => a.endMin));
     const isFull = () => activities.filter((a) => a.kind === "visit").length >= minVisits && (lastEnd() >= dayEnd - 90 || activeMinutes >= capacity * 0.85);
     const startedTooLateForVisits = t >= dayEnd - 45;
@@ -376,10 +425,13 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
   }
 
   activities.sort((a, b) => a.startMin - b.startMin);
+  // An outing day inside a beach holiday says so on every stop.
+  if (prefs.tripStyle === "relax" && !relaxDay) for (const a of activities) if (a.kind === "visit") a.reasons.unshift({ code: "excursion_day", params: {} });
   const visits = activities.filter((a) => a.kind === "visit").length;
   // A day that starts after it ends (late arrival) is not "too light": there was no time.
   const startedTooLate = activities.length > 0 && Math.min(...activities.map((a) => a.startMin)) >= dayEnd - 60;
-  if (visits === 0 && capacity > 0 && !startedTooLate) {
+  const hasLeisure = activities.some((a) => a.kind === "leisure");
+  if (visits === 0 && capacity > 0 && !startedTooLate && !hasLeisure) {
     warnings.push({ code: "day_too_light", severity: "warning", params: {}, dayIndex: day.dayIndex });
   }
 
@@ -411,7 +463,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
       stayId: day.stayId,
       citySlug: day.citySlug,
       clusterIds: day.clusterIds,
-      theme: day.theme,
+      theme: relaxDay ? "relax" : day.theme,
       activities,
       rainPlan,
       stats,

@@ -4,6 +4,7 @@ import type { Itinerary, ItineraryDay, PlannerCity, PlannerPlace } from "./itine
 import { opensOnDate } from "./opening";
 import { scorePlace, exclusionReason, type ScoredPlace } from "./scoring";
 import { scheduleDay, type ScheduleContext } from "./schedule";
+import { beachesNear } from "./beaches";
 import type { DayPlan } from "./assign";
 import type { TripPreferences } from "./types";
 
@@ -78,7 +79,8 @@ function rescheduleDay(
     indoorShare: candidates.length ? candidates.filter((c) => c.place.indoor).length / candidates.length : 0,
     plannedWalkKm: 0,
   };
-  const result = scheduleDay(plan, { prefs: ctx.prefs, budget, base: center, pool: [], fixedOrder: true, locked: pinned, travel: ctx.travel });
+  const beaches = ctx.prefs.tripStyle === "relax" ? beachesNear([...ctx.places.values()], center) : undefined;
+  const result = scheduleDay(plan, { prefs: ctx.prefs, budget, base: center, pool: [], fixedOrder: true, locked: pinned, travel: ctx.travel, beaches });
   // Keep lock flags.
   result.day.activities = result.day.activities.map((a) => ({ ...a, locked: a.placeId ? locked.has(a.placeId) : false }));
   if (result.leftovers.length) {

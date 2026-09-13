@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCalendarFormat } from "@/lib/i18n/use-calendar-format";
-import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, History, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown, HelpCircle } from "lucide-react";
+import { ArrowLeftRight, Bike, Bus, Car, Coffee, Footprints, GripVertical, History, Hotel, Lock, LockOpen, MoreHorizontal, Trash2, Utensils, CalendarArrowDown, HelpCircle, Umbrella } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -59,12 +59,13 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
   const locale = useLocale() as Locale;
   const place = a.placeId ? plan.places[a.placeId] : undefined;
   const isVisit = a.kind === "visit";
+  const isLeisure = a.kind === "leisure";
   const [why, setWhy] = useState(false);
-  const name = isVisit ? placeLabel(place, locale, a.placeId ?? "") : t(`activity.${a.kind}` as never);
+  const name = isVisit ? placeLabel(place, locale, a.placeId ?? "") : isLeisure && place ? t("activity.leisureAt", { place: placeLabel(place, locale, a.placeId ?? "") }) : t(`activity.${a.kind}` as never);
   const Transit = a.transitFromPrev ? transitIcons[a.transitFromPrev.mode] : null;
-  const Icon = a.kind === "meal" ? Utensils : a.kind === "rest" ? Coffee : Hotel;
+  const Icon = a.kind === "meal" ? Utensils : a.kind === "rest" ? Coffee : isLeisure ? Umbrella : Hotel;
   const summary = placeSummary(place, locale);
-  const photo = isVisit && !compact ? placeImage(place, locale) : null;
+  const photo = (isVisit || isLeisure) && !compact ? placeImage(place, locale) : null;
   const tc = useTranslations("common");
 
   return (
@@ -152,7 +153,7 @@ export function ActivityCard({ plan, dayIndex, activity: a, index, selected, onS
           {isVisit && !compact && !summary && place && (
             <p className="mt-1 text-sm text-muted-foreground">{t(`categories.${place.category}`)}</p>
           )}
-          {isVisit && !compact && a.reasons.length > 0 && (
+          {(isVisit || isLeisure) && !compact && a.reasons.length > 0 && (
             <ul className="mt-1 flex flex-wrap items-center gap-1">
               {a.reasons.slice(0, 3).map((r, i) => (
                 <li key={i} className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">

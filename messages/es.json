@@ -162,14 +162,17 @@
       "city": "Ciudad",
       "shopping": "Compras",
       "kids": "Niños",
-      "nightlife": "Vida nocturna"
+      "nightlife": "Vida nocturna",
+      "relax": "Playa"
     },
     "activity": {
       "meal": "Almuerzo",
       "rest": "Descanso",
       "hotel_checkin": "Check-in en el hotel",
       "hotel_checkout": "Check-out y traslado al siguiente hotel",
-      "free": "Tiempo libre"
+      "free": "Tiempo libre",
+      "leisure": "Playa y descanso",
+      "leisureAt": "Playa: {place}"
     },
     "transit": {
       "walk": "A pie {minutes} min",
@@ -200,7 +203,10 @@
       "opens_late": "Por la tarde: abre solo a las {time}",
       "closed_other_days": "Hoy porque cierra el {weekdays}",
       "sunset_last": "Última parada: mirador para el atardecer",
-      "top_interest": "Vuestro interés principal: {interest}"
+      "top_interest": "Vuestro interés principal: {interest}",
+      "beach_time": "Vacaciones de playa: playa hasta media tarde",
+      "relax_hotel": "Vacaciones de playa: descanso en el hotel y la piscina",
+      "excursion_day": "Día de excursión dentro de las vacaciones"
     },
     "weekdays": {
       "sunday": "domingo",
@@ -571,6 +577,14 @@
       "porto-lisbon-relaxed-6": {
         "title": "Oporto y Lisboa sin prisas",
         "body": "6 días para una pareja de más de 65: poco andar, vino y comida, visitas guiadas, hoteles boutique."
+      },
+      "milan-weekend-3": {
+        "title": "Fin de semana en Milán",
+        "body": "3 días en pareja: el Duomo, Brera, los Navigli, moda y comida, hotel en el centro."
+      },
+      "lisbon-beach-7": {
+        "title": "Vacaciones de playa en Lisboa",
+        "body": "7 días de playa: Carcavelos y Guincho hasta media tarde, una o dos paradas antes de la noche y una excursión cada tres días."
       }
     }
   },
@@ -846,7 +860,21 @@
         "stairs": "Dificultad con escaleras",
         "altitude": "Sensibilidad a la altitud"
       },
-      "accessibilityFromTravelers": "Las necesidades de accesibilidad vienen de los viajeros definidos en \"¿Quién viaja?\"."
+      "accessibilityFromTravelers": "Las necesidades de accesibilidad vienen de los viajeros definidos en \"¿Quién viaja?\".",
+      "style": {
+        "title": "¿Qué tipo de vacaciones?",
+        "subtitle": "Turismo: días llenos de lugares. Playa: playa o piscina hasta media tarde, una o dos paradas antes de la noche y una excursión cada tres días.",
+        "options": {
+          "explore": {
+            "title": "Turismo",
+            "body": "Ruta completa de la mañana a la noche, al menos 4 lugares al día."
+          },
+          "relax": {
+            "title": "Vacaciones de playa",
+            "body": "Descansar: playas, hotel y piscina, noches fuera y algo de turismo."
+          }
+        }
+      }
     },
     "transport": {
       "title": "¿Cómo os movéis?",

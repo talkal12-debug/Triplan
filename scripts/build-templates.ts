@@ -63,6 +63,36 @@ const specs: Spec[] = [
     }),
   },
   {
+    id: "milan-weekend-3",
+    patch: (p) => ({
+      ...p,
+      destinations: [{ countryCode: "IT", cities: ["milan"] }],
+      dates: { ...p.dates, start, days: 3 },
+      party: { adults: 2, childrenAges: [], infants: 0, stroller: false, seniors: 0 },
+      effort: "medium",
+      interests: ["museums", "shopping", "food", "photography", "city"],
+      transport: { walk: 3, bike: 0, car: 0, transit: 3, tours: 0 },
+      budget: { ...p.budget, level: "mid" },
+      hotel: { ...p.hotel, type: "4star", location: "center", baseMode: "single" },
+    }),
+  },
+  {
+    id: "lisbon-beach-7",
+    patch: (p) => ({
+      ...p,
+      destinations: [{ countryCode: "PT", cities: ["lisbon"] }],
+      dates: { ...p.dates, start, days: 7 },
+      party: { adults: 2, childrenAges: [], infants: 0, stroller: false, seniors: 0 },
+      tripStyle: "relax",
+      effort: "low",
+      interests: ["beaches", "food", "nightlife", "city"],
+      evening: "nightlife",
+      transport: { walk: 2, bike: 0, car: 0, transit: 3, tours: 1 },
+      budget: { ...p.budget, level: "mid" },
+      hotel: { ...p.hotel, type: "4star", location: "beach", baseMode: "single" },
+    }),
+  },
+  {
     id: "porto-lisbon-relaxed-6",
     patch: (p) => ({
       ...p,
