@@ -26,7 +26,10 @@ import { worldCities, type WorldCitySpec } from "./world/cities";
 
 const UA = "Triplan-world-build/0.1 (talkal12@gmail.com)";
 const OUT = join(process.cwd(), "data", "world");
-const OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter", "https://overpass.private.coffee/api/interpreter", "https://overpass.osm.jp/api/interpreter"];
+// A private instance (OVERPASS_URL, see docs/overpass.md) goes first and is the only one tried when OVERPASS_ONLY=1.
+const PUBLIC_OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter", "https://overpass.private.coffee/api/interpreter", "https://overpass.osm.jp/api/interpreter"];
+const OVERPASS = process.env.OVERPASS_URL ? (process.env.OVERPASS_ONLY ? [process.env.OVERPASS_URL] : [process.env.OVERPASS_URL, ...PUBLIC_OVERPASS]) : PUBLIC_OVERPASS;
+const PAUSE_MS = process.env.OVERPASS_URL ? 200 : 2_000;
 const PLACES_PER_CITY = 80;
 const LANGS = ["he", "en"];
 const ATTRIBUTION = "OpenStreetMap contributors (ODbL), Wikidata (CC0), Wikipedia (CC BY-SA)";
@@ -109,7 +112,7 @@ async function elementsFor(bbox: [number, number, number, number], depth = 0): P
   try {
     if (big) throw new Error("large box, splitting up front");
     const a = await overpass(tier1);
-    await sleep(2_000);
+    await sleep(PAUSE_MS);
     const b = await overpass(tier2).catch(() => [] as OverpassElement[]);
     return [...a, ...b];
   } catch (err) {
