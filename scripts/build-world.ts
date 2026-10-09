@@ -23,6 +23,7 @@ import { citySeedSchema, poisFileSchema, type CitySeed, type PlaceSeed, type Poi
 import { clampBox, enrichWithWikidata, overpassQueriesFor, overpassSchema, selectPlaces, slugify, toPlace, wikidataSchema, WIKIDATA_LANGUAGES, type OverpassElement, type WikidataFacts } from "../src/lib/providers/pois/osm-core";
 import { fetchPageImage, fetchSummariesBatch } from "../src/lib/providers/summaries-core";
 import { worldCities, type WorldCitySpec } from "./world/cities";
+import { GEOFABRIK, countryIndex, elementsInBox } from "./world/pbf";
 
 const UA = "Triplan-world-build/0.1 (talkal12@gmail.com)";
 const OUT = join(process.cwd(), "data", "world");
@@ -39,6 +40,8 @@ const args = process.argv.slice(2);
 const refresh = args.includes("--refresh");
 const noSummaries = args.includes("--no-summaries");
 const only = args.find((a) => a.startsWith("--only="))?.slice(7).split(",").map((s) => s.trim()).filter(Boolean);
+// --source=pbf (default): Geofabrik country files, scanned locally. --source=overpass: the public servers.
+const source = args.find((a) => a.startsWith("--source="))?.slice(9) ?? "pbf";
 const countries = args.filter((a) => /^[A-Za-z]{2}$/.test(a)).map((a) => a.toUpperCase());
 
 // ---- Nominatim: the city itself ---------------------------------------------------------
@@ -171,6 +174,15 @@ function writeCountry(cc: string, data: PoisFile) {
   writeFileSync(join(OUT, `${cc.toLowerCase()}.json`), JSON.stringify(data) + "\n");
 }
 
+const indexes = new Map<string, OverpassElement[]>();
+async function elementsForCity(cc: string, bbox: [number, number, number, number]): Promise<OverpassElement[]> {
+  if (source === "pbf" && GEOFABRIK[cc]) {
+    if (!indexes.has(cc)) indexes.set(cc, await countryIndex(cc, (m) => console.log(m)));
+    return elementsInBox(indexes.get(cc)!, bbox);
+  }
+  return elementsFor(bbox);
+}
+
 async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> {
   const slug = slugify(spec.en);
   if (!refresh && data.cities.some((c) => c.slug === slug)) return false;
@@ -180,7 +192,7 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
     console.log("not found on Nominatim, skipped");
     return false;
   }
-  const elements = await elementsFor(city.bbox);
+  const elements = await elementsForCity(spec.cc, city.bbox);
   const raw = elements.map((el) => toPlace(el, city)).filter((p): p is PlaceSeed => p !== null);
   let places = raw;
   try {

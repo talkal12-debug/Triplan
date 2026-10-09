@@ -84,3 +84,27 @@ describe("world city list", () => {
     expect(tier2).toContain('[!"wikipedia"]');
   });
 });
+
+describe("file-based source: attraction tag net", () => {
+  it("mirrors the Overpass queries", async () => {
+    const { matchesAttractionFilter } = await import("@/lib/providers/pois/osm-core");
+    expect(matchesAttractionFilter({ name: "Louvre", tourism: "museum" })).toBe(true);
+    expect(matchesAttractionFilter({ name: "Chapel", amenity: "place_of_worship" })).toBe(false);
+    expect(matchesAttractionFilter({ name: "Notre-Dame", amenity: "place_of_worship", wikipedia: "fr:Notre-Dame" })).toBe(true);
+    expect(matchesAttractionFilter({ name: "Praia", natural: "beach" })).toBe(true);
+    expect(matchesAttractionFilter({ name: "Plaque", historic: "memorial", wikipedia: "x" })).toBe(false);
+    expect(matchesAttractionFilter({ tourism: "museum" })).toBe(false);
+    expect(matchesAttractionFilter({ name: "Park", leisure: "park" })).toBe(false);
+    expect(matchesAttractionFilter({ name: "Park", leisure: "park", wikipedia: "x" })).toBe(true);
+  });
+
+  it("selects elements inside a bounding box, ways and relations by their centre", async () => {
+    const { elementsInBox } = await import("../../scripts/world/pbf");
+    const index = [
+      { type: "node", id: 1, lat: 37.02, lon: -7.93, tags: { name: "a" } },
+      { type: "way", id: 2, center: { lat: 37.01, lon: -7.94 }, tags: { name: "b" } },
+      { type: "relation", id: 3, center: { lat: 38.7, lon: -9.1 }, tags: { name: "lisbon thing" } },
+    ];
+    expect(elementsInBox(index, [36.9, -8.0, 37.1, -7.9]).map((e) => e.id)).toEqual([1, 2]);
+  });
+});
