@@ -784,7 +784,16 @@
       "invalidDate": "Data non valida",
       "origin": "Da dove parti? (facoltativo)",
       "originPlaceholder": "es. Milano",
-      "originHint": "Così i link dei voli si aprono già sulla tua tratta."
+      "originHint": "Così i link dei voli si aprono già sulla tua tratta.",
+      "cityDays": {
+        "title": "Come dividere i {days} giorni?",
+        "hint": "{base} è la base. Per le altre destinazioni scegliete i giorni; uno o due giorni vicino alla base sono gite in giornata da lì, senza cambiare hotel.",
+        "auto": "Decide Triplan",
+        "oneDay": "Un giorno (gita)",
+        "days": "{count, plural, one {# giorno} other {# giorni}}",
+        "rest": "{base}: i giorni restanti ({count})",
+        "tooMany": "Sono più giorni di quelli del viaggio ({days}). Triplan accorcerà."
+      }
     },
     "party": {
       "title": "Chi viaggia?",
@@ -1086,7 +1095,7 @@
       "full": "Fino a 20 luoghi.",
       "destinations": "Destinazioni",
       "addDestination": "Aggiungi {name} al viaggio come destinazione",
-      "destinationAdded": "{name} è stato aggiunto alle destinazioni. Triplan decide se dormirci o andarci in giornata."
+      "destinationAdded": "{name} aggiunto per un giorno (gita). Potete cambiare i giorni nel passo delle date."
     }
   },
   "trip": {

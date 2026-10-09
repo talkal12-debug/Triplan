@@ -784,7 +784,16 @@
       "invalidDate": "無効な日付",
       "origin": "出発地は？（任意）",
       "originPlaceholder": "例：東京",
-      "originHint": "航空券のリンクがあなたの路線で開くようになります。"
+      "originHint": "航空券のリンクがあなたの路線で開くようになります。",
+      "cityDays": {
+        "title": "{days} 日間をどう配分しますか？",
+        "hint": "{base} が拠点です。他の目的地は日数を選択。拠点に近い1〜2日はホテルを変えずに日帰りになります。",
+        "auto": "Triplan に任せる",
+        "oneDay": "1日（日帰り）",
+        "days": "{count, plural, other {# 日}}",
+        "rest": "{base}：残りの日数（{count}）",
+        "tooMany": "旅行の日数（{days}）を超えています。Triplan が短縮します。"
+      }
     },
     "party": {
       "title": "誰が旅行しますか？",
@@ -1086,7 +1095,7 @@
       "full": "最大 20 か所。",
       "destinations": "目的地",
       "addDestination": "{name}を目的地として旅行に追加",
-      "destinationAdded": "{name}を目的地に追加しました。宿泊するか日帰りにするかは Triplan が決めます。"
+      "destinationAdded": "{name}を1日（日帰り）で追加しました。日数は日程のステップで変更できます。"
     }
   },
   "trip": {

@@ -74,7 +74,7 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
     const next = prefs.destinations.map((dest) => {
       if (dest.countryCode !== d.countryCode || dest.cities.includes(d.slug)) return dest;
       const custom = d.seeded ? dest.customCities : [...(dest.customCities ?? []), { slug: d.slug, names: { ...d.names, en: d.names.en }, center: d.center, bbox: d.bbox }];
-      return { ...dest, cities: [...dest.cities, d.slug], customCities: custom };
+      return { ...dest, cities: [...dest.cities, d.slug], customCities: custom, cityDays: { ...(dest.cityDays ?? {}), [d.slug]: 1 } };
     });
     set("destinations", next as typeof prefs.destinations);
     setAddedDestination(d.name);

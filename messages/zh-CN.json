@@ -784,7 +784,16 @@
       "invalidDate": "日期无效",
       "origin": "从哪里出发？（可选）",
       "originPlaceholder": "例如上海",
-      "originHint": "这样机票链接会直接打开您的航线。"
+      "originHint": "这样机票链接会直接打开您的航线。",
+      "cityDays": {
+        "title": "{days} 天怎么分配？",
+        "hint": "{base} 是基地。为其他目的地选择天数；基地附近的一两天会作为一日游，不用换酒店。",
+        "auto": "由 Triplan 决定",
+        "oneDay": "一天（一日游）",
+        "days": "{count, plural, other {# 天}}",
+        "rest": "{base}：其余天数（{count}）",
+        "tooMany": "超过了行程天数（{days}）。Triplan 会缩短。"
+      }
     },
     "party": {
       "title": "谁出行？",
@@ -1086,7 +1095,7 @@
       "full": "最多 20 个地点。",
       "destinations": "目的地",
       "addDestination": "将{name}作为目的地加入行程",
-      "destinationAdded": "已将{name}加入目的地。Triplan 会决定在那里住宿还是一日游。"
+      "destinationAdded": "已将{name}添加为一天（一日游）。可在日期步骤中更改天数。"
     }
   },
   "trip": {

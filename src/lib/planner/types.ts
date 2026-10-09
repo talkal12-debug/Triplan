@@ -27,6 +27,11 @@ export const destinationSchema = z.object({
   cities: z.array(z.string()).max(6).default([]),
   /** Full records for OSM-sourced cities (the seed knows its own). Absent for demo countries. */
   customCities: z.array(customCitySchema).max(6).optional(),
+  /**
+   * Days the traveller wants in a city (by slug), e.g. { "lake-como": 1 } for a day trip from Milan.
+   * Absent = the planner decides. One or two days near the first city are day trips from it.
+   */
+  cityDays: z.record(z.string(), z.number().int().min(1).max(30)).optional(),
 });
 export type Destination = z.infer<typeof destinationSchema>;
 

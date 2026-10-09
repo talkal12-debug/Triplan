@@ -1,3 +1,4 @@
+import { promoteDestinationWishes } from "@/lib/server/destination-wishes";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { PlannerError, generateItinerary, tripPreferencesSchema } from "@/lib/planner";
@@ -25,7 +26,9 @@ export async function POST(req: Request) {
 
   const t0 = Date.now();
   const lap = (label: string) => `${label} ${((Date.now() - t0) / 1000).toFixed(1)}s`;
-  const ctx = await loadPlanContext(parsed.data.preferences);
+  // "Lake Como" typed as a place on a Milan trip: a one-day destination, not an unresolved stop.
+  const promoted = promoteDestinationWishes(parsed.data.preferences);
+  const ctx = await loadPlanContext(promoted);
   ctx.notes.push(`timing: ${lap("context")}`);
   if (ctx.cities.length === 0) {
     return NextResponse.json({ error: "no_cities", notes: ctx.notes }, { status: 422 });
@@ -34,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "no_places", notes: ctx.notes }, { status: 422 });
   }
   // Wishlist: catalogue ids stay, free text is matched by name or looked up on OSM; the rest is reported.
-  const wish = await resolveMustVisit(parsed.data.preferences, ctx.places, ctx.cities, ctx.notes);
+  const wish = await resolveMustVisit(promoted, ctx.places, ctx.cities, ctx.notes);
   const prefs = wish.prefs;
   ctx.places.push(...wish.added);
 

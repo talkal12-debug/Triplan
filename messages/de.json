@@ -784,7 +784,16 @@
       "invalidDate": "Ungültiges Datum",
       "origin": "Von wo fliegen Sie? (optional)",
       "originPlaceholder": "z. B. Berlin",
-      "originHint": "Damit die Fluglinks direkt Ihre Strecke öffnen."
+      "originHint": "Damit die Fluglinks direkt Ihre Strecke öffnen.",
+      "cityDays": {
+        "title": "Wie sollen die {days} Tage verteilt werden?",
+        "hint": "{base} ist die Basis. Für die anderen Ziele die Tage wählen; ein bis zwei Tage nahe der Basis sind Tagesausflüge von dort, ohne Hotelwechsel.",
+        "auto": "Triplan entscheidet",
+        "oneDay": "Ein Tag (Tagesausflug)",
+        "days": "{count, plural, one {# Tag} other {# Tage}}",
+        "rest": "{base}: die übrigen Tage ({count})",
+        "tooMany": "Das sind mehr Tage, als die Reise hat ({days}). Triplan kürzt."
+      }
     },
     "party": {
       "title": "Wer reist?",
@@ -1086,7 +1095,7 @@
       "full": "Bis zu 20 Orte.",
       "destinations": "Reiseziele",
       "addDestination": "{name} als Reiseziel hinzufügen",
-      "destinationAdded": "{name} wurde zu den Reisezielen hinzugefügt. Triplan entscheidet, ob dort übernachtet oder ein Tagesausflug gemacht wird."
+      "destinationAdded": "{name} wurde für einen Tag (Tagesausflug) hinzugefügt. Die Tage lassen sich im Schritt „Daten“ ändern."
     }
   },
   "trip": {

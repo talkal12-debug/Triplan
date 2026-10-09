@@ -784,7 +784,16 @@
       "invalidDate": "Data inválida",
       "origin": "De onde voa? (opcional)",
       "originPlaceholder": "p. ex. Lisboa",
-      "originHint": "Para que os links de voos abram já na sua rota."
+      "originHint": "Para que os links de voos abram já na sua rota.",
+      "cityDays": {
+        "title": "Como dividir os {days} dias?",
+        "hint": "{base} é a base. Para os outros destinos escolham os dias; um ou dois dias perto da base são excursões a partir dela, sem mudar de hotel.",
+        "auto": "O Triplan decide",
+        "oneDay": "Um dia (excursão)",
+        "days": "{count, plural, one {# dia} other {# dias}}",
+        "rest": "{base}: os restantes dias ({count})",
+        "tooMany": "São mais dias do que a viagem tem ({days}). O Triplan vai encurtar."
+      }
     },
     "party": {
       "title": "Quem viaja?",
@@ -1086,7 +1095,7 @@
       "full": "Até 20 lugares.",
       "destinations": "Destinos",
       "addDestination": "Adicionar {name} à viagem como destino",
-      "destinationAdded": "{name} foi adicionado aos destinos. O Triplan decide se fica lá ou faz uma visita de um dia."
+      "destinationAdded": "{name} foi adicionado por um dia (excursão). Podem mudar os dias no passo das datas."
     }
   },
   "trip": {
