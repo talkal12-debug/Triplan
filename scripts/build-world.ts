@@ -24,6 +24,7 @@ import { clampBox, enrichWithWikidata, overpassQueriesFor, overpassSchema, selec
 import { fetchPageImage, fetchSummariesBulk } from "../src/lib/providers/summaries-core";
 import { worldCities, type WorldCitySpec } from "./world/cities";
 import { GEOFABRIK, countryIndex, elementsInBox } from "./world/pbf";
+import { fillCityNames } from "./world/names";
 
 const UA = "Triplan-world-build/0.1 (talkal12@gmail.com)";
 const OUT = join(process.cwd(), "data", "world");
@@ -241,6 +242,7 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
       if (s && Object.keys(s).length) p.summary = s;
     }
     city.image = (await fetchPageImage("en", city.names.en).catch(() => null)) ?? (city.names.local ? await fetchPageImage("en", city.names.local).catch(() => null) : null);
+    await fillCityNames([city]).catch(() => 0);
   }
   data.cities = [...data.cities.filter((c) => c.slug !== slug), city];
   data.places = [...data.places.filter((p) => p.city !== slug), ...chosen];

@@ -34,7 +34,7 @@ export const worldCities: WorldCitySpec[] = [
   ...c("LU", "Luxembourg"),
   ...c("MC", "Monaco"),
   // Demo countries: cities beyond the hand-curated seed
-  ...c("IT", "Florence", "Venice", "Naples", "Verona", "Bologna", "Turin", "Genoa", "Palermo", "Catania", "Pisa", "Siena", "Sorrento", "Amalfi", "Lake Como", "Matera", "Bari", "Lecce", "Cinque Terre", "Cagliari", "Taormina"),
+  ...c("IT", "Florence", "Venice", "Naples", "Verona", "Bologna", "Turin", "Genoa", "Palermo", "Catania", "Pisa", "Siena", "Sorrento", "Amalfi", ["Lake Como", "Bellagio"], "Matera", "Bari", "Lecce", "Cinque Terre", "Cagliari", "Taormina"),
   ...c("PT", "Faro", "Lagos", "Funchal", "Coimbra", "Braga", "Evora", "Aveiro", "Ponta Delgada", "Nazare"),
   ...c("JP", "Kyoto", "Osaka", "Hiroshima", "Nara", "Sapporo", "Fukuoka", "Nagoya", "Kanazawa", "Naha", "Nikko", "Yokohama", "Kobe", "Takayama"),
   // Nordics and Baltics

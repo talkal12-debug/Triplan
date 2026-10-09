@@ -1073,7 +1073,10 @@
       "listLabel": "قائمة ما يجب رؤيته",
       "resolvedLater": "يُحدَّد عند بناء الخطة",
       "remove": "إزالة {name}",
-      "full": "حتى 20 مكانًا."
+      "full": "حتى 20 مكانًا.",
+      "destinations": "وجهات",
+      "addDestination": "أضيفوا {name} كوجهة في الرحلة",
+      "destinationAdded": "أُضيفت {name} إلى الوجهات. يقرر Triplan المبيت فيها أو زيارتها ليوم."
     }
   },
   "trip": {

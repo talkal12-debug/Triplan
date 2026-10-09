@@ -1073,7 +1073,10 @@
       "listLabel": "Your must-see list",
       "resolvedLater": "located when the plan is built",
       "remove": "Remove {name}",
-      "full": "Up to 20 places."
+      "full": "Up to 20 places.",
+      "destinations": "Destinations",
+      "addDestination": "Add {name} to the trip as a destination",
+      "destinationAdded": "{name} was added to the destinations. Triplan decides whether to stay there or visit it for a day."
     }
   },
   "trip": {

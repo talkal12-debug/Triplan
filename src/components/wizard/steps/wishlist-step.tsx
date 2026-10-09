@@ -2,13 +2,24 @@
 
 import { useDeferredValue, useEffect, useId, useState } from "react";
 import { useTranslations } from "next-intl";
-import { MapPin, Plus, Search, X } from "lucide-react";
+import { MapPin, MapPinPlus, Plus, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FieldLabel, inputClass } from "../controls";
 import type { StepProps } from "../step-props";
 import type { MustVisit } from "@/lib/planner/types";
 
 type Suggestion = { placeId: string | null; name: string; city: string; lat?: number; lng?: number };
+type DestinationSuggestion = {
+  kind: "destination";
+  countryCode: string;
+  slug: string;
+  name: string;
+  country: string;
+  seeded: boolean;
+  names: Record<string, string>;
+  center: { lat: number; lng: number };
+  bbox: [number, number, number, number];
+};
 
 /**
  * Wishlist (milestone 11): places the traveller insists on. Picked from our
@@ -20,6 +31,8 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
   const [query, setQuery] = useState("");
   const deferred = useDeferredValue(query.trim());
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [destinations, setDestinations] = useState<DestinationSuggestion[]>([]);
+  const [addedDestination, setAddedDestination] = useState<string | null>(null);
   const [searching, setSearching] = useState(false);
   const inputId = useId();
   const list = prefs.mustVisit;
@@ -31,14 +44,18 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
   useEffect(() => {
     if (deferred.length < 2) {
       setSuggestions([]);
+      setDestinations([]);
       return;
     }
     const controller = new AbortController();
     setSearching(true);
     const params = new URLSearchParams({ q: deferred, countries, cities, locale: ctx.locale });
     fetch(`/api/places/suggest?${params}`, { signal: controller.signal })
-      .then(async (r) => (r.ok ? ((await r.json()) as { suggestions: Suggestion[] }).suggestions : []))
-      .then((s) => setSuggestions(s.filter((x) => !list.some((m) => (x.placeId && m.placeId === x.placeId) || m.name === x.name))))
+      .then(async (r) => (r.ok ? ((await r.json()) as { suggestions: Suggestion[]; destinations?: DestinationSuggestion[] }) : { suggestions: [], destinations: [] }))
+      .then((json) => {
+        setSuggestions(json.suggestions.filter((x) => !list.some((m) => (x.placeId && m.placeId === x.placeId) || m.name === x.name)));
+        setDestinations(json.destinations ?? []);
+      })
       .catch(() => undefined)
       .finally(() => setSearching(false));
     return () => controller.abort();
@@ -50,6 +67,20 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
     set("mustVisit", [...list, entry]);
     setQuery("");
     setSuggestions([]);
+  }
+
+  /** Add a catalogue destination (city, lake, island) to the trip itself, next to the cities already chosen. */
+  function addDestination(d: DestinationSuggestion) {
+    const next = prefs.destinations.map((dest) => {
+      if (dest.countryCode !== d.countryCode || dest.cities.includes(d.slug)) return dest;
+      const custom = d.seeded ? dest.customCities : [...(dest.customCities ?? []), { slug: d.slug, names: { ...d.names, en: d.names.en }, center: d.center, bbox: d.bbox }];
+      return { ...dest, cities: [...dest.cities, d.slug], customCities: custom };
+    });
+    set("destinations", next as typeof prefs.destinations);
+    setAddedDestination(d.name);
+    setQuery("");
+    setSuggestions([]);
+    setDestinations([]);
   }
 
   function addTyped() {
@@ -64,7 +95,6 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
 
       <div className="space-y-2">
         <FieldLabel htmlFor={inputId} hint={t("hint")}>
@@ -100,6 +130,24 @@ export function WishlistStep({ prefs, set, ctx }: StepProps) {
         <p id={`${inputId}-hint`} className="sr-only">
           {t("hint")}
         </p>
+        {destinations.length > 0 && (
+          <ul className="divide-y rounded-md border border-primary/40 bg-card" aria-label={t("destinations")}>
+            {destinations.map((d) => (
+              <li key={d.slug}>
+                <button type="button" className="flex w-full items-center gap-2 px-3 py-2 text-start text-sm hover:bg-muted" onClick={() => addDestination(d)}>
+                  <MapPinPlus className="size-4 shrink-0 text-primary" aria-hidden />
+                  <span className="flex-1">{t("addDestination", { name: d.name })}</span>
+                  <span className="text-xs text-muted-foreground">{d.country}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {addedDestination && (
+          <p role="status" className="text-xs text-primary">
+            {t("destinationAdded", { name: addedDestination })}
+          </p>
+        )}
         {(suggestions.length > 0 || searching) && (
           <ul className="divide-y rounded-md border bg-card" aria-label={t("suggestions")}>
             {searching && suggestions.length === 0 && <li className="px-3 py-2 text-sm text-muted-foreground">{t("searching")}</li>}

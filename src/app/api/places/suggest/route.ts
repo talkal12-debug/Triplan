@@ -8,6 +8,18 @@ import { normalizeName } from "@/lib/nearby/must-visit-core";
 export const runtime = "nodejs";
 
 type Suggestion = { placeId: string | null; name: string; city: string; lat?: number; lng?: number };
+/** A destination of the catalogue (city, island, lake region) the trip does not include yet. */
+type DestinationSuggestion = {
+  kind: "destination";
+  countryCode: string;
+  slug: string;
+  name: string;
+  country: string;
+  seeded: boolean;
+  names: Record<string, string>;
+  center: { lat: number; lng: number };
+  bbox: [number, number, number, number];
+};
 
 /**
  * GET /api/places/suggest?q=belem&countries=PT,IT&cities=lisbon&locale=he -> { suggestions }
@@ -25,9 +37,23 @@ export async function GET(req: Request) {
   if (q.length < 2) return NextResponse.json({ suggestions: [] });
 
   const out: { s: Suggestion; score: number }[] = [];
+  const destinations: { d: DestinationSuggestion; score: number }[] = [];
   for (const code of countries) {
     if (!getCountry(code) || (!isDemoCountry(code) && !hasWorldCountry(code))) continue;
     const cityName = new Map([...getSeedCities(code), ...getWorldCities(code)].map((c) => [c.slug, c.names[lang] ?? c.names.en]));
+    // "Lake Como" typed on a Milan trip is a destination, not a stop: offer to add it to the trip.
+    const seeded = new Set(getSeedCities(code).map((c) => c.slug));
+    for (const c of [...getSeedCities(code), ...getWorldCities(code)]) {
+      if (cities.has(c.slug)) continue;
+      const names = Object.values(c.names).map(normalizeName);
+      const score = names.some((n) => n === q) ? 3 : names.some((n) => n.startsWith(q)) ? 2 : names.some((n) => n.includes(q)) ? 1 : 0;
+      if (!score || destinations.some((x) => x.d.slug === c.slug)) continue;
+      const country = getCountry(code)!;
+      destinations.push({
+        d: { kind: "destination", countryCode: code, slug: c.slug, name: c.names[lang] ?? c.names.en, country: country.names[lang] ?? country.names.en, seeded: seeded.has(c.slug), names: c.names, center: c.center, bbox: c.bbox },
+        score,
+      });
+    }
     for (const p of [...getSeedPlaces(code), ...getWorldPlaces(code)]) {
       if (cities.size && !cities.has(p.city)) continue;
       const names = [p.nameLocal, ...Object.values(p.names)].map(normalizeName);
@@ -43,5 +69,6 @@ export async function GET(req: Request) {
     }
   }
   out.sort((a, b) => b.score - a.score);
-  return NextResponse.json({ suggestions: out.slice(0, 8).map((x) => x.s) });
+  destinations.sort((a, b) => b.score - a.score);
+  return NextResponse.json({ suggestions: out.slice(0, 8).map((x) => x.s), destinations: destinations.slice(0, 3).map((x) => x.d) });
 }

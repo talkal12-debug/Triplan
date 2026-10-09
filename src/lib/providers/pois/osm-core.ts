@@ -241,21 +241,38 @@ export function toPlace(el: OverpassElement, city: CitySeed): PlaceSeed | null {
 export function selectPlaces(places: PlaceSeed[], limit = 80): PlaceSeed[] {
   const ranked = [...places].sort((a, b) => b.iconicity - a.iconicity || (b.openingHours ? 1 : 0) - (a.openingHours ? 1 : 0));
   const seen = new Set<string>();
+  // Places of worship: in Italy nearly every village church has an article, and they crowd out villas,
+  // gardens and museums. At most a quarter of the city, except the major ones.
+  const worship = new Set<PlaceCategory>(["church", "shrine", "temple"]);
+  // Viewpoints without an article are often unnamed terraces ("Terrace", "Belvedere"): they only come in
+  // through the variety floor below, never as filler when an area has few candidates.
+  const minorView = (p: PlaceSeed) => p.category === "viewpoint" && !p.wikidata;
+  const distinct = new Set(places.filter((p) => !minorView(p)).map((p) => p.externalId ?? p.id)).size;
+  const worshipCap = Math.ceil(Math.min(limit, distinct) / 4);
+  let worshipKept = 0;
   const unique = ranked.filter((p) => {
     const keys = [p.externalId ?? p.id, p.nameLocal.toLowerCase()];
     if (keys.some((k) => seen.has(k))) return false;
+    if (minorView(p)) return false;
+    if (worship.has(p.category) && p.iconicity < 0.8) {
+      if (worshipKept >= worshipCap) return false;
+      worshipKept++;
+    }
     keys.forEach((k) => seen.add(k));
     return true;
   });
   const top = unique.slice(0, limit);
-  if (unique.length <= limit) return top;
+  // A few unnamed viewpoints are still welcome for breathing room.
+  const views = ranked.filter((p) => minorView(p) && !seen.has(p.externalId ?? p.id)).slice(0, Math.max(0, 3 - top.filter((p) => p.category === "viewpoint").length));
+  if (unique.length <= limit) return [...top, ...views].slice(0, limit);
   // Variety floor: up to three of each "breathing" category from beyond the cut.
   const breathing: PlaceCategory[] = ["park", "garden", "viewpoint", "market", "beach", "square", "neighborhood", "waterfront"];
   const picked = new Set(top.map((p) => p.id));
   const extras: PlaceSeed[] = [];
+  const beyond = [...unique.slice(limit), ...ranked.filter((p) => minorView(p) && !seen.has(p.externalId ?? p.id))];
   for (const cat of breathing) {
     const have = top.filter((p) => p.category === cat).length;
-    for (const p of unique.slice(limit)) {
+    for (const p of beyond) {
       if (have + extras.filter((x) => x.category === cat).length >= 3) break;
       if (p.category === cat && !picked.has(p.id)) {
         extras.push(p);

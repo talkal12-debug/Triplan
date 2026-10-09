@@ -48,6 +48,9 @@ export function scorePlace(place: PlannerPlace, prefs: TripPreferences): number 
       interest = Math.max(interest, rankWeight[rank] ?? 0.5);
     }
   });
+  // A place famous enough to have articles in many languages interests almost anyone, even when its map tags
+  // match none of the chosen interests (Villa del Balbianello is only "tourism=attraction" in OpenStreetMap).
+  if (place.iconicity >= 0.7) interest = Math.max(interest, 0.6);
   score += 0.45 * interest;
 
   // First-timers want icons; third-timers want the opposite.
