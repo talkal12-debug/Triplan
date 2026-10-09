@@ -746,7 +746,10 @@
       "citySearchPlaceholder": "都市名を入力、例：Paris",
       "citySearching": "検索中...",
       "citySearchError": "検索に失敗しました。もう一度お試しください。",
-      "cityRequired": "この国で少なくとも1都市を選んでください"
+      "cityRequired": "この国で少なくとも1都市を選んでください",
+      "coveredCities": "{country}の都市",
+      "coveredCitiesHint": "これらの都市は観光地があらかじめ用意されています（OpenStreetMap、Wikipedia）。プランがすぐ作れます。他の都市は下で検索。",
+      "moreCities": "{country}のその他の都市"
     },
     "dates": {
       "title": "いつ？",

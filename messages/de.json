@@ -746,7 +746,10 @@
       "citySearchPlaceholder": "Stadtname eingeben, z. B. Paris",
       "citySearching": "Suche läuft...",
       "citySearchError": "Suche fehlgeschlagen. Bitte erneut versuchen.",
-      "cityRequired": "Wählen Sie mindestens eine Stadt in diesem Land"
+      "cityRequired": "Wählen Sie mindestens eine Stadt in diesem Land",
+      "coveredCities": "Städte in {country}",
+      "coveredCitiesHint": "Diese Städte kommen mit vorbereiteten Sehenswürdigkeiten (OpenStreetMap, Wikipedia), der Plan entsteht also schnell. Eine andere Stadt? Unten suchen.",
+      "moreCities": "Weitere Städte in {country}"
     },
     "dates": {
       "title": "Wann?",

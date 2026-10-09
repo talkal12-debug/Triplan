@@ -163,10 +163,15 @@ describe("routing", () => {
 
 describe("weather, holidays, currency", () => {
   it("labels far-future weather as last year's normals with a capped rain probability", async () => {
-    mockFetch({ daily: { time: ["2025-10-16", "2025-10-17"], precipitation_sum: [8, 0], temperature_2m_max: [21, 22], temperature_2m_min: [14, 13] } });
-    const r = await openMeteo.daily({ lat: 38.7, lng: -9.1 }, "2026-10-16", 2);
+    // A trip more than two weeks out: the provider asks the archive for the same dates last year.
+    const far = new Date(Date.UTC(new Date().getUTCFullYear() + 1, 9, 16));
+    const iso = (d: Date) => d.toISOString().slice(0, 10);
+    const start = iso(far);
+    const lastYear = [iso(new Date(Date.UTC(far.getUTCFullYear() - 1, 9, 16))), iso(new Date(Date.UTC(far.getUTCFullYear() - 1, 9, 17)))];
+    mockFetch({ daily: { time: lastYear, precipitation_sum: [8, 0], temperature_2m_max: [21, 22], temperature_2m_min: [14, 13] } });
+    const r = await openMeteo.daily({ lat: 38.7, lng: -9.1 }, start, 2);
     expect(r.kind).toBe("normals");
-    expect(r.days[0]).toMatchObject({ date: "2026-10-16", precipProbability: 60, tempMax: 21 });
+    expect(r.days[0]).toMatchObject({ date: start, precipProbability: 60, tempMax: 21 });
     expect(r.days[1].precipProbability).toBe(10);
   });
 

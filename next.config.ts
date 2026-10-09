@@ -15,6 +15,8 @@ const withSerwist = withSerwistInit({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // The catalogues are read from disk at request time; list them so the function bundles carry them.
+  outputFileTracingIncludes: { "/**": ["./data/pois/*.json", "./data/world/*.json", "./data/venues/*.json"] },
   experimental: {
     // Inline the (small) global stylesheet into the HTML: one render-blocking request less on first paint.
     inlineCss: true,

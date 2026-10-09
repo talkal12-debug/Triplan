@@ -746,7 +746,10 @@
       "citySearchPlaceholder": "输入城市名称，例如 Paris",
       "citySearching": "正在搜索...",
       "citySearchError": "搜索失败，请重试。",
-      "cityRequired": "请在该国家至少选择一个城市"
+      "cityRequired": "请在该国家至少选择一个城市",
+      "coveredCities": "{country}的城市",
+      "coveredCitiesHint": "这些城市的景点已预先准备好（OpenStreetMap、维基百科），因此行程生成很快。其他城市？请在下方搜索。",
+      "moreCities": "{country}的更多城市"
     },
     "dates": {
       "title": "什么时候？",
