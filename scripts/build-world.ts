@@ -93,6 +93,7 @@ async function overpass(query: string): Promise<OverpassElement[]> {
         return overpassSchema.parse(await res.json()).elements;
       } catch (err) {
         lastErr = err;
+        console.log(`    ${url.replace("https://", "").split("/")[0]}: ${(err as Error).message.slice(0, 60)}`);
         await sleep(3_000);
       }
     }
@@ -100,10 +101,13 @@ async function overpass(query: string): Promise<OverpassElement[]> {
   throw lastErr instanceof Error ? lastErr : new Error("overpass failed");
 }
 
-/** Both tiers for a box; a box that times out is split in four (twice at most). */
+/** Both tiers for a box; a box that times out is split in four (twice at most). Big-city boxes are split up front: the whole box rarely answers. */
 async function elementsFor(bbox: [number, number, number, number], depth = 0): Promise<OverpassElement[]> {
+  const [s0, w0, n0, e0] = bbox;
+  const big = depth === 0 && (n0 - s0 > 0.16 || e0 - w0 > 0.2);
   const { tier1, tier2 } = overpassQueriesFor(bbox, 90);
   try {
+    if (big) throw new Error("large box, splitting up front");
     const a = await overpass(tier1);
     await sleep(2_000);
     const b = await overpass(tier2).catch(() => [] as OverpassElement[]);
