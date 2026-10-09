@@ -38,6 +38,8 @@ const ATTRIBUTION = "OpenStreetMap contributors (ODbL), Wikidata (CC0), Wikipedi
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const args = process.argv.slice(2);
 const refresh = args.includes("--refresh");
+// --refresh-small=N rebuilds cities that ended up with fewer than N places (tiny OSM boxes before the minimum area).
+const refreshSmall = Number(args.find((a) => a.startsWith("--refresh-small="))?.slice(16) ?? 0);
 const noSummaries = args.includes("--no-summaries");
 const only = args.find((a) => a.startsWith("--only="))?.slice(7).split(",").map((s) => s.trim()).filter(Boolean);
 // --source=pbf (default): Geofabrik country files, scanned locally. --source=overpass: the public servers.
@@ -68,9 +70,14 @@ async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const res = await fetch(`https://nominatim.openstreetmap.org/search?${params}`, { headers: { "User-Agent": UA } });
   if (!res.ok) throw new Error(`nominatim HTTP ${res.status}`);
   const hits = nominatimSchema.parse(await res.json());
-  // Prefer settlements and islands; "Lake Como" or "Cinque Terre" resolve to other types and are accepted as a last resort.
-  const settlement = new Set(["city", "town", "village", "municipality", "island", "borough", "suburb", "county", "state_district", "region", "archipelago", "islet"]);
-  const hit = hits.find((h) => h.addresstype && settlement.has(h.addresstype)) ?? hits[0];
+  // Prefer the settlement itself: "Matera" is also a province, whose centre is 25 km away. Islands and
+  // larger areas only when no settlement matches ("Lake Como", "Cinque Terre", "Bali").
+  const preference = ["city", "town", "municipality", "village", "island", "archipelago", "islet", "borough", "suburb", "county", "state_district", "region"];
+  const rank = (h: (typeof hits)[number]) => {
+    const i = preference.indexOf(h.addresstype ?? "");
+    return i < 0 ? preference.length : i;
+  };
+  const hit = [...hits].sort((a, b) => rank(a) - rank(b))[0];
   if (!hit) return null;
   const center = { lat: Number(hit.lat), lng: Number(hit.lon) };
   const [s, n, w, e] = hit.boundingbox.map(Number);
@@ -78,7 +85,12 @@ async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const names: { en: string; local: string; [k: string]: string } = { en: hit.namedetails?.["name:en"] ?? spec.en, local };
   for (const l of ["he", "ar", "ru", "es", "fr", "de", "it", "pt", "ja", "hi"]) if (hit.namedetails?.[`name:${l}`]) names[l] = hit.namedetails[`name:${l}`];
   if (hit.namedetails?.["name:zh"]) names["zh-CN"] = hit.namedetails["name:zh"];
-  const city = { slug: slugify(spec.en), countryCode: spec.cc, names, center, bbox: clampBox([s, w, n, e], center) };
+  // Small towns get tiny boxes from OSM (Amalfi is 4 x 5 km) and the coast or valley around them is the point:
+  // every city covers at least ~13 x 13 km around its centre, at most ~25 x 25 km (clampBox).
+  const minLat = 0.06;
+  const minLng = 0.06 / Math.max(0.3, Math.cos((center.lat * Math.PI) / 180));
+  const widened: [number, number, number, number] = [Math.min(s, center.lat - minLat), Math.min(w, center.lng - minLng), Math.max(n, center.lat + minLat), Math.max(e, center.lng + minLng)];
+  const city = { slug: slugify(spec.en), countryCode: spec.cc, names, center, bbox: clampBox(widened, center) };
   const parsed = citySeedSchema.safeParse(city);
   return parsed.success ? parsed.data : null;
 }
@@ -185,7 +197,8 @@ async function elementsForCity(cc: string, bbox: [number, number, number, number
 
 async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> {
   const slug = slugify(spec.en);
-  if (!refresh && data.cities.some((c) => c.slug === slug)) return false;
+  const existing = data.places.filter((p) => p.city === slug).length;
+  if (!refresh && data.cities.some((c) => c.slug === slug) && !(refreshSmall && existing < refreshSmall)) return false;
   process.stdout.write(`${spec.cc} ${spec.en}: `);
   const city = await resolveCity(spec);
   if (!city) {
