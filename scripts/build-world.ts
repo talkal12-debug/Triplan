@@ -21,7 +21,7 @@ import { join } from "node:path";
 import { z } from "zod";
 import { citySeedSchema, poisFileSchema, type CitySeed, type PlaceSeed, type PoisFile } from "../src/lib/data/schemas";
 import { clampBox, enrichWithWikidata, overpassQueriesFor, overpassSchema, selectPlaces, slugify, toPlace, wikidataSchema, WIKIDATA_LANGUAGES, type OverpassElement, type WikidataFacts } from "../src/lib/providers/pois/osm-core";
-import { fetchPageImage, fetchSummariesBatch } from "../src/lib/providers/summaries-core";
+import { fetchPageImage, fetchSummariesBulk } from "../src/lib/providers/summaries-core";
 import { worldCities, type WorldCitySpec } from "./world/cities";
 import { GEOFABRIK, countryIndex, elementsInBox } from "./world/pbf";
 
@@ -203,7 +203,7 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
   const chosen = selectPlaces(places, PLACES_PER_CITY);
   if (!noSummaries) {
     const todo = chosen.filter((p) => p.wikidata).map((p) => ({ id: p.id, wikidata: p.wikidata!, locales: LANGS }));
-    const got = await fetchSummariesBatch(todo);
+    const got = await fetchSummariesBulk(todo);
     for (const p of chosen) {
       const s = got.get(p.id);
       if (s && Object.keys(s).length) p.summary = s;
@@ -219,7 +219,10 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
 }
 
 async function main() {
-  const specs = worldCities.filter((s) => (countries.length ? countries.includes(s.cc) : true) && (only ? only.includes(slugify(s.en)) : true));
+  // Countries named on the command line are built in that order (the list order otherwise).
+  const specs = worldCities
+    .filter((s) => (countries.length ? countries.includes(s.cc) : true) && (only ? only.includes(slugify(s.en)) : true))
+    .sort((a, b) => (countries.length ? countries.indexOf(a.cc) - countries.indexOf(b.cc) : 0));
   const byCountry = new Map<string, WorldCitySpec[]>();
   for (const s of specs) byCountry.set(s.cc, [...(byCountry.get(s.cc) ?? []), s]);
   const started = Date.now();
