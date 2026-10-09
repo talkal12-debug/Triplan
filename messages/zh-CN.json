@@ -231,7 +231,8 @@
       "walk_budget_tight": "步行额度即将用完",
       "few_places_left": "此目的地的景点已用完：{days} 个空闲日",
       "must_visit_unplaced": "清单中的“{name}”未能安排（您的日期不开放或太远）。请尝试“重新生成”或手动添加。",
-      "must_visit_unresolved": "无法定位“{name}”。请检查拼写或选择一个建议。"
+      "must_visit_unresolved": "无法定位“{name}”。请检查拼写或选择一个建议。",
+      "long_day_trip": "{city}：较长的一日游，单程约 {minutes} 分钟。因为您选择了它，所以保留。"
     },
     "rainPlan": "雨天方案",
     "tripStats": "共步行 {distance}，{places} 个景点，{verified}% 的开放时间已核实",
@@ -546,6 +547,15 @@
         "access": "有地点不可无障碍进入",
         "accessLimited": "部分无障碍"
       }
+    },
+    "dayTrip": {
+      "title": "{city}一日游：单程约 {time} 小时",
+      "titleLong": "{city}长途一日游：单程约 {time} 小时",
+      "hint": "估算值。Google 地图会显示实际的火车、渡轮和巴士。",
+      "hintLong": "请早点出发。Google 地图会显示实际最快的连接；如果太久，可以考虑在那里住一晚。",
+      "there": "最快的去程",
+      "back": "返回酒店",
+      "byCar": "自驾"
     }
   },
   "gallery": {

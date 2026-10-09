@@ -204,6 +204,7 @@ export async function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerar
       const anchor = ctx.places.find((p) => p.id === z.anchorPlaceId);
       return {
         ...z,
+        // Agoda's links are city pages ("/city/rome-it.html"): a place name makes a page that does not exist.
         links: hotelLinks(
           {
             city: anchor ? `${anchor.names.en}, ${cityName(s.citySlug)}` : cityName(s.citySlug),
@@ -216,7 +217,7 @@ export async function buildPlanLinks(prefs: TripPreferences, itinerary: Itinerar
             type: prefs.hotel.type,
           },
           ids,
-        ),
+        ).filter((l) => l.provider !== "agoda"),
       };
     }),
   }));

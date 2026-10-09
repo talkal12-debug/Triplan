@@ -63,6 +63,7 @@ export const warningSchema = z.object({
     "day_too_full",
     "day_too_light",
     "base_too_far",
+    "long_day_trip",
     "city_dropped",
     "no_places",
     "holiday",
@@ -124,6 +125,8 @@ export const itineraryDaySchema = z.object({
   /** Dominant tag, for variety and for the UI headline. */
   theme: z.string().nullable(),
   activities: z.array(activitySchema),
+  /** Set on a day trip away from the hotel: travel each way (estimate), and whether it is longer than a comfortable day trip. */
+  dayTrip: z.object({ minutesEachWay: z.number().int().min(0), long: z.boolean() }).optional(),
   rainPlan: z.array(z.string()),
   stats: dayStatsSchema,
   warnings: z.array(warningSchema),

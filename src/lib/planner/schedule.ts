@@ -465,6 +465,7 @@ export function scheduleDay(day: DayPlan, ctx: ScheduleContext): { day: Itinerar
       clusterIds: day.clusterIds,
       theme: relaxDay ? "relax" : day.theme,
       activities,
+      ...(day.isDayTrip && day.dayTripMinutes > 0 ? { dayTrip: { minutesEachWay: Math.round(day.dayTripMinutes / 2), long: Boolean(day.longDayTrip) } } : {}),
       rainPlan,
       stats,
       warnings,

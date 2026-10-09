@@ -15,7 +15,12 @@ export type DaySlot = {
   isTransfer: boolean;
   /** Round-trip travel to a day-trip city, minutes (0 otherwise). */
   dayTripMinutes: number;
+  /** Longer than the comfortable day-trip limit: kept because the traveller chose the city. */
+  longDayTrip?: boolean;
 };
+
+/** A chosen city stays in a single-hotel trip as a day trip up to this far (one way); beyond it a second hotel is the only sensible plan. */
+export const LONG_DAY_TRIP_MAX_ONE_WAY = 180;
 
 export type StayPlan = {
   baseMode: "single" | "multi";
@@ -131,7 +136,8 @@ export function planStays(
     let groupMode = mode;
     if (groupMode === "single" && prefs.hotel.baseMode === "auto" && group.length > 1 && groupDays >= group.length) {
       const base = baseOf(group);
-      if (group.some((info) => info !== base && transferMinutes(base.city, info.city, prefs) * 2 > budget.maxBaseRoundTripMinutes)) groupMode = "multi";
+      // Only cities the traveller picked: when the planner chose the cities itself, a far one is simply left out.
+      if (group.some((info) => info !== base && info.order !== Infinity && transferMinutes(base.city, info.city, prefs) * 2 > budget.maxBaseRoundTripMinutes)) groupMode = "multi";
     }
     if (groupMode === "multi" && group.length > 1) {
       // Moving route: one stay per city, routed by nearest neighbour from the base city.
@@ -194,12 +200,16 @@ export function planStays(
       locationPref: prefs.hotel.locationPref,
     });
 
-    const dayTrips: { info: CityInfo; minutes: number }[] = [];
+    const dayTrips: { info: CityInfo; minutes: number; long: boolean }[] = [];
     for (const info of group) {
       if (info === base) continue;
       const oneWay = transferMinutes(base.city, info.city, prefs);
-      if (oneWay * 2 <= budget.maxBaseRoundTripMinutes) dayTrips.push({ info, minutes: oneWay * 2 });
-      else {
+      if (oneWay * 2 <= budget.maxBaseRoundTripMinutes) dayTrips.push({ info, minutes: oneWay * 2, long: false });
+      else if (oneWay <= LONG_DAY_TRIP_MAX_ONE_WAY && info.order !== Infinity) {
+        // Far for a day trip but the traveller asked for it: keep it as a long day, and say so.
+        dayTrips.push({ info, minutes: oneWay * 2, long: true });
+        warnings.push({ code: "long_day_trip", severity: "info", params: { city: info.city.slug, minutes: oneWay } });
+      } else {
         warnings.push({
           code: "base_too_far",
           severity: "warning",
@@ -230,6 +240,7 @@ export function planStays(
         isDayTrip: Boolean(trip),
         isTransfer: d === from && stays.length > 1,
         dayTripMinutes: trip ? trip.minutes : 0,
+        longDayTrip: trip?.long ?? false,
       });
     }
     dayCursor = to + 1;
