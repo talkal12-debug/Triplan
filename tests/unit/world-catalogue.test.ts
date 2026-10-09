@@ -56,6 +56,17 @@ describe("world catalogue ranking", () => {
     expect(out.some((p) => p.id === "fr-paris-church-19")).toBe(false);
   });
 
+  it("caps minor places of worship at a quarter of the city, keeping the major ones", () => {
+    const churches = Array.from({ length: 40 }, (_, i) => place(`church-${i}`, "church", 0.7 - i * 0.005));
+    const major = [place("duomo", "church", 0.95), place("basilica", "church", 0.9)];
+    const villas = Array.from({ length: 20 }, (_, i) => place(`villa-${i}`, "landmark", 0.5));
+    const out = selectPlaces([...major, ...churches, ...villas], 40);
+    const minor = out.filter((p) => p.category === "church" && p.iconicity < 0.8);
+    expect(minor.length).toBeLessThanOrEqual(10);
+    expect(out.map((p) => p.id)).toEqual(expect.arrayContaining(["fr-paris-duomo", "fr-paris-basilica"]));
+    expect(out.filter((p) => p.category === "landmark")).toHaveLength(20);
+  });
+
   it("never exceeds the limit, and returns everything when under it", () => {
     expect(selectPlaces([place("x", "park", 0.5)], 80)).toHaveLength(1);
     const many = Array.from({ length: 200 }, (_, i) => place(`p-${i}`, i % 7 === 0 ? "park" : "museum", Math.random()));

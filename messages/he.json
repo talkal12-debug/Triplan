@@ -1073,7 +1073,10 @@
       "listLabel": "רשימת החובה שלכם",
       "resolvedLater": "יאותר בבניית התוכנית",
       "remove": "הסר את {name}",
-      "full": "עד 20 מקומות ברשימה."
+      "full": "עד 20 מקומות ברשימה.",
+      "destinations": "יעדים",
+      "addDestination": "הוסיפו את {name} כיעד בטיול",
+      "destinationAdded": "{name} נוסף ליעדים. Triplan יחליט אם לישון שם או לנסוע אליו ליום."
     }
   },
   "trip": {

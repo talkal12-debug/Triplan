@@ -142,6 +142,7 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
                     countryName={c.name}
                     locale={ctx.locale}
                     demo={c.demo}
+                    exclude={cities.map((x) => x.slug)}
                     chosen={d.customCities ?? []}
                     onAdd={(city) => addCustomCity(d.countryCode, city)}
                     onRemove={(slug) => removeCustomCity(d.countryCode, slug)}
@@ -233,6 +234,7 @@ function CustomCityPicker({
   countryName,
   locale,
   demo = false,
+  exclude = [],
   chosen,
   onAdd,
   onRemove,
@@ -243,6 +245,8 @@ function CustomCityPicker({
   locale: string;
   /** Demo country: the seed tiles are shown above; this picker only adds the catalogue's extra cities and search. */
   demo?: boolean;
+  /** Slugs already shown as tiles above (the curated demo cities). */
+  exclude?: string[];
   chosen: CustomCity[];
   onAdd: (city: CityResult) => void;
   onRemove: (slug: string) => void;
@@ -294,7 +298,8 @@ function CustomCityPicker({
     return names.local && names.local !== l ? `${l} / ${names.local}` : l;
   };
 
-  const tiles = prebuilt;
+  const collator = new Intl.Collator(locale);
+  const tiles = prebuilt.filter((p) => !exclude.includes(p.slug)).sort((a, b) => collator.compare(a.names[locale] ?? a.names.en, b.names[locale] ?? b.names.en));
   const chosenSlugs = new Set(chosen.map((c) => c.slug));
   if (demo && tiles.length === 0) return null;
 

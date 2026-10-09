@@ -1073,7 +1073,10 @@
       "listLabel": "A vossa lista de imperdíveis",
       "resolvedLater": "localizado ao criar o plano",
       "remove": "Remover {name}",
-      "full": "Até 20 lugares."
+      "full": "Até 20 lugares.",
+      "destinations": "Destinos",
+      "addDestination": "Adicionar {name} à viagem como destino",
+      "destinationAdded": "{name} foi adicionado aos destinos. O Triplan decide se fica lá ou faz uma visita de um dia."
     }
   },
   "trip": {

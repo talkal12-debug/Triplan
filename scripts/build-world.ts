@@ -24,6 +24,7 @@ import { clampBox, enrichWithWikidata, overpassQueriesFor, overpassSchema, selec
 import { fetchPageImage, fetchSummariesBulk } from "../src/lib/providers/summaries-core";
 import { worldCities, type WorldCitySpec } from "./world/cities";
 import { GEOFABRIK, countryIndex, elementsInBox } from "./world/pbf";
+import { fillCityNames } from "./world/names";
 
 const UA = "Triplan-world-build/0.1 (talkal12@gmail.com)";
 const OUT = join(process.cwd(), "data", "world");
@@ -40,6 +41,9 @@ const args = process.argv.slice(2);
 const refresh = args.includes("--refresh");
 // --refresh-small=N rebuilds cities that ended up with fewer than N places (tiny OSM boxes before the minimum area).
 const refreshSmall = Number(args.find((a) => a.startsWith("--refresh-small="))?.slice(16) ?? 0);
+// --recheck re-resolves every existing city and rebuilds those whose centre moved by more than 3 km
+// (cities built before resolution preferred the settlement over a province of the same name).
+const recheck = args.includes("--recheck");
 const noSummaries = args.includes("--no-summaries");
 const only = args.find((a) => a.startsWith("--only="))?.slice(7).split(",").map((s) => s.trim()).filter(Boolean);
 // --source=pbf (default): Geofabrik country files, scanned locally. --source=overpass: the public servers.
@@ -72,7 +76,9 @@ async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const hits = nominatimSchema.parse(await res.json());
   // Prefer the settlement itself: "Matera" is also a province, whose centre is 25 km away. Islands and
   // larger areas only when no settlement matches ("Lake Como", "Cinque Terre", "Bali").
-  const preference = ["city", "town", "municipality", "village", "island", "archipelago", "islet", "borough", "suburb", "county", "state_district", "region"];
+  const settlements = ["city", "town", "municipality", "village"];
+  const areas = ["island", "archipelago", "islet", "county", "state_district", "region", "state"];
+  const preference = spec.area ? [...areas, ...settlements, "borough", "suburb"] : [...settlements, ...areas.slice(0, 3), "borough", "suburb", ...areas.slice(3)];
   const rank = (h: (typeof hits)[number]) => {
     const i = preference.indexOf(h.addresstype ?? "");
     return i < 0 ? preference.length : i;
@@ -93,6 +99,13 @@ async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const city = { slug: slugify(spec.en), countryCode: spec.cc, names, center, bbox: clampBox(widened, center) };
   const parsed = citySeedSchema.safeParse(city);
   return parsed.success ? parsed.data : null;
+}
+
+function kmBetween(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const dLat = ((b.lat - a.lat) * Math.PI) / 180;
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos((a.lat * Math.PI) / 180) * Math.cos((b.lat * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(h));
 }
 
 // ---- Overpass: the attractions ------------------------------------------------------------
@@ -198,9 +211,16 @@ async function elementsForCity(cc: string, bbox: [number, number, number, number
 async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> {
   const slug = slugify(spec.en);
   const existing = data.places.filter((p) => p.city === slug).length;
-  if (!refresh && data.cities.some((c) => c.slug === slug) && !(refreshSmall && existing < refreshSmall)) return false;
+  const built = data.cities.find((c) => c.slug === slug);
+  let city: CitySeed | null = null;
+  if (!refresh && built && !(refreshSmall && existing < refreshSmall)) {
+    if (!recheck) return false;
+    city = await resolveCity(spec);
+    if (!city || kmBetween(city.center, built.center) <= 3) return false;
+    console.log(`${spec.cc} ${spec.en}: moved ${kmBetween(city.center, built.center).toFixed(1)} km, rebuilding`);
+  }
   process.stdout.write(`${spec.cc} ${spec.en}: `);
-  const city = await resolveCity(spec);
+  city = city ?? (await resolveCity(spec));
   if (!city) {
     console.log("not found on Nominatim, skipped");
     return false;
@@ -222,6 +242,7 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
       if (s && Object.keys(s).length) p.summary = s;
     }
     city.image = (await fetchPageImage("en", city.names.en).catch(() => null)) ?? (city.names.local ? await fetchPageImage("en", city.names.local).catch(() => null) : null);
+    await fillCityNames([city]).catch(() => 0);
   }
   data.cities = [...data.cities.filter((c) => c.slug !== slug), city];
   data.places = [...data.places.filter((p) => p.city !== slug), ...chosen];

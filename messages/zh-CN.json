@@ -1073,7 +1073,10 @@
       "listLabel": "您的必去清单",
       "resolvedLater": "生成计划时定位",
       "remove": "移除 {name}",
-      "full": "最多 20 个地点。"
+      "full": "最多 20 个地点。",
+      "destinations": "目的地",
+      "addDestination": "将{name}作为目的地加入行程",
+      "destinationAdded": "已将{name}加入目的地。Triplan 会决定在那里住宿还是一日游。"
     }
   },
   "trip": {

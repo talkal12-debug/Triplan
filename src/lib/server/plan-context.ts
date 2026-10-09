@@ -42,7 +42,10 @@ export async function loadPlanContext(prefs: TripPreferences): Promise<PlanConte
     if (isDemoCountry(code)) {
       const all = getSeedCities(code);
       const seeded = dest.cities.length ? all.filter((c) => dest.cities.includes(c.slug)) : custom.length ? [] : all;
-      destCities = [...seeded, ...custom.filter((c) => !seeded.some((s) => s.slug === c.slug))];
+      const merged = [...seeded, ...custom.filter((c) => !seeded.some((s) => s.slug === c.slug))];
+      // In the order the traveller picked them: the first one is the base of a single-hotel trip.
+      const at = (slug: string) => (dest.cities.indexOf(slug) < 0 ? Infinity : dest.cities.indexOf(slug));
+      destCities = merged.sort((a, b) => at(a.slug) - at(b.slug));
     } else {
       destCities = custom;
     }

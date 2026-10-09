@@ -1073,7 +1073,10 @@
       "listLabel": "La vostra lista da non perdere",
       "resolvedLater": "verrà localizzato creando il piano",
       "remove": "Rimuovi {name}",
-      "full": "Fino a 20 luoghi."
+      "full": "Fino a 20 luoghi.",
+      "destinations": "Destinazioni",
+      "addDestination": "Aggiungi {name} al viaggio come destinazione",
+      "destinationAdded": "{name} è stato aggiunto alle destinazioni. Triplan decide se dormirci o andarci in giornata."
     }
   },
   "trip": {

@@ -1073,7 +1073,10 @@
       "listLabel": "Vuestra lista de imprescindibles",
       "resolvedLater": "se localizará al crear el plan",
       "remove": "Quitar {name}",
-      "full": "Hasta 20 lugares."
+      "full": "Hasta 20 lugares.",
+      "destinations": "Destinos",
+      "addDestination": "Añadir {name} al viaje como destino",
+      "destinationAdded": "{name} se añadió a los destinos. Triplan decide si dormir allí o visitarlo en un día."
     }
   },
   "trip": {

@@ -36,7 +36,7 @@ test("wishlist places are planned first, meals get restaurants, evenings get ven
   await next.click();
   // One traveller is 65+.
   await expect(page).toHaveURL(/\/plan\/party$/);
-  await page.getByRole("button", { name: "הוסף מתוכם בני 65+" }).click();
+  await page.getByRole("button", { name: "הוסף בן/בת 65+" }).click();
   await next.click();
   for (const step of ["visit", "pace", "transport"]) {
     await expect(page).toHaveURL(new RegExp(`/plan/${step}$`));

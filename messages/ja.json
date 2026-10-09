@@ -1073,7 +1073,10 @@
       "listLabel": "必ず行くリスト",
       "resolvedLater": "プラン作成時に特定",
       "remove": "{name} を削除",
-      "full": "最大 20 か所。"
+      "full": "最大 20 か所。",
+      "destinations": "目的地",
+      "addDestination": "{name}を目的地として旅行に追加",
+      "destinationAdded": "{name}を目的地に追加しました。宿泊するか日帰りにするかは Triplan が決めます。"
     }
   },
   "trip": {

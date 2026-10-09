@@ -24,7 +24,21 @@ export type StayPlan = {
   warnings: Warning[];
 };
 
-type CityInfo = { city: PlannerCity; value: number; minutes: number; countryIndex: number };
+/** `order`: position in the traveller's own list of cities for that country (Infinity when the planner chose). */
+type CityInfo = { city: PlannerCity; value: number; minutes: number; countryIndex: number; order: number };
+
+/**
+ * A city's weight when sharing days: the scores of its best places, not all of them.
+ * Summing everything rewarded catalogue size (80 lake villages outweighed Milan's 36 curated sights).
+ */
+const VALUE_TOP_PLACES = 25;
+function cityValue(clusters: Cluster[]): number {
+  return clusters
+    .flatMap((c) => c.members.map((m) => m.score))
+    .sort((a, b) => b - a)
+    .slice(0, VALUE_TOP_PLACES)
+    .reduce((s, v) => s + v, 0);
+}
 
 function cityInfos(prefs: TripPreferences, cities: PlannerCity[], clustersByCity: Map<string, Cluster[]>): CityInfo[] {
   const out: CityInfo[] = [];
@@ -33,11 +47,13 @@ function cityInfos(prefs: TripPreferences, cities: PlannerCity[], clustersByCity
     const chosen = dest.cities.length ? inCountry.filter((c) => dest.cities.includes(c.slug)) : inCountry;
     for (const city of chosen) {
       const clusters = clustersByCity.get(city.slug) ?? [];
+      const at = dest.cities.indexOf(city.slug);
       out.push({
         city,
         countryIndex,
-        value: clusters.reduce((s, c) => s + c.value, 0),
+        value: cityValue(clusters),
         minutes: clusters.reduce((s, c) => s + c.visitMinutes, 0),
+        order: at >= 0 ? at : Infinity,
       });
     }
   });
@@ -103,12 +119,23 @@ export function planStays(
     1,
   );
 
+  // The base is the city the traveller listed first (a Milan trip with a Lake Como add-on sleeps in Milan);
+  // when the planner picked the cities, the most valuable one.
+  const baseOf = (group: CityInfo[]) =>
+    group.reduce((best, info) => (info.order < best.order || (info.order === best.order && info.value > best.value) ? info : best), group[0]);
+
   let dayCursor = 0;
   countryGroups.forEach((group, gi) => {
     const groupDays = countryDays[gi];
-    if (mode === "multi" && group.length > 1) {
-      // Moving route: one stay per city, routed by nearest neighbour from the most valuable city.
-      const startIndex = group.reduce((best, info, i) => (info.value > group[best].value ? i : best), 0);
+    // "Not sure" about hotels and a chosen city too far for a day trip: give it its own stay rather than drop it.
+    let groupMode = mode;
+    if (groupMode === "single" && prefs.hotel.baseMode === "auto" && group.length > 1 && groupDays >= group.length) {
+      const base = baseOf(group);
+      if (group.some((info) => info !== base && transferMinutes(base.city, info.city, prefs) * 2 > budget.maxBaseRoundTripMinutes)) groupMode = "multi";
+    }
+    if (groupMode === "multi" && group.length > 1) {
+      // Moving route: one stay per city, routed by nearest neighbour from the base city.
+      const startIndex = group.indexOf(baseOf(group));
       const routed = routeCities(group.map((i) => ({ ...i, center: i.city.center })), startIndex);
       // Never more stays than days; drop the least valuable extra cities.
       const kept = routed.length > groupDays ? [...routed].sort((a, b) => b.value - a.value).slice(0, groupDays) : routed;
@@ -117,6 +144,13 @@ export function planStays(
         warnings.push({ code: "city_dropped", severity: "warning", params: { city: dropped.city.slug } });
       }
       const perCity = allocate(keptRouted.map((i) => i.value), groupDays, 1);
+      // The city the traveller listed first is the heart of the trip: never fewer days than an add-on.
+      const primaryInfo = baseOf(keptRouted);
+      const primary = keptRouted.findIndex((r) => r.city.slug === primaryInfo.city.slug);
+      const most = perCity.reduce((m, d, i) => (d > perCity[m] ? i : m), 0);
+      if (primary >= 0 && primaryInfo.order !== Infinity && perCity[primary] < perCity[most]) {
+        [perCity[primary], perCity[most]] = [perCity[most], perCity[primary]];
+      }
       keptRouted.forEach((info, ci) => {
         const stayId = `stay-${stays.length + 1}`;
         const from = dayCursor;
@@ -145,8 +179,8 @@ export function planStays(
       return;
     }
 
-    // Single base per country: the most valuable city; others become day trips when close enough.
-    const base = group.reduce((best, info) => (info.value > best.value ? info : best), group[0]);
+    // Single base per country: the first city the traveller chose; others become day trips when close enough.
+    const base = baseOf(group);
     const stayId = `stay-${stays.length + 1}`;
     const from = dayCursor;
     const to = dayCursor + groupDays - 1;
@@ -201,5 +235,5 @@ export function planStays(
     dayCursor = to + 1;
   });
 
-  return { baseMode: mode, stays, slots, warnings };
+  return { baseMode: stays.length > countryGroups.length ? "multi" : mode, stays, slots, warnings };
 }

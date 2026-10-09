@@ -1073,7 +1073,10 @@
       "listLabel": "Ihre Pflichtliste",
       "resolvedLater": "wird beim Erstellen des Plans gesucht",
       "remove": "{name} entfernen",
-      "full": "Bis zu 20 Orte."
+      "full": "Bis zu 20 Orte.",
+      "destinations": "Reiseziele",
+      "addDestination": "{name} als Reiseziel hinzufügen",
+      "destinationAdded": "{name} wurde zu den Reisezielen hinzugefügt. Triplan entscheidet, ob dort übernachtet oder ein Tagesausflug gemacht wird."
     }
   },
   "trip": {

@@ -1073,7 +1073,10 @@
       "listLabel": "Votre liste d'incontournables",
       "resolvedLater": "localisé à la création du plan",
       "remove": "Retirer {name}",
-      "full": "Jusqu'à 20 lieux."
+      "full": "Jusqu'à 20 lieux.",
+      "destinations": "Destinations",
+      "addDestination": "Ajouter {name} au voyage comme destination",
+      "destinationAdded": "{name} a été ajouté aux destinations. Triplan décide s'il faut y dormir ou y aller pour la journée."
     }
   },
   "trip": {
