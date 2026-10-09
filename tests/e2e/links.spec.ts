@@ -40,7 +40,8 @@ test("booking links deep-link to the city, car rental shows for drivers, Google 
   await buildRomeTripWithCar(page);
 
   // Hotel link: Booking opens on Rome with the stay's dates and the party.
-  const booking = page.getByRole("link", { name: /^Booking\.com/ }).first();
+  // The stay's own hotel links, not the "where to sleep" areas above them.
+  const booking = page.locator("a:not([data-testid=sleep-zones] a)").filter({ hasText: /^Booking\.com/ }).first();
   const bookingUrl = await booking.getAttribute("href");
   expect(bookingUrl).toContain("ss=Rome");
   expect(bookingUrl).toMatch(/checkin=\d{4}-\d{2}-\d{2}/);
@@ -88,6 +89,6 @@ test("plans saved with an older link format get fresh links on open (Skyscanner 
   // The old links show first; the refreshed ones replace them once /api/plan/links answers.
   const skyscanner = page.getByRole("link", { name: /^Skyscanner/ }).first();
   await expect(skyscanner).toHaveAttribute("href", /skyscanner\.net\/transport\/flights\/tlv\/[a-z]{3}\/\d{6}\/\d{6}\//, { timeout: 60_000 });
-  const agoda = page.getByRole("link", { name: /^Agoda/ }).first();
+  const agoda = page.locator("a:not([data-testid=sleep-zones] a)").filter({ hasText: /^Agoda/ }).first();
   await expect(agoda).toHaveAttribute("href", /agoda\.com\/city\/rome-it\.html\?checkIn=/);
 });

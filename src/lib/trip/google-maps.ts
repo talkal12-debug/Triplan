@@ -13,6 +13,29 @@ export function placeSearchUrl(query: string, lat: number, lng: number): string 
 const fmt = (p: { lat: number; lng: number }) => `${p.lat.toFixed(6)},${p.lng.toFixed(6)}`;
 
 /**
+ * A day trip away from the hotel: Google Maps directions from the hotel to the day's area and back,
+ * by public transport (trains, ferries and buses with their real timetables) and by car. Google
+ * offers the fastest options itself; our minutes are a straight-line estimate.
+ */
+export function dayTripRoutes(plan: GuestPlan, dayIndex: number): { minutesEachWay: number; long: boolean; there: Record<"transit" | "driving", string>; back: Record<"transit" | "driving", string> } | null {
+  const day = plan.itinerary.days[dayIndex];
+  if (!day?.dayTrip) return null;
+  const stay = plan.itinerary.stays.find((s) => s.id === day.stayId);
+  // The area's own centre; else the first stop of the day.
+  const firstStop = day.activities.find((a) => a.kind === "visit" && a.placeId && plan.places[a.placeId]);
+  const target = plan.cities.find((c) => c.slug === day.citySlug)?.center ?? (firstStop ? plan.places[firstStop.placeId!] : undefined);
+  if (!stay || !target) return null;
+  const link = (from: { lat: number; lng: number }, to: { lat: number; lng: number }, mode: GoogleTravelMode) =>
+    `https://www.google.com/maps/dir/?${new URLSearchParams({ api: "1", origin: fmt(from), destination: fmt(to), travelmode: mode }).toString()}`;
+  return {
+    minutesEachWay: day.dayTrip.minutesEachWay,
+    long: day.dayTrip.long,
+    there: { transit: link(stay.center, target, "transit"), driving: link(stay.center, target, "driving") },
+    back: { transit: link(target, stay.center, "transit"), driving: link(target, stay.center, "driving") },
+  };
+}
+
+/**
  * A Google Maps directions link for a whole day: hotel -> every stop in order.
  * Opens the Google Maps app on phones (turn-by-turn on real streets), the site elsewhere.
  * Pure and client-safe; unit-tested.

@@ -62,14 +62,18 @@ function rescheduleDay(
   const pinned = opts.keepAll ? new Set(placeIds) : locked;
   const candidates = placeIds.map((id) => places.get(id)).filter((p): p is PlannerPlace => Boolean(p)).map((p) => scored(p, ctx));
   const kind = day.kind;
-  const baseCapacity = Math.round(budget.activeMinutes * (kind === "full" ? 1 : budget.halfDayShare) * (opts.capacityScale ?? 1));
+  // A day trip keeps its travel: the trip there and back comes out of the day (plans from before
+  // the day recorded its trip have no minutes and are re-timed as before).
+  const tripMinutes = isDayTrip && day.dayTrip ? day.dayTrip.minutesEachWay * 2 : 0;
+  const baseCapacity = Math.max(60, Math.round(budget.activeMinutes * (kind === "full" ? 1 : budget.halfDayShare) * (opts.capacityScale ?? 1)) - tripMinutes);
   const plan: DayPlan = {
     dayIndex: day.index,
     stayId: day.stayId,
     citySlug: day.citySlug,
     isDayTrip,
     isTransfer: day.activities.some((a) => a.kind === "hotel_checkout"),
-    dayTripMinutes: 0,
+    dayTripMinutes: tripMinutes,
+    longDayTrip: day.dayTrip?.long ?? false,
     kind,
     date: day.date,
     clusterIds: day.clusterIds,

@@ -231,7 +231,8 @@
       "walk_budget_tight": "Budget de marche presque épuisé",
       "few_places_left": "Plus d'attractions pour cette destination : {days} jours libres",
       "must_visit_unplaced": "« {name} » de votre liste n'a pas trouvé sa place (fermé à vos dates ou trop loin). Essayez « Reconstruire » ou ajoutez-le à la main.",
-      "must_visit_unresolved": "Impossible de localiser « {name} ». Vérifiez l'orthographe ou choisissez une suggestion."
+      "must_visit_unresolved": "Impossible de localiser « {name} ». Vérifiez l'orthographe ou choisissez une suggestion.",
+      "long_day_trip": "{city} : une longue excursion, environ {minutes} min par trajet. Gardée parce que vous l'avez choisie."
     },
     "rainPlan": "Plan pluie",
     "tripStats": "Total {distance} à pied, {places} attractions, {verified} % avec horaires vérifiés",
@@ -546,6 +547,15 @@
         "access": "une étape n'est pas accessible",
         "accessLimited": "accessibilité partielle"
       }
+    },
+    "dayTrip": {
+      "title": "Excursion à {city} : environ {time} h par trajet",
+      "titleLong": "Longue excursion à {city} : environ {time} h par trajet",
+      "hint": "Une estimation. Google Maps montre les trains, ferries et bus réels.",
+      "hintLong": "Partez tôt. Google Maps montre la liaison réelle la plus rapide ; si elle est trop longue, envisagez une nuit sur place.",
+      "there": "Le plus rapide pour y aller",
+      "back": "Retour à l'hôtel",
+      "byCar": "En voiture"
     }
   },
   "gallery": {

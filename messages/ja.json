@@ -231,7 +231,8 @@
       "walk_budget_tight": "徒歩の上限にほぼ達しています",
       "few_places_left": "この目的地の観光スポットを使い切りました：空き{days}日",
       "must_visit_unplaced": "リストの「{name}」を組み込めませんでした（日程中は休業、または遠すぎます）。「再作成」するか手動で追加してください。",
-      "must_visit_unresolved": "「{name}」を特定できませんでした。つづりを確認するか候補から選んでください。"
+      "must_visit_unresolved": "「{name}」を特定できませんでした。つづりを確認するか候補から選んでください。",
+      "long_day_trip": "{city}：長めの日帰り、片道約 {minutes} 分。選ばれたので残しています。"
     },
     "rainPlan": "雨天プラン",
     "tripStats": "合計 徒歩{distance}、{places}か所、営業時間確認済み{verified}%",
@@ -546,6 +547,15 @@
         "access": "バリアフリーでない場所あり",
         "accessLimited": "一部バリアフリー"
       }
+    },
+    "dayTrip": {
+      "title": "{city}への日帰り：片道約 {time} 時間",
+      "titleLong": "{city}への長めの日帰り：片道約 {time} 時間",
+      "hint": "目安です。実際の電車・フェリー・バスは Google マップで確認できます。",
+      "hintLong": "朝早めに出発を。実際の最速ルートは Google マップで表示されます。長すぎる場合は現地で一泊も検討を。",
+      "there": "最速の行き方",
+      "back": "ホテルへの帰り道",
+      "byCar": "車で"
     }
   },
   "gallery": {

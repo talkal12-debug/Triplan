@@ -231,7 +231,8 @@
       "walk_budget_tight": "Walking budget almost used up",
       "few_places_left": "Ran out of attractions for this destination: {days} free days",
       "must_visit_unplaced": "\"{name}\" from your must-see list did not fit (closed on your dates or too far). Try \"Rebuild\" or add it by hand.",
-      "must_visit_unresolved": "We could not locate \"{name}\". Check the spelling or pick a suggestion."
+      "must_visit_unresolved": "We could not locate \"{name}\". Check the spelling or pick a suggestion.",
+      "long_day_trip": "{city}: a long day trip, about {minutes} min each way. Kept because you chose it."
     },
     "rainPlan": "Rain plan",
     "tripStats": "Total {distance} walking, {places} attractions, {verified}% with verified opening hours",
@@ -546,6 +547,15 @@
         "access": "a stop is not accessible",
         "accessLimited": "partly accessible"
       }
+    },
+    "dayTrip": {
+      "title": "Day trip to {city}: about {time} h each way",
+      "titleLong": "Long day trip to {city}: about {time} h each way",
+      "hint": "An estimate. Google Maps shows the actual trains, ferries and buses.",
+      "hintLong": "Leave early. Google Maps shows the actual fastest connection (train, ferry, bus); if it is too long, consider a night there.",
+      "there": "Fastest way there",
+      "back": "Way back to the hotel",
+      "byCar": "By car"
     }
   },
   "gallery": {

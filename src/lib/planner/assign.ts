@@ -237,7 +237,7 @@ export function alignWithWeather(days: DayPlan[], weather: Record<string, DayWea
 
 /** Swap what happens on two days, keeping each day's index/date/stay. */
 export function swapDayContent(days: DayPlan[], i: number, j: number) {
-  const keys = ["citySlug", "isDayTrip", "dayTripMinutes", "clusterIds", "candidates", "theme", "indoorShare", "capacity", "plannedWalkKm"] as const;
+  const keys = ["citySlug", "isDayTrip", "dayTripMinutes", "longDayTrip", "clusterIds", "candidates", "theme", "indoorShare", "capacity", "plannedWalkKm"] as const;
   for (const k of keys) {
     const tmp = days[i][k];
     (days[i] as Record<string, unknown>)[k] = days[j][k];

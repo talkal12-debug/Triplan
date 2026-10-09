@@ -11,7 +11,8 @@ import { Button } from "@/components/ui/button";
 import type { Activity } from "@/lib/planner/itinerary";
 import type { GuestPlan } from "@/lib/guest/trips";
 import { useDistance } from "@/lib/units/use-distance";
-import { dayDirectionsUrl } from "@/lib/trip/google-maps";
+import { dayDirectionsUrl, dayTripRoutes } from "@/lib/trip/google-maps";
+import { cn } from "@/lib/utils";
 import { ActivityCard, type ActivityActions } from "./activity-card";
 import { usePlanText } from "./use-plan-text";
 import { dayWhyLines } from "@/lib/trip/day-why";
@@ -42,6 +43,8 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
   const { reasonText, warningText, name, city } = usePlanText(plan);
   const day = plan.itinerary.days[dayIndex];
   const directions = dayDirectionsUrl(plan, dayIndex);
+  const trip = dayTripRoutes(plan, dayIndex);
+  const hm = (m: number) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, "0")}`;
   const fit = dayFit(day, plan.places, travelers);
   const dayWhy = dayWhyLines(plan, day, {
     compact: (max) => t("why.compact", { minutes: max }),
@@ -121,6 +124,32 @@ export function DayTimeline({ plan, dayIndex, selectedId, onSelect, actions, bus
             </li>
           ))}
         </ul>
+      )}
+
+      {trip && (
+        <div className={cn("rounded-md border p-3 text-sm", trip.long ? "border-amber-600/50 bg-amber-50/60 dark:bg-amber-950/20" : "bg-card")} data-testid="day-trip">
+          <p className="font-medium">
+            {t(trip.long ? "dayTrip.titleLong" : "dayTrip.title", { city: city(day.citySlug), time: hm(trip.minutesEachWay) })}
+          </p>
+          <p className="mt-0.5 text-xs text-muted-foreground">{t(trip.long ? "dayTrip.hintLong" : "dayTrip.hint")}</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <Button asChild size="sm" variant="secondary">
+              <a href={trip.there.transit} target="_blank" rel="noopener noreferrer">
+                <Navigation aria-hidden />
+                {t("dayTrip.there")}
+              </a>
+            </Button>
+            <Button asChild size="sm" variant="secondary">
+              <a href={trip.back.transit} target="_blank" rel="noopener noreferrer">
+                <Navigation className="rtl:-scale-x-100" aria-hidden />
+                {t("dayTrip.back")}
+              </a>
+            </Button>
+            <a href={trip.there.driving} target="_blank" rel="noopener noreferrer" className="self-center text-xs text-primary underline-offset-2 hover:underline">
+              {t("dayTrip.byCar")}
+            </a>
+          </div>
+        </div>
       )}
 
       {directions && (

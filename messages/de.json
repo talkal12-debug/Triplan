@@ -231,7 +231,8 @@
       "walk_budget_tight": "Gehbudget fast aufgebraucht",
       "few_places_left": "Keine Sehenswürdigkeiten mehr für dieses Ziel: {days} freie Tage",
       "must_visit_unplaced": "„{name}“ von Ihrer Liste passte nicht (an Ihren Terminen geschlossen oder zu weit). Versuchen Sie „Neu erstellen“ oder fügen Sie es manuell ein.",
-      "must_visit_unresolved": "„{name}“ konnte nicht gefunden werden. Prüfen Sie die Schreibweise oder wählen Sie einen Vorschlag."
+      "must_visit_unresolved": "„{name}“ konnte nicht gefunden werden. Prüfen Sie die Schreibweise oder wählen Sie einen Vorschlag.",
+      "long_day_trip": "{city}: ein langer Tagesausflug, etwa {minutes} Min. pro Strecke. Bleibt drin, weil Sie es gewählt haben."
     },
     "rainPlan": "Regenplan",
     "tripStats": "Insgesamt {distance} zu Fuß, {places} Sehenswürdigkeiten, {verified} % mit geprüften Öffnungszeiten",
@@ -546,6 +547,15 @@
         "access": "ein Halt ist nicht barrierefrei",
         "accessLimited": "teilweise barrierefrei"
       }
+    },
+    "dayTrip": {
+      "title": "Tagesausflug nach {city}: etwa {time} Std. pro Strecke",
+      "titleLong": "Langer Tagesausflug nach {city}: etwa {time} Std. pro Strecke",
+      "hint": "Eine Schätzung. Google Maps zeigt die tatsächlichen Züge, Fähren und Busse.",
+      "hintLong": "Früh losfahren. Google Maps zeigt die tatsächlich schnellste Verbindung; ist sie zu lang, eine Nacht dort erwägen.",
+      "there": "Schnellster Weg hin",
+      "back": "Zurück zum Hotel",
+      "byCar": "Mit dem Auto"
     }
   },
   "gallery": {

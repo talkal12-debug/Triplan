@@ -231,7 +231,8 @@
       "walk_budget_tight": "Orçamento de caminhada quase esgotado",
       "few_places_left": "Esgotámos as atrações para este destino: {days} dias livres",
       "must_visit_unplaced": "«{name}» da vossa lista não coube (fechado nas vossas datas ou longe demais). Tentem «Reconstruir» ou adicionem à mão.",
-      "must_visit_unresolved": "Não conseguimos localizar «{name}». Verifiquem a ortografia ou escolham uma sugestão."
+      "must_visit_unresolved": "Não conseguimos localizar «{name}». Verifiquem a ortografia ou escolham uma sugestão.",
+      "long_day_trip": "{city}: uma excursão longa, cerca de {minutes} min por trajeto. Mantém-se porque a escolheram."
     },
     "rainPlan": "Plano de chuva",
     "tripStats": "Total de {distance} a pé, {places} atrações, {verified}% com horários verificados",
@@ -546,6 +547,15 @@
         "access": "uma paragem não é acessível",
         "accessLimited": "acessibilidade parcial"
       }
+    },
+    "dayTrip": {
+      "title": "Excursão a {city}: cerca de {time} h por trajeto",
+      "titleLong": "Excursão longa a {city}: cerca de {time} h por trajeto",
+      "hint": "Uma estimativa. O Google Maps mostra os comboios, ferries e autocarros reais.",
+      "hintLong": "Saiam cedo. O Google Maps mostra a ligação real mais rápida; se for longa demais, considerem uma noite lá.",
+      "there": "Caminho mais rápido",
+      "back": "Regresso ao hotel",
+      "byCar": "De carro"
     }
   },
   "gallery": {
