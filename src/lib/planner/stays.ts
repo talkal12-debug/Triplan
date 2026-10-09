@@ -30,7 +30,7 @@ export type StayPlan = {
 };
 
 /** `order`: position in the traveller's own list of cities for that country (Infinity when the planner chose). */
-type CityInfo = { city: PlannerCity; value: number; minutes: number; countryIndex: number; order: number };
+type CityInfo = { city: PlannerCity; value: number; minutes: number; countryIndex: number; order: number; requested: number | null };
 
 /**
  * A city's weight when sharing days: the scores of its best places, not all of them.
@@ -59,6 +59,7 @@ function cityInfos(prefs: TripPreferences, cities: PlannerCity[], clustersByCity
         value: cityValue(clusters),
         minutes: clusters.reduce((s, c) => s + c.visitMinutes, 0),
         order: at >= 0 ? at : Infinity,
+        requested: dest.cityDays?.[city.slug] ?? null,
       });
     }
   });
@@ -133,11 +134,15 @@ export function planStays(
   countryGroups.forEach((group, gi) => {
     const groupDays = countryDays[gi];
     // "Not sure" about hotels and a chosen city too far for a day trip: give it its own stay rather than drop it.
+    // Unless the traveller asked for one or two days there and it is within a long day trip: then it is a day trip.
     let groupMode = mode;
+    const base0 = baseOf(group);
+    const shortTrip = (info: CityInfo) => info.requested !== null && info.requested <= 2 && transferMinutes(base0.city, info.city, prefs) <= LONG_DAY_TRIP_MAX_ONE_WAY;
     if (groupMode === "single" && prefs.hotel.baseMode === "auto" && group.length > 1 && groupDays >= group.length) {
-      const base = baseOf(group);
       // Only cities the traveller picked: when the planner chose the cities itself, a far one is simply left out.
-      if (group.some((info) => info !== base && info.order !== Infinity && transferMinutes(base.city, info.city, prefs) * 2 > budget.maxBaseRoundTripMinutes)) groupMode = "multi";
+      const wantsOwnStay = (info: CityInfo) =>
+        info !== base0 && info.order !== Infinity && !shortTrip(info) && ((info.requested ?? 0) >= 3 || transferMinutes(base0.city, info.city, prefs) * 2 > budget.maxBaseRoundTripMinutes);
+      if (group.some(wantsOwnStay)) groupMode = "multi";
     }
     if (groupMode === "multi" && group.length > 1) {
       // Moving route: one stay per city, routed by nearest neighbour from the base city.
@@ -149,12 +154,25 @@ export function planStays(
       for (const dropped of routed.filter((r) => !kept.includes(r))) {
         warnings.push({ code: "city_dropped", severity: "warning", params: { city: dropped.city.slug } });
       }
-      const perCity = allocate(keptRouted.map((i) => i.value), groupDays, 1);
-      // The city the traveller listed first is the heart of the trip: never fewer days than an add-on.
+      // Days the traveller asked for are given as asked (leaving at least a day to every other city);
+      // the rest is shared by value.
+      const free = keptRouted.filter((i) => i.requested === null);
+      let fixedLeft = groupDays - free.length;
+      const fixed = keptRouted.map((i) => {
+        if (i.requested === null) return null;
+        const d = Math.max(1, Math.min(i.requested, fixedLeft - (keptRouted.filter((x) => x.requested !== null).length - 1)));
+        fixedLeft -= d;
+        return d;
+      });
+      const freeDays = groupDays - fixed.reduce<number>((s, d) => s + (d ?? 0), 0);
+      const shared = allocate(free.map((i) => i.value), Math.max(free.length, freeDays), 1);
+      const perCity = keptRouted.map((i, k) => fixed[k] ?? shared[free.indexOf(i)]);
+      // The city the traveller listed first is the heart of the trip: never fewer days than an add-on
+      // (only when nobody fixed the split).
       const primaryInfo = baseOf(keptRouted);
       const primary = keptRouted.findIndex((r) => r.city.slug === primaryInfo.city.slug);
       const most = perCity.reduce((m, d, i) => (d > perCity[m] ? i : m), 0);
-      if (primary >= 0 && primaryInfo.order !== Infinity && perCity[primary] < perCity[most]) {
+      if (fixed.every((d) => d === null) && primary >= 0 && primaryInfo.order !== Infinity && perCity[primary] < perCity[most]) {
         [perCity[primary], perCity[most]] = [perCity[most], perCity[primary]];
       }
       keptRouted.forEach((info, ci) => {
@@ -218,10 +236,20 @@ export function planStays(
       }
     }
     dayTrips.sort((a, b) => b.info.value - a.info.value);
-    // Base city keeps at least half the days (and the arrival / departure days).
-    const maxTrips = Math.max(0, Math.min(dayTrips.length, Math.floor(groupDays / 2), groupDays - 2));
-    const tripDays = dayTrips.slice(0, maxTrips);
-    for (const dropped of dayTrips.slice(maxTrips)) {
+    // Day trips happen on the middle days (the base keeps the arrival and departure days). Days the traveller
+    // asked for come first, one trip day each; the planner's own picks may then use up to half the stay.
+    let middleLeft = Math.max(0, groupDays - 2);
+    const tripDays: typeof dayTrips = [];
+    for (const trip of dayTrips.filter((t) => t.info.requested !== null)) {
+      for (let k = 0; k < trip.info.requested! && middleLeft > 0; k++) {
+        tripDays.push(trip);
+        middleLeft--;
+      }
+    }
+    const unrequested = dayTrips.filter((t) => t.info.requested === null);
+    const freeTrips = Math.max(0, Math.min(unrequested.length, Math.floor(groupDays / 2) - tripDays.length, middleLeft));
+    tripDays.push(...unrequested.slice(0, freeTrips));
+    for (const dropped of [...unrequested.slice(freeTrips), ...dayTrips.filter((t) => t.info.requested !== null && !tripDays.includes(t))]) {
       warnings.push({ code: "city_dropped", severity: "info", params: { city: dropped.info.city.slug } });
     }
 

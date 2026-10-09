@@ -8,6 +8,7 @@ import { seasonalFor } from "@/lib/data/seasonal";
 import { SeasonalHighlights } from "@/components/trip/seasonal-highlights";
 import { FieldLabel, Stepper, inputClass } from "../controls";
 import type { StepProps } from "../step-props";
+import { CityDays } from "./city-days";
 
 export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
   const t = useTranslations("wizard.dates");
@@ -57,6 +58,7 @@ export function DatesStep({ prefs, set, ctx, errors }: StepProps) {
         increaseLabel={t("days")}
         decreaseLabel={t("days")}
       />
+      <CityDays prefs={prefs} set={set} ctx={ctx} />
 
       {season && (
         <div className="flex items-start gap-3 rounded-md border border-dashed bg-muted/40 p-4 text-sm">

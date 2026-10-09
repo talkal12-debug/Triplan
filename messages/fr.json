@@ -784,7 +784,16 @@
       "invalidDate": "Date invalide",
       "origin": "Vous partez d'où ? (facultatif)",
       "originPlaceholder": "ex. Paris",
-      "originHint": "Pour que les liens de vols s'ouvrent directement sur votre trajet."
+      "originHint": "Pour que les liens de vols s'ouvrent directement sur votre trajet.",
+      "cityDays": {
+        "title": "Comment répartir les {days} jours ?",
+        "hint": "{base} est la base. Pour les autres destinations, choisissez les jours ; un ou deux jours près de la base sont des excursions depuis elle, sans changer d'hôtel.",
+        "auto": "Triplan décide",
+        "oneDay": "Un jour (excursion)",
+        "days": "{count, plural, one {# jour} other {# jours}}",
+        "rest": "{base} : les jours restants ({count})",
+        "tooMany": "C'est plus de jours que le voyage n'en compte ({days}). Triplan raccourcira."
+      }
     },
     "party": {
       "title": "Qui voyage ?",
@@ -1086,7 +1095,7 @@
       "full": "Jusqu'à 20 lieux.",
       "destinations": "Destinations",
       "addDestination": "Ajouter {name} au voyage comme destination",
-      "destinationAdded": "{name} a été ajouté aux destinations. Triplan décide s'il faut y dormir ou y aller pour la journée."
+      "destinationAdded": "{name} a été ajouté pour une journée (excursion). Vous pouvez changer les jours à l'étape des dates."
     }
   },
   "trip": {

@@ -784,7 +784,16 @@
       "invalidDate": "Invalid date",
       "origin": "Flying from? (optional)",
       "originPlaceholder": "e.g. London",
-      "originHint": "So the flight links open on your route."
+      "originHint": "So the flight links open on your route.",
+      "cityDays": {
+        "title": "How should the {days} days be split?",
+        "hint": "{base} is the base. For the other destinations pick the days; one or two days near the base are day trips from it, without changing hotels.",
+        "auto": "Triplan decides",
+        "oneDay": "One day (day trip)",
+        "days": "{count, plural, one {# day} other {# days}}",
+        "rest": "{base}: the remaining days ({count})",
+        "tooMany": "That is more days than the trip has ({days}). Triplan will shorten it."
+      }
     },
     "party": {
       "title": "Who is travelling?",
@@ -1086,7 +1095,7 @@
       "full": "Up to 20 places.",
       "destinations": "Destinations",
       "addDestination": "Add {name} to the trip as a destination",
-      "destinationAdded": "{name} was added to the destinations. Triplan decides whether to stay there or visit it for a day."
+      "destinationAdded": "{name} was added for one day (a day trip). You can change the days in the dates step."
     }
   },
   "trip": {

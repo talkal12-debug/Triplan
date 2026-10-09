@@ -62,7 +62,7 @@ export function PreferencesSummary({ prefs, ctx, editable = false }: Props) {
                 <CountryFlag code={d.countryCode} size={20} />
                 <span className="font-medium">{c?.name ?? d.countryCode}</span>
                 <span className="text-sm text-muted-foreground">
-                  {cities.length ? listFormat.format(cities.map((x) => x.name)) : ts("noCities")}
+                  {cities.length ? listFormat.format(cities.map((x) => (d.cityDays?.[x.slug] ? `${x.name} (${t("dates.cityDays.days", { count: d.cityDays[x.slug] })})` : x.name))) : ts("noCities")}
                 </span>
               </li>
             );
