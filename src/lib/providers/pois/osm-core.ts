@@ -81,6 +81,30 @@ out center tags 400;`;
   return { tier1, tier2 };
 }
 
+/**
+ * The same net as the two Overpass queries, for the file-based build: named
+ * things with a Wikipedia article in the attraction categories, beaches and
+ * markets even without one, and museums, galleries, zoos, aquariums, theme
+ * parks, viewpoints, castles and palaces even without one.
+ */
+export function matchesAttractionFilter(tags: Record<string, string>): boolean {
+  if (!tags.name) return false;
+  const wiki = Boolean(tags.wikipedia);
+  const tourism = tags.tourism;
+  if (tourism && ["museum", "gallery", "zoo", "aquarium", "theme_park", "viewpoint"].includes(tourism)) return true;
+  if (tourism === "attraction" && wiki) return true;
+  const historic = tags.historic;
+  if (historic === "castle" || historic === "palace") return true;
+  if (historic && ["monument", "ruins", "archaeological_site"].includes(historic) && wiki) return true;
+  if (tags.amenity === "place_of_worship" && wiki) return true;
+  if ((tags.leisure === "park" || tags.leisure === "garden") && wiki) return true;
+  if (tags.natural === "beach") return true;
+  if (tags.amenity === "marketplace") return true;
+  if ((tags.man_made === "tower" || tags.man_made === "bridge") && wiki) return true;
+  if (tags.place === "square" && wiki) return true;
+  return false;
+}
+
 /** Category + editorial defaults from OSM tags. Returns null for things we do not plan around. */
 export function classify(tags: Record<string, string>): { category: PlaceCategory; tags: PlaceTag[]; visitMinutes: number; indoor: boolean; kidFriendly: boolean } | null {
   const t = tags;
