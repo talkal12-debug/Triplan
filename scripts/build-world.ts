@@ -66,6 +66,14 @@ const nominatimSchema = z.array(
   }),
 );
 let lastNominatim = 0;
+/** The resolved city's Wikidata item, for its exact English article when the plain name is ambiguous ("Bath", "Split"). */
+const cityWikidata = new Map<string, string>();
+async function enwikiTitle(qid: string): Promise<string | null> {
+  const res = await fetch(`https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${qid}&props=sitelinks&sitefilter=enwiki&format=json`, { headers: { "User-Agent": UA } });
+  if (!res.ok) return null;
+  const data = (await res.json()) as { entities?: Record<string, { sitelinks?: { enwiki?: { title: string } } }> };
+  return data.entities?.[qid]?.sitelinks?.enwiki?.title ?? null;
+}
 async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const wait = 1100 - (Date.now() - lastNominatim);
   if (wait > 0) await sleep(wait);
@@ -98,6 +106,7 @@ async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const widened: [number, number, number, number] = [Math.min(s, center.lat - minLat), Math.min(w, center.lng - minLng), Math.max(n, center.lat + minLat), Math.max(e, center.lng + minLng)];
   const city = { slug: slugify(spec.en), countryCode: spec.cc, names, center, bbox: clampBox(widened, center) };
   const parsed = citySeedSchema.safeParse(city);
+  if (parsed.success && hit.extratags?.wikidata) cityWikidata.set(parsed.data.slug, hit.extratags.wikidata);
   return parsed.success ? parsed.data : null;
 }
 
@@ -241,7 +250,13 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
       const s = got.get(p.id);
       if (s && Object.keys(s).length) p.summary = s;
     }
-    city.image = (await fetchPageImage("en", city.names.en).catch(() => null)) ?? (city.names.local ? await fetchPageImage("en", city.names.local).catch(() => null) : null);
+    // The exact article first (through Wikidata), then the plain name, which may be a disambiguation page.
+    const qid = cityWikidata.get(city.slug);
+    const exact = qid ? await enwikiTitle(qid).catch(() => null) : null;
+    city.image =
+      (exact ? await fetchPageImage("en", exact).catch(() => null) : null) ??
+      (await fetchPageImage("en", city.names.en).catch(() => null)) ??
+      (city.names.local ? await fetchPageImage("en", city.names.local).catch(() => null) : null);
     await fillCityNames([city]).catch(() => 0);
   }
   data.cities = [...data.cities.filter((c) => c.slug !== slug), city];
