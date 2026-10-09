@@ -15,7 +15,7 @@ import { countryMatches } from "@/lib/data/country-match";
 const MAX_DESTINATIONS = 3;
 const TOP_COUNT = 30;
 
-type CityResult = { slug: string; names: { en: string; he?: string; local?: string; [k: string]: string | undefined }; center: { lat: number; lng: number }; bbox: [number, number, number, number] };
+type CityResult = { slug: string; names: { en: string; he?: string; local?: string; [k: string]: string | undefined }; center: { lat: number; lng: number }; bbox: [number, number, number, number]; image?: { url: string; page: string | null } | null };
 
 export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
   const t = useTranslations("wizard.destination");
@@ -135,11 +135,13 @@ export function DestinationStep({ prefs, set, ctx, errors }: StepProps) {
                       </div>
                     </div>
                   )
-                ) : (
+                ) : null}
+                {(
                   <CustomCityPicker
                     countryCode={d.countryCode}
                     countryName={c.name}
                     locale={ctx.locale}
+                    demo={c.demo}
                     chosen={d.customCities ?? []}
                     onAdd={(city) => addCustomCity(d.countryCode, city)}
                     onRemove={(slug) => removeCustomCity(d.countryCode, slug)}
@@ -230,6 +232,7 @@ function CustomCityPicker({
   countryCode,
   countryName,
   locale,
+  demo = false,
   chosen,
   onAdd,
   onRemove,
@@ -238,6 +241,8 @@ function CustomCityPicker({
   countryCode: string;
   countryName: string;
   locale: string;
+  /** Demo country: the seed tiles are shown above; this picker only adds the catalogue's extra cities and search. */
+  demo?: boolean;
   chosen: CustomCity[];
   onAdd: (city: CityResult) => void;
   onRemove: (slug: string) => void;
@@ -247,7 +252,18 @@ function CustomCityPicker({
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<CityResult[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [prebuilt, setPrebuilt] = useState<CityResult[]>([]);
   const deferred = useDeferredValue(query.trim());
+
+  // The world catalogue's cities for this country: instant, with photos, selectable like the demo tiles.
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(`/api/cities?country=${countryCode}&locale=${locale}`, { signal: controller.signal })
+      .then(async (r) => (r.ok ? ((await r.json()) as { cities?: CityResult[]; provider?: string }) : null))
+      .then((json) => setPrebuilt(json?.provider === "world" ? (json.cities ?? []).filter((c) => !c.slug.startsWith("osm-")) : []))
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, [countryCode, locale]);
 
   useEffect(() => {
     if (deferred.length < 2) {
@@ -278,13 +294,49 @@ function CustomCityPicker({
     return names.local && names.local !== l ? `${l} / ${names.local}` : l;
   };
 
+  const tiles = prebuilt;
+  const chosenSlugs = new Set(chosen.map((c) => c.slug));
+  if (demo && tiles.length === 0) return null;
+
   return (
     <div className="mt-3">
-      <p className="text-sm font-medium">{t("osmCities", { country: countryName })}</p>
-      <p className="text-xs text-muted-foreground">{t("osmCitiesHint")}</p>
-      {chosen.length > 0 && (
+      <p className="text-sm font-medium">{t(demo ? "moreCities" : tiles.length ? "coveredCities" : "osmCities", { country: countryName })}</p>
+      <p className="text-xs text-muted-foreground">{tiles.length ? t("coveredCitiesHint") : t("osmCitiesHint")}</p>
+      {tiles.length > 0 && (
+        <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {tiles.map((city) => {
+            const selected = chosenSlugs.has(city.slug);
+            const name = label(city.names);
+            return city.image ? (
+              <button
+                key={city.slug}
+                type="button"
+                role="checkbox"
+                aria-checked={selected}
+                onClick={() => (selected ? onRemove(city.slug) : onAdd(city))}
+                className={cn(
+                  "group relative overflow-hidden rounded-md border text-start outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50",
+                  selected ? "border-primary ring-2 ring-primary" : "border-foreground/15 hover:border-foreground/40",
+                )}
+              >
+                <Photo image={city.image} alt={name} width={480} className="aspect-[4/3] w-full" sizes="(max-width: 640px) 50vw, 240px" />
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2 pt-8 text-white">
+                  <span className="block font-semibold leading-tight">{city.names[locale] ?? city.names.en}</span>
+                  {city.names.local && city.names.local !== (city.names[locale] ?? city.names.en) && <span className="block text-xs opacity-80" dir="auto">{city.names.local}</span>}
+                </span>
+                {selected && <Check className="absolute end-2 top-2 size-5 rounded-full bg-primary p-0.5 text-primary-foreground" aria-hidden />}
+              </button>
+            ) : (
+              <Chip key={city.slug} selected={selected} onToggle={() => (selected ? onRemove(city.slug) : onAdd(city))}>
+                {name}
+              </Chip>
+            );
+          })}
+        </div>
+      )}
+      {chosen.filter((c) => !tiles.some((p) => p.slug === c.slug)).length > 0 && (
         <ul className="mt-2 flex flex-wrap gap-2">
-          {chosen.map((c) => (
+          {chosen.filter((c) => !tiles.some((p) => p.slug === c.slug)).map((c) => (
             <li key={c.slug}>
               <Chip selected onToggle={() => onRemove(c.slug)} ariaLabel={t("remove", { name: label(c.names) })}>
                 {label(c.names)}
@@ -312,7 +364,7 @@ function CustomCityPicker({
       {results.length > 0 && (
         <ul className="mt-2 grid gap-1">
           {results
-            .filter((r) => !chosen.some((c) => c.slug === r.slug))
+            .filter((r) => !chosen.some((c) => c.slug === r.slug) && !tiles.some((p) => p.slug === r.slug))
             .map((r) => (
               <li key={r.slug}>
                 <button

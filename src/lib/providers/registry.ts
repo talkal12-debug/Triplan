@@ -12,6 +12,7 @@ import { mockHolidays } from "./holidays/mock";
 import { frankfurter } from "./currency/frankfurter";
 import { mockCurrency } from "./currency/mock";
 import { seedPois } from "./pois/seed";
+import { getWorldPlaces } from "@/lib/data/world";
 import { osmPois } from "./pois/osm";
 import { readCachedPlaces, writeCachedPlaces } from "./pois/cache";
 import type { CurrencyProvider, HolidayProvider, PoiProvider, RoutingProvider, WeatherProvider } from "./types";
@@ -47,10 +48,19 @@ export function getPois(countryCode: string): PoiProvider {
   return osmPois;
 }
 
-/** Places for a city, through the cache for OSM-sourced cities. */
+/** Places for a city: the curated seed, then the prebuilt world catalogue, then the database cache, then live OpenStreetMap. */
 export async function placesForCity(city: CitySeed, notes?: string[]): Promise<PlaceSeed[]> {
   const provider = getPois(city.countryCode);
-  if (provider === seedPois) return seedPois.placesForCity(city);
+  if (provider === seedPois) {
+    const seeded = await seedPois.placesForCity(city);
+    if (seeded.length > 0) return seeded;
+  }
+  const prebuilt = getWorldPlaces(city.countryCode, city.slug);
+  if (prebuilt.length > 0) {
+    notes?.push(`places: ${city.slug} from the world catalogue`);
+    return prebuilt;
+  }
+  if (provider === seedPois) return [];
   const cached = await tryProvider("place-cache", () => readCachedPlaces(city), null, notes);
   if (cached && cached.length > 0) return cached;
   const fresh = await tryProvider("overpass", () => osmPois.placesForCity(city), [] as PlaceSeed[], notes);

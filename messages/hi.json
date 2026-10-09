@@ -746,7 +746,10 @@
       "citySearchPlaceholder": "शहर का नाम टाइप करें, जैसे Paris",
       "citySearching": "खोज रहे हैं...",
       "citySearchError": "खोज विफल। फिर से कोशिश करें।",
-      "cityRequired": "इस देश में कम से कम एक शहर चुनें"
+      "cityRequired": "इस देश में कम से कम एक शहर चुनें",
+      "coveredCities": "{country} के शहर",
+      "coveredCitiesHint": "इन शहरों के आकर्षण पहले से तैयार हैं (OpenStreetMap, विकिपीडिया), इसलिए योजना जल्दी बनती है। कोई और शहर? नीचे खोजें।",
+      "moreCities": "{country} के और शहर"
     },
     "dates": {
       "title": "कब?",

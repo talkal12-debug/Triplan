@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import opening_hours from "opening_hours";
 import {
@@ -34,6 +34,27 @@ describe("data/countries.json", () => {
     expect(pt?.drivingSide).toBe("right");
     expect(jp?.drivingSide).toBe("left");
     expect(jp?.callingCode).toBe("+81");
+  });
+});
+
+describe("data/world/*.json (prebuilt catalogue)", () => {
+  const worldDir = join(dataDir, "world");
+  const files = existsSync(worldDir) ? readdirSync(worldDir).filter((f) => f.endsWith(".json")) : [];
+  it("exists once the first country was built (npm run data:world)", () => {
+    expect(Array.isArray(files)).toBe(true);
+  });
+  it.each(files.length ? files : ["none"])("%s: validates, every place belongs to a listed city, hours parse", (file) => {
+    if (file === "none") return;
+    const data = poisFileSchema.parse(JSON.parse(readFileSync(join(worldDir, file), "utf8")));
+    const slugs = new Set(data.cities.map((c) => c.slug));
+    expect(data.cities.length).toBeGreaterThan(0);
+    for (const p of data.places) {
+      expect(slugs.has(p.city), p.id).toBe(true);
+      expect(p.countryCode.toLowerCase()).toBe(file.replace(".json", ""));
+      if (p.openingHours) expect(() => new opening_hours(p.openingHours!, { lat: p.lat, lon: p.lng, address: { country_code: p.countryCode.toLowerCase(), state: "" } }), p.id).not.toThrow();
+    }
+    const ids = data.places.map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
 

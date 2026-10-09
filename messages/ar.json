@@ -746,7 +746,10 @@
       "citySearchPlaceholder": "اكتب اسم مدينة، مثلًا باريس",
       "citySearching": "جارٍ البحث...",
       "citySearchError": "فشل البحث. حاول مجددًا.",
-      "cityRequired": "اختر مدينة واحدة على الأقل في هذه الدولة"
+      "cityRequired": "اختر مدينة واحدة على الأقل في هذه الدولة",
+      "coveredCities": "مدن في {country}",
+      "coveredCitiesHint": "هذه المدن تأتي بمعالم مُعدّة مسبقاً (OpenStreetMap، ويكيبيديا)، لذا تُبنى الخطة بسرعة. مدينة أخرى؟ ابحثوا أدناه.",
+      "moreCities": "مدن أخرى في {country}"
     },
     "dates": {
       "title": "متى؟",

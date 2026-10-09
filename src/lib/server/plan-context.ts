@@ -13,6 +13,7 @@ import type { Locale } from "@/lib/i18n/locales";
 import { nearestAirport } from "@/lib/data/airports";
 import { originAirport } from "@/lib/server/origin-airport";
 import { borrowBeaches } from "@/lib/planner/beaches";
+import { getWorldPlaces, hasWorldCountry } from "@/lib/data/world";
 import { sleepZones as sleepZonesFor, type SleepZone } from "@/lib/planner/sleep-zones";
 import { LINKS_VERSION } from "@/lib/links-version";
 import { buildNearby } from "./nearby-plan";
@@ -37,21 +38,23 @@ export async function loadPlanContext(prefs: TripPreferences): Promise<PlanConte
   for (const dest of prefs.destinations) {
     const code = dest.countryCode.toUpperCase();
     let destCities: CitySeed[];
+    const custom: CitySeed[] = (dest.customCities ?? []).filter((c) => dest.cities.includes(c.slug)).map((c) => ({ slug: c.slug, countryCode: code, names: c.names, center: c.center, bbox: c.bbox }));
     if (isDemoCountry(code)) {
       const all = getSeedCities(code);
-      destCities = dest.cities.length ? all.filter((c) => dest.cities.includes(c.slug)) : all;
+      const seeded = dest.cities.length ? all.filter((c) => dest.cities.includes(c.slug)) : custom.length ? [] : all;
+      destCities = [...seeded, ...custom.filter((c) => !seeded.some((s) => s.slug === c.slug))];
     } else {
-      destCities = (dest.customCities ?? []).map((c) => ({ slug: c.slug, countryCode: code, names: c.names, center: c.center, bbox: c.bbox }));
+      destCities = custom;
     }
     for (const city of destCities) {
       cities.push(city);
       places.push(...(await placesForCity(city, notes)));
     }
-    // Beach holiday: the coast is often filed under another demo city (Lisbon's beaches under Sintra).
-    if (prefs.tripStyle === "relax" && isDemoCountry(code)) {
+    // Beach holiday: the coast is often filed under another city of the catalogue (Lisbon's beaches under Sintra).
+    if (prefs.tripStyle === "relax" && (isDemoCountry(code) || hasWorldCountry(code))) {
       const have = new Set(places.map((p) => p.id));
-      const others = getSeedCities(code).filter((c) => !destCities.some((d) => d.slug === c.slug));
-      const borrowed = borrowBeaches(others.flatMap((c) => getSeedPlaces(code, c.slug)), destCities).filter((p) => !have.has(p.id));
+      const pool = [...getSeedPlaces(code), ...getWorldPlaces(code)].filter((p) => !destCities.some((d) => d.slug === p.city));
+      const borrowed = borrowBeaches(pool, destCities).filter((p) => !have.has(p.id));
       places.push(...borrowed);
       if (borrowed.length) notes.push(`relax: borrowed ${borrowed.length} beaches from nearby cities`);
     }

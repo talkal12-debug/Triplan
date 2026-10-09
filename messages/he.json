@@ -746,7 +746,10 @@
       "citySearchPlaceholder": "הקלידו שם עיר, למשל פריז",
       "citySearching": "מחפש...",
       "citySearchError": "החיפוש נכשל. נסו שוב.",
-      "cityRequired": "בחרו לפחות עיר אחת במדינה הזאת"
+      "cityRequired": "בחרו לפחות עיר אחת במדינה הזאת",
+      "coveredCities": "ערים ב{country}",
+      "coveredCitiesHint": "הערים האלה מגיעות עם אטרקציות מוכנות מראש (OpenStreetMap, ויקיפדיה), ולכן התוכנית נבנית מהר. עיר אחרת? חפשו למטה.",
+      "moreCities": "עוד ערים ב{country}"
     },
     "dates": {
       "title": "מתי?",
