@@ -13,7 +13,8 @@ import { z } from "zod";
 export type Summary = { text: string; url: string | null; translatedFrom?: string; image?: { url: string; page: string | null } | null };
 
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
-const USER_AGENT = "Triplan/1.0 (trip planner; contact via repository)";
+// Wikimedia throttles generic agents hard (HTTP 429); an agent that names the site and how to reach it is served normally.
+const USER_AGENT = "Triplan/1.0 (https://triplan-rho.vercel.app; trip planner)";
 const MAX_CHARS = 280;
 const PAUSE_MS = 120;
 
@@ -142,6 +143,99 @@ export async function fetchSummariesBatch(items: { id: string; wikidata: string;
     if (!entity) continue;
     const got = await summariesFromEntity(entity, item.locales, deadline);
     if (Object.keys(got).length) out.set(item.id, got);
+  }
+  return out;
+}
+
+const actionSchema = z.object({
+  query: z
+    .object({
+      normalized: z.array(z.object({ from: z.string(), to: z.string() })).optional(),
+      redirects: z.array(z.object({ from: z.string(), to: z.string() })).optional(),
+      pages: z
+        .array(
+          z.object({
+            title: z.string(),
+            missing: z.boolean().optional(),
+            extract: z.string().optional(),
+            thumbnail: z.object({ source: z.string() }).optional(),
+            pageprops: z.object({ disambiguation: z.string().optional() }).optional(),
+          }),
+        )
+        .optional(),
+    })
+    .optional(),
+});
+
+/**
+ * The same result as fetchSummariesBatch, for many places at once (offline builds):
+ * Wikipedia's Action API returns the intro, the lead image and the disambiguation
+ * flag for 20 articles per request, so a city of 80 places costs a handful of
+ * requests per language instead of one per place. Redirects are followed.
+ */
+export async function fetchSummariesBulk(items: { id: string; wikidata: string; locales: string[] }[]): Promise<Map<string, Record<string, Summary>>> {
+  const out = new Map<string, Record<string, Summary>>();
+  if (items.length === 0) return out;
+  const allLocales = [...new Set(items.flatMap((i) => i.locales))];
+  const entities = await fetchEntities(
+    items.map((i) => i.wikidata),
+    allLocales,
+  );
+  const set = (id: string, locale: string, summary: Summary) => out.set(id, { ...(out.get(id) ?? {}), [locale]: summary });
+  for (const locale of allLocales) {
+    const lang = wikiLang(locale);
+    const byTitle = new Map<string, string[]>();
+    for (const item of items) {
+      if (!item.locales.includes(locale)) continue;
+      const title = entities.get(item.wikidata)?.sitelinks?.[`${lang}wiki`]?.title;
+      if (title) byTitle.set(title, [...(byTitle.get(title) ?? []), item.id]);
+    }
+    const titles = [...byTitle.keys()];
+    for (let i = 0; i < titles.length; i += 20) {
+      const batch = titles.slice(i, i + 20);
+      const params = new URLSearchParams({
+        action: "query",
+        format: "json",
+        formatversion: "2",
+        prop: "extracts|pageimages|pageprops",
+        exintro: "1",
+        explaintext: "1",
+        exlimit: "20",
+        piprop: "thumbnail",
+        pithumbsize: "330",
+        pilimit: "20",
+        ppprop: "disambiguation",
+        redirects: "1",
+        titles: batch.join("|"),
+      });
+      const data = await getJson(`https://${lang}.wikipedia.org/w/api.php?${params}`, actionSchema, 15_000);
+      const q = data?.query;
+      if (!q?.pages) continue;
+      const resolve = (t: string) => {
+        let x = t;
+        for (const n of q.normalized ?? []) if (n.from === x) x = n.to;
+        for (const r of q.redirects ?? []) if (r.from === x) x = r.to;
+        return x;
+      };
+      const pages = new Map(q.pages.map((p) => [p.title, p]));
+      for (const title of batch) {
+        const page = pages.get(resolve(title));
+        if (!page || page.missing || page.pageprops?.disambiguation !== undefined || !page.extract?.trim()) continue;
+        const url = `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, "_"))}`;
+        const summary: Summary = { text: trimExtract(page.extract), url, image: page.thumbnail ? { url: page.thumbnail.source, page: url } : null };
+        for (const id of byTitle.get(title) ?? []) set(id, locale, summary);
+      }
+      await sleep(PAUSE_MS);
+    }
+  }
+  // No article in that language: the short Wikidata description, as the per-place path does.
+  for (const item of items) {
+    const entity = entities.get(item.wikidata);
+    for (const locale of item.locales) {
+      if (out.get(item.id)?.[locale]) continue;
+      const d = entity?.descriptions?.[wikiLang(locale)]?.value;
+      if (d) set(item.id, locale, { text: d.charAt(0).toUpperCase() + d.slice(1), url: null });
+    }
   }
   return out;
 }
