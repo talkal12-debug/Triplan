@@ -8,9 +8,17 @@
  *
  * `q` overrides the Nominatim query when the English name is ambiguous.
  */
-export type WorldCitySpec = { cc: string; en: string; q?: string };
+export type WorldCitySpec = { cc: string; en: string; q?: string; area?: boolean };
 
-const c = (cc: string, ...names: (string | [string, string])[]): WorldCitySpec[] => names.map((n) => (typeof n === "string" ? { cc, en: n } : { cc, en: n[0], q: n[1] }));
+/** Destinations that are an island or a region, not a town of that name: resolution prefers the area. */
+export const AREA_DESTINATIONS = new Set(["Ibiza", "Santorini", "Mykonos", "Crete", "Corfu", "Bali", "Lombok", "Palawan", "Boracay", "Langkawi", "Koh Samui", "Goa", "Lake Como", "Cinque Terre", "Cappadocia", "Zanzibar", "Jeju"]);
+
+const c = (cc: string, ...names: (string | [string, string])[]): WorldCitySpec[] =>
+  names.map((n) => {
+    const spec: WorldCitySpec = typeof n === "string" ? { cc, en: n } : { cc, en: n[0], q: n[1] };
+    if (AREA_DESTINATIONS.has(spec.en)) spec.area = true;
+    return spec;
+  });
 
 export const worldCities: WorldCitySpec[] = [
   // Western Europe
