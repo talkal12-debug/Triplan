@@ -15,6 +15,28 @@ import { dropDuplicatePlaces } from "@/lib/providers/pois/osm-core";
 const worldDir = join(process.cwd(), "data", "world");
 
 const cache = new Map<string, PoisFile | null>();
+const heDir = join(process.cwd(), "data", "world-he");
+
+/**
+ * Hebrew written by Claude at dev time (scripts/world/he-todo.mts, he-apply.mts): names for places
+ * with no Hebrew name in OSM or Wikidata, and translations of the English Wikipedia lead for the top
+ * places of each city, marked translatedFrom "en". Kept apart from data/world so a rebuild keeps them.
+ */
+function withHebrew(code: string, places: PlaceSeed[]): PlaceSeed[] {
+  const file = join(heDir, `${code.toLowerCase()}.json`);
+  if (!existsSync(file)) return places;
+  const he = JSON.parse(readFileSync(file, "utf8")) as { names?: Record<string, string>; summaries?: Record<string, string> };
+  return places.map((p) => {
+    const name = !p.names.he ? he.names?.[p.id] : undefined;
+    const text = !p.summary?.he && p.summary?.en ? he.summaries?.[p.id] : undefined;
+    if (!name && !text) return p;
+    return {
+      ...p,
+      names: name ? { ...p.names, he: name } : p.names,
+      summary: text ? { ...p.summary, he: { text, url: p.summary!.en.url, translatedFrom: "en", image: p.summary!.en.image } } : p.summary,
+    };
+  });
+}
 
 function load(countryCode: string): PoisFile | null {
   const code = countryCode.toUpperCase();
@@ -24,7 +46,7 @@ function load(countryCode: string): PoisFile | null {
   if (existsSync(file)) {
     const parsed = poisFileSchema.safeParse(JSON.parse(readFileSync(file, "utf8")));
     // Files built before the duplicate rule still carry a few twins; drop them on load.
-    data = parsed.success ? { ...parsed.data, places: dropDuplicatePlaces(parsed.data.places) } : null;
+    data = parsed.success ? { ...parsed.data, places: withHebrew(code, dropDuplicatePlaces(parsed.data.places)) } : null;
   }
   cache.set(code, data);
   return data;
