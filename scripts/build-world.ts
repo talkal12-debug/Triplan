@@ -23,7 +23,7 @@ import { citySeedSchema, poisFileSchema, type CitySeed, type PlaceSeed, type Poi
 import { clampBox, enrichWithWikidata, overpassQueriesFor, overpassSchema, selectPlaces, slugify, toPlace, wikidataSchema, WIKIDATA_LANGUAGES, type OverpassElement, type WikidataFacts } from "../src/lib/providers/pois/osm-core";
 import { fetchPageImage, fetchSummariesBulk } from "../src/lib/providers/summaries-core";
 import { worldCities, type WorldCitySpec } from "./world/cities";
-import { GEOFABRIK, countryIndex, elementsInBox } from "./world/pbf";
+import { elementsInBox, regionFor, regionIndex } from "./world/pbf";
 import { fillCityNames } from "./world/names";
 
 const UA = "Triplan-world-build/0.1 (talkal12@gmail.com)";
@@ -74,11 +74,14 @@ async function enwikiTitle(qid: string): Promise<string | null> {
   const data = (await res.json()) as { entities?: Record<string, { sitelinks?: { enwiki?: { title: string } } }> };
   return data.entities?.[qid]?.sitelinks?.enwiki?.title ?? null;
 }
+// Territories OSM files under another country on Nominatim: Puerto Rico under "us", Hong Kong and Macau under "cn".
+const COUNTRY_CODES: Record<string, string> = { PR: "pr,us", HK: "hk,cn", MO: "mo,cn" };
+
 async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const wait = 1100 - (Date.now() - lastNominatim);
   if (wait > 0) await sleep(wait);
   lastNominatim = Date.now();
-  const params = new URLSearchParams({ q: spec.q ?? spec.en, countrycodes: spec.cc.toLowerCase(), format: "jsonv2", limit: "5", namedetails: "1", extratags: "1", "accept-language": "en" });
+  const params = new URLSearchParams({ q: spec.q ?? spec.en, countrycodes: COUNTRY_CODES[spec.cc] ?? spec.cc.toLowerCase(), format: "jsonv2", limit: "5", namedetails: "1", extratags: "1", "accept-language": "en" });
   const res = await fetch(`https://nominatim.openstreetmap.org/search?${params}`, { headers: { "User-Agent": UA } });
   if (!res.ok) throw new Error(`nominatim HTTP ${res.status}`);
   const hits = nominatimSchema.parse(await res.json());
@@ -209,10 +212,15 @@ function writeCountry(cc: string, data: PoisFile) {
 }
 
 const indexes = new Map<string, OverpassElement[]>();
-async function elementsForCity(cc: string, bbox: [number, number, number, number]): Promise<OverpassElement[]> {
-  if (source === "pbf" && GEOFABRIK[cc]) {
-    if (!indexes.has(cc)) indexes.set(cc, await countryIndex(cc, (m) => console.log(m)));
-    return elementsInBox(indexes.get(cc)!, bbox);
+async function elementsForCity(cc: string, slug: string, bbox: [number, number, number, number]): Promise<OverpassElement[]> {
+  const region = regionFor(cc, slug);
+  if (source === "pbf" && region) {
+    // One region in memory at a time: a country's index can be a few hundred MB.
+    if (!indexes.has(region)) {
+      indexes.clear();
+      indexes.set(region, await regionIndex(region, (m) => console.log(m)));
+    }
+    return elementsInBox(indexes.get(region)!, bbox);
   }
   return elementsFor(bbox);
 }
@@ -234,7 +242,7 @@ async function buildCity(spec: WorldCitySpec, data: PoisFile): Promise<boolean> 
     console.log("not found on Nominatim, skipped");
     return false;
   }
-  const elements = await elementsForCity(spec.cc, city.bbox);
+  const elements = await elementsForCity(spec.cc, slug, city.bbox);
   const raw = elements.map((el) => toPlace(el, city)).filter((p): p is PlaceSeed => p !== null);
   let places = raw;
   try {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { selectPlaces, clampBox, overpassQueriesFor, slugify } from "@/lib/providers/pois/osm-core";
+import { selectPlaces, clampBox, overpassQueriesFor, parseableHours, slugify } from "@/lib/providers/pois/osm-core";
 import type { PlaceSeed } from "@/lib/data/schemas";
 import { worldCities } from "../../scripts/world/cities";
 
@@ -117,5 +117,20 @@ describe("file-based source: attraction tag net", () => {
       { type: "relation", id: 3, center: { lat: 38.7, lon: -9.1 }, tags: { name: "lisbon thing" } },
     ];
     expect(elementsInBox(index, [36.9, -8.0, 37.1, -7.9]).map((e) => e.id)).toEqual([1, 2]);
+  });
+});
+
+describe("opening hours at import", () => {
+  // Limassol: the parser knows no public holidays for Cyprus and rejects any "PH" rule there.
+  it("keeps the hours without the holiday rule where the country has no holiday calendar", () => {
+    expect(parseableHours("Tu-Su 9:00-16:30; Mo,PH off", 34.68, 33.04, "CY")).toBe("Tu-Su 9:00-16:30; Mo off");
+    expect(parseableHours("Mo-Fr 08:00-15:30; Sa-Su Off; PH Off", 34.68, 33.04, "CY")).toBe("Mo-Fr 08:00-15:30; Sa-Su Off");
+    expect(parseableHours("PH,Mo-Su 08:00-24:00+", 34.68, 33.04, "CY")).toBe("Mo-Su 08:00-24:00+");
+    expect(parseableHours("PH Off", 34.68, 33.04, "CY")).toBeNull();
+  });
+
+  it("leaves holiday rules alone where the parser knows the holidays", () => {
+    expect(parseableHours("Tu-Su 09:00-17:00; PH off", 38.72, -9.14, "PT")).toBe("Tu-Su 09:00-17:00; PH off");
+    expect(parseableHours("not hours at all", 38.72, -9.14, "PT")).toBeNull();
   });
 });
