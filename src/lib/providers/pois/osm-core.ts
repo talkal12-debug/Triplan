@@ -249,7 +249,36 @@ export function toPlace(el: OverpassElement, city: CitySeed): PlaceSeed | null {
  * object or same name) dropped, and a floor of variety so a city of churches still
  * offers its parks, viewpoints, markets and beaches. `limit` caps the total.
  */
+/**
+ * The same attraction twice in one city: OpenStreetMap often maps a place both as a point and as its
+ * building (Dubai's Spice Souk, a Hong Kong mosque), and branches of one institution carry its Wikidata id
+ * and so its translated name (five buildings of the National Gallery in Prague, all "הגלריה הלאומית של פראג").
+ * Keeps the best-ranked one per Wikidata id, and per name within 400 m. Order is preserved.
+ */
+export function dropDuplicatePlaces<T extends Pick<PlaceSeed, "id" | "city" | "names" | "lat" | "lng" | "iconicity" | "wikidata">>(places: T[]): T[] {
+  const nameOf = (p: T) => (p.names.en || p.names.local || "").trim().toLowerCase();
+  const near = (a: T, b: T) => {
+    const dLat = (a.lat - b.lat) * 111_000;
+    const dLng = (a.lng - b.lng) * 111_000 * Math.cos((a.lat * Math.PI) / 180);
+    return Math.hypot(dLat, dLng) < 400;
+  };
+  const kept: T[] = [];
+  const byWikidata = new Set<string>();
+  const byName = new Map<string, T[]>();
+  for (const p of [...places].sort((a, b) => b.iconicity - a.iconicity)) {
+    if (p.wikidata && byWikidata.has(`${p.city}|${p.wikidata}`)) continue;
+    const key = `${p.city}|${nameOf(p)}`;
+    if (nameOf(p) && (byName.get(key) ?? []).some((q) => near(p, q))) continue;
+    kept.push(p);
+    if (p.wikidata) byWikidata.add(`${p.city}|${p.wikidata}`);
+    byName.set(key, [...(byName.get(key) ?? []), p]);
+  }
+  const ids = new Set(kept.map((p) => p.id));
+  return places.filter((p) => ids.has(p.id));
+}
+
 export function selectPlaces(places: PlaceSeed[], limit = 80): PlaceSeed[] {
+  places = dropDuplicatePlaces(places);
   const ranked = [...places].sort((a, b) => b.iconicity - a.iconicity || (b.openingHours ? 1 : 0) - (a.openingHours ? 1 : 0));
   const seen = new Set<string>();
   // Places of worship: in Italy nearly every village church has an article, and they crowd out villas,

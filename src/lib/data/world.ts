@@ -2,6 +2,7 @@ import "server-only";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { poisFileSchema, type CitySeed, type PlaceSeed, type PoisFile } from "./schemas";
+import { dropDuplicatePlaces } from "@/lib/providers/pois/osm-core";
 
 /**
  * The prebuilt world catalogue (data/world/{cc}.json): for a few hundred
@@ -22,7 +23,8 @@ function load(countryCode: string): PoisFile | null {
   let data: PoisFile | null = null;
   if (existsSync(file)) {
     const parsed = poisFileSchema.safeParse(JSON.parse(readFileSync(file, "utf8")));
-    data = parsed.success ? parsed.data : null;
+    // Files built before the duplicate rule still carry a few twins; drop them on load.
+    data = parsed.success ? { ...parsed.data, places: dropDuplicatePlaces(parsed.data.places) } : null;
   }
   cache.set(code, data);
   return data;
