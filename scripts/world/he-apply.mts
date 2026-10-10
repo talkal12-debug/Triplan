@@ -1,6 +1,8 @@
 /**
  * Hebrew for the world catalogue, step 2: merge translated work files into data/world-he/{cc}.json
- * ({ names: {id: he}, summaries: {id: he} }). A translated file has the same numbered lines as its
+ * ({ names: {id: he}, summaries: {id: he}, wrongSummaries: [id] }). A summary answered "-" was not about
+ * the place (the architect of a bridge, the radio station of a mast): its id goes to wrongSummaries and
+ * the place loses that description in every language. A translated file has the same numbered lines as its
  * work file, each "N<TAB>Hebrew". The runtime loader (src/lib/data/world.ts) applies them, so a
  * rebuild of data/world never loses them.
  * Usage: npx tsx scripts/world/he-apply.mts <work-dir>   (reads <file>.he for every work file)
@@ -12,7 +14,7 @@ const [work] = process.argv.slice(2);
 const index: Record<string, string[]> = JSON.parse(readFileSync(join(work, "index.json"), "utf8"));
 const heDir = join(process.cwd(), "data", "world-he");
 mkdirSync(heDir, { recursive: true });
-const files = new Map<string, { names: Record<string, string>; summaries: Record<string, string> }>();
+const files = new Map<string, { names: Record<string, string>; summaries: Record<string, string>; wrongSummaries?: string[] }>();
 const load = (cc: string) => {
   if (!files.has(cc)) {
     const f = join(heDir, `${cc}.json`);
@@ -31,6 +33,12 @@ for (const [file, ids] of Object.entries(index)) {
     const m = line.match(/^(\d+)\t(.+)$/);
     const id = m && ids[Number(m[1]) - 1];
     const text = m?.[2].trim();
+    if (id && kind === "summaries" && text === "-") {
+      const data = load(id.slice(0, 2));
+      data.wrongSummaries = [...new Set([...(data.wrongSummaries ?? []), id])];
+      added++;
+      continue;
+    }
     if (!id || !text || !hebrew.test(text)) {
       if (line.trim()) skipped++;
       continue;

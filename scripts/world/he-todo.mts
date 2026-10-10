@@ -7,6 +7,7 @@
  */
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import type { PlaceSeed } from "../../src/lib/data/schemas.ts";
 
 const [out, namesPer = "800", sumPer = "200"] = process.argv.slice(2);
 if (!out) throw new Error("usage: he-todo.mts <out-dir>");
@@ -25,7 +26,7 @@ for (const f of readdirSync(dir).filter((x) => x.endsWith(".json"))) {
     done = JSON.parse(readFileSync(join(heDir, f), "utf8"));
   } catch {}
   const cityName = new Map<string, string>(data.cities.map((c: { slug: string; names: { en: string } }) => [c.slug, c.names.en]));
-  const byCity = new Map<string, any[]>();
+  const byCity = new Map<string, PlaceSeed[]>();
   for (const p of data.places) byCity.set(p.city, [...(byCity.get(p.city) ?? []), p]);
   for (const [city, places] of byCity) {
     const where = `${cityName.get(city) ?? city}, ${f.slice(0, 2).toUpperCase()}`;
