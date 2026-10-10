@@ -115,7 +115,7 @@ export const worldCities: WorldCitySpec[] = [
   ...c("PA", "Panama City"),
   ...c("GT", "Antigua Guatemala"),
   ...c("BS", "Nassau"),
-  ...c("PR", "San Juan"),
+  ...c("PR", ["San Juan", "San Juan, Puerto Rico"]),
   // South America
   ...c("BR", "Rio de Janeiro", "Sao Paulo", "Salvador", "Florianopolis", "Foz do Iguacu", "Recife"),
   ...c("AR", "Buenos Aires", "Mendoza", "Bariloche", "Salta", "Ushuaia"),

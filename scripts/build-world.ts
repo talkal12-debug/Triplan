@@ -74,11 +74,14 @@ async function enwikiTitle(qid: string): Promise<string | null> {
   const data = (await res.json()) as { entities?: Record<string, { sitelinks?: { enwiki?: { title: string } } }> };
   return data.entities?.[qid]?.sitelinks?.enwiki?.title ?? null;
 }
+// Territories OSM files under another country on Nominatim: Puerto Rico under "us", Hong Kong and Macau under "cn".
+const COUNTRY_CODES: Record<string, string> = { PR: "pr,us", HK: "hk,cn", MO: "mo,cn" };
+
 async function resolveCity(spec: WorldCitySpec): Promise<CitySeed | null> {
   const wait = 1100 - (Date.now() - lastNominatim);
   if (wait > 0) await sleep(wait);
   lastNominatim = Date.now();
-  const params = new URLSearchParams({ q: spec.q ?? spec.en, countrycodes: spec.cc.toLowerCase(), format: "jsonv2", limit: "5", namedetails: "1", extratags: "1", "accept-language": "en" });
+  const params = new URLSearchParams({ q: spec.q ?? spec.en, countrycodes: COUNTRY_CODES[spec.cc] ?? spec.cc.toLowerCase(), format: "jsonv2", limit: "5", namedetails: "1", extratags: "1", "accept-language": "en" });
   const res = await fetch(`https://nominatim.openstreetmap.org/search?${params}`, { headers: { "User-Agent": UA } });
   if (!res.ok) throw new Error(`nominatim HTTP ${res.status}`);
   const hits = nominatimSchema.parse(await res.json());
