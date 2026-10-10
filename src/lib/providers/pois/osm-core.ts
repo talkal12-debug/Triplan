@@ -166,12 +166,23 @@ export function enrichWithWikidata(places: PlaceSeed[], facts: Map<string, Wikid
 /** The opening_hours string itself when the parser accepts it, else null (OSM tagging is free text and sometimes broken). */
 export function parseableHours(value: string | null, lat: number, lng: number, countryCode: string): string | null {
   if (!value) return null;
-  try {
-    new opening_hours(value, { lat, lon: lng, address: { country_code: countryCode.toLowerCase(), state: "" } });
-    return value;
-  } catch {
-    return null;
-  }
+  const parses = (v: string) => {
+    try {
+      new opening_hours(v, { lat, lon: lng, address: { country_code: countryCode.toLowerCase(), state: "" } });
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  if (parses(value)) return value;
+  // The parser knows no public holidays for many countries (Cyprus, most of Asia and Africa) and
+  // rejects any "PH" rule there. The rest of the hours is still right: keep it without the holiday part.
+  const withoutHolidays = value
+    .split(";")
+    .map((rule) => rule.replace(/\s*,\s*PH\b|\bPH\s*,\s*/gi, "").trim())
+    .filter((rule) => rule && !/^PH\b/i.test(rule))
+    .join("; ");
+  return withoutHolidays && withoutHolidays !== value && parses(withoutHolidays) ? withoutHolidays : null;
 }
 
 export function toPlace(el: OverpassElement, city: CitySeed): PlaceSeed | null {
