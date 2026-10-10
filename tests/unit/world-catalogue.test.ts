@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { selectPlaces, clampBox, overpassQueriesFor, parseableHours, slugify } from "@/lib/providers/pois/osm-core";
+import { selectPlaces, clampBox, overpassQueriesFor, parseableHours, slugify, dropDuplicatePlaces } from "@/lib/providers/pois/osm-core";
 import type { PlaceSeed } from "@/lib/data/schemas";
 import { worldCities } from "../../scripts/world/cities";
 
@@ -132,5 +132,37 @@ describe("opening hours at import", () => {
   it("leaves holiday rules alone where the parser knows the holidays", () => {
     expect(parseableHours("Tu-Su 09:00-17:00; PH off", 38.72, -9.14, "PT")).toBe("Tu-Su 09:00-17:00; PH off");
     expect(parseableHours("not hours at all", 38.72, -9.14, "PT")).toBeNull();
+  });
+});
+
+describe("duplicate places", () => {
+  const p = (id: string, en: string, lat: number, lng: number, iconicity: number, wikidata: string | null = null) =>
+    ({ id, city: "c", names: { en, local: en }, lat, lng, iconicity, wikidata });
+  it("keeps one of a point and its building, one branch per Wikidata id, and same-named places far apart", () => {
+    const out = dropDuplicatePlaces([
+      p("souk-node", "Spice Souk", 25.2675, 55.2971, 0.6, "Q5310610"),
+      p("souk-way", "Spice Souk", 25.2676, 55.2971, 0.4),
+      p("ng-trade-fair", "National Gallery in Prague - Trade Fair Palace", 50.1015, 14.4323, 0.9, "Q1419555"),
+      p("ng-kinsky", "National Gallery in Prague - Kinsky Palace", 50.088, 14.4217, 0.8, "Q1419555"),
+      p("market-a", "Fish Market", 24.4349, 54.4128, 0.3),
+      p("market-b", "Fish Market", 24.5143, 54.3761, 0.3),
+    ]);
+    expect(out.map((x) => x.id)).toEqual(["souk-node", "ng-trade-fair", "market-a", "market-b"]);
+  });
+
+  it("leaves the catalogue with no twins", async () => {
+    const { readdirSync, readFileSync } = await import("node:fs");
+    let twins = 0;
+    for (const f of readdirSync("data/world").filter((x) => x.endsWith(".json"))) {
+      const places = dropDuplicatePlaces(JSON.parse(readFileSync(`data/world/${f}`, "utf8")).places as Parameters<typeof dropDuplicatePlaces>[0]);
+      const seen = new Set<string>();
+      for (const x of places) {
+        if (!x.wikidata) continue;
+        const key = `${x.city}|${x.wikidata}`;
+        if (seen.has(key)) twins++;
+        seen.add(key);
+      }
+    }
+    expect(twins).toBe(0);
   });
 });
