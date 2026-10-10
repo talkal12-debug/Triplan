@@ -9,7 +9,7 @@
  * first collecting the matching ways/relations and the node ids they need, then
  * the coordinates, then the centre of each. Relations use their member ways.
  */
-import { createWriteStream, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { createWriteStream, existsSync, mkdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { homedir } from "node:os";
 import { pipeline } from "node:stream/promises";
@@ -40,14 +40,32 @@ export const GEOFABRIK: Record<string, string> = {
   CO: "south-america/colombia", EC: "south-america/ecuador", BO: "south-america/bolivia", UY: "south-america/uruguay",
 };
 
-const fileKey = (cc: string) => GEOFABRIK[cc].replace(/\//g, "_");
+/**
+ * Countries too big to scan in one go (the US file is ~11 GB, and the node-id sets of one
+ * pass outgrow a JavaScript Set): their cities use the state's file instead. Keyed "CC:slug".
+ */
+const US = (state: string) => `north-america/us/${state}`;
+export const CITY_REGION: Record<string, string> = {
+  "US:new-york": US("new-york"), "US:los-angeles": US("california"), "US:san-francisco": US("california"), "US:san-diego": US("california"),
+  "US:palm-springs": US("california"), "US:las-vegas": US("nevada"), "US:miami": US("florida"), "US:orlando": US("florida"), "US:key-west": US("florida"),
+  "US:chicago": US("illinois"), "US:washington": US("district-of-columbia"), "US:boston": US("massachusetts"), "US:new-orleans": US("louisiana"),
+  "US:seattle": US("washington"), "US:nashville": US("tennessee"), "US:austin": US("texas"), "US:honolulu": US("hawaii"),
+  "US:philadelphia": US("pennsylvania"), "US:denver": US("colorado"), "US:savannah": US("georgia"), "US:charleston": US("south-carolina"),
+  "US:portland": US("oregon"), "US:santa-fe": US("new-mexico"),
+};
 
-/** The country's PBF on disk, downloaded when missing or older than a month. */
-export async function ensurePbf(cc: string, log: (s: string) => void = console.log): Promise<string> {
-  const path = GEOFABRIK[cc];
-  if (!path) throw new Error(`no Geofabrik file known for ${cc}`);
+/** The Geofabrik file that covers a city. */
+export function regionFor(cc: string, slug: string): string | undefined {
+  return CITY_REGION[`${cc}:${slug}`] ?? (cc === "US" ? undefined : GEOFABRIK[cc]);
+}
+
+const fileKey = (path: string) => path.replace(/\//g, "_");
+const fresh = (file: string) => existsSync(file) && Date.now() - statSync(file).mtimeMs < MAX_AGE_DAYS * 86400_000;
+
+/** The region's PBF on disk, downloaded when missing or older than a month. */
+export async function ensurePbf(path: string, log: (s: string) => void = console.log): Promise<string> {
   mkdirSync(OSM_DIR, { recursive: true });
-  const file = join(OSM_DIR, `${fileKey(cc)}.osm.pbf`);
+  const file = join(OSM_DIR, `${fileKey(path)}.osm.pbf`);
   if (existsSync(file) && Date.now() - statSync(file).mtimeMs < MAX_AGE_DAYS * 86400_000 && statSync(file).size > 1_000_000) return file;
   const url = `https://download.geofabrik.de/${path}-latest.osm.pbf`;
   log(`  downloading ${url}`);
@@ -84,13 +102,18 @@ type OsmItem =
   | { type?: undefined };
 const stream = (file: string, withTags: boolean) => createOSMStream(file, { withTags, withInfo: false }) as AsyncGenerator<OsmItem>;
 
-/** All attraction candidates of a country as Overpass-shaped elements, from a cached index or a fresh scan of the PBF. */
-export async function countryIndex(cc: string, log: (s: string) => void = console.log): Promise<OverpassElement[]> {
-  const pbf = await ensurePbf(cc, log);
-  const indexFile = join(OSM_DIR, `${fileKey(cc)}.attractions.json`);
-  if (existsSync(indexFile) && statSync(indexFile).mtimeMs >= statSync(pbf).mtimeMs) {
+/**
+ * All attraction candidates of a Geofabrik region as Overpass-shaped elements, from a cached
+ * index (under a month old) or a fresh scan of the PBF. The PBF is deleted after the scan unless
+ * TRIPLAN_KEEP_PBF is set: the index is all the build needs, and the files add up to tens of GB.
+ */
+export async function regionIndex(path: string, log: (s: string) => void = console.log): Promise<OverpassElement[]> {
+  const indexFile = join(OSM_DIR, `${fileKey(path)}.attractions.json`);
+  const pbfFile = join(OSM_DIR, `${fileKey(path)}.osm.pbf`);
+  if (fresh(indexFile) && (!existsSync(pbfFile) || statSync(indexFile).mtimeMs >= statSync(pbfFile).mtimeMs)) {
     return (JSON.parse(readFileSync(indexFile, "utf8")) as Index).elements;
   }
+  const pbf = await ensurePbf(path, log);
   log(`  scanning ${pbf} (${(statSync(pbf).size / 1e6).toFixed(0)} MB)`);
   const started = Date.now();
   const elements: OverpassElement[] = [];
@@ -161,6 +184,7 @@ export async function countryIndex(cc: string, log: (s: string) => void = consol
   }
   writeFileSync(indexFile, JSON.stringify({ builtAt: new Date().toISOString(), source: pbf, elements } satisfies Index));
   log(`  index: ${elements.length} attraction candidates in ${Math.round((Date.now() - started) / 1000)}s`);
+  if (!process.env.TRIPLAN_KEEP_PBF) unlinkSync(pbf);
   return elements;
 }
 
